@@ -4,16 +4,16 @@ import persistentie.*;
 
 public class SpelerRepository {
 
-	SpelerMapper spelerMapper;
+	private SpelerMapper spelerMapper;
 
 	/**
 	 * 
 	 * @param gebruikersnaam
 	 * @param wachtwoord
+     * @return 
 	 */
 	public Speler geefSpeler(String gebruikersnaam, String wachtwoord) {
-		// TODO - implement SpelerRepository.geefSpeler
-		throw new UnsupportedOperationException();
+		spelerMapper = new SpelerMapper();
+                return spelerMapper.zoek(gebruikersnaam, wachtwoord);                
 	}
-
 }

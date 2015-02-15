@@ -12,8 +12,8 @@ public class DomeinController
 
     /**
      * Aanmelden van een gebruiker
-     * @param gebruikersnaam
-     * @param wachtwoord
+     * @param gebruikersnaam Instellen ven gebruikersnaam
+     * @param wachtwoord Instellen van wachtwoord
      */
     public void meldAan(String gebruikersnaam, String wachtwoord)
     {

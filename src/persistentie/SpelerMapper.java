@@ -5,10 +5,7 @@ import java.sql.*;
 
 public class SpelerMapper
 {
-
-    private Speler speler;
-    private Connectie databankConnectie;
-
+    private Connectie connectie;
     /**
      *
      * @param gebruikersnaam
@@ -20,8 +17,8 @@ public class SpelerMapper
         String sqlString = "SELECT * FROM Spelers WHERE gebruikersnaam = '" + gebruikersnaam + "'"
                 + "AND wachtwoord = '" + wachtwoord + "'";
         
-        databankConnectie = new Connectie();
-        speler = new Speler();
+        connectie = new Connectie();
+        Speler speler = new Speler();
         
         try
         {
@@ -42,7 +39,7 @@ public class SpelerMapper
         }
         finally
         {
-            databankConnectie.sluit();
+            connectie.sluit();
         }
         return speler;
     }

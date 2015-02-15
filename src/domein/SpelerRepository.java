@@ -16,4 +16,13 @@ public class SpelerRepository {
 		spelerMapper = new SpelerMapper();
                 return spelerMapper.zoek(gebruikersnaam, wachtwoord);
 	}
+
+	/**
+	 * 
+	 * @param gebruikersnaam
+	 */
+	public boolean bestaatSpeler(String gebruikersnaam) {
+		// TODO - implement SpelerRepository.bestaatSpeler
+		throw new UnsupportedOperationException();
+	}
 }

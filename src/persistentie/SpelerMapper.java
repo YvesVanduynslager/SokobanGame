@@ -32,10 +32,11 @@ public class SpelerMapper
 
             while (rs.next())
             {
-                speler.setID(rs.getString(1)); // 1 staat voor kolom 1
-                speler.setGebruikersnaam(rs.getString(2)); // 2 voor kolom 2 enz.
-                speler.setWachtwoord(rs.getString(3));
-                speler.setAdminrechten((rs.getInt(4) == 1)); // als gelijk is aan een, dan true. db heeft 0 voor false, en 1 voor true. wordt hier vlug omgezet naar boolean
+                speler.setGebruikersnaam(rs.getString(1)); // 1 voor kolom 1 enz.
+                speler.setWachtwoord(rs.getString(2));
+                speler.setAdminrechten((rs.getInt(3) == 1)); // als gelijk is aan een, dan true. db heeft 0 voor false, en 1 voor true. wordt hier vlug omgezet naar boolean
+                speler.setVoornaam(rs.getString(4));
+                speler.setAchternaam(rs.getString(5));
             }
         }
         catch (Exception e)

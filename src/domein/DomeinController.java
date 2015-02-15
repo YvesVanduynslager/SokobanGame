@@ -24,10 +24,11 @@ public class DomeinController
 
     public String[] getSpeler()
     {
-        spelerString = new String[3];
-        spelerString[0] = speler.getID();
-        spelerString[1] = speler.getGebruikersnaam();
-        spelerString[2] = speler.getWachtwoord();
+        spelerString = new String[4];
+        spelerString[0] = speler.getGebruikersnaam();
+        spelerString[1] = speler.getWachtwoord();
+        spelerString[2] = speler.getVoornaam();
+        spelerString[3] = speler.getAchternaam();
         return spelerString;
     }
 

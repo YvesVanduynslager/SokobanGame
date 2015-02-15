@@ -7,19 +7,8 @@ package domein;
  */
 public class Speler
 {
-    private String id;
-    private String gebruikersnaam;
-    private String wachtwoord;
-    private boolean adminrechten = false;
-
-    /**
-     * Instellen van het volgnummer van de speler
-     * @param id volgnummer van de speler
-     */
-    public void setID(String id)
-    {
-        this.id = id;
-    }
+    private String gebruikersnaam, wachtwoord, voornaam, achternaam;
+    private boolean adminrechten = true;
 
     /**
      * Instellen van de gebruikersnaam van de speler
@@ -47,6 +36,16 @@ public class Speler
     {
         this.adminrechten = adminrechten;
     }
+    
+    public void setVoornaam(String voornaam)
+    {
+        this.voornaam = voornaam;
+    }
+    
+    public void setAchternaam(String achternaam)
+    {
+        this.achternaam = achternaam;
+    }
 
     public String getGebruikersnaam()
     {
@@ -62,9 +61,14 @@ public class Speler
     {
         return this.adminrechten;
     }
-
-    public String getID()
+    
+    public String getVoornaam()
     {
-        return id;
+        return this.voornaam;
+    }
+    
+    public String getAchternaam()
+    {
+        return this.achternaam;
     }
 }

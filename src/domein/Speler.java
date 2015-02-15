@@ -1,57 +1,70 @@
 package domein;
 
-public class Speler {
+/**
+ * 
+ * @author Yves
+ * De gebruiker die een spel speelt wordt bewaard in een Speler-object
+ */
+public class Speler
+{
+    private String id;
+    private String gebruikersnaam;
+    private String wachtwoord;
+    private boolean adminrechten = false;
 
-	private String gebruikersnaam;
-	private String wachtwoord;
-	private boolean adminrechten = false;
-	private String id;
+    /**
+     * Instellen van het volgnummer van de speler
+     * @param id volgnummer van de speler
+     */
+    public void setID(String id)
+    {
+        this.id = id;
+    }
 
-	/**
-	 * 
-	 * @param gebruikersnaam
-	 */
-	public void setGebruikersnaam(String gebruikersnaam) {
-		this.gebruikersnaam = gebruikersnaam;
-	}
+    /**
+     * Instellen van de gebruikersnaam van de speler
+     * @param gebruikersnaam gebruikersnaam van de speler
+     */
+    public void setGebruikersnaam(String gebruikersnaam)
+    {
+        this.gebruikersnaam = gebruikersnaam;
+    }
 
-	/**
-	 * 
-	 * @param wachtwoord
-	 */
-	public void setWachtwoord(String wachtwoord) {
-		this.wachtwoord = wachtwoord;
-	}
+    /**
+     * Instellen van het wachtwoord van de Speler
+     * @param wachtwoord wachtwoord van de speler
+     */
+    public void setWachtwoord(String wachtwoord)
+    {
+        this.wachtwoord = wachtwoord;
+    }
 
-	/**
-	 * 
-	 * @param adminrechten
-	 */
-	public void setAdminrechten(boolean adminrechten) {
-		this.adminrechten = adminrechten;
-	}
+    /**
+     * Instellen van adminrechten van de speler
+     * @param adminrechten adminrechten van de gebruiker
+     */
+    public void setAdminrechten(boolean adminrechten)
+    {
+        this.adminrechten = adminrechten;
+    }
 
-	public String getGebruikersnaam() {
-		return this.gebruikersnaam;
-	}
+    public String getGebruikersnaam()
+    {
+        return this.gebruikersnaam;
+    }
 
-	public String getWachtwoord() {
-		return this.wachtwoord;
-	}
+    public String getWachtwoord()
+    {
+        return this.wachtwoord;
+    }
 
-	public boolean heeftAdminrechten() {
-            return this.adminrechten;
-	}
+    public boolean heeftAdminrechten()
+    {
+        return this.adminrechten;
+    }
 
-	public String getID() {
-		return id;
-	}
-
-	/**
-	 * 
-	 * @param id
-	 */
-	public void setID(String id) {
-		this.id = id;
-	}
+    public String getID()
+    {
+        return id;
+    }
 }

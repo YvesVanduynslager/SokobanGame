@@ -2,15 +2,20 @@ package persistentie;
 
 import domein.*;
 import java.sql.*;
-
+/**
+ * 
+ * @author Yves
+ * SpelerMapper staat in voor het omzetten van een Speler-entiteit uit de
+ * databank naar een Speler-object.
+ */
 public class SpelerMapper
 {
     private Connectie connectie;
     /**
      *
-     * @param gebruikersnaam
-     * @param wachtwoord
-     * @return 
+     * @param gebruikersnaam De gebruikersnaam van de speler
+     * @param wachtwoord Het wachtwoord van de speler
+     * @return Een spelerobject met gevulde waarden uit de databank.
      */
     public Speler zoek(String gebruikersnaam, String wachtwoord)
     {
@@ -22,15 +27,15 @@ public class SpelerMapper
         
         try
         {
-            PreparedStatement sqlStatement = databankConnectie.getDatabaseConnectie().prepareStatement(sqlString);
+            PreparedStatement sqlStatement = connectie.getDatabaseConnectie().prepareStatement(sqlString);
             ResultSet rs = sqlStatement.executeQuery();
 
             while (rs.next())
             {
-                speler.setID(rs.getString(1));
-                speler.setGebruikersnaam(rs.getString(2));
+                speler.setID(rs.getString(1)); // 1 staat voor kolom 1
+                speler.setGebruikersnaam(rs.getString(2)); // 2 voor kolom 2 enz.
                 speler.setWachtwoord(rs.getString(3));
-                speler.setAdminrechten((rs.getInt(4) == 1));
+                speler.setAdminrechten((rs.getInt(4) == 1)); // als gelijk is aan een, dan true. db heeft 0 voor false, en 1 voor true. wordt hier vlug omgezet naar boolean
             }
         }
         catch (Exception e)

@@ -2,27 +2,23 @@ package domein;
 
 import persistentie.*;
 
-public class SpelerRepository {
+/**
+ * Staat in voor het beheren, toevoegen en verwijderen van spelers.
+ * @author Yves
+ */
+public class SpelerRepository
+{
+    private SpelerMapper spelerMapper;
 
-	private SpelerMapper spelerMapper;
-
-	/**
-	 * 
-	 * @param gebruikersnaam
-	 * @param wachtwoord
-     * @return 
-	 */
-	public Speler geefSpeler(String gebruikersnaam, String wachtwoord) {
-		spelerMapper = new SpelerMapper();
-                return spelerMapper.zoek(gebruikersnaam, wachtwoord);
-	}
-
-	/**
-	 * 
-	 * @param gebruikersnaam
-	 */
-	public boolean bestaatSpeler(String gebruikersnaam) {
-		// TODO - implement SpelerRepository.bestaatSpeler
-		throw new UnsupportedOperationException();
-	}
+    /**
+     *
+     * @param gebruikersnaam gebruikersnaam van de speler
+     * @param wachtwoord wachtwoord van de speler
+     * @return gevuld Speler-object met waarden uit gewenste record uit databank.
+     */
+    public Speler geefSpeler(String gebruikersnaam, String wachtwoord)
+    {
+        spelerMapper = new SpelerMapper();
+        return spelerMapper.zoek(gebruikersnaam, wachtwoord);
+    }
 }

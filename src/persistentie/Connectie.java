@@ -1,7 +1,11 @@
 package persistentie;
 
 import java.sql.*;
-
+/**
+ * 
+ * @author Yves
+ * Maakt een connectie met de sokobandb-databank via mysql-connector.
+ */
 public class Connectie
 {
     private final String JDBC = "jdbc:mysql://localhost:3306/sokobandb?user=root&password=yamahar1";
@@ -19,18 +23,22 @@ public class Connectie
             Class.forName(JDBC_DRIVER).newInstance();
             conn = DriverManager.getConnection(JDBC);
         }
-        catch (Exception e)
+        catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e)
         {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
     
+    /**
+     * 
+     * @return De connectie met de databank.
+     */
     public Connection getDatabaseConnectie()
     {
         return conn;
     }
     /**
-     * sluiten van connectie
+     * Deze methode sluit de geopende connectie met de databank.
      */
     public void sluit()
     {

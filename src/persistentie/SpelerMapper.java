@@ -12,15 +12,17 @@ public class SpelerMapper
     /**
      *
      * @param gebruikersnaam
+     * @param wachtwoord
      * @return 
      */
     public Speler zoek(String gebruikersnaam, String wachtwoord)
     {
-        String sqlString = "SELECT * FROM spelers WHERE gebruikersnaam = '" + gebruikersnaam + "'"
+        String sqlString = "SELECT * FROM Spelers WHERE gebruikersnaam = '" + gebruikersnaam + "'"
                 + "AND wachtwoord = '" + wachtwoord + "'";
+        
         databankConnectie = new Connectie();
-
         speler = new Speler();
+        
         try
         {
             PreparedStatement sqlStatement = databankConnectie.getDatabaseConnectie().prepareStatement(sqlString);
@@ -28,15 +30,15 @@ public class SpelerMapper
 
             while (rs.next())
             {
-                speler.setID(rs.getString("id"));
-                speler.setGebruikersnaam(rs.getString("gebruikersnaam"));
-                speler.setWachtwoord(rs.getString("wachtwoord"));
-                speler.setAdminrechten(rs.getBoolean("adminrechten"));
+                speler.setID(rs.getString(1));
+                speler.setGebruikersnaam(rs.getString(2));
+                speler.setWachtwoord(rs.getString(3));
+                speler.setAdminrechten((rs.getInt(4) == 1));
             }
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+            System.out.println("Fout: " + e.getMessage());
         }
         finally
         {

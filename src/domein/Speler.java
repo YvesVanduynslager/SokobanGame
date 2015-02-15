@@ -4,7 +4,7 @@ public class Speler {
 
 	private String gebruikersnaam;
 	private String wachtwoord;
-	private boolean adminrechten;
+	private boolean adminrechten = false;
 	private String id;
 
 	/**

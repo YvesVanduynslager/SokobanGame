@@ -29,10 +29,10 @@ public class DomeinController {
         
         private void setSpeler(Speler speler)
         {
+            this.speler = new String[3];
             this.speler[0] = speler.getID(); //overbodig?
             this.speler[1] = speler.getGebruikersnaam(); //ZEKER NODIG IN GUI
             this.speler[2] = speler.getWachtwoord();
             this.spelerAdminrechten = speler.heeftAdminrechten();
         }
-
 }

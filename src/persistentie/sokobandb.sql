@@ -11,12 +11,14 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema sokobandb
 -- -----------------------------------------------------
 DROP SCHEMA IF EXISTS `sokobandb` ;
+DROP DATABASE IF EXISTS `sokobandb`;
 
 -- -----------------------------------------------------
 -- Schema sokobandb
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `sokobandb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci ;
 USE `sokobandb` ;
+CREATE DATABASE `sokobandb` /*!40100 DEFAULT CHARACTER SET utf8 */;
 
 -- -----------------------------------------------------
 -- Table `sokobandb`.`Spelers`
@@ -24,18 +26,20 @@ USE `sokobandb` ;
 DROP TABLE IF EXISTS `sokobandb`.`Spelers` ;
 
 CREATE TABLE IF NOT EXISTS `sokobandb`.`Spelers` (
-  `id` INT NOT NULL AUTO_INCREMENT,
   `gebruikersnaam` VARCHAR(45) NOT NULL,
   `wachtwoord` VARCHAR(45) NOT NULL,
   `adminrechten` TINYINT(1) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  `voornaam` VARCHAR(45),
+  `achternaam` VARCHAR(45),
+  PRIMARY KEY (`gebruikersnaam`),
   UNIQUE INDEX `gebruikersnaam_UNIQUE` (`gebruikersnaam` ASC))
 ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-INSERT INTO Spelers
-VALUES ('001','Yves','yamahar1', 1)
+INSERT INTO spelers
+VALUES ('katalyst','yamahar1', 1, 'Yves', 'Vanduynslager'), ('jeroen', 'wachtwoord', 1, 'Jeroen', 'Ceulemans'),
+('vanessa', 'wachtwoord', 1, null, null), ('peter', 'wachtwoord', 0, null, null)

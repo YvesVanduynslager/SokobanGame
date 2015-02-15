@@ -14,6 +14,6 @@ public class SpelerRepository {
 	 */
 	public Speler geefSpeler(String gebruikersnaam, String wachtwoord) {
 		spelerMapper = new SpelerMapper();
-                return spelerMapper.zoek(gebruikersnaam, wachtwoord);                
+                return spelerMapper.zoek(gebruikersnaam, wachtwoord);
 	}
 }

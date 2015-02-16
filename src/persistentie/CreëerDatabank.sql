@@ -35,11 +35,6 @@ CREATE TABLE IF NOT EXISTS `sokobandb`.`Spelers` (
   UNIQUE INDEX `gebruikersnaam_UNIQUE` (`gebruikersnaam` ASC))
 ENGINE = InnoDB;
 
-
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-
-INSERT INTO spelers
-VALUES ('katalyst','yamahar1', 1, 'Yves', 'Vanduynslager'), ('jeroen', 'wachtwoord', 1, 'Jeroen', 'Ceulemans'),
-('vanessa', 'wachtwoord', 1, null, null), ('peter', 'wachtwoord', 0, null, null)

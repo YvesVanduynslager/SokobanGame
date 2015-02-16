@@ -9,4 +9,5 @@ VALUES
 ('jeroen', 'wachtwoord', 1, 'Jeroen', 'Ceulemans'),
 ('vanessa', 'wachtwoord', 1, null, null),
 ('peter', 'wachtwoord', 1, null, null),
-('bert', 'wachtwoord', 0, null, null);
+('bert', 'banaaninjeoor', 0, null, null);
+('ernie', 'banaaninjeoor', 0, 'ernie', null);

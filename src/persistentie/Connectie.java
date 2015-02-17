@@ -41,6 +41,7 @@ public class Connectie
     {
         return conn;
     }
+    
     /**
      * Deze methode sluit de geopende connectie met de databank.
      */
@@ -52,7 +53,7 @@ public class Connectie
         }
         catch(Exception e)
         {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
     }
 }

@@ -1,7 +1,6 @@
 package domein;
 
 /**
- * 
  * @author Yves
  * De gebruiker die een spel speelt wordt bewaard in een Speler-object
  */

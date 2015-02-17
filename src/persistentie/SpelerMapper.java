@@ -19,7 +19,7 @@ public class SpelerMapper
      */
     public Speler zoek(String gebruikersnaam, String wachtwoord)
     {
-        String sqlString = "SELECT * FROM Speler WHERE gebruikersnaam = '" + gebruikersnaam + "'"
+        String sqlString = "SELECT * FROM Speler WHERE gebruikernaam = '" + gebruikersnaam + "'"
                 + "AND wachtwoord = '" + wachtwoord + "'";
         
         connectie = new Connectie();
@@ -42,7 +42,7 @@ public class SpelerMapper
         }
         catch (Exception e)
         {
-            System.out.println("Fout: " + e.getMessage());
+            System.out.println("--- Fout: " + e.getMessage());
         }
         finally
         {

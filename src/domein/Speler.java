@@ -7,9 +7,16 @@ package domein;
  */
 public class Speler
 {
-    private String gebruikersnaam, wachtwoord, voornaam, achternaam;
-    private boolean adminrechten = true;
+    private String id, gebruikersnaam, wachtwoord, adminrechten, voornaam, achternaam;
 
+    /**
+     * Instellen van id van de speler
+     * @param id id van de speler
+     */
+    public void setID(String id)
+    {
+        this.id = id;
+    }
     /**
      * Instellen van de gebruikersnaam van de speler
      * @param gebruikersnaam gebruikersnaam van de speler
@@ -20,31 +27,44 @@ public class Speler
     }
 
     /**
-     * Instellen van het wachtwoord van de Speler
+     * Instellen van het wachtwoord van de speler
      * @param wachtwoord wachtwoord van de speler
      */
     public void setWachtwoord(String wachtwoord)
     {
         this.wachtwoord = wachtwoord;
     }
-
+    
     /**
-     * Instellen van adminrechten van de speler
-     * @param adminrechten adminrechten van de gebruiker
+     * Instellen van de adminrechten van de speler
+     * @param adminrechten adminrechten van de speler
      */
-    public void setAdminrechten(boolean adminrechten)
+    public void setAdminrechten(String adminrechten)
     {
         this.adminrechten = adminrechten;
     }
     
+    /**
+     * Instellen van de voornaam van de speler
+     * @param voornaam voornaam van de speler
+     */
     public void setVoornaam(String voornaam)
     {
         this.voornaam = voornaam;
     }
     
+    /**
+     * Instellen van de achternaam van de speler
+     * @param achternaam achternaam van de speler
+     */
     public void setAchternaam(String achternaam)
     {
         this.achternaam = achternaam;
+    }
+    
+    public String getID()
+    {
+        return this.id;
     }
 
     public String getGebruikersnaam()
@@ -56,8 +76,8 @@ public class Speler
     {
         return this.wachtwoord;
     }
-
-    public boolean heeftAdminrechten()
+    
+    public String getAdminrechten()
     {
         return this.adminrechten;
     }
@@ -70,5 +90,11 @@ public class Speler
     public String getAchternaam()
     {
         return this.achternaam;
+    }
+    
+    @Override
+    public String toString()
+    {
+        return String.format("","");
     }
 }

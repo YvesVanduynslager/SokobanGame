@@ -24,17 +24,14 @@ public class DomeinController
 
     public String[] getSpeler()
     {
-        spelerString = new String[4];
-        spelerString[0] = speler.getGebruikersnaam();
-        spelerString[1] = speler.getWachtwoord();
-        spelerString[2] = speler.getVoornaam();
-        spelerString[3] = speler.getAchternaam();
+        spelerString = new String[6];
+        spelerString[0] = speler.getID();
+        spelerString[1] = speler.getGebruikersnaam();
+        spelerString[2] = speler.getWachtwoord();
+        spelerString[3] = speler.getAdminrechten();
+        spelerString[3] = speler.getVoornaam();
+        spelerString[4] = speler.getAchternaam();
         return spelerString;
-    }
-
-    public boolean getSpelerAdminrechten()
-    {
-        return spelerAdminrechten;
     }
 
     /**
@@ -44,6 +41,5 @@ public class DomeinController
     private void setSpeler(Speler speler)
     {
         this.speler = speler;
-        this.spelerAdminrechten = speler.heeftAdminrechten();
     }
 }

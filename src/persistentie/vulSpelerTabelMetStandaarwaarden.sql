@@ -1,12 +1,10 @@
 /* Deze instructie wist eerst alle gegevens uit de tabel Spelers */
 DELETE
-FROM `sokobandb`.`Spelers`;
+FROM `sokobandatabase`.`speler`;
 
 /* Deze instructie vult de tabel Spelers op met enkele gebruikers voor testdoeleinden */
-INSERT INTO `sokobandb`.`Spelers`
-VALUES
-('yves', 'wachtwoord', 1, 'Yves', 'Vanduynslager'),
-('jeroen', 'wachtwoord', 1, 'Jeroen', 'Ceulemans'),
-('vanessa', 'wachtwoord', 1, null, null),
-('peter', 'wachtwoord', 1, null, null),
-('bert', 'wachtwoord', 0, null, null);
+INSERT INTO `sokobandatabase`.`speler` (`gebruikernaam`, `wachtwoord`, `adminrechten`, `voornaam`, `achternaam`) VALUES ('Yves', 'wachtwoord', '1', 'Yves', 'Vanduynslager');
+INSERT INTO `sokobandatabase`.`speler` (`gebruikernaam`, `wachtwoord`, `adminrechten`, `voornaam`) VALUES ('Jeroen', 'wachtwoord', '1', 'Jeroen');
+INSERT INTO `sokobandatabase`.`speler` (`gebruikernaam`, `wachtwoord`, `adminrechten`, `achternaam`) VALUES ('Vanessa', 'wachtwoord', '1', 'Dejonghe');
+INSERT INTO `sokobandatabase`.`speler` (`gebruikernaam`, `wachtwoord`, `adminrechten`) VALUES ('Ernie', 'banaaninjeoor', '0');
+INSERT INTO `sokobandatabase`.`speler` (`gebruikernaam`, `wachtwoord`, `adminrechten`) VALUES ('Bert', 'banaaninjeoor', '0');

@@ -19,7 +19,7 @@ public class SpelerMapper
      */
     public Speler zoek(String gebruikersnaam, String wachtwoord)
     {
-        String sqlString = "SELECT * FROM Spelers WHERE gebruikersnaam = '" + gebruikersnaam + "'"
+        String sqlString = "SELECT * FROM Speler WHERE gebruikersnaam = '" + gebruikersnaam + "'"
                 + "AND wachtwoord = '" + wachtwoord + "'";
         
         connectie = new Connectie();
@@ -32,9 +32,10 @@ public class SpelerMapper
 
             while (rs.next())
             {
+                speler.setID(String.format("%s", rs.getInt(1)));
                 speler.setGebruikersnaam(rs.getString(1)); // 1 voor kolom 1 enz.
                 speler.setWachtwoord(rs.getString(2));
-                speler.setAdminrechten((rs.getInt(3) == 1)); // als gelijk is aan een, dan true. db heeft 0 voor false, en 1 voor true. wordt hier vlug omgezet naar boolean
+                speler.setAdminrechten((rs.getInt(3) == 1? "ja" : "nee")); // als gelijk is aan een, dan ja, anders nee. db heeft 0 voor ja, en 1 voor nee.
                 speler.setVoornaam(rs.getString(4));
                 speler.setAchternaam(rs.getString(5));
             }

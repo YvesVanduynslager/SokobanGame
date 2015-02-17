@@ -67,9 +67,13 @@ public class SokobanApp
 
                     System.out.println();
                     System.out.println("Succesvol aangemeld met volgende gegevens: ");
-                    System.out.printf("%14s%15s%15s%15s%n", "Gebruikersnaam", "Adminrechten", "Voonraam", "Achternaam"); //wachtwoord wordt hier niet meer weergegeven.
-                    System.out.printf("%14s%15b%15s%15s%n", spelerGegevens[0], spelController.getSpelerAdminrechten(),
-                            spelerGegevens[2], spelerGegevens[3]);
+                    System.out.printf("%s%14s%14s%14s%14s%n", "ID", "Gebruikersnaam", "Adminrechten", "Voornaam", "Achternaam"); //wachtwoord wordt hier niet meer weergegeven.
+                    for (String spelerGegeven : spelerGegevens)
+                    {
+                        System.out.printf("%15s", spelerGegeven);
+                    }
+//                    System.out.printf("%s%14s%14b%14s%14s%n", spelerGegevens[0], spelerGegevens[1],
+//                            spelerGegevens[3], spelerGegevens[4], spelerGegevens[5]);
                     System.out.println();
 
                     System.out.printf("%s%n%s%n%s%n%s%n", "Keuzemenu:", "[1] Speel spel", "[2] Configureer nieuw spel", "[3] Wijzig een bestaand spel");

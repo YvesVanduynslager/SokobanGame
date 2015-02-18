@@ -5,10 +5,9 @@ package domein;
  */
 public class DomeinController
 {
-    private SpelerRepository spelerRepository;
+    SpelerRepository spelerRepository;
     private String[] spelerString;
-    private boolean spelerAdminrechten;
-    private Speler speler;
+    Speler speler;
 
     /**
      * Aanmelden van een gebruiker
@@ -22,15 +21,11 @@ public class DomeinController
         setSpeler(sp);
     }
 
-    public String[] getSpeler()
+    public String[] geefSpeler()
     {
-        spelerString = new String[6];
-        spelerString[0] = speler.getID();
-        spelerString[1] = speler.getGebruikersnaam();
-        spelerString[2] = speler.getWachtwoord();
-        spelerString[3] = speler.getAdminrechten();
-        spelerString[3] = speler.getVoornaam();
-        spelerString[4] = speler.getAchternaam();
+        spelerString = new String[2];
+        spelerString[0] = speler.getGebruikersnaam();
+        spelerString[1] = speler.getAdminrechten();
         return spelerString;
     }
 

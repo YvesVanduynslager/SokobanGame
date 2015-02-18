@@ -33,16 +33,16 @@ public class SpelerMapper
             while (rs.next())
             {
                 speler.setID(String.format("%s", rs.getInt(1)));
-                speler.setGebruikersnaam(rs.getString(1)); // 1 voor kolom 1 enz.
-                speler.setWachtwoord(rs.getString(2));
-                speler.setAdminrechten((rs.getInt(3) == 1? "ja" : "nee")); // als gelijk is aan een, dan ja, anders nee. db heeft 0 voor ja, en 1 voor nee.
-                speler.setVoornaam(rs.getString(4));
-                speler.setAchternaam(rs.getString(5));
+                speler.setGebruikersnaam(rs.getString(2)); // 1 voor kolom 1 enz.
+                speler.setWachtwoord(rs.getString(3));
+                speler.setAdminrechten((rs.getInt(4) == 1? "ja" : "nee")); // als gelijk is aan een, dan ja, anders nee. db heeft 0 voor ja, en 1 voor nee.
+                speler.setVoornaam(rs.getString(5));
+                speler.setAchternaam(rs.getString(6));
             }
         }
         catch (Exception e)
         {
-            System.out.println("--- Fout: " + e.getMessage());
+            System.out.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
         }
         finally
         {

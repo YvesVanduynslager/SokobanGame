@@ -8,7 +8,7 @@ import persistentie.*;
  */
 public class SpelerRepository
 {
-    private SpelerMapper spelerMapper;
+    SpelerMapper spelerMapper;
 
     /**
      *

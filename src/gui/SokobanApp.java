@@ -51,7 +51,7 @@ public class SokobanApp
                         }
 
                         spelController.meldAan(gebruikersnaam, wachtwoord);
-                        spelerGegevens = spelController.getSpeler();
+                        spelerGegevens = spelController.geefSpeler();
 
                         if (spelerGegevens[0] == null) /*Bij het uitvoeren van een sql-statement met onbestaande
                          gebruikersnaam of onbestaand wachtwoord, zal de spelerGegevens-string gevuld worden met null-waarden.*/
@@ -67,10 +67,10 @@ public class SokobanApp
 
                     System.out.println();
                     System.out.println("Succesvol aangemeld met volgende gegevens: ");
-                    System.out.printf("%s%14s%14s%14s%14s%n", "ID", "Gebruikersnaam", "Adminrechten", "Voornaam", "Achternaam"); //wachtwoord wordt hier niet meer weergegeven.
+                    System.out.printf("%s%14s%n", "Gebruikersnaam", "Adminrechten"); //wachtwoord wordt hier niet meer weergegeven.
                     for (String spelerGegeven : spelerGegevens)
                     {
-                        System.out.printf("%15s", spelerGegeven);
+                        System.out.printf("%14s", spelerGegeven);
                     }
 //                    System.out.printf("%s%14s%14b%14s%14s%n", spelerGegevens[0], spelerGegevens[1],
 //                            spelerGegevens[3], spelerGegevens[4], spelerGegevens[5]);

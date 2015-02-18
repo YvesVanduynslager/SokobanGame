@@ -10,6 +10,10 @@ public class SpelerRepository
 {
     SpelerMapper spelerMapper;
 
+    public SpelerRepository()
+    {
+        spelerMapper = new SpelerMapper();
+    }
     /**
      *
      * @param gebruikersnaam gebruikersnaam van de speler
@@ -18,7 +22,6 @@ public class SpelerRepository
      */
     public Speler geefSpeler(String gebruikersnaam, String wachtwoord)
     {
-        spelerMapper = new SpelerMapper();
         return spelerMapper.zoek(gebruikersnaam, wachtwoord);
     }
 }

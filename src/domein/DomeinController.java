@@ -9,6 +9,10 @@ public class DomeinController
     private String[] spelerString;
     Speler speler;
 
+    public DomeinController()
+    {
+        spelerRepository = new SpelerRepository();
+    }
     /**
      * Aanmelden van een gebruiker
      * @param gebruikersnaam Instellen ven gebruikersnaam
@@ -16,7 +20,6 @@ public class DomeinController
      */
     public void meldAan(String gebruikersnaam, String wachtwoord)
     {
-        spelerRepository = new SpelerRepository();
         Speler sp = spelerRepository.geefSpeler(gebruikersnaam, wachtwoord);
         setSpeler(sp);
     }

@@ -18,7 +18,7 @@ public class Speler
      *
      * @param id id van de speler
      */
-    public void setID(String id)
+    public void setId(String id)
     {
         this.id = id;
     }
@@ -73,7 +73,8 @@ public class Speler
         this.achternaam = achternaam;
     }
 
-    public String getID()
+
+    public String getId()
     {
         return this.id;
     }

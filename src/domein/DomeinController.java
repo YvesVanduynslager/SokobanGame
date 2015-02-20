@@ -5,9 +5,9 @@ package domein;
  */
 public class DomeinController
 {
-    SpelerRepository spelerRepository;
+    private SpelerRepository spelerRepository;
     private String[] spelerString;
-    Speler speler;
+    private Speler huidigeSpeler;
 
     public DomeinController()
     {
@@ -27,8 +27,8 @@ public class DomeinController
     public String[] geefSpeler()
     {
         spelerString = new String[2];
-        spelerString[0] = speler.getGebruikersnaam();
-        spelerString[1] = speler.getAdminrechten();
+        spelerString[0] = huidigeSpeler.getGebruikersnaam();
+        spelerString[1] = huidigeSpeler.getAdminrechten();
         return spelerString;
     }
 
@@ -38,6 +38,6 @@ public class DomeinController
      */
     private void setSpeler(Speler speler)
     {
-        this.speler = speler;
+        this.huidigeSpeler = speler;
     }
 }

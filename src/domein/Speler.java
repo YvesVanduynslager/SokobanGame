@@ -109,4 +109,18 @@ public class Speler
     {
         return String.format("", "");
     }
+
+	/**
+	 * Instellen van id van de speler
+	 * @param id id van de speler
+	 */
+	public void setID(String id) {
+		// TODO - implement Speler.setID
+		throw new UnsupportedOperationException();
+	}
+
+	public String getID() {
+		// TODO - implement Speler.getID
+		throw new UnsupportedOperationException();
+	}
 }

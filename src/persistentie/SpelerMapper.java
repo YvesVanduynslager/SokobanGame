@@ -53,4 +53,9 @@ public class SpelerMapper
         }
         return speler;
     }
+    
+    public void voegToe(Speler speler)
+    {
+        //TODO: sqlinstructie schrijven die spelergegevens uit spelerobject haalt en deze in de tabel Speler zet.
+    }
 }

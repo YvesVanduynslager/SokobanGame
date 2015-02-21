@@ -5,9 +5,10 @@ package domein;
  */
 public class DomeinController
 {
-    private SpelerRepository spelerRepository;
+    private final SpelerRepository spelerRepository;
     private String[] spelerString;
     private Speler huidigeSpeler;
+	Speler speler;
 
     public DomeinController()
     {
@@ -21,7 +22,7 @@ public class DomeinController
     public void meldAan(String gebruikersnaam, String wachtwoord)
     {
         Speler sp = spelerRepository.geefSpeler(gebruikersnaam, wachtwoord);
-        setSpeler(sp);
+        setHuidigeSpeler(sp);
     }
 
     public String[] geefSpeler()
@@ -36,8 +37,22 @@ public class DomeinController
      * Bijhouden welke speler is aangemeld.
      * @param speler Speler-object die tussentijds bewaard moet worden.
      */
-    private void setSpeler(Speler speler)
+    private void setHuidigeSpeler(Speler speler)
     {
         this.huidigeSpeler = speler;
     }
+
+	/**
+	 * 
+	 * @param gebruikersnaam
+	 * @param wachtwoord
+	 * @param voornaam
+	 * @param naam
+	 */
+	public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String naam) {
+		// TODO - controleren op geldigheid paramaters (domeinregels!)
+            //speler object aanmaken met deze paramaters
+            //repository aanroepen met dit spelerobject
+            //setHuidigeSpeler(aangemaakte spelerobject)
+	}
 }

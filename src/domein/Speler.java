@@ -6,11 +6,17 @@ package domein;
  */
 public class Speler
 {
-    private String id, gebruikersnaam, wachtwoord, adminrechten, voornaam, achternaam;
+    private String id, gebruikersnaam, wachtwoord, adminrechten, voornaam, naam;
 
-    public Speler()
+    public Speler(){}
+    
+    public Speler(String gebruikersnaam, String wachtwoord, String naam, String voornaam, String adminrechten)
     {
-            //nog aanvullen
+        this.gebruikersnaam = gebruikersnaam;
+        this.wachtwoord = wachtwoord;
+        this.voornaam = voornaam;
+        this.naam = naam;
+        this.adminrechten = adminrechten;
     }
 
     /**
@@ -70,7 +76,7 @@ public class Speler
      */
     public void setAchternaam(String achternaam)
     {
-        this.achternaam = achternaam;
+        this.naam = achternaam;
     }
 
 
@@ -101,7 +107,7 @@ public class Speler
 
     public String getAchternaam()
     {
-        return this.achternaam;
+        return this.naam;
     }
 
     @Override

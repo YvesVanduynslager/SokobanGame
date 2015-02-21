@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import java.util.Scanner;
 import domein.DomeinController;
 
 /**
+ * Centrale klasse die de verschillende use cases zal opstarten.
  *
- * @author Jeroen
+ * @author Yves
  */
 public class ConsoleApplicatie
 {
@@ -25,36 +21,33 @@ public class ConsoleApplicatie
         {
             if (keuze == 1)
             {
-                //use case registreer
-                System.out.print(" ------------");
-                System.out.print("| REGISTREER |");
-                System.out.print(" ------------");
+                //START USE CASE Registreer
                 System.exit(0);
             }
             else
             {
                 if (keuze == 2)
                 {
+                    //START USE CASE Meld aan
                     gui.UC1MeldAan.meldAan(spelController);
                 }
-//                    System.out.printf("%s%14s%14b%14s%14s%n", spelerGegevens[0], spelerGegevens[1],
-//                            spelerGegevens[3], spelerGegevens[4], spelerGegevens[5]);
+                
                 System.out.println();
-
                 System.out.printf("%s%n%s%n%s%n%s%n", "Keuzemenu:", "[1] Speel spel", "[2] Configureer nieuw spel", "[3] Wijzig een bestaand spel");
                 System.out.print("Uw keuze: ");
+                
                 keuze = scanner.nextInt();
                 switch (keuze)
                 {
                     /*hier voorlopig nog System.exit(0) om het programma te doen stoppen */
                     case 1:
-                        System.exit(0); //start use case Speel spel
+                        System.exit(0); //START USE CASE Speel spel
                         break;
                     case 2:
-                        System.exit(0); //start use case Configureer nieuw spel
+                        System.exit(0); //START USE CASE Configureer nieuw spel
                         break;
                     case 3:
-                        System.exit(0); //start use case Wijzig spel
+                        System.exit(0); //START USE CASE Wijzig spel
                         break;
                     default:
                         System.exit(0);

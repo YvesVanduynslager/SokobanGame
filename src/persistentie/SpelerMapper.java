@@ -35,7 +35,6 @@ public class SpelerMapper
 
             while (rs.next())
             {
-                speler.setId(String.format("%s", rs.getInt(1)));
                 speler.setGebruikersnaam(rs.getString(2)); // 1 voor kolom 1 enz.
                 speler.setWachtwoord(rs.getString(3));
                 speler.setAdminrechten((rs.getInt(4) == 1? "ja" : "nee")); // als gelijk is aan 1, dan ja, anders nee. db heeft 1 voor ja, en 0 voor nee.
@@ -47,10 +46,7 @@ public class SpelerMapper
         {
             System.out.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
         }
-        finally
-        {
-            //connectie.sluit();
-        }
+        
         return speler;
     }
     

@@ -1,16 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import java.util.Scanner;
 import domein.DomeinController;
 
 /**
- *
- * @author Jeroen
+ * UC1MeldAan. Dit is de klasse die de UI verzorgt voor UC meld aan.
+ * 
+ * @author Yves
  */
 public class UC1MeldAan
 {

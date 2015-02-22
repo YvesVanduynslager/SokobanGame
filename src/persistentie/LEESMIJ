@@ -1,3 +1,3 @@
 Om de databank aan te maken:
 1. MaakSokobandatabase.sql uitvoeren
-2. vulSpelerTabelMetStandaardwaarden uitvoeren om de tabel Speler op te vullen.
+2. vulSpelerTabelMetStandaardwaarden uitvoeren om de tabel Speler op te vullen. (tijdelijk om UC meld aan te testen).

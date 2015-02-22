@@ -18,7 +18,6 @@ public void registreer() {
 Scanner scanner = new Scanner(System.in);
 DomeinController controller = new DomeinController();
 
-String[] spelerGegevens;
 boolean isGeldigWachtwoord=false;
 boolean isGeldigeGebruikersnaam=false;
 String gebruikersnaam="", wachtwoord="", naam="", voornaam="";

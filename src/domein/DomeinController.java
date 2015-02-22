@@ -42,11 +42,11 @@ public class DomeinController
     }
 
     /**
-     * Registreren van een gebruiker en indien succesvol geregistreerd, aanmelden
+     * Registreren van een gebruiker en aanmelden
      * @param gebruikersnaam
      * @param wachtwoordString
      */
-    public void registreer(String gebruikersnaam, String wachtwoord, String Voornaam, String naam){
+    public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String naam){
     
     
     

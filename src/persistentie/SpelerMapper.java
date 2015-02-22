@@ -53,4 +53,9 @@ public class SpelerMapper
         }
         return speler;
     }
+public boolean bestaatGebruikerAl (String gebruikersnaam){
+boolean bestaatGebruikerAl=false;
+   
+return bestaatGebruikerAl;      
+}
 }

@@ -9,7 +9,7 @@ import java.sql.*;
 public class Connectie
 {
     //verander mysqlUser en mysqlPassword met je persoonlijke login gegevens!
-    private final String mysqlUser = "root", mysqlPassword = "yamahar1";
+    private final String mysqlUser = "root", mysqlPassword = "root";
     //database-locatie en driver:
     private final String JDBC = "jdbc:mysql://localhost:3306/sokobandatabase?user=" + mysqlUser + "&password=" + mysqlPassword;
     private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";

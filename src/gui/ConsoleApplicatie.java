@@ -8,20 +8,23 @@ package gui;
 import java.util.Scanner;
 import domein.DomeinController;
 
+
 /**
  *
  * @author Jeroen
  */
 public class ConsoleApplicatie
 {
-    public static void StartUI(DomeinController spelController)
+    public void StartUI()
     {
+        ConsoleApplicatie app = new ConsoleApplicatie();
+        DomeinController controller = new DomeinController();
         Scanner scanner = new Scanner(System.in);
 
         System.out.printf("%s%n%s%n%s%n%s%n", "Wilt u:", "[1] registreren", "[2] aanmelden", "[0] stoppen");
         System.out.print("Uw keuze: ");
         int keuze = scanner.nextInt();
-        while (keuze != 0)
+        if (keuze != 0)
         {
             if (keuze == 1)
             {
@@ -29,13 +32,15 @@ public class ConsoleApplicatie
                 System.out.print(" ------------");
                 System.out.print("| REGISTREER |");
                 System.out.print(" ------------");
-                System.exit(0);
+            UC2Registreer registreren = new UC2Registreer();            
+            registreren.registreer();
             }
             else
             {
                 if (keuze == 2)
                 {
-                    gui.UC1MeldAan.meldAan(spelController);
+                UC1MeldAan aanmelden = new UC1MeldAan();
+                aanmelden.meldAan();
                 }
 //                    System.out.printf("%s%14s%14b%14s%14s%n", spelerGegevens[0], spelerGegevens[1],
 //                            spelerGegevens[3], spelerGegevens[4], spelerGegevens[5]);

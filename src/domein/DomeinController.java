@@ -40,4 +40,15 @@ public class DomeinController
     {
         this.huidigeSpeler = speler;
     }
+
+    /**
+     * Registreren van een gebruiker en indien succesvol geregistreerd, aanmelden
+     * @param gebruikersnaam
+     * @param wachtwoordString
+     */
+    public void registreer(String gebruikersnaam, String wachtwoord, String Voornaam, String naam){
+    
+    
+    
+    }
 }

@@ -11,7 +11,8 @@ public class StartConsoleApplicatie
 {
     public static void main(String args[])
     {
+        ConsoleApplicatie app = new ConsoleApplicatie();
         DomeinController spelController = new DomeinController();
-        ConsoleApplicatie.StartUI(spelController);
+        app.StartUI();
     }
 }

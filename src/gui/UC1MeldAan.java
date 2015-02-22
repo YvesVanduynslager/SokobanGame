@@ -14,8 +14,9 @@ import domein.DomeinController;
  */
 public class UC1MeldAan
 {
-    public static void meldAan(DomeinController spelController)
+    public void meldAan()
     {
+        DomeinController controller = new DomeinController();
         Scanner scanner = new Scanner(System.in);
         String[] spelerGegevens;
 
@@ -36,8 +37,8 @@ public class UC1MeldAan
                 System.exit(0);
             }
 
-            spelController.meldAan(gebruikersnaam, wachtwoord);
-            spelerGegevens = spelController.geefSpeler();
+            controller.meldAan(gebruikersnaam, wachtwoord);
+            spelerGegevens = controller.geefSpeler();
 
             if (spelerGegevens[0] == null) /*Bij het uitvoeren van een sql-statement met onbestaande
              gebruikersnaam of onbestaand wachtwoord, zal de spelerGegevens-string gevuld worden met null-waarden.*/

@@ -3,7 +3,6 @@ package gui;
 import java.util.Scanner;
 import domein.DomeinController;
 
-
 /**
  * Centrale klasse die de verschillende use cases zal opstarten.
  *
@@ -13,7 +12,7 @@ public class ConsoleApplicatie
 {
     public void StartUI()
     {
-        ConsoleApplicatie app = new ConsoleApplicatie();
+        //ConsoleApplicatie app = new ConsoleApplicatie();
         DomeinController controller = new DomeinController();
         Scanner scanner = new Scanner(System.in);
 
@@ -24,31 +23,24 @@ public class ConsoleApplicatie
         {
             if (keuze == 1)
             {
-
-                //use case registreer
-                System.out.print(" ------------");
-                System.out.print("| REGISTREER |");
-                System.out.print(" ------------");
-            UC2Registreer registreren = new UC2Registreer();            
-            registreren.registreer();
+                //START USE CASE registreer
+                UC2Registreer registreren = new UC2Registreer();
+                registreren.registreer();
             }
             else
             {
                 if (keuze == 2)
                 {
-
-                UC1MeldAan aanmelden = new UC1MeldAan();
-                aanmelden.meldAan();
+                    //START USE CASE meld aan
+                    UC1MeldAan aanmelden = new UC1MeldAan();
+                    aanmelden.meldAan();
                 }
-//                    System.out.printf("%s%14s%14b%14s%14s%n", spelerGegevens[0], spelerGegevens[1],
-//                            spelerGegevens[3], spelerGegevens[4], spelerGegevens[5]);
-                System.out.println();
 
-                
+                System.out.println();
                 System.out.println();
                 System.out.printf("%s%n%s%n%s%n%s%n", "Keuzemenu:", "[1] Speel spel", "[2] Configureer nieuw spel", "[3] Wijzig een bestaand spel");
                 System.out.print("Uw keuze: ");
-                
+
                 keuze = scanner.nextInt();
                 switch (keuze)
                 {
@@ -69,5 +61,3 @@ public class ConsoleApplicatie
         }
     }
 }
-
-

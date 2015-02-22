@@ -28,7 +28,9 @@ public class SpelerRepository
 	 * 
 	 * @param speler Het spelerobject die toegevoegd moet worden aan de database
 	 */
-	public void voegToe(Speler speler) {
+	public void voegToe(Speler speler)
+        {
+            spelerMapper.voegToe(speler);
 		// TODO spelermapper aanroepen met als paramater het spelerobject
 	}
 }

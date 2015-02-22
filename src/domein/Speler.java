@@ -6,27 +6,17 @@ package domein;
  */
 public class Speler
 {
-    private String id, gebruikersnaam, wachtwoord, adminrechten, voornaam, naam;
+    private String gebruikersnaam, wachtwoord, adminrechten, voornaam, achternaam;
 
     public Speler(){}
     
-    public Speler(String gebruikersnaam, String wachtwoord, String naam, String voornaam, String adminrechten)
+    public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten)
     {
         this.gebruikersnaam = gebruikersnaam;
         this.wachtwoord = wachtwoord;
         this.voornaam = voornaam;
-        this.naam = naam;
+        this.achternaam = achternaam;
         this.adminrechten = adminrechten;
-    }
-
-    /**
-     * Instellen van id van de speler
-     *
-     * @param id id van de speler
-     */
-    public void setId(String id)
-    {
-        this.id = id;
     }
 
     /**
@@ -76,13 +66,7 @@ public class Speler
      */
     public void setAchternaam(String achternaam)
     {
-        this.naam = achternaam;
-    }
-
-
-    public String getId()
-    {
-        return this.id;
+        this.achternaam = achternaam;
     }
 
     public String getGebruikersnaam()
@@ -107,7 +91,7 @@ public class Speler
 
     public String getAchternaam()
     {
-        return this.naam;
+        return this.achternaam;
     }
 
     @Override
@@ -115,18 +99,4 @@ public class Speler
     {
         return String.format("", "");
     }
-
-	/**
-	 * Instellen van id van de speler
-	 * @param id id van de speler
-	 */
-	public void setID(String id) {
-		// TODO - implement Speler.setID
-		throw new UnsupportedOperationException();
-	}
-
-	public String getID() {
-		// TODO - implement Speler.getID
-		throw new UnsupportedOperationException();
-	}
 }

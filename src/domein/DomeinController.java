@@ -1,6 +1,8 @@
 package domein;
+
 /**
  * Staat in voor communicatie tussen GUI en businuess-logica.
+ *
  * @author Yves
  */
 public class DomeinController
@@ -8,14 +10,15 @@ public class DomeinController
     private final SpelerRepository spelerRepository;
     private String[] spelerString;
     private Speler huidigeSpeler;
-	Speler speler;
 
     public DomeinController()
     {
         spelerRepository = new SpelerRepository();
     }
+
     /**
      * Aanmelden van een gebruiker
+     *
      * @param gebruikersnaam Instellen ven gebruikersnaam
      * @param wachtwoord Instellen van wachtwoord
      */
@@ -35,6 +38,7 @@ public class DomeinController
 
     /**
      * Bijhouden welke speler is aangemeld.
+     *
      * @param speler Speler-object die tussentijds bewaard moet worden.
      */
     private void setHuidigeSpeler(Speler speler)
@@ -42,18 +46,21 @@ public class DomeinController
         this.huidigeSpeler = speler;
     }
 
-
-	/**
-	 * 
-	 * @param gebruikersnaam
-	 * @param wachtwoord
-	 * @param voornaam
-	 * @param naam
-	 */
-	public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String naam) {
+    /**
+     *
+     * @param gebruikersnaam
+     * @param wachtwoord
+     * @param voornaam
+     * @param naam
+     */
+    public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String naam)
+    {
+        Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, naam, "nee");
+        spelerRepository.voegToe(sp);
+        setHuidigeSpeler(sp);
 		// TODO - controleren op geldigheid paramaters (domeinregels!)
-            //speler object aanmaken met deze paramaters
-            //repository aanroepen met dit spelerobject
-            //setHuidigeSpeler(aangemaakte spelerobject)
-	}
+        //speler object aanmaken met deze paramaters
+        //repository aanroepen met dit spelerobject
+        //setHuidigeSpeler(aangemaakte spelerobject)
+    }
 }

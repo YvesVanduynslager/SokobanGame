@@ -58,9 +58,14 @@ public class DomeinController
         Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, naam, "nee");
         spelerRepository.voegToe(sp);
         setHuidigeSpeler(sp);
-		// TODO - controleren op geldigheid paramaters (domeinregels!)
+		// TODO - controleren op geldigheid parameters (domeinregels!)
         //speler object aanmaken met deze paramaters
         //repository aanroepen met dit spelerobject
         //setHuidigeSpeler(aangemaakte spelerobject)
+    }
+    
+    public boolean bestaatSpeler(String gebruikersnaam)
+    {
+        return spelerRepository.bestaatSpeler(gebruikersnaam);
     }
 }

@@ -1,7 +1,6 @@
 package gui;
 
 import java.util.Scanner;
-import domein.DomeinController;
 
 /**
  * Centrale klasse die de verschillende use cases zal opstarten.
@@ -10,15 +9,15 @@ import domein.DomeinController;
  */
 public class ConsoleApplicatie
 {
-    public void StartUI()
+    public void startUI()
     {
-        //ConsoleApplicatie app = new ConsoleApplicatie();
-        DomeinController controller = new DomeinController();
         Scanner scanner = new Scanner(System.in);
+        int keuze;
 
-        System.out.printf("%s%n%s%n%s%n%s%n", "Wilt u:", "[1] registreren", "[2] aanmelden", "[0] stoppen");
+        System.out.printf("%s%n%s%n%s%n%s%n", "Wilt u:", "[1] registreren", "[2] aanmelden", "[0] afsluiten");
         System.out.print("Uw keuze: ");
-        int keuze = scanner.nextInt();
+        keuze = scanner.nextInt();
+        
         if (keuze != 0)
         {
             if (keuze == 1)
@@ -35,29 +34,11 @@ public class ConsoleApplicatie
                     UC1MeldAan aanmelden = new UC1MeldAan();
                     aanmelden.meldAan();
                 }
-
-                System.out.println();
-                System.out.println();
-                System.out.printf("%s%n%s%n%s%n%s%n", "Keuzemenu:", "[1] Speel spel", "[2] Configureer nieuw spel", "[3] Wijzig een bestaand spel");
-                System.out.print("Uw keuze: ");
-
-                keuze = scanner.nextInt();
-                switch (keuze)
-                {
-                    /*hier voorlopig nog System.exit(0) om het programma te doen stoppen */
-                    case 1:
-                        System.exit(0); //START USE CASE Speel spel
-                        break;
-                    case 2:
-                        System.exit(0); //START USE CASE Configureer nieuw spel
-                        break;
-                    case 3:
-                        System.exit(0); //START USE CASE Wijzig spel
-                        break;
-                    default:
-                        System.exit(0);
-                }
             }
+        }
+        else
+        {
+            System.exit(0);
         }
     }
 }

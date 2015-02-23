@@ -59,6 +59,16 @@ public class UC2Registreer
         }
         
         controller.registreer(gebruikersnaam, wachtwoord, voornaam, naam);
+        
+        String[] spelerGegevens = controller.geefSpeler();
+        System.out.println();
+        System.out.println("Succesvol aangemeld met volgende gegevens: ");
+        System.out.printf("%s%14s%n", "Gebruikersnaam", "Adminrechten"); //wachtwoord wordt hier niet meer weergegeven.
+        for (String spelerGegeven : spelerGegevens)
+        {
+            System.out.printf("%14s", spelerGegeven);
+        }
+        System.out.println();
     }
 // gebaseerd op: http://www.coderanch.com/t/583177/java/java/validate-string-characters-letter-number 
 
@@ -98,9 +108,9 @@ public class UC2Registreer
 
     public boolean validerenGebruikersnaam(String gebruikersnaam)
     {
-        SpelerMapper spelerMapper = new SpelerMapper();
+        DomeinController c = new DomeinController();
         boolean geldigeGebruikersnaam = false;
-        boolean isReedsBestaande = spelerMapper.bestaatGebruikerAl(gebruikersnaam);
+        boolean isReedsBestaande = c.bestaatSpeler(gebruikersnaam);
         if (isReedsBestaande == false && gebruikersnaam.length() >= 8)
         {
             geldigeGebruikersnaam = true;

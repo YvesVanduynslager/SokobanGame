@@ -55,46 +55,39 @@ public class SpelerMapper
         return speler;
     }
 
-    public boolean bestaatGebruikerAl(String gebruikersnaam)
+    public boolean bestaatSpeler(String gebruikersnaam)
     {
-        boolean bestaatGebruikerAl = false;
+        boolean bestaatSpeler = false;
         String sqlString = "SELECT gebruikernaam FROM Speler WHERE gebruikernaam = '" + gebruikersnaam + "'";
-
+        String opgehaaldeGebruikersnaam = null;
         try
         {
             sqlStatement = connectie.getDatabaseConnectie().prepareStatement(sqlString);
             ResultSet rs = sqlStatement.executeQuery();
-            String opgehaaldeGebruikersnaam = null;
 
             while (rs.next())
             {
                 opgehaaldeGebruikersnaam = rs.getString(1);
             }
-
-            if (opgehaaldeGebruikersnaam == null) //string leeg, dus speler bestaat nog niet
-            {
-                bestaatGebruikerAl = false;
-            }
-            else
-            {
-                bestaatGebruikerAl = true;
-            }
         }
         catch (SQLException ex)
         {
-            Logger.getLogger(SpelerMapper.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("--- Fout: " + ex.getClass() + ": " + ex.getMessage());
         }
-
-        return bestaatGebruikerAl;
+        
+        if (opgehaaldeGebruikersnaam != null) //string moet null zijn om onbestande speler voor te stellen
+        {
+            bestaatSpeler = true;
+        }
+        return bestaatSpeler;
     }
 
     public void voegToe(Speler speler)
     {
-        //int adminrechten = (speler.getAdminrechten().equals("nee") ? 0 : 1);
         try
         {
             String SQL_INSERT = "INSERT INTO Speler(gebruikernaam, wachtwoord, adminrechten, voornaam, achternaam)"
-                + " VALUES(?, ?, ?, ?, ?)";
+                    + " VALUES(?, ?, ?, ?, ?)";
 
             sqlStatement = connectie.getDatabaseConnectie().prepareStatement(SQL_INSERT);
             sqlStatement.setString(1, speler.getGebruikersnaam());
@@ -108,7 +101,5 @@ public class SpelerMapper
         {
             System.out.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
         }
-
-        //TODO: sqlinstructie schrijven die spelergegevens uit spelerobject haalt en deze in de tabel Speler zet.
     }
 }

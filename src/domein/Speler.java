@@ -13,11 +13,11 @@ public class Speler
     }
     /**
      *
-     * @param gebruikersnaam
-     * @param wachtwoord
-     * @param achternaam
-     * @param voornaam
-     * @param adminrechten
+     * @param gebruikersnaam gebruikersnaam van de speler
+     * @param wachtwoord wachtwoord van de speler
+     * @param achternaam achternaam van de speler
+     * @param voornaam voornaam van de speler
+     * @param adminrechten "ja" als speler adminrechten heeft, "nee" als speler geen adminrechten heeft
      */
     public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten)
     {

@@ -37,6 +37,11 @@ public class SpelerRepository
         spelerMapper.voegToe(speler);
     }
     
+    /**
+     * 
+     * @param gebruikersnaam gebruikersnaam van de speler
+     * @return true als de speler al bestaat in het systeem
+     */
     public boolean bestaatSpeler(String gebruikersnaam)
     {
         return spelerMapper.bestaatSpeler(gebruikersnaam);

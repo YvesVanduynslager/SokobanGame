@@ -50,7 +50,7 @@ public class SpelerMapper
         {
             System.out.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
         }
-
+        
         return speler;
     }
 

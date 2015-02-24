@@ -11,6 +11,9 @@ public class DomeinController
     private String[] spelerString;
     private Speler huidigeSpeler;
 
+    /**
+     * Default-constructor maakt SpelerRepository-object aan.
+     */
     public DomeinController()
     {
         spelerRepository = new SpelerRepository();
@@ -30,7 +33,7 @@ public class DomeinController
 
     /**
      * 
-     * @return 
+     * @return geeft de gebruikersnaam en adminrechten weer van de speler via String[]
      */
     public String[] geefSpeler()
     {
@@ -51,22 +54,24 @@ public class DomeinController
     }
 
     /**
+     * Maakt een Speler-object aan met ingegeven parameters, en geeft dit object door aan spelerRepository-object,
+     * stelt de huidige speler in met het gemaakte Speler-object.
      *
-     * @param gebruikersnaam
-     * @param wachtwoord
-     * @param voornaam
-     * @param naam
+     * @param gebruikersnaam gebruikersnaam van de speler
+     * @param wachtwoord wachtwoord van de speler
+     * @param voornaam voornaam van de speler
+     * @param achternaam achternaam van de speler
      */
-    public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String naam)
+    public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam)
     {
-        Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, naam, "nee");
+        Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, achternaam, "nee");
         spelerRepository.voegToe(sp);
         setHuidigeSpeler(sp);
     }
     
     /**
      * 
-     * @param gebruikersnaam
+     * @param gebruikersnaam gebruikersnaam van de speler
      * @return 
      */
     public boolean bestaatSpeler(String gebruikersnaam)

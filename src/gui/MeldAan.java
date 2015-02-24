@@ -1,4 +1,5 @@
 package gui;
+//USE CASE 1
 
 import java.util.Scanner;
 import domein.DomeinController;
@@ -8,12 +9,15 @@ import domein.DomeinController;
  *
  * @author Yves
  */
-public class UC1MeldAan
+public class MeldAan
 {
+    private final DomeinController controller;
+    public MeldAan(DomeinController controller)
+    {
+        this.controller = controller;
+    }
     public void meldAan()
     {
-        DomeinController controller = new DomeinController();
-        ConsoleApplicatie app = new ConsoleApplicatie();
         Scanner scanner = new Scanner(System.in);
 
         String[] spelerGegevens;
@@ -25,19 +29,20 @@ public class UC1MeldAan
         System.out.printf("%s%n%s%n%s%n", " -----------", "| AANMELDEN |", " -----------");
         do
         {
-            System.out.print("Geef gebruikersnaam ('stop' om te stoppen): ");
+            System.out.print("Geef gebruikersnaam (\"terug\" om terug te gaan naar het hoofdmenu): ");
             gebruikersnaam = scanner.next();
             if (gebruikersnaam.equals("stop"))
             {
-                app.startUI(); //starten van nieuwe startui
-                System.gc();
+                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
+                dus kortweg: opnieuw tonen van hoofdmenu.
+                ZIE: http://www.java-samples.com/showtutorial.php?tutorialid=280*/
             }
-            System.out.print("Geef wachtwoord ('stop' om te stoppen): ");
+            System.out.print("Geef wachtwoord (\"terug\" om terug te gaan naar het hoofdmenu): ");
             wachtwoord = scanner.next();
             if (wachtwoord.equals("stop"))
             {
-                app.startUI();
-                System.gc();
+                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
+                dus kortweg: opnieuw tonen van hoofdmenu */
             }
 
             controller.meldAan(gebruikersnaam, wachtwoord);

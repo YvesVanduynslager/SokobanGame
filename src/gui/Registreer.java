@@ -1,4 +1,5 @@
 package gui;
+//USE CASE 2
 
 import domein.DomeinController;
 import java.util.Scanner;
@@ -7,51 +8,53 @@ import java.util.Scanner;
  *
  * @author Jeroen
  */
-public class UC2Registreer
+public class Registreer
 {
+    private final DomeinController controller;
+    public Registreer(DomeinController controller)
+    {
+        this.controller = controller;
+    }
 
     public void registreer()
     {
-        ConsoleApplicatie app = new ConsoleApplicatie();
         Scanner scanner = new Scanner(System.in);
-        DomeinController controller = new DomeinController();
 
-        boolean isGeldigWachtwoord = false;
-        boolean isGeldigeGebruikersnaam = false;
+        boolean isGeldigWachtwoord;// = false;
+        boolean isGeldigeGebruikersnaam;// = false;
         String gebruikersnaam = "", wachtwoord = "", naam = "", voornaam = "";
-        //int counter = 0;// inlezen naam, voornaam, gebruikersnaam, wachtwoord 
 
         System.out.printf("%s%n%s%n%s%n", " -------------", "| REGISTREREN |", " -------------");
         do
         {
-//while (isGeldigWachtwoord == false || isGeldigeGebruikersnaam == false)
-//            if (++counter > 1)
-//            {
-//                System.out.println("Ongeldige gebruikersnaam en/of wachtwoord, gelieve opnieuw te proberen");
-//            }
-            System.out.printf("%n%s", "Geef naam ('stop' om te stoppen): ");
+            System.out.printf("%n%s", "Geef naam | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             naam = scanner.next();
             if (naam.equals("stop"))
             {
-                System.exit(0);
+                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
+                dus kortweg: opnieuw tonen van hoofdmenu */
             }
-            System.out.print("Geef voornaam ('stop' om te stoppen): ");
+            System.out.print("Geef voornaam | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             voornaam = scanner.next();
             if (voornaam.equals("stop"))
             {
-                System.exit(0);
+                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
+                dus kortweg: opnieuw tonen van hoofdmenu */
             }
-            System.out.print("Geef gebruikersnaam ('stop' om te stoppen; min. 8 karakters lang; moet uniek zijn): ");
+            System.out.print("Geef gebruikersnaam (minimum 8 karakters lang; moet uniek zijn) | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             gebruikersnaam = scanner.next();
             if (gebruikersnaam.equals("stop"))
             {
-                System.exit(0);
+                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
+                dus kortweg: opnieuw tonen van hoofdmenu */
             }
-            System.out.print("Geef wachtwoord ('stop' om te stoppen; min. 8 karakters lang, moet zowel een kleine letter als een hoofdletter en een cijfer bevatten): ");
+            System.out.print("Geef wachtwoord (minimum 8 karakters lang, moet zowel een kleine letter als een hoofdletter en een cijfer bevatten)"
+                    + " | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             wachtwoord = scanner.next();
             if (wachtwoord.equals("stop"))
             {
-                System.exit(0);
+                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
+                dus kortweg: opnieuw tonen van hoofdmenu */
             }
 
             // valideren ingevulde gegevens
@@ -121,17 +124,15 @@ public class UC2Registreer
     public boolean validerenGebruikersnaam(String gebruikersnaam)
     {
         DomeinController c = new DomeinController();
-        //boolean geldigeGebruikersnaam = false;
         boolean isReedsBestaande = c.bestaatSpeler(gebruikersnaam);
+        
         if (isReedsBestaande == false && gebruikersnaam.length() >= 8)
         {
             return true;
-            //geldigeGebruikersnaam = true;
         }
         else
         {
             return false;
         }
-        //return geldigeGebruikersnaam;
     }
 }

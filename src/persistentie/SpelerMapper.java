@@ -2,13 +2,12 @@ package persistentie;
 
 import domein.*;
 import java.sql.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
- * @author Yves SpelerMapper staat in voor het omzetten van een Speler-entiteit
- * uit de databank naar een Speler-object.
+ * @author Yves
+ * SpelerMapper staat in voor het omzetten van een Speler-entiteit
+ * uit de databank naar een Speler-object en omgekeerd.
  */
 public class SpelerMapper
 {
@@ -55,33 +54,6 @@ public class SpelerMapper
         return speler;
     }
 
-    public boolean bestaatSpeler(String gebruikersnaam)
-    {
-        boolean bestaatSpeler = false;
-        String sqlString = "SELECT gebruikernaam FROM Speler WHERE gebruikernaam = '" + gebruikersnaam + "'";
-        String opgehaaldeGebruikersnaam = null;
-        try
-        {
-            sqlStatement = connectie.getDatabaseConnectie().prepareStatement(sqlString);
-            ResultSet rs = sqlStatement.executeQuery();
-
-            while (rs.next())
-            {
-                opgehaaldeGebruikersnaam = rs.getString(1);
-            }
-        }
-        catch (SQLException ex)
-        {
-            System.out.println("--- Fout: " + ex.getClass() + ": " + ex.getMessage());
-        }
-        
-        if (opgehaaldeGebruikersnaam != null) //string moet null zijn om onbestande speler voor te stellen
-        {
-            bestaatSpeler = true;
-        }
-        return bestaatSpeler;
-    }
-
     public void voegToe(Speler speler)
     {
         try
@@ -101,5 +73,36 @@ public class SpelerMapper
         {
             System.out.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
         }
+    }
+    
+    public boolean bestaatSpeler(String gebruikersnaam)
+    {
+        String sqlString = "SELECT gebruikernaam FROM Speler WHERE gebruikernaam = '" + gebruikersnaam + "'";
+        String opgehaaldeGebruikersnaam = null;
+        try
+        {
+            sqlStatement = connectie.getDatabaseConnectie().prepareStatement(sqlString);
+            ResultSet rs = sqlStatement.executeQuery();
+
+            while (rs.next())
+            {
+                opgehaaldeGebruikersnaam = rs.getString(1);
+            }
+        }
+        catch (SQLException ex)
+        {
+            System.out.println("--- Fout: " + ex.getClass() + ": " + ex.getMessage());
+        }
+        
+        return opgehaaldeGebruikersnaam != null; //string moet null zijn om onbestande speler voor te stellen
+//        if (opgehaaldeGebruikersnaam != null) //string moet null zijn om onbestande speler voor te stellen
+//        {
+//            return true;
+//            //bestaatSpeler = true;
+//        }
+//        else
+//        {
+//            return false;
+//        }
     }
 }

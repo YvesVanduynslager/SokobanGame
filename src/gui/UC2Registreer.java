@@ -2,7 +2,6 @@ package gui;
 
 import domein.DomeinController;
 import java.util.Scanner;
-import persistentie.SpelerMapper;
 
 /**
  *
@@ -13,21 +12,23 @@ public class UC2Registreer
 
     public void registreer()
     {
+        ConsoleApplicatie app = new ConsoleApplicatie();
         Scanner scanner = new Scanner(System.in);
         DomeinController controller = new DomeinController();
 
         boolean isGeldigWachtwoord = false;
         boolean isGeldigeGebruikersnaam = false;
         String gebruikersnaam = "", wachtwoord = "", naam = "", voornaam = "";
-        int counter = 0;// inlezen naam, voornaam, gebruikersnaam, wachtwoord 
-        
+        //int counter = 0;// inlezen naam, voornaam, gebruikersnaam, wachtwoord 
+
         System.out.printf("%s%n%s%n%s%n", " -------------", "| REGISTREREN |", " -------------");
-        while (isGeldigWachtwoord == false || isGeldigeGebruikersnaam == false)
+        do
         {
-            if (++counter > 1)
-            {
-                System.out.println("Ongeldige gebruikersnaam en/of wachtwoord, gelieve opnieuw te proberen");
-            }
+//while (isGeldigWachtwoord == false || isGeldigeGebruikersnaam == false)
+//            if (++counter > 1)
+//            {
+//                System.out.println("Ongeldige gebruikersnaam en/of wachtwoord, gelieve opnieuw te proberen");
+//            }
             System.out.printf("%n%s", "Geef naam ('stop' om te stoppen): ");
             naam = scanner.next();
             if (naam.equals("stop"))
@@ -52,17 +53,23 @@ public class UC2Registreer
             {
                 System.exit(0);
             }
-            
+
             // valideren ingevulde gegevens
             isGeldigWachtwoord = validerenWachtwoord(wachtwoord);
             isGeldigeGebruikersnaam = validerenGebruikersnaam(gebruikersnaam);
+
+            if (!isGeldigWachtwoord || !isGeldigeGebruikersnaam)
+            {
+                System.out.println("Ongeldige gebruikersnaam en/of wachtwoord, gelieve opnieuw te proberen");
+            }
         }
-        
+        while (!isGeldigWachtwoord || !isGeldigeGebruikersnaam);
+
         controller.registreer(gebruikersnaam, wachtwoord, voornaam, naam);
-        
+
         String[] spelerGegevens = controller.geefSpeler();
         System.out.println();
-        System.out.println("Succesvol aangemeld met volgende gegevens: ");
+        System.out.println("Succesvol geregistreerd en aangemeld met volgende gegevens: ");
         System.out.printf("%s%14s%n", "Gebruikersnaam", "Adminrechten"); //wachtwoord wordt hier niet meer weergegeven.
         for (String spelerGegeven : spelerGegevens)
         {
@@ -77,7 +84,7 @@ public class UC2Registreer
         int numOfUpperLetters = 0; // initialiseren aantal lowerCase letters
         int numOfLowerLetters = 0; // initialiseren aantal upperCase letters
         int numOfDigits = 0; // initialiseren aantal cijfers
-        boolean geldigWachtwoord = false; // initialiseren geldigheid wachtwoord
+        //boolean geldigWachtwoord = false; // initialiseren geldigheid wachtwoord
 
         byte[] bytes = password.getBytes();
         for (byte tempByte : bytes)
@@ -101,20 +108,30 @@ public class UC2Registreer
         // indien aan alles werd voldaan: resultaat >= 1; anders 0
         if (numOfDigits * numOfUpperLetters * numOfLowerLetters * (password.length() / 8) >= 1)
         {
-            geldigWachtwoord = true;
+            //geldigWachtwoord = true;
+            return true;
         }
-        return geldigWachtwoord;
+        else
+        {
+            return false;
+        }
+        //return geldigWachtwoord;
     }
 
     public boolean validerenGebruikersnaam(String gebruikersnaam)
     {
         DomeinController c = new DomeinController();
-        boolean geldigeGebruikersnaam = false;
+        //boolean geldigeGebruikersnaam = false;
         boolean isReedsBestaande = c.bestaatSpeler(gebruikersnaam);
         if (isReedsBestaande == false && gebruikersnaam.length() >= 8)
         {
-            geldigeGebruikersnaam = true;
+            return true;
+            //geldigeGebruikersnaam = true;
         }
-        return geldigeGebruikersnaam;
+        else
+        {
+            return false;
+        }
+        //return geldigeGebruikersnaam;
     }
 }

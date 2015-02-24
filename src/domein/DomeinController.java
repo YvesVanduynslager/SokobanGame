@@ -28,6 +28,10 @@ public class DomeinController
         setHuidigeSpeler(sp);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String[] geefSpeler()
     {
         spelerString = new String[2];
@@ -58,12 +62,13 @@ public class DomeinController
         Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, naam, "nee");
         spelerRepository.voegToe(sp);
         setHuidigeSpeler(sp);
-		// TODO - controleren op geldigheid parameters (domeinregels!)
-        //speler object aanmaken met deze paramaters
-        //repository aanroepen met dit spelerobject
-        //setHuidigeSpeler(aangemaakte spelerobject)
     }
     
+    /**
+     * 
+     * @param gebruikersnaam
+     * @return 
+     */
     public boolean bestaatSpeler(String gebruikersnaam)
     {
         return spelerRepository.bestaatSpeler(gebruikersnaam);

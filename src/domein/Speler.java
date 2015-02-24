@@ -8,8 +8,17 @@ public class Speler
 {
     private String gebruikersnaam, wachtwoord, adminrechten, voornaam, achternaam;
 
-    public Speler(){}
-    
+    public Speler(){
+        
+    }
+    /**
+     *
+     * @param gebruikersnaam
+     * @param wachtwoord
+     * @param achternaam
+     * @param voornaam
+     * @param adminrechten
+     */
     public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten)
     {
         this.gebruikersnaam = gebruikersnaam;

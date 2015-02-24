@@ -35,7 +35,6 @@ public class SpelerRepository
     public void voegToe(Speler speler)
     {
         spelerMapper.voegToe(speler);
-        // TODO spelermapper aanroepen met als paramater het spelerobject
     }
     
     public boolean bestaatSpeler(String gebruikersnaam)

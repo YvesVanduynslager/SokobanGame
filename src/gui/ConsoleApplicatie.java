@@ -38,6 +38,7 @@ public class ConsoleApplicatie
         }
         else
         {
+            //AFSLUITEN
             System.exit(0);
         }
     }

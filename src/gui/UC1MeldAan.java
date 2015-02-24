@@ -68,6 +68,7 @@ public class UC1MeldAan
 
         if (adminrechten)
         {
+            System.out.println();
             System.out.printf("%s%n%s%n%s%n%s%n", "Keuzemenu:", "[1] Speel spel", "[2] Configureer nieuw spel", "[3] Wijzig een bestaand spel");
             System.out.print("Uw keuze: ");
             keuze = scanner.nextInt();
@@ -88,6 +89,7 @@ public class UC1MeldAan
         }
         else
         {
+            System.out.println();
             System.out.printf("%s%n%s%n", "Keuzemenu:", "[1] Speel spel");
             System.out.print("Uw keuze: ");
             keuze = scanner.nextInt();
@@ -100,6 +102,5 @@ public class UC1MeldAan
                     break;
             }
         }
-
     }
 }

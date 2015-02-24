@@ -14,6 +14,6 @@ public class StartUp
     {
         DomeinController controller = new DomeinController();
         ConsoleApplicatie app = new ConsoleApplicatie(controller);
-        app.startUI();
+        app.toonHoofdmenu();
     }
 }

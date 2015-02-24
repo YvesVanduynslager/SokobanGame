@@ -23,11 +23,14 @@ public class Registreer
         boolean isGeldigWachtwoord;// = false;
         boolean isGeldigeGebruikersnaam;// = false;
         String gebruikersnaam = "", wachtwoord = "", naam = "", voornaam = "";
+        boolean adminrechten;
+        int keuze;
 
+        System.out.println();
         System.out.printf("%s%n%s%n%s%n", " -------------", "| REGISTREREN |", " -------------");
         do
         {
-            System.out.printf("%n%s", "Geef naam | (\"terug\" om terug te gaan naar het hoofdmenu): ");
+            System.out.print("Geef naam | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             naam = scanner.next();
             if (naam.equals("stop"))
             {
@@ -111,14 +114,12 @@ public class Registreer
         // indien aan alles werd voldaan: resultaat >= 1; anders 0
         if (numOfDigits * numOfUpperLetters * numOfLowerLetters * (password.length() / 8) >= 1)
         {
-            //geldigWachtwoord = true;
             return true;
         }
         else
         {
             return false;
         }
-        //return geldigWachtwoord;
     }
 
     public boolean validerenGebruikersnaam(String gebruikersnaam)

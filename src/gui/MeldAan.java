@@ -22,8 +22,6 @@ public class MeldAan
 
         String[] spelerGegevens;
         String gebruikersnaam, wachtwoord;
-        boolean adminrechten;
-        int keuze;
 
         System.out.println();
         System.out.printf("%s%n%s%n%s%n", " -----------", "| AANMELDEN |", " -----------");
@@ -68,44 +66,5 @@ public class MeldAan
             System.out.printf("%14s", spelerGegeven);
         }
         System.out.println();
-
-        adminrechten = (spelerGegevens[1].equals("ja"));
-
-        if (adminrechten)
-        {
-            System.out.println();
-            System.out.printf("%s%n%s%n%s%n%s%n", "Keuzemenu:", "[1] Speel spel", "[2] Configureer nieuw spel", "[3] Wijzig een bestaand spel");
-            System.out.print("Uw keuze: ");
-            keuze = scanner.nextInt();
-
-            switch (keuze)
-            {
-                /*hier voorlopig nog System.exit(0) om het programma te doen stoppen */
-                case 1:
-                    //System.exit(0); //START USE CASE Speel spel
-                    break;
-                case 2:
-                    System.exit(0); //START USE CASE Configureer nieuw spel
-                    break;
-                case 3:
-                    System.exit(0); //START USE CASE Wijzig spel
-                    break;
-            }
-        }
-        else
-        {
-            System.out.println();
-            System.out.printf("%s%n%s%n", "Keuzemenu:", "[1] Speel spel");
-            System.out.print("Uw keuze: ");
-            keuze = scanner.nextInt();
-
-            switch (keuze)
-            {
-                /*hier voorlopig nog System.exit(0) om het programma te doen stoppen */
-                case 1:
-                    System.exit(0); //START USE CASE Speel spel
-                    break;
-            }
-        }
     }
 }

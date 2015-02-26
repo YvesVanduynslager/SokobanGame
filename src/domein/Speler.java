@@ -21,8 +21,8 @@ public class Speler
      */
     public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten)
     {
-        this.gebruikersnaam = gebruikersnaam;
-        this.wachtwoord = wachtwoord;
+        this.setGebruikersnaam(gebruikersnaam);
+        this.setWachtwoord(wachtwoord);
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.adminrechten = adminrechten;
@@ -35,8 +35,27 @@ public class Speler
      */
     public void setGebruikersnaam(String gebruikersnaam)
     {
+        if(!(gebruikersnaam.length() >= 8))
+        {
+            throw new IllegalArgumentException("Ongeldige gebruikersnaam, probeer opnieuw!");
+        } 
         this.gebruikersnaam = gebruikersnaam;
     }
+    
+//    public boolean geldigeGebruikersnaam(String gebruikersnaam)
+//    {
+////        DomeinController c = new DomeinController();
+////        boolean isReedsBestaande = c.bestaatSpeler(gebruikersnaam);
+//        
+//        if (/*isReedsBestaande == false && */gebruikersnaam.length() >= 8)
+//        {
+//            return true;
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//    }
 
     /**
      * Instellen van het wachtwoord van de speler
@@ -45,9 +64,50 @@ public class Speler
      */
     public void setWachtwoord(String wachtwoord)
     {
+        if(!geldigWachtwoord(wachtwoord))
+        {
+            throw new IllegalArgumentException("Wachtoord ongeldig, probeer opnieuw!");
+        }
         this.wachtwoord = wachtwoord;
     }
+    
+    public boolean geldigWachtwoord(String wachtwoord)
+    {
+        int numOfUpperLetters = 0; // initialiseren aantal lowerCase letters
+        int numOfLowerLetters = 0; // initialiseren aantal upperCase letters
+        int numOfDigits = 0; // initialiseren aantal cijfers
+        //boolean geldigWachtwoord = false; // initialiseren geldigheid wachtwoord
 
+        byte[] bytes = wachtwoord.getBytes();
+        for (byte tempByte : bytes)
+        {
+            char tempChar = (char) tempByte;
+            if (Character.isDigit(tempChar))
+            {
+                numOfDigits++;
+            }
+
+            if (Character.isUpperCase(tempChar))
+            {
+                numOfUpperLetters++;
+            }
+
+            if (Character.isLowerCase(tempChar))
+            {
+                numOfLowerLetters++;
+            }
+        }
+        // indien aan alles werd voldaan: resultaat >= 1; anders 0
+        if (numOfDigits * numOfUpperLetters * numOfLowerLetters * (wachtwoord.length() / 8) >= 1)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    
     /**
      * Instellen van de adminrechten van de speler
      *

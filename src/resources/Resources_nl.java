@@ -8,8 +8,8 @@ import java.util.Set;
  *
  * @author Yves
  */
-// Engels
-public class Resources_en extends Resources
+// Nederlands
+public class Resources_nl extends Resources
 {
     @Override
     public Object handleGetObject(String key)

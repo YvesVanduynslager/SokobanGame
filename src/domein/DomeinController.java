@@ -1,5 +1,7 @@
 package domein;
 
+import exceptions.GebruikerBestaatException;
+
 /**
  * Staat in voor communicatie tussen GUI en businuess-logica.
  *
@@ -32,8 +34,9 @@ public class DomeinController
     }
 
     /**
-     * 
-     * @return geeft de gebruikersnaam en adminrechten weer van de speler via String[]
+     *
+     * @return geeft de gebruikersnaam en adminrechten weer van de speler via
+     * String[]
      */
     public String[] geefSpeler()
     {
@@ -54,28 +57,31 @@ public class DomeinController
     }
 
     /**
-     * Maakt een Speler-object aan met ingegeven parameters, en geeft dit object door aan spelerRepository-object,
-     * stelt de huidige speler in met het gemaakte Speler-object.
+     * Maakt een Speler-object aan met ingegeven parameters, en geeft dit object
+     * door aan spelerRepository-object, stelt de huidige speler in met het
+     * gemaakte Speler-object.
      *
      * @param gebruikersnaam gebruikersnaam van de speler
      * @param wachtwoord wachtwoord van de speler
      * @param voornaam voornaam van de speler
      * @param achternaam achternaam van de speler
+     * @throws java.lang.Exception
      */
-    public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam)
+    public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam) throws GebruikerBestaatException//Exception
     {
         Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, achternaam, "nee");
+//        if(spelerRepository.bestaatSpeler(gebruikersnaam))
+//        {
+//            throw new Exception("De speler bestaat al in het systeem, probeer opnieuw!");
+//        }
+        try
+        {
         spelerRepository.voegToe(sp);
+        }
+        catch(Exception e)
+        {
+            throw new GebruikerBestaatException(e);//Exception(e);
+        }
         setHuidigeSpeler(sp);
-    }
-    
-    /**
-     * 
-     * @param gebruikersnaam gebruikersnaam van de speler
-     * @return 
-     */
-    public boolean bestaatSpeler(String gebruikersnaam)
-    {
-        return spelerRepository.bestaatSpeler(gebruikersnaam);
     }
 }

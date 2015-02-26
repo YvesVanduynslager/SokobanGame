@@ -1,6 +1,7 @@
 package persistentie;
 
 import domein.*;
+import exceptions.GebruikerBestaatException;
 import java.sql.*;
 
 /**
@@ -54,10 +55,14 @@ public class SpelerMapper
         return speler;
     }
 
-    public void voegToe(Speler speler)
+    public void voegToe(Speler speler) throws GebruikerBestaatException//Exception
     {
         try
         {
+            if(bestaatSpeler(speler.getGebruikersnaam()))
+            {
+                throw new GebruikerBestaatException();//Exception();
+            }
             String SQL_INSERT = "INSERT INTO Speler(gebruikernaam, wachtwoord, adminrechten, voornaam, achternaam)"
                     + " VALUES(?, ?, ?, ?, ?)";
 
@@ -69,9 +74,14 @@ public class SpelerMapper
             sqlStatement.setString(5, speler.getAchternaam());
             sqlStatement.executeUpdate();
         }
-        catch (Exception e)
+        catch(SQLException SQLe)
         {
-            System.out.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
+            System.out.println("SQL fout");
+        }
+        catch (GebruikerBestaatException gbe)//Exception e)
+        {
+            throw new GebruikerBestaatException("Gebruiker bestaat al!");//Exception("Fout");
+            //System.out.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
         }
     }
     

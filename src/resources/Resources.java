@@ -11,7 +11,7 @@ import java.util.Set;
  *
  * @author Yves
  */
-// default (Nederlands)
+// default (Engels)
 public class Resources extends ResourceBundle
 {
     @Override

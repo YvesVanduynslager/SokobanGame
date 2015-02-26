@@ -2,6 +2,7 @@ package gui;
 //USE CASE 2
 
 import domein.DomeinController;
+import exceptions.GebruikerBestaatException;
 import java.util.Scanner;
 
 /**
@@ -23,8 +24,7 @@ public class Registreer
         boolean isGeldigWachtwoord;// = false;
         boolean isGeldigeGebruikersnaam;// = false;
         String gebruikersnaam = "", wachtwoord = "", naam = "", voornaam = "";
-        boolean adminrechten;
-        int keuze;
+        boolean geldig = false;
 
         System.out.println();
         System.out.printf("%s%n%s%n%s%n", " -------------", "| REGISTREREN |", " -------------");
@@ -32,21 +32,21 @@ public class Registreer
         {
             System.out.print("Geef naam | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             naam = scanner.next();
-            if (naam.equals("stop"))
+            if (naam.equals("terug"))
             {
                 return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
                 dus kortweg: opnieuw tonen van hoofdmenu */
             }
             System.out.print("Geef voornaam | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             voornaam = scanner.next();
-            if (voornaam.equals("stop"))
+            if (voornaam.equals("terug"))
             {
                 return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
                 dus kortweg: opnieuw tonen van hoofdmenu */
             }
             System.out.print("Geef gebruikersnaam (minimum 8 karakters lang; moet uniek zijn) | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             gebruikersnaam = scanner.next();
-            if (gebruikersnaam.equals("stop"))
+            if (gebruikersnaam.equals("terug"))
             {
                 return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
                 dus kortweg: opnieuw tonen van hoofdmenu */
@@ -54,24 +54,39 @@ public class Registreer
             System.out.print("Geef wachtwoord (minimum 8 karakters lang, moet zowel een kleine letter als een hoofdletter en een cijfer bevatten)"
                     + " | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             wachtwoord = scanner.next();
-            if (wachtwoord.equals("stop"))
+            if (wachtwoord.equals("terug"))
             {
                 return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
                 dus kortweg: opnieuw tonen van hoofdmenu */
             }
 
-            // valideren ingevulde gegevens
-            isGeldigWachtwoord = validerenWachtwoord(wachtwoord);
-            isGeldigeGebruikersnaam = validerenGebruikersnaam(gebruikersnaam);
-
-            if (!isGeldigWachtwoord || !isGeldigeGebruikersnaam)
+            try
             {
-                System.out.println("Ongeldige gebruikersnaam en/of wachtwoord, gelieve opnieuw te proberen");
+                controller.registreer(gebruikersnaam, wachtwoord, voornaam, voornaam);
+                geldig = true;
             }
-        }
-        while (!isGeldigWachtwoord || !isGeldigeGebruikersnaam);
+            catch(GebruikerBestaatException gbe)
+            {
+                System.err.println(gbe);
+                //geldig = false;
+            }
+//            catch(Exception e)
+//            {
+//                System.err.println(e);
+//                geldig = false;
+//            }
+            // valideren ingevulde gegevens
+//            isGeldigWachtwoord = validerenWachtwoord(wachtwoord);
+//            isGeldigeGebruikersnaam = validerenGebruikersnaam(gebruikersnaam);
 
-        controller.registreer(gebruikersnaam, wachtwoord, voornaam, naam);
+//            if (!isGeldigWachtwoord || !isGeldigeGebruikersnaam)
+//            {
+//                System.out.println("Ongeldige gebruikersnaam en/of wachtwoord, gelieve opnieuw te proberen");
+//            }
+        }
+        while (!geldig /*!isGeldigWachtwoord || !isGeldigeGebruikersnaam*/);
+
+        //controller.registreer(gebruikersnaam, wachtwoord, voornaam, naam);
 
         String[] spelerGegevens = controller.geefSpeler();
         System.out.println();
@@ -85,55 +100,55 @@ public class Registreer
     }
 // gebaseerd op: http://www.coderanch.com/t/583177/java/java/validate-string-characters-letter-number 
 
-    public boolean validerenWachtwoord(String password)
-    {
-        int numOfUpperLetters = 0; // initialiseren aantal lowerCase letters
-        int numOfLowerLetters = 0; // initialiseren aantal upperCase letters
-        int numOfDigits = 0; // initialiseren aantal cijfers
-        //boolean geldigWachtwoord = false; // initialiseren geldigheid wachtwoord
+//    public boolean validerenWachtwoord(String password)
+//    {
+//        int numOfUpperLetters = 0; // initialiseren aantal lowerCase letters
+//        int numOfLowerLetters = 0; // initialiseren aantal upperCase letters
+//        int numOfDigits = 0; // initialiseren aantal cijfers
+//        //boolean geldigWachtwoord = false; // initialiseren geldigheid wachtwoord
+//
+//        byte[] bytes = password.getBytes();
+//        for (byte tempByte : bytes)
+//        {
+//            char tempChar = (char) tempByte;
+//            if (Character.isDigit(tempChar))
+//            {
+//                numOfDigits++;
+//            }
+//
+//            if (Character.isUpperCase(tempChar))
+//            {
+//                numOfUpperLetters++;
+//            }
+//
+//            if (Character.isLowerCase(tempChar))
+//            {
+//                numOfLowerLetters++;
+//            }
+//        }
+//        // indien aan alles werd voldaan: resultaat >= 1; anders 0
+//        if (numOfDigits * numOfUpperLetters * numOfLowerLetters * (password.length() / 8) >= 1)
+//        {
+//            return true;
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//    }
 
-        byte[] bytes = password.getBytes();
-        for (byte tempByte : bytes)
-        {
-            char tempChar = (char) tempByte;
-            if (Character.isDigit(tempChar))
-            {
-                numOfDigits++;
-            }
-
-            if (Character.isUpperCase(tempChar))
-            {
-                numOfUpperLetters++;
-            }
-
-            if (Character.isLowerCase(tempChar))
-            {
-                numOfLowerLetters++;
-            }
-        }
-        // indien aan alles werd voldaan: resultaat >= 1; anders 0
-        if (numOfDigits * numOfUpperLetters * numOfLowerLetters * (password.length() / 8) >= 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public boolean validerenGebruikersnaam(String gebruikersnaam)
-    {
-        DomeinController c = new DomeinController();
-        boolean isReedsBestaande = c.bestaatSpeler(gebruikersnaam);
-        
-        if (isReedsBestaande == false && gebruikersnaam.length() >= 8)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+//    public boolean validerenGebruikersnaam(String gebruikersnaam)
+//    {
+//        DomeinController c = new DomeinController();
+//        boolean isReedsBestaande = c.bestaatSpeler(gebruikersnaam);
+//        
+//        if (isReedsBestaande == false && gebruikersnaam.length() >= 8)
+//        {
+//            return true;
+//        }
+//        else
+//        {
+//            return false;
+//        }
+//    }
 }

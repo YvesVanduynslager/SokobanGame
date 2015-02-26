@@ -1,5 +1,6 @@
 package domein;
 
+import exceptions.GebruikerBestaatException;
 import persistentie.*;
 
 /**
@@ -32,9 +33,16 @@ public class SpelerRepository
      *
      * @param speler Het spelerobject die toegevoegd moet worden aan de database
      */
-    public void voegToe(Speler speler)
+    public void voegToe(Speler speler) throws GebruikerBestaatException //Exception
     {
+        try
+        {
         spelerMapper.voegToe(speler);
+        }
+        catch(Exception e)
+        {
+            throw new GebruikerBestaatException(e);//Exception(e);
+        }
     }
     
     /**

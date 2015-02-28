@@ -6,9 +6,7 @@ package domein;
  */
 public class Speler
 {
-    private String gebruikersnaam = "", wachtwoord, adminrechten = "nee", voornaam, achternaam; /* adminrechten al ingesteld om nullpointer te vermijden
-    bij terugkeren naar hoofdmenu;
-    */
+    private String gebruikersnaam, wachtwoord, adminrechten, voornaam, achternaam;
 
     public Speler()
     {
@@ -23,7 +21,7 @@ public class Speler
      * @param adminrechten "ja" als speler adminrechten heeft, "nee" als speler
      * geen adminrechten heeft
      */
-    public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten) //throws IllegalArgumentException
+    public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten)
     {
         this.setGebruikersnaam(gebruikersnaam);
         this.setWachtwoord(wachtwoord);
@@ -46,20 +44,6 @@ public class Speler
         this.gebruikersnaam = gebruikersnaam;
     }
 
-//    public boolean geldigeGebruikersnaam(String gebruikersnaam)
-//    {
-////        DomeinController c = new DomeinController();
-////        boolean isReedsBestaande = c.bestaatSpeler(gebruikersnaam);
-//        
-//        if (/*isReedsBestaande == false && */gebruikersnaam.length() >= 8)
-//        {
-//            return true;
-//        }
-//        else
-//        {
-//            return false;
-//        }
-//    }
     /**
      * Instellen van het wachtwoord van de speler
      *
@@ -172,10 +156,4 @@ public class Speler
     {
         return this.achternaam;
     }
-
-//    @Override
-//    public String toString()
-//    {
-//        return String.format("", "");
-//    }
 }

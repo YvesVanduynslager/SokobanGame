@@ -1,7 +1,6 @@
 package domein;
 
 import exceptions.GebruikerBestaatException;
-import exceptions.GebruikerNietGevondenException;
 
 /**
  * Staat in voor communicatie tussen GUI en businuess-logica.
@@ -70,11 +69,6 @@ public class DomeinController
      */
     public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam) throws IllegalArgumentException, GebruikerBestaatException//Exception
     {
-        
-//        if(spelerRepository.bestaatSpeler(gebruikersnaam))
-//        {
-//            throw new Exception("De speler bestaat al in het systeem, probeer opnieuw!");
-//        }
         try
         {
             Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, achternaam, "nee");
@@ -87,8 +81,7 @@ public class DomeinController
         }
         catch (GebruikerBestaatException gbe)
         {
-            throw new GebruikerBestaatException(gbe);//Exception(e);
-        }
-        
+            throw new GebruikerBestaatException(gbe);
+        }   
     }
 }

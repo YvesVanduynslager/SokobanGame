@@ -46,14 +46,4 @@ public class SpelerRepository
             throw new GebruikerBestaatException(gbe);//Exception(e);
         }
     }
-
-//    /**
-//     *
-//     * @param gebruikersnaam gebruikersnaam van de speler
-//     * @return true als de speler al bestaat in het systeem
-//     */
-//    public boolean bestaatSpeler(String gebruikersnaam)
-//    {
-//        return spelerMapper.bestaatSpeler(gebruikersnaam);
-//    }
 }

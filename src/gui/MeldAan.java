@@ -1,5 +1,4 @@
-package gui;
-//USE CASE 
+package gui; 
 
 import java.util.Scanner;
 import domein.DomeinController;
@@ -35,21 +34,18 @@ public class MeldAan
             gebruikersnaam = scanner.next();
             if (gebruikersnaam.equals("terug"))
             {
-                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
-                 dus kortweg: opnieuw tonen van hoofdmenu.
-                 ZIE: http://www.java-samples.com/showtutorial.php?tutorialid=280*/
+                return;  /* toonHoofdmenu() in ConsoleApplicatie opnieuw uitvoeren.
+                 dus kortweg: opnieuw tonen van hoofdmenu */
 
             }
             System.out.print("Geef wachtwoord (\"terug\" om terug te gaan naar het hoofdmenu): ");
             wachtwoord = scanner.next();
             if (wachtwoord.equals("terug"))
             {
-                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
-                 dus kortweg: opnieuw tonen van hoofdmenu */
+                return;
             }
 
             controller.meldAan(gebruikersnaam, wachtwoord);
-
             spelerGegevens = controller.geefSpeler();
 
             if (spelerGegevens[0] == null) /*Bij het uitvoeren van een sql-statement met onbestaande

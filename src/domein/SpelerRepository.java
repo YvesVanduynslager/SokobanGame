@@ -26,32 +26,34 @@ public class SpelerRepository
      */
     public Speler geefSpeler(String gebruikersnaam, String wachtwoord)
     {
-        return spelerMapper.zoek(gebruikersnaam, wachtwoord);
+            return spelerMapper.zoek(gebruikersnaam, wachtwoord);
     }
 
     /**
      *
-     * @param speler Het spelerobject die toegevoegd moet worden aan de database
+     * @param speler Het spelerobject die toegevoegd moet worden aan de
+     * database.
+     * @throws exceptions.GebruikerBestaatException throws naar DomeinController.
      */
     public void voegToe(Speler speler) throws GebruikerBestaatException //Exception
     {
         try
         {
-        spelerMapper.voegToe(speler);
+            spelerMapper.voegToe(speler);
         }
-        catch(Exception e)
+        catch (GebruikerBestaatException gbe)
         {
-            throw new GebruikerBestaatException(e);//Exception(e);
+            throw new GebruikerBestaatException(gbe);//Exception(e);
         }
     }
-    
-    /**
-     * 
-     * @param gebruikersnaam gebruikersnaam van de speler
-     * @return true als de speler al bestaat in het systeem
-     */
-    public boolean bestaatSpeler(String gebruikersnaam)
-    {
-        return spelerMapper.bestaatSpeler(gebruikersnaam);
-    }
+
+//    /**
+//     *
+//     * @param gebruikersnaam gebruikersnaam van de speler
+//     * @return true als de speler al bestaat in het systeem
+//     */
+//    public boolean bestaatSpeler(String gebruikersnaam)
+//    {
+//        return spelerMapper.bestaatSpeler(gebruikersnaam);
+//    }
 }

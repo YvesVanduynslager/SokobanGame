@@ -6,20 +6,24 @@ package domein;
  */
 public class Speler
 {
-    private String gebruikersnaam, wachtwoord, adminrechten, voornaam, achternaam;
+    private String gebruikersnaam = "", wachtwoord, adminrechten = "nee", voornaam, achternaam; /* adminrechten al ingesteld om nullpointer te vermijden
+    bij terugkeren naar hoofdmenu;
+    */
 
-    public Speler(){
-        
+    public Speler()
+    {
     }
+
     /**
      *
      * @param gebruikersnaam gebruikersnaam van de speler
      * @param wachtwoord wachtwoord van de speler
      * @param achternaam achternaam van de speler
      * @param voornaam voornaam van de speler
-     * @param adminrechten "ja" als speler adminrechten heeft, "nee" als speler geen adminrechten heeft
+     * @param adminrechten "ja" als speler adminrechten heeft, "nee" als speler
+     * geen adminrechten heeft
      */
-    public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten)
+    public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten) //throws IllegalArgumentException
     {
         this.setGebruikersnaam(gebruikersnaam);
         this.setWachtwoord(wachtwoord);
@@ -33,15 +37,15 @@ public class Speler
      *
      * @param gebruikersnaam gebruikersnaam van de speler
      */
-    public void setGebruikersnaam(String gebruikersnaam)
+    public void setGebruikersnaam(String gebruikersnaam) throws IllegalArgumentException
     {
-        if(!(gebruikersnaam.length() >= 8))
+        if (!(gebruikersnaam.length() >= 8))
         {
-            throw new IllegalArgumentException("Ongeldige gebruikersnaam, probeer opnieuw!");
-        } 
+            throw new IllegalArgumentException();
+        }
         this.gebruikersnaam = gebruikersnaam;
     }
-    
+
 //    public boolean geldigeGebruikersnaam(String gebruikersnaam)
 //    {
 ////        DomeinController c = new DomeinController();
@@ -56,7 +60,6 @@ public class Speler
 //            return false;
 //        }
 //    }
-
     /**
      * Instellen van het wachtwoord van de speler
      *
@@ -64,13 +67,13 @@ public class Speler
      */
     public void setWachtwoord(String wachtwoord)
     {
-        if(!geldigWachtwoord(wachtwoord))
+        if (!geldigWachtwoord(wachtwoord))
         {
-            throw new IllegalArgumentException("Wachtoord ongeldig, probeer opnieuw!");
+            throw new IllegalArgumentException();
         }
         this.wachtwoord = wachtwoord;
     }
-    
+
     public boolean geldigWachtwoord(String wachtwoord)
     {
         int numOfUpperLetters = 0; // initialiseren aantal lowerCase letters
@@ -107,7 +110,7 @@ public class Speler
             return false;
         }
     }
-    
+
     /**
      * Instellen van de adminrechten van de speler
      *
@@ -115,7 +118,14 @@ public class Speler
      */
     public void setAdminrechten(String adminrechten)
     {
-        this.adminrechten = adminrechten;
+        if (adminrechten.equals("ja") || adminrechten.equals("nee"))
+        {
+            this.adminrechten = adminrechten;
+        }
+        else
+        {
+            this.adminrechten = "nee";
+        }
     }
 
     /**
@@ -163,9 +173,9 @@ public class Speler
         return this.achternaam;
     }
 
-    @Override
-    public String toString()
-    {
-        return String.format("", "");
-    }
+//    @Override
+//    public String toString()
+//    {
+//        return String.format("", "");
+//    }
 }

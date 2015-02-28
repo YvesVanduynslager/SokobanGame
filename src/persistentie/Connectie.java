@@ -8,7 +8,6 @@ import java.sql.*;
  */
 public class Connectie
 {
-
     //verander mysqlUser en mysqlPassword met je persoonlijke login gegevens!
     //private final String mysqlUser = "root", mysqlPassword = "root";
     private final String MYSQL_USER = "root", MYSQL_PASSWORD = "yamahar1";

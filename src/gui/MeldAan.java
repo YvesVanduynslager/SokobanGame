@@ -1,22 +1,26 @@
 package gui;
-//USE CASE 1
+//USE CASE 
 
 import java.util.Scanner;
 import domein.DomeinController;
 
 /**
- * UC1MeldAan. Dit is de klasse die de UI verzorgt voor UC meld aan.
+ * USE CASE 1 Meld aan. Deze klasse staat in voor het tekenen en beheer van de
+ * ui voor UC1 MeldAan.
  *
  * @author Yves
  */
 public class MeldAan
 {
     private final DomeinController controller;
+    private boolean geldig = false;
+
     public MeldAan(DomeinController controller)
     {
         this.controller = controller;
     }
-    public void meldAan()
+
+    public void startMeldAanUI()
     {
         Scanner scanner = new Scanner(System.in);
 
@@ -29,21 +33,23 @@ public class MeldAan
         {
             System.out.print("Geef gebruikersnaam (\"terug\" om terug te gaan naar het hoofdmenu): ");
             gebruikersnaam = scanner.next();
-            if (gebruikersnaam.equals("stop"))
+            if (gebruikersnaam.equals("terug"))
             {
                 return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
-                dus kortweg: opnieuw tonen van hoofdmenu.
-                ZIE: http://www.java-samples.com/showtutorial.php?tutorialid=280*/
+                 dus kortweg: opnieuw tonen van hoofdmenu.
+                 ZIE: http://www.java-samples.com/showtutorial.php?tutorialid=280*/
+
             }
             System.out.print("Geef wachtwoord (\"terug\" om terug te gaan naar het hoofdmenu): ");
             wachtwoord = scanner.next();
-            if (wachtwoord.equals("stop"))
+            if (wachtwoord.equals("terug"))
             {
                 return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
-                dus kortweg: opnieuw tonen van hoofdmenu */
+                 dus kortweg: opnieuw tonen van hoofdmenu */
             }
 
             controller.meldAan(gebruikersnaam, wachtwoord);
+
             spelerGegevens = controller.geefSpeler();
 
             if (spelerGegevens[0] == null) /*Bij het uitvoeren van een sql-statement met onbestaande
@@ -58,6 +64,8 @@ public class MeldAan
          opnieuw doorlopen worden.
          */
 
+        geldig = true;
+        
         System.out.println();
         System.out.println("Succesvol aangemeld met volgende gegevens: ");
         System.out.printf("%s%14s%n", "Gebruikersnaam", "Adminrechten"); //wachtwoord wordt hier niet meer weergegeven.
@@ -66,5 +74,10 @@ public class MeldAan
             System.out.printf("%14s", spelerGegeven);
         }
         System.out.println();
+    }
+    
+    public boolean isSucces()
+    {
+        return geldig;
     }
 }

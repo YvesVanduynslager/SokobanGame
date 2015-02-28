@@ -12,14 +12,6 @@ import java.sql.*;
  */
 public class SpelerMapper
 {
-    private final Connectie connectie;
-    private PreparedStatement sqlStatement;
-
-    public SpelerMapper()
-    {
-        connectie = new Connectie();
-    }
-
     /**
      *
      * @param gebruikersnaam De gebruikersnaam van de speler
@@ -28,9 +20,10 @@ public class SpelerMapper
      */
     public Speler zoek(String gebruikersnaam, String wachtwoord)
     {
+        Connectie connectie = new Connectie();
+        PreparedStatement sqlStatement;
         String sqlString = "SELECT * FROM Speler WHERE gebruikernaam = '" + gebruikersnaam + "'"
                 + "AND wachtwoord = '" + wachtwoord + "'";
-
         Speler speler = new Speler();
 
         try
@@ -46,49 +39,77 @@ public class SpelerMapper
                 speler.setVoornaam(rs.getString(5));
                 speler.setAchternaam(rs.getString(6));
             }
+            
+            sqlStatement.close();
         }
-        catch (Exception e)
+        catch (SQLException sqlEx)
         {
-            System.out.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
+            System.err.println("SQL fout" + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+        }
+        finally
+        {
+            connectie.sluit();
         }
         
         return speler;
     }
 
-    public void voegToe(Speler speler) throws GebruikerBestaatException//Exception
+    /**
+     * 
+     * @param speler Speler-object met gegevens die moeten toegevoegd worden aan de databank.
+     * @throws GebruikerBestaatException throws naar SpelerRepository.
+     */
+    public void voegToe(Speler speler) throws GebruikerBestaatException
     {
+        Connectie connectie = new Connectie();
+        PreparedStatement sqlStatement;
+        
         try
         {
             if(bestaatSpeler(speler.getGebruikersnaam()))
             {
-                throw new GebruikerBestaatException();//Exception();
+                throw new GebruikerBestaatException();
             }
             String SQL_INSERT = "INSERT INTO Speler(gebruikernaam, wachtwoord, adminrechten, voornaam, achternaam)"
                     + " VALUES(?, ?, ?, ?, ?)";
 
             sqlStatement = connectie.getDatabaseConnectie().prepareStatement(SQL_INSERT);
+            
             sqlStatement.setString(1, speler.getGebruikersnaam());
             sqlStatement.setString(2, speler.getWachtwoord());
             sqlStatement.setInt(3, (speler.getAdminrechten().equals("nee") ? 0 : 1));
             sqlStatement.setString(4, speler.getVoornaam());
             sqlStatement.setString(5, speler.getAchternaam());
+            
             sqlStatement.executeUpdate();
+            sqlStatement.close();
         }
-        catch(SQLException SQLe)
+        catch(SQLException sqlEx)
         {
-            System.out.println("SQL fout");
+            System.err.println("SQL fout" + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
         }
-        catch (GebruikerBestaatException gbe)//Exception e)
+        catch (GebruikerBestaatException gbe) //throws naar SpelerRepository
         {
-            throw new GebruikerBestaatException("Gebruiker bestaat al!");//Exception("Fout");
-            //System.out.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
+            throw new GebruikerBestaatException(gbe);
+        }
+        finally
+        {
+            connectie.sluit();
         }
     }
     
+    /**
+     * Controleert of de gebruikersnaam al bestaat in de databank.
+     * @param gebruikersnaam Te controleren gebruikersnaam
+     * @return true als gebruikersnaam al bestaat. false als gebruikersnaam nog niet bestaat
+     */
     public boolean bestaatSpeler(String gebruikersnaam)
     {
+        Connectie connectie = new Connectie();
+        PreparedStatement sqlStatement;
         String sqlString = "SELECT gebruikernaam FROM Speler WHERE gebruikernaam = '" + gebruikersnaam + "'";
         String opgehaaldeGebruikersnaam = null;
+        
         try
         {
             sqlStatement = connectie.getDatabaseConnectie().prepareStatement(sqlString);
@@ -98,21 +119,17 @@ public class SpelerMapper
             {
                 opgehaaldeGebruikersnaam = rs.getString(1);
             }
+            sqlStatement.close();
         }
-        catch (SQLException ex)
+        catch (SQLException sqlEx)
         {
-            System.out.println("--- Fout: " + ex.getClass() + ": " + ex.getMessage());
+            System.err.println("SQL fout" + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+        }
+        finally
+        {
+            connectie.sluit();
         }
         
         return opgehaaldeGebruikersnaam != null; //string moet null zijn om onbestande speler voor te stellen
-//        if (opgehaaldeGebruikersnaam != null) //string moet null zijn om onbestande speler voor te stellen
-//        {
-//            return true;
-//            //bestaatSpeler = true;
-//        }
-//        else
-//        {
-//            return false;
-//        }
     }
 }

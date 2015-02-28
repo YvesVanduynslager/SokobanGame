@@ -1,6 +1,7 @@
 package domein;
 
 import exceptions.GebruikerBestaatException;
+import exceptions.GebruikerNietGevondenException;
 
 /**
  * Staat in voor communicatie tussen GUI en businuess-logica.
@@ -29,8 +30,8 @@ public class DomeinController
      */
     public void meldAan(String gebruikersnaam, String wachtwoord)
     {
-        Speler sp = spelerRepository.geefSpeler(gebruikersnaam, wachtwoord);
-        setHuidigeSpeler(sp);
+            Speler sp = spelerRepository.geefSpeler(gebruikersnaam, wachtwoord);
+            setHuidigeSpeler(sp);
     }
 
     /**
@@ -65,23 +66,29 @@ public class DomeinController
      * @param wachtwoord wachtwoord van de speler
      * @param voornaam voornaam van de speler
      * @param achternaam achternaam van de speler
-     * @throws java.lang.Exception
+     * @throws exceptions.GebruikerBestaatException throws naar en handelt af in Registreer.
      */
-    public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam) throws GebruikerBestaatException//Exception
+    public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam) throws IllegalArgumentException, GebruikerBestaatException//Exception
     {
-        Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, achternaam, "nee");
+        
 //        if(spelerRepository.bestaatSpeler(gebruikersnaam))
 //        {
 //            throw new Exception("De speler bestaat al in het systeem, probeer opnieuw!");
 //        }
         try
         {
-        spelerRepository.voegToe(sp);
+            Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, achternaam, "nee");
+            spelerRepository.voegToe(sp);
+            setHuidigeSpeler(sp);
         }
-        catch(Exception e)
+        catch (IllegalArgumentException iae)
         {
-            throw new GebruikerBestaatException(e);//Exception(e);
+            throw new IllegalArgumentException(iae);
         }
-        setHuidigeSpeler(sp);
+        catch (GebruikerBestaatException gbe)
+        {
+            throw new GebruikerBestaatException(gbe);//Exception(e);
+        }
+        
     }
 }

@@ -1,30 +1,36 @@
 package gui;
-//USE CASE 2
 
 import domein.DomeinController;
 import exceptions.GebruikerBestaatException;
 import java.util.Scanner;
 
 /**
+ * USE CASE 2 REGISTREER. Deze klasse staat in voor het tekenen en beheer van de
+ * ui voor UC2 Registreer.
  *
- * @author Jeroen
+ * @author Yves
  */
 public class Registreer
 {
     private final DomeinController controller;
+    private boolean geldig = false;
+
     public Registreer(DomeinController controller)
     {
         this.controller = controller;
     }
 
-    public void registreer()
+    /**
+     * Tekent ui en vraagt gegevens van gebruiker om deze te registreren in het
+     * systeem.
+     */
+    public void startRegistreerUI()
     {
         Scanner scanner = new Scanner(System.in);
 
-        boolean isGeldigWachtwoord;// = false;
-        boolean isGeldigeGebruikersnaam;// = false;
-        String gebruikersnaam = "", wachtwoord = "", naam = "", voornaam = "";
-        boolean geldig = false;
+//        boolean isGeldigWachtwoord;// = false;
+//        boolean isGeldigeGebruikersnaam;// = false;
+        String gebruikersnaam, wachtwoord, naam, voornaam;
 
         System.out.println();
         System.out.printf("%s%n%s%n%s%n", " -------------", "| REGISTREREN |", " -------------");
@@ -34,30 +40,33 @@ public class Registreer
             naam = scanner.next();
             if (naam.equals("terug"))
             {
-                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
-                dus kortweg: opnieuw tonen van hoofdmenu */
+                return; /* toonHoofdmenu() in ConsoleApplicatie opnieuw uitvoeren.
+                 dus kortweg: opnieuw tonen van hoofdmenu */
+
             }
             System.out.print("Geef voornaam | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             voornaam = scanner.next();
             if (voornaam.equals("terug"))
             {
-                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
-                dus kortweg: opnieuw tonen van hoofdmenu */
+                return; /* toonHoofdmenu() in ConsoleApplicatie opnieuw uitvoeren.
+                 dus kortweg: opnieuw tonen van hoofdmenu */
+
             }
             System.out.print("Geef gebruikersnaam (minimum 8 karakters lang; moet uniek zijn) | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             gebruikersnaam = scanner.next();
             if (gebruikersnaam.equals("terug"))
             {
-                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
-                dus kortweg: opnieuw tonen van hoofdmenu */
+                return; /* toonHoofdmenu() in ConsoleApplicatie opnieuw uitvoeren.
+                 dus kortweg: opnieuw tonen van hoofdmenu */
+
             }
             System.out.print("Geef wachtwoord (minimum 8 karakters lang, moet zowel een kleine letter als een hoofdletter en een cijfer bevatten)"
                     + " | (\"terug\" om terug te gaan naar het hoofdmenu): ");
             wachtwoord = scanner.next();
             if (wachtwoord.equals("terug"))
             {
-                return; /*keert terug naar de methode die de call heeft gepleegd (hier dus ConsoleApplicatie.startUI())
-                dus kortweg: opnieuw tonen van hoofdmenu */
+                return; /* toonHoofdmenu() in ConsoleApplicatie opnieuw uitvoeren.
+                 dus kortweg: opnieuw tonen van hoofdmenu */
             }
 
             try
@@ -65,10 +74,15 @@ public class Registreer
                 controller.registreer(gebruikersnaam, wachtwoord, voornaam, voornaam);
                 geldig = true;
             }
-            catch(GebruikerBestaatException gbe)
+            catch (IllegalArgumentException iae)
             {
-                System.err.println(gbe);
-                //geldig = false;
+                System.err.println("Ongeldige gebruikersnaam of wachtwoord ingegeven!");
+                geldig = false;
+            }
+            catch (GebruikerBestaatException gbe)
+            {
+                System.err.println("Gebruiker bestaat al in het systeem!");
+                geldig = false;
             }
 //            catch(Exception e)
 //            {
@@ -87,7 +101,6 @@ public class Registreer
         while (!geldig /*!isGeldigWachtwoord || !isGeldigeGebruikersnaam*/);
 
         //controller.registreer(gebruikersnaam, wachtwoord, voornaam, naam);
-
         String[] spelerGegevens = controller.geefSpeler();
         System.out.println();
         System.out.println("Succesvol geregistreerd en aangemeld met volgende gegevens: ");
@@ -97,6 +110,11 @@ public class Registreer
             System.out.printf("%14s", spelerGegeven);
         }
         System.out.println();
+    }
+    
+    public boolean isSucces()
+    {
+        return geldig;
     }
 // gebaseerd op: http://www.coderanch.com/t/583177/java/java/validate-string-characters-letter-number 
 
@@ -136,7 +154,6 @@ public class Registreer
 //            return false;
 //        }
 //    }
-
 //    public boolean validerenGebruikersnaam(String gebruikersnaam)
 //    {
 //        DomeinController c = new DomeinController();

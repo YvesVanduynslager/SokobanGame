@@ -22,7 +22,7 @@ public class ConsoleApplicatie
         Scanner scanner = new Scanner(System.in);
         int keuze;
 
-        do //bij ingeven van "stop" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden
+        do //bij ingeven van "terug" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden
         {
             System.out.println();
             System.out.printf("%s%n%s%n%s%n%s%n", "Wilt u:", "[1] registreren", "[2] aanmelden", "[0] afsluiten");
@@ -32,8 +32,12 @@ public class ConsoleApplicatie
             {
                 //START USE CASE 2: Registreer
                 Registreer registreren = new Registreer(controller);
-                registreren.registreer();
-                toonSpelMenu();
+                registreren.startRegistreerUI();
+                
+                if (registreren.isSucces())
+                {
+                    toonSpelMenu();
+                }
             }
             else
             {
@@ -41,20 +45,24 @@ public class ConsoleApplicatie
                 {
                     //START USE CASE 1: Meld aan
                     MeldAan aanmelden = new MeldAan(controller);
-                    aanmelden.meldAan();
-                    toonSpelMenu();
+                    aanmelden.startMeldAanUI();
+                    
+                    if (aanmelden.isSucces())
+                    {
+                        toonSpelMenu();
+                    }
                 }
             }
         }
         while (keuze != 0);
     }
-    
+
     public void toonSpelMenu()
     {
         Scanner scanner = new Scanner(System.in);
         boolean adminrechten;
         int keuze;
-        
+
         String[] spelerGegevens = controller.geefSpeler();
         adminrechten = (spelerGegevens[1].equals("ja"));
 

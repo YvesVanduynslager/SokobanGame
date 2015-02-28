@@ -22,7 +22,7 @@ public class ConsoleApplicatie
         Scanner scanner = new Scanner(System.in);
         int keuze;
 
-        do //bij ingeven van "terug" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden
+        do
         {
             System.out.println();
             System.out.printf("%s%n%s%n%s%n%s%n", "Wilt u:", "[1] registreren", "[2] aanmelden", "[0] afsluiten");

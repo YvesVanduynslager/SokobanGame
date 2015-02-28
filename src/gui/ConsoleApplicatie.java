@@ -2,6 +2,7 @@ package gui;
 
 import domein.DomeinController;
 import java.util.Scanner;
+import java.util.ResourceBundle;
 
 /**
  * Centrale klasse die de verschillende use cases zal opstarten.
@@ -21,12 +22,32 @@ public class ConsoleApplicatie
     {
         Scanner scanner = new Scanner(System.in);
         int keuze;
-
-        do
+        
+        //integer declareren om taalkeuze in op te slaan
+        int locale;
+        
+        System.out.printf("%s%n%s%n%s%n%s%n", "Kies uw taal | Choose your language | Choisissez votre langue", "[1] Nederlands", "[2] English", "[3] Français");
+        System.out.print("Uw keuze | Your choice | Votre choix: ");
+        locale = scanner.nextInt();
+        ResourceBundle resource;
+        
+        switch (locale) //resourcebundle selecteren op basis van genomen keuze
+        {
+            case 1: resource = ResourceBundle.getBundle("resources.Resources_nl_BE");
+            break;
+            case 2: resource = ResourceBundle.getBundle("resources.Resources_en_UK");
+            break;
+            case 3: resource = ResourceBundle.getBundle("resources.Resources_fr_BE");
+            break;
+            default: resource = ResourceBundle.getBundle("resources.Resources_nl_BE");
+            break; 
+        }
+        
+        do //bij ingeven van "stop" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden
         {
             System.out.println();
-            System.out.printf("%s%n%s%n%s%n%s%n", "Wilt u:", "[1] registreren", "[2] aanmelden", "[0] afsluiten");
-            System.out.print("Uw keuze: ");
+            System.out.printf("%s%n%s%n%s%n%s%n", resource.getString("hoofdmenu.main"), resource.getString("hoofmenu.optie1"), resource.getString("hoofdmenu.optie2"), resource.getString("hoofmenu.optie0"));
+            System.out.print(resource.getString("keuze"));
             keuze = scanner.nextInt();
             if (keuze == 1)
             {

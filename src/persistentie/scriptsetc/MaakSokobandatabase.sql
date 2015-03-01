@@ -15,6 +15,19 @@ CREATE SCHEMA IF NOT EXISTS `sokobandatabase` DEFAULT CHARACTER SET utf8 COLLATE
 USE `sokobandatabase` ;
 
 -- -----------------------------------------------------
+-- Table `sokobandatabase`.`Spel`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sokobandatabase`.`Spel` ;
+
+CREATE TABLE IF NOT EXISTS `sokobandatabase`.`Spel` (
+  `spelID` INT NOT NULL AUTO_INCREMENT,
+  `spelNaam` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`spelID`),
+  UNIQUE INDEX `spelNaam_UNIQUE` (`spelNaam` ASC))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `sokobandatabase`.`Speler`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `sokobandatabase`.`Speler` ;
@@ -26,9 +39,116 @@ CREATE TABLE IF NOT EXISTS `sokobandatabase`.`Speler` (
   `adminrechten` TINYINT(1) NOT NULL,
   `voornaam` VARCHAR(45) NULL,
   `achternaam` VARCHAR(45) NULL,
+  `Spel_spelID` INT NULL,
   PRIMARY KEY (`spelerID`),
-  UNIQUE INDEX `gebruikernaam_UNIQUE` (`gebruikernaam` ASC))
+  UNIQUE INDEX `gebruikernaam_UNIQUE` (`gebruikernaam` ASC),
+  INDEX `fk_Speler_Spel_idx` (`Spel_spelID` ASC),
+  CONSTRAINT `fk_Speler_Spel`
+    FOREIGN KEY (`Spel_spelID`)
+    REFERENCES `sokobandatabase`.`Spel` (`spelID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sokobandatabase`.`Mannetje`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sokobandatabase`.`Mannetje` ;
+
+CREATE TABLE IF NOT EXISTS `sokobandatabase`.`Mannetje` (
+  `mannetjeID` INT NOT NULL AUTO_INCREMENT,
+  `PositieX` INT NOT NULL,
+  `PositieY` INT NOT NULL,
+  PRIMARY KEY (`mannetjeID`))
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sokobandatabase`.`Spelbord`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sokobandatabase`.`Spelbord` ;
+
+CREATE TABLE IF NOT EXISTS `sokobandatabase`.`Spelbord` (
+  `spelbordID` INT NOT NULL AUTO_INCREMENT,
+  `Spel_spelID` INT NOT NULL,
+  `Mannetje_mannetjeID` INT NOT NULL,
+  PRIMARY KEY (`spelbordID`, `Mannetje_mannetjeID`),
+  INDEX `fk_Spelbord_Spel1_idx` (`Spel_spelID` ASC),
+  INDEX `fk_Spelbord_Mannetje1_idx` (`Mannetje_mannetjeID` ASC),
+  CONSTRAINT `fk_Spelbord_Spel1`
+    FOREIGN KEY (`Spel_spelID`)
+    REFERENCES `sokobandatabase`.`Spel` (`spelID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Spelbord_Mannetje1`
+    FOREIGN KEY (`Mannetje_mannetjeID`)
+    REFERENCES `sokobandatabase`.`Mannetje` (`mannetjeID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sokobandatabase`.`Muur`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sokobandatabase`.`Muur` ;
+
+CREATE TABLE IF NOT EXISTS `sokobandatabase`.`Muur` (
+  `muurID` INT NOT NULL AUTO_INCREMENT,
+  `Spelbord_spelbordID` INT NOT NULL,
+  `PositieX` INT NOT NULL,
+  `PositieY` INT NOT NULL,
+  PRIMARY KEY (`muurID`),
+  INDEX `fk_Muur_Spelbord1_idx` (`Spelbord_spelbordID` ASC),
+  CONSTRAINT `fk_Muur_Spelbord1`
+    FOREIGN KEY (`Spelbord_spelbordID`)
+    REFERENCES `sokobandatabase`.`Spelbord` (`spelbordID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sokobandatabase`.`Veld`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sokobandatabase`.`Veld` ;
+
+CREATE TABLE IF NOT EXISTS `sokobandatabase`.`Veld` (
+  `VeldID` INT NOT NULL AUTO_INCREMENT,
+  `Spelbord_spelbordID` INT NOT NULL,
+  `positieX` INT NOT NULL,
+  `positieY` INT NOT NULL,
+  `IsDoel` TINYINT(1) NOT NULL,
+  PRIMARY KEY (`VeldID`),
+  INDEX `fk_Veld_Spelbord1_idx` (`Spelbord_spelbordID` ASC),
+  CONSTRAINT `fk_Veld_Spelbord1`
+    FOREIGN KEY (`Spelbord_spelbordID`)
+    REFERENCES `sokobandatabase`.`Spelbord` (`spelbordID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
+-- Table `sokobandatabase`.`Kist`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `sokobandatabase`.`Kist` ;
+
+CREATE TABLE IF NOT EXISTS `sokobandatabase`.`Kist` (
+  `kistID` INT NOT NULL AUTO_INCREMENT,
+  `Spelbord_spelbordID` INT NOT NULL,
+  `positieX` INT NOT NULL,
+  `positieY` INT NOT NULL,
+  PRIMARY KEY (`kistID`),
+  INDEX `fk_Kist_Spelbord1_idx` (`Spelbord_spelbordID` ASC),
+  CONSTRAINT `fk_Kist_Spelbord1`
+    FOREIGN KEY (`Spelbord_spelbordID`)
+    REFERENCES `sokobandatabase`.`Spelbord` (`spelbordID`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;

@@ -8,9 +8,8 @@ import java.sql.*;
  */
 public class Connectie
 {
-    //verander mysqlUser en mysqlPassword met je persoonlijke login gegevens!
-    //private final String MYSQL_USER = "root", MYSQL_PASSWORD = "root";
-    private final String MYSQL_USER = "root", MYSQL_PASSWORD = "yamahar1";
+    //verander mysqlUser en mysqlPassword met je persoonlijke login gegevens
+    private final String MYSQL_USER = "root", MYSQL_PASSWORD = "root";
     //database-locatie en driver:
     private final String JDBC = "jdbc:mysql://localhost:3306/sokobandatabase?user=" + MYSQL_USER + "&password=" + MYSQL_PASSWORD;
     private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";

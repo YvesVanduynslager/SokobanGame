@@ -1,9 +1,9 @@
 package gui;
 
 import domein.DomeinController;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.ResourceBundle;
-
 /**
  * Centrale klasse die de verschillende use cases zal opstarten.
  *
@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 public class ConsoleApplicatie
 {
     private final DomeinController controller;
+    private ResourceBundle resource;
 
     public ConsoleApplicatie(DomeinController controller)
     {
@@ -29,7 +30,6 @@ public class ConsoleApplicatie
         System.out.printf("%s%n%s%n%s%n%s%n", "Kies uw taal | Choose your language | Choisissez votre langue", "[1] Nederlands", "[2] English", "[3] Français");
         System.out.print("Uw keuze | Your choice | Votre choix: ");
         locale = scanner.nextInt();
-        ResourceBundle resource;
         
         switch (locale) //resourcebundle selecteren op basis van genomen keuze
         {
@@ -43,11 +43,11 @@ public class ConsoleApplicatie
             break; 
         }
         
-        do //bij ingeven van "stop" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden
+        do //bij ingeven van "terug" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden
         {
             System.out.println();
-            System.out.printf("%s%n%s%n%s%n%s%n", resource.getString("hoofdmenu.main"), resource.getString("hoofmenu.optie1"), resource.getString("hoofdmenu.optie2"), resource.getString("hoofmenu.optie0"));
-            System.out.print(resource.getString("keuze"));
+            System.out.printf("%s%n%s%n%s%n%s%n", resource.getString("hoofdmenu.main"), resource.getString("hoofdmenu.optie1"), resource.getString("hoofdmenu.optie2"), resource.getString("hoofdmenu.optie0"));
+            System.out.print(resource.getString("hoofdmenu.keuze"));
             keuze = scanner.nextInt();
             if (keuze == 1)
             {
@@ -90,7 +90,7 @@ public class ConsoleApplicatie
         if (adminrechten)
         {
             System.out.println();
-            System.out.printf("%s%n%s%n%s%n%s%n", "Keuzemenu:", "[1] Speel spel", "[2] Configureer nieuw spel", "[3] Wijzig een bestaand spel");
+            System.out.printf("%s%n%s%n%s%n%s%n", resource.getString("spelmenu.main"), resource.getString("spelmenu.optie1"), resource.getString("spelmenu.optie2"), resource.getString("spelmenu.optie3"));
             System.out.print("Uw keuze: ");
             keuze = scanner.nextInt();
 
@@ -111,7 +111,7 @@ public class ConsoleApplicatie
         else
         {
             System.out.println();
-            System.out.printf("%s%n%s%n", "Keuzemenu:", "[1] Speel spel");
+            System.out.printf("%s%n%s%n", resource.getString("spelmenu.main"), resource.getString("spelmenu.optie1"));
             System.out.print("Uw keuze: ");
             keuze = scanner.nextInt();
 

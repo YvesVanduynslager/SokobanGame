@@ -2,6 +2,7 @@ package gui;
 
 import java.util.Scanner;
 import domein.DomeinController;
+import java.util.ResourceBundle;
 
 /**
  * USE CASE 1 Meld aan. Deze klasse staat in voor het tekenen en beheer van de
@@ -12,11 +13,13 @@ import domein.DomeinController;
 public class MeldAan
 {
     private final DomeinController controller;
+    private ResourceBundle resource;
     private boolean geldig = false;
 
     public MeldAan(DomeinController controller)
     {
         this.controller = controller;
+        this.resource = this.controller.getResourseBundle();
     }
 
     public void startMeldAanUI()
@@ -27,20 +30,20 @@ public class MeldAan
         String gebruikersnaam, wachtwoord;
 
         System.out.println();
-        System.out.printf("%s%n%s%n%s%n", " -----------", "| AANMELDEN |", " -----------");
+        System.out.printf("%s%n%s%n%s%n", resource.getString("meldaan.border"), resource.getString("meldaan.main"), resource.getString("meldaan.border"));
         do
         {
-            System.out.print("Geef gebruikersnaam (\"terug\" om terug te gaan naar het hoofdmenu): ");
+            System.out.print(resource.getString("meldaan.input.gebruikersnaam"));
             gebruikersnaam = scanner.next();
-            if (gebruikersnaam.equals("terug"))
+            if (gebruikersnaam.equals(resource.getString("terug")))
             {
                 return;  /* toonHoofdmenu() in ConsoleApplicatie opnieuw uitvoeren.
                  dus kortweg: opnieuw tonen van hoofdmenu */
 
             }
-            System.out.print("Geef wachtwoord (\"terug\" om terug te gaan naar het hoofdmenu): ");
+            System.out.print(resource.getString("meldaan.input.wachtwoord"));
             wachtwoord = scanner.next();
-            if (wachtwoord.equals("terug"))
+            if (wachtwoord.equals(resource.getString("terug")))
             {
                 return;
             }
@@ -52,7 +55,7 @@ public class MeldAan
              gebruikersnaam of onbestaand wachtwoord, zal de spelerGegevens-string gevuld worden met null-waarden.*/
 
             {
-                System.out.println("\nGebruiker niet gevonden of foutief wachtwoord ingegeven, probeer opnieuw");
+                System.out.println(resource.getString("meldaan.fout"));
             }
         }
         while (spelerGegevens[0] == null); /*als er geen gegevens opgehaald werden uit de databank
@@ -63,8 +66,8 @@ public class MeldAan
         geldig = true;
         
         System.out.println();
-        System.out.println("Succesvol aangemeld met volgende gegevens: ");
-        System.out.printf("%s%14s%n", "Gebruikersnaam", "Adminrechten"); //wachtwoord wordt hier niet meer weergegeven.
+        System.out.println(resource.getString("meldaan.success"));
+        System.out.printf("%s%14s%n", resource.getString("output.gebruikersnaam"), resource.getString("output.rechten")); //wachtwoord wordt hier niet meer weergegeven.
         for (String spelerGegeven : spelerGegevens)
         {
             System.out.printf("%14s", spelerGegeven);

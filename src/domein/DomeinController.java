@@ -1,6 +1,7 @@
 package domein;
 
 import exceptions.GebruikerBestaatException;
+import java.util.ResourceBundle;
 
 /**
  * Staat in voor communicatie tussen GUI en businuess-logica.
@@ -10,6 +11,7 @@ import exceptions.GebruikerBestaatException;
 public class DomeinController
 {
     private final SpelerRepository spelerRepository;
+    private ResourceBundle resourceBundle;
     private String[] spelerString;
     private Speler huidigeSpeler;
 
@@ -83,5 +85,32 @@ public class DomeinController
         {
             throw new GebruikerBestaatException(gbe);
         }   
+    }
+    
+    /*
+    * Setter voor het ResourseBundle-object
+    * 
+    * @param locale code van de taalkeuze
+    */
+    public void setResourseBundle(int locale)
+    {
+        switch (locale) //resourcebundle selecteren op basis van genomen keuze
+        {
+            case 1: this.resourceBundle = ResourceBundle.getBundle("resources.Resources_nl_BE");
+            break;
+            case 2: this.resourceBundle = ResourceBundle.getBundle("resources.Resources_en_UK");
+            break;
+            case 3: this.resourceBundle = ResourceBundle.getBundle("resources.Resources_fr_BE");
+            break;
+            default: this.resourceBundle = ResourceBundle.getBundle("resources.Resources_nl_BE");
+            break; 
+        }
+    }
+    
+    /*
+    * Getter voor het ResourseBundle-object
+    */
+    public ResourceBundle getResourseBundle(){
+        return this.resourceBundle;
     }
 }

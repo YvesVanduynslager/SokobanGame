@@ -31,17 +31,8 @@ public class ConsoleApplicatie
         System.out.print("Uw keuze | Your choice | Votre choix: ");
         locale = scanner.nextInt();
         
-        switch (locale) //resourcebundle selecteren op basis van genomen keuze
-        {
-            case 1: resource = ResourceBundle.getBundle("resources.Resources_nl_BE");
-            break;
-            case 2: resource = ResourceBundle.getBundle("resources.Resources_en_UK");
-            break;
-            case 3: resource = ResourceBundle.getBundle("resources.Resources_fr_BE");
-            break;
-            default: resource = ResourceBundle.getBundle("resources.Resources_nl_BE");
-            break; 
-        }
+        controller.setResourseBundle(locale);
+        resource = controller.getResourseBundle();
         
         do //bij ingeven van "terug" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden
         {

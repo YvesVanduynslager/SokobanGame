@@ -2,6 +2,7 @@ package gui;
 
 import domein.DomeinController;
 import exceptions.GebruikerBestaatException;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
@@ -13,11 +14,13 @@ import java.util.Scanner;
 public class Registreer
 {
     private final DomeinController controller;
+    private ResourceBundle resource;
     private boolean geldig = false;
 
     public Registreer(DomeinController controller)
     {
         this.controller = controller;
+        this.resource = this.controller.getResourseBundle();
     }
 
     /**
@@ -30,35 +33,34 @@ public class Registreer
         String gebruikersnaam, wachtwoord, naam, voornaam;
 
         System.out.println();
-        System.out.printf("%s%n%s%n%s%n", " -------------", "| REGISTREREN |", " -------------");
+        System.out.printf("%s%n%s%n%s%n", resource.getString("registreer.border"), resource.getString("registreer.main"), " -------------");
         do
         {
-            System.out.print("Geef naam | (\"terug\" om terug te gaan naar het hoofdmenu): ");
+            System.out.print(resource.getString("registreer.naam"));
             naam = scanner.next();
-            if (naam.equals("terug"))
+            if (naam.equals(resource.getString("terug")))
             {
                 return; /* toonHoofdmenu() in ConsoleApplicatie opnieuw uitvoeren.
                  dus kortweg: opnieuw tonen van hoofdmenu */
 
             }
-            System.out.print("Geef voornaam | (\"terug\" om terug te gaan naar het hoofdmenu): ");
+            System.out.print(resource.getString("registreer.voornaam"));
             voornaam = scanner.next();
-            if (voornaam.equals("terug"))
+            if (voornaam.equals(resource.getString("terug")))
             {
                 return;
 
             }
-            System.out.print("Geef gebruikersnaam (minimum 8 karakters lang; moet uniek zijn) | (\"terug\" om terug te gaan naar het hoofdmenu): ");
+            System.out.print(resource.getString("registreer.gebruikersnaam"));
             gebruikersnaam = scanner.next();
-            if (gebruikersnaam.equals("terug"))
+            if (gebruikersnaam.equals(resource.getString("terug")))
             {
                 return;
 
             }
-            System.out.print("Geef wachtwoord (minimum 8 karakters lang, moet zowel een kleine letter als een hoofdletter en een cijfer bevatten)"
-                    + " | (\"terug\" om terug te gaan naar het hoofdmenu): ");
+            System.out.print(resource.getString("registreer.wachtwoord"));
             wachtwoord = scanner.next();
-            if (wachtwoord.equals("terug"))
+            if (wachtwoord.equals(resource.getString("terug")))
             {
                 return;
             }
@@ -70,12 +72,12 @@ public class Registreer
             }
             catch (IllegalArgumentException iae)
             {
-                System.err.println("Ongeldige gebruikersnaam of wachtwoord ingegeven!");
+                System.err.println(resource.getString("registreer.ongeldig"));
                 geldig = false;
             }
             catch (GebruikerBestaatException gbe)
             {
-                System.err.println("Gebruiker bestaat al in het systeem!");
+                System.err.println(resource.getString("registreer.gebruikerbestaat"));
                 geldig = false;
             }
         }
@@ -84,8 +86,8 @@ public class Registreer
         String[] spelerGegevens = controller.geefSpeler();
         
         System.out.println();
-        System.out.println("Succesvol geregistreerd en aangemeld met volgende gegevens: ");
-        System.out.printf("%s%14s%n", "Gebruikersnaam", "Adminrechten"); //wachtwoord wordt hier niet meer weergegeven.
+        System.out.println(resource.getString("registreer.succes"));
+        System.out.printf("%s%14s%n", resource.getString("output.gebruikersnaam"), resource.getString("output.rechten")); //wachtwoord wordt hier niet meer weergegeven.
         
         for (String spelerGegeven : spelerGegevens)
         {

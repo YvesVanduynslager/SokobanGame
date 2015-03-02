@@ -72,13 +72,13 @@ public class ConsoleApplicatie
     public void toonSpelMenu()
     {
         Scanner scanner = new Scanner(System.in);
-        boolean adminrechten;
+        boolean heeftAdminrechten;
         int keuze;
 
         String[] spelerGegevens = controller.geefSpeler();
-        adminrechten = (spelerGegevens[1].equals("ja"));
+        heeftAdminrechten = (spelerGegevens[1].equals("ja"));
 
-        if (adminrechten)
+        if (heeftAdminrechten)
         {
             System.out.println();
             System.out.printf("%s%n%s%n%s%n%s%n", resource.getString("spelmenu.main"), resource.getString("spelmenu.optie1"), resource.getString("spelmenu.optie2"), resource.getString("spelmenu.optie3"));

@@ -22,9 +22,9 @@ public class SpelerMapper
         Connectie connectie = new Connectie();
         PreparedStatement sqlStatement;
         String sqlString = "SELECT gebruikernaam, wachtwoord, isAdmin, voornaam, achternaam "
-                + "FROM Speler S JOIN Gebruiker G ON S.Gebruiker_gebruikerID = G.gebruikerID "
-                + "WHERE S.gebruikernaam =  '" + gebruikersnaam + "'"
-                + "AND S.wachtwoord = '" + wachtwoord + "'";
+                + "FROM Speler "
+                + "WHERE gebruikernaam =  '" + gebruikersnaam + "'"
+                + "AND wachtwoord = '" + wachtwoord + "'";
         Speler speler = new Speler();
 
         try
@@ -72,18 +72,11 @@ public class SpelerMapper
             {
                 throw new GebruikerBestaatException();
             }
-//            INSERT INTO users (username, password)
-//  VALUES('test', 'test');
-//INSERT INTO profiles (userid, bio, homepage) 
-//  VALUES(LAST_INSERT_ID(),'Hello world!', 'http://www.stackoverflow.com');
-            
-//            String SQL_INSERT = "INSERT INTO Speler(gebruikernaam, wachtwoord, adminrechten, voornaam, achternaam)"
-//                    + " VALUES(?, ?, ?, ?, ?); "
+
             String SQL_INSERT = "INSERT INTO Speler(gebruikernaam, wachtwoord, isAdmin, achternaam, voornaam) "
                     + "VALUES(?, ?, ?, ?, ?); ";
 
             sqlStatement = connectie.getDatabaseConnectie().prepareStatement(SQL_INSERT);
-            
             
             sqlStatement.setString(1, speler.getGebruikersnaam());
             sqlStatement.setString(2, speler.getWachtwoord());

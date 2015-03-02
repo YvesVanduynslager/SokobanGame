@@ -93,7 +93,7 @@ public class SpelerMapper
         }
         catch (GebruikerBestaatException gbe) //throws naar SpelerRepository
         {
-            throw new GebruikerBestaatException(gbe);
+            throw gbe;
         }
         finally
         {

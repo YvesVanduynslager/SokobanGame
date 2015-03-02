@@ -79,11 +79,11 @@ public class DomeinController
         }
         catch (IllegalArgumentException iae)
         {
-            throw new IllegalArgumentException(iae);
+            throw new IllegalArgumentException(iae + resourceBundle.getStringUitBundle("registreer.ongeldig"));
         }
         catch (GebruikerBestaatException gbe)
         {
-            throw new GebruikerBestaatException(gbe);
+            throw new GebruikerBestaatException(gbe + resourceBundle.getStringUitBundle("registreer.gebruikerbestaat"));
         }   
     }
     

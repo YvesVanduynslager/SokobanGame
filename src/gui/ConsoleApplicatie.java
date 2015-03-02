@@ -1,6 +1,7 @@
 package gui;
 
 import domein.DomeinController;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 /**
  * Centrale klasse die de verschillende use cases zal opstarten.
@@ -19,6 +20,7 @@ public class ConsoleApplicatie
     public void toonHoofdmenu()
     {
         Scanner scanner = new Scanner(System.in);
+        //integer declareren om menukeuze in op te slaan
         int keuze;
         
         //integer declareren om taalkeuze in op te slaan
@@ -36,6 +38,7 @@ public class ConsoleApplicatie
             System.out.printf("%s%n%s%n%s%n%s%n", controller.getString("hoofdmenu.main"), controller.getString("hoofdmenu.optie1"), controller.getString("hoofdmenu.optie2"), controller.getString("hoofdmenu.optie0"));
             System.out.print(controller.getString("hoofdmenu.keuze"));
             keuze = scanner.nextInt();
+            
             if (keuze == 1)
             {
                 //START USE CASE 2: Registreer

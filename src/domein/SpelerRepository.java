@@ -1,7 +1,8 @@
 package domein;
 
 import exceptions.GebruikerBestaatException;
-import persistentie.*;
+import persistentie.SpelerMapper;
+
 
 /**
  * Staat in voor het beheren, toevoegen en verwijderen van spelers. (CRUD)
@@ -35,7 +36,7 @@ public class SpelerRepository
      * database.
      * @throws exceptions.GebruikerBestaatException throws naar DomeinController.
      */
-    public void voegToe(Speler speler) throws GebruikerBestaatException //Exception
+    public void voegToe(Speler speler) throws GebruikerBestaatException //throw naar DomeinController
     {
         try
         {
@@ -43,7 +44,7 @@ public class SpelerRepository
         }
         catch (GebruikerBestaatException gbe)
         {
-            throw new GebruikerBestaatException(gbe);//Exception(e);
+            throw gbe;
         }
     }
 }

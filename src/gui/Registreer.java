@@ -2,7 +2,6 @@ package gui;
 
 import domein.DomeinController;
 import exceptions.GebruikerBestaatException;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**
@@ -14,13 +13,11 @@ import java.util.Scanner;
 public class Registreer
 {
     private final DomeinController controller;
-    private ResourceBundle resource;
     private boolean geldig = false;
 
     public Registreer(DomeinController controller)
     {
         this.controller = controller;
-        this.resource = this.controller.getResourseBundle();
     }
 
     /**
@@ -33,34 +30,34 @@ public class Registreer
         String gebruikersnaam, wachtwoord, naam, voornaam;
 
         System.out.println();
-        System.out.printf("%s%n%s%n%s%n", resource.getString("registreer.border"), resource.getString("registreer.main"), " -------------");
+        System.out.printf("%s%n%s%n%s%n", controller.getString("registreer.border"), controller.getString("registreer.main"), controller.getString("registreer.border"));
         do
         {
-            System.out.print(resource.getString("registreer.naam"));
+            System.out.print(controller.getString("registreer.naam"));
             naam = scanner.next();
-            if (naam.equals(resource.getString("terug")))
+            if (naam.equals(controller.getString("terug")))
             {
                 return; /* toonHoofdmenu() in ConsoleApplicatie opnieuw uitvoeren.
                  dus kortweg: opnieuw tonen van hoofdmenu */
 
             }
-            System.out.print(resource.getString("registreer.voornaam"));
+            System.out.print(controller.getString("registreer.voornaam"));
             voornaam = scanner.next();
-            if (voornaam.equals(resource.getString("terug")))
+            if (voornaam.equals(controller.getString("terug")))
             {
                 return;
 
             }
-            System.out.print(resource.getString("registreer.gebruikersnaam"));
+            System.out.print(controller.getString("registreer.gebruikersnaam"));
             gebruikersnaam = scanner.next();
-            if (gebruikersnaam.equals(resource.getString("terug")))
+            if (gebruikersnaam.equals(controller.getString("terug")))
             {
                 return;
 
             }
-            System.out.print(resource.getString("registreer.wachtwoord"));
+            System.out.print(controller.getString("registreer.wachtwoord"));
             wachtwoord = scanner.next();
-            if (wachtwoord.equals(resource.getString("terug")))
+            if (wachtwoord.equals(controller.getString("terug")))
             {
                 return;
             }
@@ -72,12 +69,12 @@ public class Registreer
             }
             catch (IllegalArgumentException iae)
             {
-                System.err.println(resource.getString("registreer.ongeldig"));
+                System.err.println(controller.getString("registreer.ongeldig"));
                 geldig = false;
             }
             catch (GebruikerBestaatException gbe)
             {
-                System.err.println(resource.getString("registreer.gebruikerbestaat"));
+                System.err.println(controller.getString("registreer.gebruikerbestaat"));
                 geldig = false;
             }
         }
@@ -86,8 +83,8 @@ public class Registreer
         String[] spelerGegevens = controller.geefSpeler();
         
         System.out.println();
-        System.out.println(resource.getString("registreer.succes"));
-        System.out.printf("%s%14s%n", resource.getString("output.gebruikersnaam"), resource.getString("output.rechten")); //wachtwoord wordt hier niet meer weergegeven.
+        System.out.println(controller.getString("registreer.succes"));
+        System.out.printf("%s%14s%n", controller.getString("output.gebruikersnaam"), controller.getString("output.rechten")); //wachtwoord wordt hier niet meer weergegeven.
         
         for (String spelerGegeven : spelerGegevens)
         {

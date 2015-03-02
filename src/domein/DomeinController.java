@@ -1,7 +1,6 @@
 package domein;
 
 import exceptions.GebruikerBestaatException;
-import java.util.ResourceBundle;
 
 /**
  * Staat in voor communicatie tussen GUI en businuess-logica.

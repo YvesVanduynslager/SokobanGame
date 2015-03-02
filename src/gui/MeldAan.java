@@ -2,7 +2,6 @@ package gui;
 
 import java.util.Scanner;
 import domein.DomeinController;
-import java.util.ResourceBundle;
 
 /**
  * USE CASE 1 Meld aan. Deze klasse staat in voor het tekenen en beheer van de

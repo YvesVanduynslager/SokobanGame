@@ -2,7 +2,6 @@ package gui;
 
 import domein.DomeinController;
 import exceptions.GebruikerBestaatException;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 
 /**

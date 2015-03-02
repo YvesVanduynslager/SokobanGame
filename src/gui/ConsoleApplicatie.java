@@ -1,9 +1,7 @@
 package gui;
 
 import domein.DomeinController;
-import java.util.Locale;
 import java.util.Scanner;
-import java.util.ResourceBundle;
 /**
  * Centrale klasse die de verschillende use cases zal opstarten.
  *

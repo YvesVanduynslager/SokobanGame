@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 public class DomeinController
 {
     private final SpelerRepository spelerRepository;
-    private ResourceBundle resourceBundle;
+    private Taal resourceBundle;
     private String[] spelerString;
     private Speler huidigeSpeler;
 
@@ -21,6 +21,7 @@ public class DomeinController
     public DomeinController()
     {
         spelerRepository = new SpelerRepository();
+        resourceBundle = new Taal();
     }
 
     /**
@@ -88,29 +89,21 @@ public class DomeinController
     }
     
     /*
-    * Setter voor het ResourseBundle-object
+    * Geeft de taalkeuze van de gebruiker door aan het Taal-object.
     * 
     * @param locale code van de taalkeuze
     */
-    public void setResourseBundle(int locale)
+    public void setTaalKeuze(int locale)
     {
-        switch (locale) //resourcebundle selecteren op basis van genomen keuze
-        {
-            case 1: this.resourceBundle = ResourceBundle.getBundle("resources.Resources_nl_BE");
-            break;
-            case 2: this.resourceBundle = ResourceBundle.getBundle("resources.Resources_en_UK");
-            break;
-            case 3: this.resourceBundle = ResourceBundle.getBundle("resources.Resources_fr_BE");
-            break;
-            default: this.resourceBundle = ResourceBundle.getBundle("resources.Resources_nl_BE");
-            break; 
-        }
+        resourceBundle.setTaalKeuze(locale);
     }
     
     /*
-    * Getter voor het ResourseBundle-object
+    * Haalt de correcte String op uit het Taal-object
+    *
+    * @param key de key die in de ResourceBundles overeenkomt met de op te halen tekst
     */
-    public ResourceBundle getResourseBundle(){
-        return this.resourceBundle;
+    public String getString(String key){
+        return resourceBundle.getStringUitBundle(key);
     }
 }

@@ -12,7 +12,6 @@ import java.util.ResourceBundle;
 public class ConsoleApplicatie
 {
     private final DomeinController controller;
-    private ResourceBundle resource;
 
     public ConsoleApplicatie(DomeinController controller)
     {
@@ -31,14 +30,13 @@ public class ConsoleApplicatie
         System.out.print("Uw keuze | Your choice | Votre choix: ");
         locale = scanner.nextInt();
         
-        controller.setResourseBundle(locale);
-        resource = controller.getResourseBundle();
+        controller.setTaalKeuze(locale);
         
         do //bij ingeven van "terug" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden
         {
             System.out.println();
-            System.out.printf("%s%n%s%n%s%n%s%n", resource.getString("hoofdmenu.main"), resource.getString("hoofdmenu.optie1"), resource.getString("hoofdmenu.optie2"), resource.getString("hoofdmenu.optie0"));
-            System.out.print(resource.getString("hoofdmenu.keuze"));
+            System.out.printf("%s%n%s%n%s%n%s%n", controller.getString("hoofdmenu.main"), controller.getString("hoofdmenu.optie1"), controller.getString("hoofdmenu.optie2"), controller.getString("hoofdmenu.optie0"));
+            System.out.print(controller.getString("hoofdmenu.keuze"));
             keuze = scanner.nextInt();
             if (keuze == 1)
             {
@@ -81,7 +79,7 @@ public class ConsoleApplicatie
         if (adminrechten)
         {
             System.out.println();
-            System.out.printf("%s%n%s%n%s%n%s%n", resource.getString("spelmenu.main"), resource.getString("spelmenu.optie1"), resource.getString("spelmenu.optie2"), resource.getString("spelmenu.optie3"));
+            System.out.printf("%s%n%s%n%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"), controller.getString("spelmenu.optie2"), controller.getString("spelmenu.optie3"));
             System.out.print("Uw keuze: ");
             keuze = scanner.nextInt();
 
@@ -102,7 +100,7 @@ public class ConsoleApplicatie
         else
         {
             System.out.println();
-            System.out.printf("%s%n%s%n", resource.getString("spelmenu.main"), resource.getString("spelmenu.optie1"));
+            System.out.printf("%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"));
             System.out.print("Uw keuze: ");
             keuze = scanner.nextInt();
 

@@ -3,17 +3,17 @@ package domein;
 import java.util.ResourceBundle;
 
 /**
- *
+ * Deze klasse staat in voor het kiezen van een taal.
  * @author Michiel
  */
 public class Taal
 {
     private ResourceBundle resourceBundle;
-    public Taal()
-    {
-        
-    }
     
+    /**
+     * methode om de taalkeuze in te stellen.
+     * @param locale integer die gebruikt wordt om juiste taal te bepalen.
+     */
     public void setTaalKeuze(int locale)
     {
     switch (locale) //resourcebundle selecteren op basis van genomen keuze
@@ -29,6 +29,11 @@ public class Taal
         }
     }
     
+    /**
+     * Teruggeven van een string adhv een gekozen key.
+     * @param key de key selecteert een vertaalde String uit de ingestelde taal.
+     * @return geeft de string terug die overeenkomt met de key.
+     */
     public String getStringUitBundle(String key)
     {
         return resourceBundle.getString(key);

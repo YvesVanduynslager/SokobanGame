@@ -57,6 +57,16 @@ public class Speler
         }
         this.wachtwoord = wachtwoord;
     }
+    
+    public void setVoornaam(String voornaam)
+    {
+        this.voornaam = voornaam;
+    }
+    
+    public void setAchternaam(String achternaam)
+    {
+        this.achternaam = achternaam;
+    }
 
     public boolean geldigWachtwoord(String wachtwoord)
     {
@@ -110,26 +120,6 @@ public class Speler
         {
             this.adminrechten = "nee";
         }
-    }
-
-    /**
-     * Instellen van de voornaam van de speler
-     *
-     * @param voornaam voornaam van de speler
-     */
-    public void setVoornaam(String voornaam)
-    {
-        this.voornaam = voornaam;
-    }
-
-    /**
-     * Instellen van de achternaam van de speler
-     *
-     * @param achternaam achternaam van de speler
-     */
-    public void setAchternaam(String achternaam)
-    {
-        this.achternaam = achternaam;
     }
 
     public String getGebruikersnaam()

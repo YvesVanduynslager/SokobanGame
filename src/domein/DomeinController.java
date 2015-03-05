@@ -10,7 +10,7 @@ import exceptions.GebruikerBestaatException;
 public class DomeinController
 {
     private final SpelerRepository spelerRepository;
-    private Taal resourceBundle;
+    private final Taal resourceBundle;
     private String[] spelerString;
     private Speler huidigeSpeler;
 
@@ -31,8 +31,8 @@ public class DomeinController
      */
     public void meldAan(String gebruikersnaam, String wachtwoord)
     {
-            Speler sp = spelerRepository.geefSpeler(gebruikersnaam, wachtwoord);
-            setHuidigeSpeler(sp);
+        Speler sp = spelerRepository.geefSpeler(gebruikersnaam, wachtwoord);
+        setHuidigeSpeler(sp);
     }
 
     /**
@@ -67,7 +67,8 @@ public class DomeinController
      * @param wachtwoord wachtwoord van de speler
      * @param voornaam voornaam van de speler
      * @param achternaam achternaam van de speler
-     * @throws exceptions.GebruikerBestaatException throws naar en handelt af in Registreer.
+     * @throws exceptions.GebruikerBestaatException throws naar en handelt af in
+     * Registreer.
      */
     public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam) throws IllegalArgumentException, GebruikerBestaatException//Exception
     {
@@ -84,25 +85,26 @@ public class DomeinController
         catch (GebruikerBestaatException gbe)
         {
             throw new GebruikerBestaatException(gbe + resourceBundle.getStringUitBundle("registreer.gebruikerbestaat"));
-        }   
+        }
     }
-    
+
     /*
-    * Geeft de taalkeuze van de gebruiker door aan het Taal-object.
-    * 
-    * @param locale code van de taalkeuze
-    */
+     * Geeft de taalkeuze van de gebruiker door aan het Taal-object.
+     * 
+     * @param locale code van de taalkeuze
+     */
     public void setTaalKeuze(int locale)
     {
         resourceBundle.setTaalKeuze(locale);
     }
-    
+
     /*
-    * Haalt de correcte String op uit het Taal-object
-    *
-    * @param key de key die in de ResourceBundles overeenkomt met de op te halen tekst
-    */
-    public String getString(String key){
+     * Haalt de correcte String op uit het Taal-object
+     *
+     * @param key de key die in de ResourceBundles overeenkomt met de op te halen tekst
+     */
+    public String getString(String key)
+    {
         return resourceBundle.getStringUitBundle(key);
     }
 }

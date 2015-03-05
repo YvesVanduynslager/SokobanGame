@@ -51,6 +51,7 @@ public class Speler
      */
     public void setWachtwoord(String wachtwoord)
     {
+        System.out.print(wachtwoord);
         if (!geldigWachtwoord(wachtwoord))
         {
             throw new IllegalArgumentException();

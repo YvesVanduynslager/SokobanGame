@@ -34,11 +34,11 @@ public class SpelerMapper
 
             while (rs.next())
             {
-                speler.setGebruikersnaam(rs.getString(2)); // 1 voor kolom 1 enz.
-                speler.setWachtwoord(rs.getString(3));
-                speler.setAdminrechten((rs.getInt(4) == 1 ? "ja" : "nee")); // als gelijk is aan 1, dan ja, anders nee. db heeft 1 voor ja, en 0 voor nee.
-                speler.setVoornaam(rs.getString(5));
-                speler.setAchternaam(rs.getString(6));
+                speler.setGebruikersnaam(rs.getString(1)); // 1 voor kolom 1 enz.
+                speler.setWachtwoord(rs.getString(2));
+                speler.setAdminrechten((rs.getInt(3) == 1 ? "ja" : "nee")); // als gelijk is aan 1, dan ja, anders nee. db heeft 1 voor ja, en 0 voor nee.
+                speler.setVoornaam(rs.getString(4));
+                speler.setAchternaam(rs.getString(5));
             }
 
             sqlStatement.close();

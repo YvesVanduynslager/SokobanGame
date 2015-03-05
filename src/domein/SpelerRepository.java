@@ -41,7 +41,7 @@ public class SpelerRepository
 //        try
 //        {
             spelerMapper.voegToe(speler);
-        //}
+//        }
 //        catch (GebruikerBestaatException gbe)
 //        {
 //            throw gbe;

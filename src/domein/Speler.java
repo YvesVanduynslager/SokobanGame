@@ -21,7 +21,7 @@ public class Speler
      * @param adminrechten "ja" als speler adminrechten heeft, "nee" als speler
      * geen adminrechten heeft
      */
-    public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten) //Contructor gebruikt voor registreren.
+    public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten)
     {
         this.setEnControleerGebruikersnaam(gebruikersnaam);
         this.setEnControleerWachtwoord(wachtwoord);
@@ -32,46 +32,22 @@ public class Speler
 
     /**
      * Instellen van de gebruikersnaam van de speler
-     * @param gebruikersnaam gebruikersnaam van de aan te melden speler
-     */
-    public void setGebruikersnaam(String gebruikersnaam)
-    {
-        this.gebruikersnaam = gebruikersnaam;
-    }
-    
-    /**
-     * instellen van het wachtwoord van de speler
-     * @param wachtwoord wachtwoord van de aan te melden speler
-     */
-    public void setWachtwoord(String wachtwoord)
-    {
-        this.wachtwoord = wachtwoord;
-    }
-    /**
-     * Controleren en instellen van de gebruikersnaam van de speler bij registratie
      *
      * @param gebruikersnaam gebruikersnaam van de speler
      */
-    private void setEnControleerGebruikersnaam(String gebruikersnaam) throws IllegalArgumentException
+    public void setGebruikersnaam(String gebruikersnaam)
     {
-        if (!(gebruikersnaam.length() >= 8))
-        {
-            throw new IllegalArgumentException();
-        }
+
         this.gebruikersnaam = gebruikersnaam;
     }
 
     /**
-     * Controleren en instellen van het wachtwoord van de speler bij registratie
+     * Instellen van het wachtwoord van de speler
      *
      * @param wachtwoord wachtwoord van de speler
      */
-    private void setEnControleerWachtwoord(String wachtwoord)
+    public void setWachtwoord(String wachtwoord)
     {
-        if (!this.geldigWachtwoord(wachtwoord))
-        {
-            throw new IllegalArgumentException();
-        }
 
         this.wachtwoord = wachtwoord;
     }
@@ -162,5 +138,31 @@ public class Speler
     public String getAchternaam()
     {
         return this.achternaam;
+    }
+
+    /**
+     *
+     * @param gebruikersnaam
+     */
+    private void setEnControleerGebruikersnaam(String gebruikersnaam)
+    {
+        if (!(gebruikersnaam.length() >= 8))
+        {
+            throw new IllegalArgumentException();
+        }
+        this.gebruikersnaam = gebruikersnaam;
+    }
+
+    /**
+     *
+     * @param wachtwoord
+     */
+    private void setEnControleerWachtwoord(String wachtwoord)
+    {
+        if (!geldigWachtwoord(wachtwoord))
+        {
+            throw new IllegalArgumentException();
+        }
+        this.wachtwoord = wachtwoord;
     }
 }

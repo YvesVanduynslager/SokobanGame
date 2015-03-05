@@ -77,13 +77,13 @@ public class SpelerMapper
                     + "VALUES(?, ?, ?, ?, ?); ";
 
             sqlStatement = connectie.getDatabaseConnectie().prepareStatement(SQL_INSERT);
-            
+
             sqlStatement.setString(1, speler.getGebruikersnaam());
             sqlStatement.setString(2, speler.getWachtwoord());
             sqlStatement.setBoolean(3, (speler.getAdminrechten().equals("ja")));
             sqlStatement.setString(4, speler.getAchternaam());
             sqlStatement.setString(5, speler.getVoornaam());
-            
+
             sqlStatement.executeUpdate();
             sqlStatement.close();
         }

@@ -67,8 +67,6 @@ public class DomeinController
      * @param wachtwoord wachtwoord van de speler
      * @param voornaam voornaam van de speler
      * @param achternaam achternaam van de speler
-     * @throws exceptions.GebruikerBestaatException throws naar en handelt af in
-     * Registreer.
      */
     public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam) throws IllegalArgumentException, GebruikerBestaatException//Exception
     {
@@ -76,14 +74,16 @@ public class DomeinController
         {
             Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, achternaam, "nee");
             spelerRepository.voegToe(sp);
-            setHuidigeSpeler(sp);
+            this.setHuidigeSpeler(sp);
         }
         catch (IllegalArgumentException iae)
         {
+            //System.err.println(iae + resourceBundle.getStringUitBundle("registreer.ongeldig"));
             throw new IllegalArgumentException(iae + resourceBundle.getStringUitBundle("registreer.ongeldig"));
         }
         catch (GebruikerBestaatException gbe)
         {
+            //System.err.println(gbe + resourceBundle.getStringUitBundle("registreer.gebruikerbestaat"));
             throw new GebruikerBestaatException(gbe + resourceBundle.getStringUitBundle("registreer.gebruikerbestaat"));
         }
     }

@@ -21,10 +21,10 @@ public class Speler
      * @param adminrechten "ja" als speler adminrechten heeft, "nee" als speler
      * geen adminrechten heeft
      */
-    public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten)
+    public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten) //Contructor gebruikt voor registreren.
     {
-        this.setGebruikersnaam(gebruikersnaam);
-        this.setWachtwoord(wachtwoord);
+        this.setEnControleerGebruikersnaam(gebruikersnaam);
+        this.setEnControleerWachtwoord(wachtwoord);
         this.voornaam = voornaam;
         this.achternaam = achternaam;
         this.adminrechten = adminrechten;
@@ -32,10 +32,27 @@ public class Speler
 
     /**
      * Instellen van de gebruikersnaam van de speler
+     * @param gebruikersnaam gebruikersnaam van de aan te melden speler
+     */
+    public void setGebruikersnaam(String gebruikersnaam)
+    {
+        this.gebruikersnaam = gebruikersnaam;
+    }
+    
+    /**
+     * instellen van het wachtwoord van de speler
+     * @param wachtwoord wachtwoord van de aan te melden speler
+     */
+    public void setWachtwoord(String wachtwoord)
+    {
+        this.wachtwoord = wachtwoord;
+    }
+    /**
+     * Controleren en instellen van de gebruikersnaam van de speler bij registratie
      *
      * @param gebruikersnaam gebruikersnaam van de speler
      */
-    public void setGebruikersnaam(String gebruikersnaam) throws IllegalArgumentException
+    private void setEnControleerGebruikersnaam(String gebruikersnaam) throws IllegalArgumentException
     {
         if (!(gebruikersnaam.length() >= 8))
         {
@@ -45,25 +62,25 @@ public class Speler
     }
 
     /**
-     * Instellen van het wachtwoord van de speler
+     * Controleren en instellen van het wachtwoord van de speler bij registratie
      *
      * @param wachtwoord wachtwoord van de speler
      */
-    public void setWachtwoord(String wachtwoord)
+    private void setEnControleerWachtwoord(String wachtwoord)
     {
-        System.out.print(wachtwoord);
-        if (!geldigWachtwoord(wachtwoord))
+        if (!this.geldigWachtwoord(wachtwoord))
         {
             throw new IllegalArgumentException();
         }
+
         this.wachtwoord = wachtwoord;
     }
-    
+
     public void setVoornaam(String voornaam)
     {
         this.voornaam = voornaam;
     }
-    
+
     public void setAchternaam(String achternaam)
     {
         this.achternaam = achternaam;
@@ -74,7 +91,6 @@ public class Speler
         int numOfUpperLetters = 0; // initialiseren aantal lowerCase letters
         int numOfLowerLetters = 0; // initialiseren aantal upperCase letters
         int numOfDigits = 0; // initialiseren aantal cijfers
-        //boolean geldigWachtwoord = false; // initialiseren geldigheid wachtwoord
 
         byte[] bytes = wachtwoord.getBytes();
         for (byte tempByte : bytes)

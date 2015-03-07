@@ -13,6 +13,8 @@ public class DomeinController
     private final Taal resourceBundle;
     private String[] spelerString;
     private Speler huidigeSpeler;
+	Spel huidigSpel;
+	SpelRepository spelRepository;
 
     /**
      * Default-constructor maakt SpelerRepository-object aan.
@@ -108,4 +110,63 @@ public class DomeinController
     {
         return resourceBundle.getStringUitBundle(key);
     }
+
+	/**
+	 * 
+	 * @param spelnaam
+	 */
+	public void selecteerSpel(String spelnaam) {
+		// TODO - implement DomeinController.selecteerSpel
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param spel
+	 */
+	private void setHuidigSpel(Spel spel) {
+		this.huidigSpel = spel;
+	}
+
+	/**
+	 * 
+	 * @param spelnaam
+	 */
+	public void speelSpel(String spelnaam) {
+		// TODO - implement DomeinController.speelSpel
+		throw new UnsupportedOperationException();
+	}
+
+	public String[][] geefHuidigSpelbord() {
+		// TODO - implement DomeinController.geefHuidigSpelbord
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param spelbord
+	 */
+	public void setHuidigSpelbord(Spelbord spelbord) {
+		// TODO - implement DomeinController.setHuidigSpelbord
+		throw new UnsupportedOperationException();
+	}
+
+	public int geefAantalSpelborden() {
+		// TODO - implement DomeinController.geefAantalSpelborden
+		throw new UnsupportedOperationException();
+	}
+
+	public int geefAantalVoltooideBorden() {
+		// TODO - implement DomeinController.geefAantalVoltooideBorden
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param richting
+	 */
+	public void verplaatsMannetje(String richting) {
+		// TODO - implement DomeinController.verplaatsMannetje
+		throw new UnsupportedOperationException();
+	}
 }

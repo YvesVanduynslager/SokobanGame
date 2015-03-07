@@ -70,22 +70,23 @@ public class DomeinController
      * @throws exceptions.GebruikerBestaatException throws naar en handelt af in
      * Registreer.
      */
-    public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam) throws IllegalArgumentException, GebruikerBestaatException//Exception
+    public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam) throws IllegalArgumentException, GebruikerBestaatException
     {
-        try
-        {
+//        try
+//        {
             Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, achternaam, "nee");
             spelerRepository.voegToe(sp);
             setHuidigeSpeler(sp);
-        }
-        catch (IllegalArgumentException iae)
-        {
-            throw new IllegalArgumentException(iae + resourceBundle.getStringUitBundle("registreer.ongeldig"));
-        }
-        catch (GebruikerBestaatException gbe)
-        {
-            throw new GebruikerBestaatException(gbe + resourceBundle.getStringUitBundle("registreer.gebruikerbestaat"));
-        }
+//        }
+//        catch (IllegalArgumentException iae)
+//        {
+//            throw iae;
+//            //throw new IllegalArgumentException(iae + resourceBundle.getStringUitBundle("registreer.ongeldig"));
+//        }
+//        catch (GebruikerBestaatException gbe)
+//        {
+//            throw new GebruikerBestaatException(gbe + resourceBundle.getStringUitBundle("registreer.gebruikerbestaat"));
+//        }
     }
 
     /*

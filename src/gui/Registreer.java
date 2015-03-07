@@ -67,9 +67,14 @@ public class Registreer
                 controller.registreer(gebruikersnaam, wachtwoord, voornaam, voornaam);
                 geldig = true;
             }
-            catch (IllegalArgumentException | GebruikerBestaatException exception)
+            catch (GebruikerBestaatException gbe)
             {
-                System.err.println(exception);
+                System.err.println(gbe + controller.getString("registreer.gebruikerbestaat"));
+                geldig = false;
+            }
+            catch (IllegalArgumentException iae)
+            {
+                System.err.println(iae + controller.getString("registreer.ongeldig"));
                 geldig = false;
             }
         }

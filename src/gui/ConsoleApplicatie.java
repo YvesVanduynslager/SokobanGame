@@ -1,7 +1,6 @@
 package gui;
 
 import domein.DomeinController;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 /**
  * Centrale klasse die de verschillende use cases zal opstarten.

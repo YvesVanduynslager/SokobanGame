@@ -28,7 +28,7 @@ public class Connectie
         }
         catch (ClassNotFoundException | InstantiationException | IllegalAccessException | SQLException e)
         {
-            System.out.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
+            System.err.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
         }
     }
     

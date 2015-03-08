@@ -1,13 +1,11 @@
 package domein;
 
-public class Kist extends Veld
-{
-    public Kist()
-    {
-        
+public class Kist extends Veld {
+    public Kist(int xPositie, int yPositie) {
+        super(xPositie, yPositie);
     }
     
-    @Override
+        @Override
     public String toString()
     {
         return "K";

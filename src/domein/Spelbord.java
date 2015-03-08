@@ -56,9 +56,13 @@ public class Spelbord {
                 else if (velden.get(y).get(x-1) instanceof Kist && x-1>0){
                     if (velden.get(y).get(x-2) instanceof Veld && x-2>0){
                         boolean doel = velden.get(y).get(x-2).isIsDoel();
+                        ArrayList<Veld> tijdelijkeRij = velden.get(y);
                         Kist tijdelijkeKist = new Kist(x-2, y);
                         tijdelijkeKist.setIsDoel(doel);
+                        tijdelijkeRij.add(x-2, tijdelijkeKist);
                         Veld tijdelijkVeld = new Veld (x-1, y);
+                        tijdelijkeRij.add(x-1, tijdelijkVeld);
+                        velden.add(y, tijdelijkeRij);
                         
                         mannetje.setxPositie(x-1);
                     }
@@ -70,6 +74,14 @@ public class Spelbord {
                 }
                 else if (velden.get(y).get(x+1) instanceof Kist && x+1<10){
                     if (velden.get(y).get(x+2) instanceof Veld && x+2<10){
+                        boolean doel = velden.get(y).get(x+2).isIsDoel();
+                        ArrayList<Veld> tijdelijkeRij = velden.get(y);
+                        Kist tijdelijkeKist = new Kist(x+2, y);
+                        tijdelijkeKist.setIsDoel(doel);
+                        tijdelijkeRij.add(x+2, tijdelijkeKist);
+                        Veld tijdelijkVeld = new Veld (x+1, y);
+                        tijdelijkeRij.add(x+1, tijdelijkVeld);
+                        velden.add(y, tijdelijkeRij);
                         
                         mannetje.setxPositie(x+1);
                     }
@@ -81,6 +93,16 @@ public class Spelbord {
                 }
                 else if (velden.get(y-1).get(x) instanceof Kist && y-1>0){
                     if (velden.get(y-2).get(x) instanceof Veld && y-2>0){
+                        boolean doel = velden.get(y-2).get(x).isIsDoel();
+                        ArrayList<Veld> tijdelijkeRij1 = velden.get(y-1);
+                        ArrayList<Veld> tijdelijkeRij2 = velden.get(y-2);
+                        Kist tijdelijkeKist = new Kist(x, y-2);
+                        tijdelijkeKist.setIsDoel(doel);
+                        tijdelijkeRij2.add(x, tijdelijkeKist);
+                        Veld tijdelijkVeld = new Veld (x, y-1);
+                        tijdelijkeRij1.add(x, tijdelijkVeld);
+                        velden.add(y-1, tijdelijkeRij1);
+                        velden.add(y-2, tijdelijkeRij2);
                         
                         mannetje.setyPositie(y-1);
                     }
@@ -92,6 +114,16 @@ public class Spelbord {
                 }
                 else if (velden.get(y+1).get(x) instanceof Kist && y+1<10){
                     if (velden.get(y+2).get(x) instanceof Veld && y+2<10){
+                        boolean doel = velden.get(y+2).get(x).isIsDoel();
+                        ArrayList<Veld> tijdelijkeRij1 = velden.get(y+1);
+                        ArrayList<Veld> tijdelijkeRij2 = velden.get(y+2);
+                        Kist tijdelijkeKist = new Kist(x, y+2);
+                        tijdelijkeKist.setIsDoel(doel);
+                        tijdelijkeRij2.add(x, tijdelijkeKist);
+                        Veld tijdelijkVeld = new Veld (x, y+1);
+                        tijdelijkeRij1.add(x, tijdelijkVeld);
+                        velden.add(y+1, tijdelijkeRij1);
+                        velden.add(y+2, tijdelijkeRij2);
                         
                         mannetje.setyPositie(y+1);
                     }

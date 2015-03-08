@@ -39,15 +39,8 @@ DROP TABLE IF EXISTS `sokobandatabase`.`Spel` ;
 CREATE TABLE IF NOT EXISTS `sokobandatabase`.`Spel` (
   `spelID` INT NOT NULL AUTO_INCREMENT,
   `spelNaam` VARCHAR(45) NOT NULL,
-  `Speler_spelerID` INT NULL,
-  PRIMARY KEY (`spelID`, `Speler_spelerID`),
-  UNIQUE INDEX `spelNaam_UNIQUE` (`spelNaam` ASC),
-  INDEX `fk_Spel_Speler1_idx` (`Speler_spelerID` ASC),
-  CONSTRAINT `fk_Spel_Speler1`
-    FOREIGN KEY (`Speler_spelerID`)
-    REFERENCES `sokobandatabase`.`Speler` (`spelerID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`spelID`),
+  UNIQUE INDEX `spelNaam_UNIQUE` (`spelNaam` ASC))
 ENGINE = InnoDB;
 
 

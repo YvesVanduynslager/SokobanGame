@@ -1,11 +1,29 @@
 package domein;
 
-import java.util.*;
+public class Spelbord
+{
 
-public class Spelbord {
+    Veld[][] velden;
+    Mannetje mannetje;
+    private int spelbordID;
 
-	Collection<Veld> velden;
-	Mannetje mannetje;
-	private int spelbordID;
+    public Spelbord(Veld[][] bord)
+    {
+        this.velden = bord;
+    }
 
+    @Override
+    public String toString()
+    {
+        String output = "";
+        for (Veld rij[] : velden)
+        {
+            for (Veld cel : rij)
+            {
+                output += cel.toString();
+            }
+            output += "\n";
+        }
+        return output;
+    }
 }

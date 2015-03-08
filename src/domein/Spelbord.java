@@ -10,8 +10,8 @@ public class Spelbord {
         * velden.get(y).get(x) aan de hand van coördinaten een Veld op te halen uit de "lijst"
         * dit was veel moeilijker in een Collection.
         */
-        ArrayList<ArrayList<Veld>> velden;
-	Mannetje mannetje;
+        private ArrayList<ArrayList<Veld>> velden;
+	private Mannetje mannetje;
 	private int spelbordID;
 
     public Spelbord(ArrayList<ArrayList<Veld>> velden, Mannetje mannetje, int spelbordID) {
@@ -55,6 +55,10 @@ public class Spelbord {
                 }
                 else if (velden.get(y).get(x-1) instanceof Kist && x-1>0){
                     if (velden.get(y).get(x-2) instanceof Veld && x-2>0){
+                        boolean doel = velden.get(y).get(x-2).isIsDoel();
+                        Kist tijdelijkeKist = new Kist(x-2, y);
+                        tijdelijkeKist.setIsDoel(doel);
+                        Veld tijdelijkVeld = new Veld (x-1, y);
                         
                         mannetje.setxPositie(x-1);
                     }

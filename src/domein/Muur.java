@@ -1,12 +1,14 @@
 package domein;
 
-public class Muur extends Veld {
+public class Muur extends Veld
+{
 
-    public Muur(int xPositie, int yPositie) {
+    public Muur(int xPositie, int yPositie)
+    {
         super(xPositie, yPositie);
-        this.isDoel=false;
+        this.isDoel = false;
     }
-    
+
     @Override
     public String toString()
     {

@@ -1,11 +1,7 @@
 package domein;
 
-import persistentie.SpelMapper;
-
 public class SpelRepository {
 
-    private SpelMapper spelMapper = new SpelMapper();
-    
 	public String[] geefSpelNamen() {
 		// TODO - implement SpelRepository.geefSpelNamen
 		throw new UnsupportedOperationException();
@@ -14,9 +10,10 @@ public class SpelRepository {
 	/**
 	 * 
 	 * @param spelnaam
-         * @return
 	 */
 	public Spel geefSpel(String spelnaam) {
-		return spelMapper.geefSpel(spelnaam);
+		// TODO - implement SpelRepository.geefSpel
+		throw new UnsupportedOperationException();
 	}
+
 }

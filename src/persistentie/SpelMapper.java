@@ -56,7 +56,7 @@ public class SpelMapper
                 {
                     switch(element)
                     {
-                        case "muur" : velden[rs.getInt(1)][rs.getInt(2)] = new Muur();
+                        case "muur" : velden[rs.getInt(1)][rs.getInt(2)] = new Muur(rs.getInt(1),rs.getInt(2));
                             break;
                         case "doel": velden[rs.getInt(1)][rs.getInt(2)] = new Veld(true);
                             break;

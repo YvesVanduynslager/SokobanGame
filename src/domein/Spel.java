@@ -1,7 +1,5 @@
 package domein;
 
-import java.util.*;
-
 public class Spel {
 
 	private Spelbord[] spelborden;
@@ -9,7 +7,7 @@ public class Spel {
 	private String spelNaam;
 	private boolean nogSpelborden;
 
-	public Spelbord geefVolgendSpelbord() {
+	public Spelbord geefVolgendSpelbord(){
 		// TODO - implement Spel.geefVolgendSpelbord
 		throw new UnsupportedOperationException();
 	}

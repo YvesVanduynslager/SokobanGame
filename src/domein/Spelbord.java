@@ -14,7 +14,7 @@ public class Spelbord
     //private ArrayList<ArrayList<Veld>> velden;
     private Veld[][] velden;
     private Mannetje mannetje;
-    private int spelbordID;
+    //private int spelbordID;
 
     //public Spelbord(Veld[][] velden /*ArrayList<ArrayList<Veld>> velden*/, Mannetje mannetje, int spelbordID)
     public Spelbord(Veld[][] velden, Mannetje mannetje)
@@ -24,35 +24,35 @@ public class Spelbord
 //        this.spelbordID = spelbordID;
     }
 
-    public /*ArrayList<ArrayList<Veld>>*/ Veld[][] getVelden()
-    {
-        return velden;
-    }
-
-    public void setVelden(Veld[][] velden /*ArrayList<ArrayList<Veld>> velden*/)
-    {
-        this.velden = velden;
-    }
-
-    public Mannetje getMannetje()
-    {
-        return mannetje;
-    }
-
-    public void setMannetje(Mannetje mannetje)
-    {
-        this.mannetje = mannetje;
-    }
-
-    public int getSpelbordID()
-    {
-        return spelbordID;
-    }
-
-    public void setSpelbordID(int spelbordID)
-    {
-        this.spelbordID = spelbordID;
-    }
+//    public /*ArrayList<ArrayList<Veld>>*/ Veld[][] getVelden()
+//    {
+//        return velden;
+//    }
+//
+//    public void setVelden(Veld[][] velden /*ArrayList<ArrayList<Veld>> velden*/)
+//    {
+//        this.velden = velden;
+//    }
+//
+//    public Mannetje getMannetje()
+//    {
+//        return mannetje;
+//    }
+//
+//    public void setMannetje(Mannetje mannetje)
+//    {
+//        this.mannetje = mannetje;
+//    }
+//
+//    public int getSpelbordID()
+//    {
+//        return spelbordID;
+//    }
+//
+//    public void setSpelbordID(int spelbordID)
+//    {
+//        this.spelbordID = spelbordID;
+//    }
 
     public void verplaatsMannetje(String richting)
     {
@@ -67,13 +67,13 @@ public class Spelbord
                 {
                     if (velden[x - 1][y].isDoel())
                     {
-                        mannetje.setyPositie(x - 1);
+                        mannetje.setxPositie(x - 1);
                         mannetje.setIsDoel(true);
                         velden[x - 1][y] = mannetje; //volgende veld instellen
                     }
                     else
                     {
-                        mannetje.setyPositie(x - 1);
+                        mannetje.setxPositie(x - 1);
                         mannetje.setIsDoel(false);
                         velden[x - 1][y] = mannetje; //volgende veld instellen
                     }
@@ -99,13 +99,13 @@ public class Spelbord
                         {
                             if (velden[x - 1][y].isDoel())
                             {
-                                mannetje.setyPositie(x - 1);
+                                mannetje.setxPositie(x - 1);
                                 mannetje.setIsDoel(true);
                                 velden[x - 1][y] = mannetje; //volgende veld instellen
                             }
                             else
                             {
-                                mannetje.setyPositie(x - 1);
+                                mannetje.setxPositie(x - 1);
                                 mannetje.setIsDoel(false);
                                 velden[x - 1][y] = mannetje; //volgende veld instellen
                             }

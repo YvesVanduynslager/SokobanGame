@@ -1,13 +1,24 @@
 package domein;
 
-public class Mannetje {
+public class Mannetje extends Veld{
 
 	private int xPositie;
 	private int yPositie;
 
+    /**
+     *
+     * @param xPositie
+     * @param yPositie
+     */
     public Mannetje(int xPositie, int yPositie) {
-        this.xPositie = xPositie;
-        this.yPositie = yPositie;
+        super(xPositie, yPositie, false);
+//        this.xPositie = xPositie;
+//        this.yPositie = yPositie;
+    }
+    
+    public Mannetje(int xPositie, int yPositie, boolean isDoel)
+    {
+        super(xPositie, yPositie, isDoel);
     }
 
     public int getxPositie() {

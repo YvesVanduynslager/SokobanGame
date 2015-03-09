@@ -11,23 +11,25 @@ public class Spelbord
      * velden.get(y).get(x) aan de hand van coördinaten een Veld op te halen uit de "lijst"
      * dit was veel moeilijker in een Collection.
      */
-    private ArrayList<ArrayList<Veld>> velden;
+    //private ArrayList<ArrayList<Veld>> velden;
+    private Veld[][] velden;
     private Mannetje mannetje;
     private int spelbordID;
 
-    public Spelbord(ArrayList<ArrayList<Veld>> velden, Mannetje mannetje, int spelbordID)
+    //public Spelbord(Veld[][] velden /*ArrayList<ArrayList<Veld>> velden*/, Mannetje mannetje, int spelbordID)
+    public Spelbord(Veld[][] velden, Mannetje mannetje)
     {
         this.velden = velden;
         this.mannetje = mannetje;
-        this.spelbordID = spelbordID;
+//        this.spelbordID = spelbordID;
     }
 
-    public ArrayList<ArrayList<Veld>> getVelden()
+    public /*ArrayList<ArrayList<Veld>>*/ Veld[][] getVelden()
     {
         return velden;
     }
 
-    public void setVelden(ArrayList<ArrayList<Veld>> velden)
+    public void setVelden(Veld[][] velden /*ArrayList<ArrayList<Veld>> velden*/)
     {
         this.velden = velden;
     }
@@ -60,26 +62,81 @@ public class Spelbord
         switch (richting)
         {
             case "up":
-                if (velden.get(y).get(x - 1) instanceof Veld && x - 1 > 0)
+                //if (velden.get(y).get(x - 1) instanceof Veld && x - 1 > 0)
+                if (velden[x - 1][y] instanceof Veld && x - 1 >= 0)
                 {
-                    mannetje.setxPositie(x - 1);
+                    if (velden[x - 1][y].isDoel())
+                    {
+                        mannetje.setyPositie(x - 1);
+                        mannetje.setIsDoel(true);
+                        velden[x - 1][y] = mannetje; //volgende veld instellen
+                    }
+                    else
+                    {
+                        mannetje.setyPositie(x - 1);
+                        mannetje.setIsDoel(false);
+                        velden[x - 1][y] = mannetje; //volgende veld instellen
+                    }
+
+                    if (velden[x][y].isDoel()) //huidige veld controleren op doel
+                    {
+                        velden[x][y] = new Veld(x, y, true);
+                    }
+                    else
+                    {
+                        velden[x][y] = new Veld(x, y, false);
+                    }
+
+                    //mannetje.setxPositie(x - 1);
                 }
                 else
                 {
-                    if (velden.get(y).get(x - 1) instanceof Kist && x - 1 > 0)
+                    //if (velden.get(y).get(x - 1) instanceof Kist && x - 1 > 0)
+                    if (velden[x - 1][y] instanceof Kist && x - 1 > 0)
                     {
-                        if (velden.get(y).get(x - 2) instanceof Veld && x - 2 > 0)
+                        //if (velden.get(y).get(x - 2) instanceof Veld && x - 2 > 0)
+                        if (velden[x - 2][y] instanceof Veld && x - 2 > 0)
                         {
-                            boolean doel = velden.get(y).get(x - 2).isIsDoel();
-                            ArrayList<Veld> tijdelijkeRij = velden.get(y);
-                            Kist tijdelijkeKist = new Kist(x - 2, y);
-                            tijdelijkeKist.setIsDoel(doel);
-                            tijdelijkeRij.add(x - 2, tijdelijkeKist);
-                            Veld tijdelijkVeld = new Veld(x - 1, y);
-                            tijdelijkeRij.add(x - 1, tijdelijkVeld);
-                            velden.add(y, tijdelijkeRij);
+                            if (velden[x - 1][y].isDoel())
+                            {
+                                mannetje.setyPositie(x - 1);
+                                mannetje.setIsDoel(true);
+                                velden[x - 1][y] = mannetje; //volgende veld instellen
+                            }
+                            else
+                            {
+                                mannetje.setyPositie(x - 1);
+                                mannetje.setIsDoel(false);
+                                velden[x - 1][y] = mannetje; //volgende veld instellen
+                            }
 
-                            mannetje.setxPositie(x - 1);
+                            if (velden[x][y].isDoel()) //huidige veld controleren op doel en instellen
+                            {
+                                velden[x][y] = new Veld(x, y, true);
+                            }
+                            else
+                            {
+                                velden[x][y] = new Veld(x, y, false);
+                            }
+
+                            //boolean doel = velden.get(y).get(x - 2).isIsDoel();
+                            //ArrayList<Veld> tijdelijkeRij = velden.get(y);
+                            if (velden[x - 2][y].isDoel())
+                            {
+                                velden[x - 2][y] = new Kist(x - 2, y, true); //true voor doel
+                            }
+                            else
+                            {
+                                velden[x - 2][y] = new Kist(x - 2, y, false); //false voor geen doel
+                            }
+                            //Kist tijdelijkeKist = new Kist(x - 2, y);
+                            //tijdelijkeKist.setIsDoel(doel);
+                            //tijdelijkeRij.add(x - 2, tijdelijkeKist);
+                            //Veld tijdelijkVeld = new Veld(x - 1, y);
+                            //tijdelijkeRij.add(x - 1, tijdelijkVeld);
+                            //velden.add(y, tijdelijkeRij);
+
+                            //mannetje.setxPositie(x - 1);
                         }
                     }
                 }
@@ -166,5 +223,22 @@ public class Spelbord
             default:
                 break;
         }
+    }
+
+    @Override
+    public String toString()
+    {
+        String output = "";
+
+        for (Veld[] rij : this.velden)
+        {
+            for (Veld cel : rij)
+            {
+                output += cel.toString();
+            }
+            output += "\n";
+
+        }
+        return output;
     }
 }

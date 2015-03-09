@@ -14,6 +14,8 @@ public class Veld
 
     public Veld(int xPositie, int yPositie, boolean isDoel)
     {
+        this.xPositie = xPositie;
+        this.yPositie = yPositie;
         this.isDoel = isDoel;
     }
 
@@ -37,7 +39,7 @@ public class Veld
         this.yPositie = yPositie;
     }
 
-    public boolean isIsDoel()
+    public boolean isDoel()
     {
         return isDoel;
     }

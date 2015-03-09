@@ -9,6 +9,7 @@ import domein.Veld;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -18,6 +19,7 @@ public class SpelMapper
 {
     Veld[][] velden = new Veld[10][10];
     Spelbord[] spelborden = new Spelbord[1];
+    Mannetje mannetje;
     //Spelbord bord = new Spelbord(velden);
 
     /**
@@ -54,19 +56,21 @@ public class SpelMapper
 
                 while (rs.next())
                 {
+                    int i = rs.getInt(1);
+                    int j = rs.getInt(2);
                     switch(element)
                     {
-                        case "muur" : velden[rs.getInt(1)][rs.getInt(2)] = new Muur(rs.getInt(1),rs.getInt(2));
+                        case "muur" : velden[i][j] = new Muur(i,j);
                             break;
-                        case "doel": velden[rs.getInt(1)][rs.getInt(2)] = new Veld(true);
+                        case "doel": velden[i][j] = new Veld(i,j,true);
                             break;
-                        case "kist" : velden[rs.getInt(1)][rs.getInt(2)] = new Kist();
+                        case "kist" : velden[i][j] = new Kist(i,j, false);
                             break;
-                        case "mannetje" : velden[rs.getInt(1)][rs.getInt(2)] = new Mannetje();
+                        case "mannetje" : mannetje = new Mannetje(i,j, false);
                             break;
-                        case "veld" : velden[rs.getInt(1)][rs.getInt(2)] = new Veld();
+                        case "veld" : velden[i][j] = new Veld(i,j, false);
                             break;
-                        default : velden[rs.getInt(1)][rs.getInt(2)] = new Veld();
+                        default : velden[i][j] = new Veld(i,j, false);
                             break;
                     }
                 }
@@ -84,7 +88,7 @@ public class SpelMapper
         }
         
         Spel spel1 = new Spel();
-        spelborden[0] = new Spelbord(velden);
+        spelborden[0] = new Spelbord(velden, mannetje);
         spel1.voegSpelbordenToe(spelborden);
         return spel1;
     }

@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Spel {
 
-	Collection<Spelbord> spelbord;
+	private Spelbord[] spelborden;
 	private int spelID;
 	private String spelNaam;
 	private boolean nogSpelborden;
@@ -23,5 +23,15 @@ public class Spel {
 		// TODO - implement Spel.geefAantalSpelborden
 		throw new UnsupportedOperationException();
 	}
+
+    public void voegSpelbordenToe(Spelbord[] spelborden)
+    {
+        this.spelborden = spelborden;
+    }
+    
+    public Spelbord[] geefSpelborden()
+    {
+        return this.spelborden;
+    }
 
 }

@@ -9,7 +9,6 @@ import domein.Veld;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 /**
  *
@@ -87,9 +86,9 @@ public class SpelMapper
             }
         }
         
-        Spel spel1 = new Spel();
+        Spel spel = new Spel();
         spelborden[0] = new Spelbord(velden, mannetje);
-        spel1.setSpelborden(spelborden);
-        return spel1;
+        spel.setSpelborden(spelborden);
+        return spel;
     }
 }

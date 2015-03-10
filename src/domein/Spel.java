@@ -3,9 +3,13 @@ package domein;
 public class Spel
 {
     private Spelbord[] spelborden;
-    private final String spelNaam;
+    private String spelNaam;
     private Spelbord huidigSpelbord;
 
+    public Spel()
+    {
+        
+    }
     public Spel(String spelNaam, Spelbord[] spelborden)
     {
         this.spelNaam = spelNaam;

@@ -8,14 +8,14 @@ public class Mannetje extends Veld{
      * @param yPositie
      */
     public Mannetje(int xPositie, int yPositie) {
-        super(xPositie, yPositie, false);
+        super(xPositie, yPositie);
 //        this.xPositie = xPositie;
 //        this.yPositie = yPositie;
     }
     
-    public Mannetje(int xPositie, int yPositie, boolean isDoel)
-    {
+    public Mannetje (int xPositie, int yPositie, boolean isDoel){
         super(xPositie, yPositie, isDoel);
+
     }
 
         @Override

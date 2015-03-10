@@ -4,56 +4,17 @@ import java.util.*;
 
 public class Spelbord
 {
-
-    /*
-     * Over de velden.
-     * De buitenste Arraylist bevat een ArrayList van velden. Zo is het mogelijk om met 
-     * velden.get(y).get(x) aan de hand van coördinaten een Veld op te halen uit de "lijst"
-     * dit was veel moeilijker in een Collection.
-     */
-    //private ArrayList<ArrayList<Veld>> velden;
     private Veld[][] velden;
     private Mannetje mannetje;
     private boolean isVoltooid;
     //private int spelbordID;
 
-    //public Spelbord(Veld[][] velden /*ArrayList<ArrayList<Veld>> velden*/, Mannetje mannetje, int spelbordID)
     public Spelbord(Veld[][] velden, Mannetje mannetje)
     {
         this.velden = velden;
         this.mannetje = mannetje;
-//        this.spelbordID = spelbordID;
     }
 
-//    public /*ArrayList<ArrayList<Veld>>*/ Veld[][] getVelden()
-//    {
-//        return velden;
-//    }
-//
-//    public void setVelden(Veld[][] velden /*ArrayList<ArrayList<Veld>> velden*/)
-//    {
-//        this.velden = velden;
-//    }
-//
-//    public Mannetje getMannetje()
-//    {
-//        return mannetje;
-//    }
-//
-//    public void setMannetje(Mannetje mannetje)
-//    {
-//        this.mannetje = mannetje;
-//    }
-//
-//    public int getSpelbordID()
-//    {
-//        return spelbordID;
-//    }
-//
-//    public void setSpelbordID(int spelbordID)
-//    {
-//        this.spelbordID = spelbordID;
-//    }
     public void verplaatsMannetje(String richting)
     {
         int x = mannetje.getxPositie();
@@ -62,7 +23,6 @@ public class Spelbord
         switch (richting)
         {
             case "up":
-                //if (velden.get(y).get(x - 1) instanceof Veld && x - 1 > 0)
                 if (velden[x - 1][y] instanceof Veld && x - 1 >= 0)
                 {
                     if (velden[x - 1][y].isDoel())
@@ -86,15 +46,11 @@ public class Spelbord
                     {
                         velden[x][y] = new Veld(x, y, false);
                     }
-
-                    //mannetje.setxPositie(x - 1);
                 }
                 else
                 {
-                    //if (velden.get(y).get(x - 1) instanceof Kist && x - 1 > 0)
                     if (velden[x - 1][y] instanceof Kist && x - 1 > 0)
                     {
-                        //if (velden.get(y).get(x - 2) instanceof Veld && x - 2 > 0)
                         if (velden[x - 2][y] instanceof Veld && x - 2 > 0)
                         {
                             if (velden[x - 1][y].isDoel())
@@ -118,9 +74,6 @@ public class Spelbord
                             {
                                 velden[x][y] = new Veld(x, y, false);
                             }
-
-                            //boolean doel = velden.get(y).get(x - 2).isIsDoel();
-                            //ArrayList<Veld> tijdelijkeRij = velden.get(y);
                             if (velden[x - 2][y].isDoel())
                             {
                                 velden[x - 2][y] = new Kist(x - 2, y, true); //true voor doel
@@ -129,14 +82,6 @@ public class Spelbord
                             {
                                 velden[x - 2][y] = new Kist(x - 2, y, false); //false voor geen doel
                             }
-                            //Kist tijdelijkeKist = new Kist(x - 2, y);
-                            //tijdelijkeKist.setIsDoel(doel);
-                            //tijdelijkeRij.add(x - 2, tijdelijkeKist);
-                            //Veld tijdelijkVeld = new Veld(x - 1, y);
-                            //tijdelijkeRij.add(x - 1, tijdelijkVeld);
-                            //velden.add(y, tijdelijkeRij);
-
-                            //mannetje.setxPositie(x - 1);
                         }
                     }
                 }

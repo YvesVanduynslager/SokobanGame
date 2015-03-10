@@ -19,7 +19,7 @@ public class test
     {
         SpelMapper sp = new SpelMapper();
         Spel s = sp.geefSpel("makkelijk");
-        Spelbord[] borden = s.geefSpelborden();
+        Spelbord[] borden = s.getSpelborden();
         System.out.print(borden[0].toString());
     }
 }

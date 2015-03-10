@@ -14,6 +14,7 @@ public class Spelbord
     //private ArrayList<ArrayList<Veld>> velden;
     private Veld[][] velden;
     private Mannetje mannetje;
+    private boolean isVoltooid;
     //private int spelbordID;
 
     //public Spelbord(Veld[][] velden /*ArrayList<ArrayList<Veld>> velden*/, Mannetje mannetje, int spelbordID)
@@ -53,7 +54,6 @@ public class Spelbord
 //    {
 //        this.spelbordID = spelbordID;
 //    }
-
     public void verplaatsMannetje(String richting)
     {
         int x = mannetje.getxPositie();
@@ -237,8 +237,17 @@ public class Spelbord
                 output += cel.toString();
             }
             output += "\n";
-
         }
         return output;
+    }
+
+    public boolean isVoltooid()
+    {
+        return isVoltooid;
+    }
+
+    public Veld[][] geefVelden()
+    {
+        return this.velden;
     }
 }

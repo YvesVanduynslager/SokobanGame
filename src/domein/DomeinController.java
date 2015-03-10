@@ -13,8 +13,8 @@ public class DomeinController
     private final Taal resourceBundle;
     private String[] spelerString;
     private Speler huidigeSpeler;
-	Spel huidigSpel;
-	SpelRepository spelRepository;
+    private Spel huidigSpel;
+    private final SpelRepository spelRepository;
 
     /**
      * Default-constructor maakt SpelerRepository-object aan.
@@ -22,6 +22,7 @@ public class DomeinController
     public DomeinController()
     {
         spelerRepository = new SpelerRepository();
+        spelRepository = new SpelRepository();
         resourceBundle = new Taal();
     }
 
@@ -76,9 +77,9 @@ public class DomeinController
     {
 //        try
 //        {
-            Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, achternaam, "nee");
-            spelerRepository.voegToe(sp);
-            setHuidigeSpeler(sp);
+        Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, achternaam, "nee");
+        spelerRepository.voegToe(sp);
+        setHuidigeSpeler(sp);
 //        }
 //        catch (IllegalArgumentException iae)
 //        {
@@ -91,9 +92,9 @@ public class DomeinController
 //        }
     }
 
-    /*
+    /**
      * Geeft de taalkeuze van de gebruiker door aan het Taal-object.
-     * 
+     *
      * @param locale code van de taalkeuze
      */
     public void setTaalKeuze(int locale)
@@ -101,72 +102,67 @@ public class DomeinController
         resourceBundle.setTaalKeuze(locale);
     }
 
-    /*
+    /**
      * Haalt de correcte String op uit het Taal-object
      *
-     * @param key de key die in de ResourceBundles overeenkomt met de op te halen tekst
+     * @param key de key die in de ResourceBundles overeenkomt met de op te
+     * halen tekst
+     * @return
      */
     public String getString(String key)
     {
         return resourceBundle.getStringUitBundle(key);
     }
 
-	/**
-	 * 
-	 * @param spelnaam
-	 */
-	public void selecteerSpel(String spelnaam) {
-		// TODO - implement DomeinController.selecteerSpel
-		throw new UnsupportedOperationException();
-	}
+    /**
+     *
+     * @param spelnaam
+     */
+    public void selecteerSpel(String spelnaam)
+    {
+        Spel spel;
+        spel = spelRepository.geefSpel(spelnaam);
+        this.setHuidigSpel(spel);
+        spel.start();
+    }
 
-	/**
-	 * 
-	 * @param spel
-	 */
-	private void setHuidigSpel(Spel spel) {
-		this.huidigSpel = spel;
-	}
+    /**
+     *
+     * @param spel
+     */
+    private void setHuidigSpel(Spel spel)
+    {
+        this.huidigSpel = spel;
+    }
 
-	/**
-	 * 
-	 * @param spelnaam
-	 */
-	public void speelSpel(String spelnaam) {
-		// TODO - implement DomeinController.speelSpel
-		throw new UnsupportedOperationException();
-	}
+    public String[][] geefHuidigSpelbord()
+    {
+        Spelbord huidigSpelbord = huidigSpel.getHuidigSpelbord();
+        Veld[][] velden = huidigSpelbord.geefVelden();
+        String[][] veldenString = new String[10][10];
 
-	public String[][] geefHuidigSpelbord() {
-		// TODO - implement DomeinController.geefHuidigSpelbord
-		throw new UnsupportedOperationException();
-	}
+        for (int i = 0; i < velden.length; i++)
+        {
+            for (int j = 0; j < velden[i].length; j++)
+            {
+                veldenString[i][j] = velden[i][j].toString();
+            }
+        }
+        return veldenString;
+    }
 
-	/**
-	 * 
-	 * @param spelbord
-	 */
-	public void setHuidigSpelbord(Spelbord spelbord) {
-		// TODO - implement DomeinController.setHuidigSpelbord
-		throw new UnsupportedOperationException();
-	}
+    public int geefAantalSpelborden()
+    {
+        return huidigSpel.geefAantalSpelborden();
+    }
 
-	public int geefAantalSpelborden() {
-		// TODO - implement DomeinController.geefAantalSpelborden
-		throw new UnsupportedOperationException();
-	}
+    public int geefAantalVoltooideBorden()
+    {
+        return huidigSpel.geefAantalVoltooideBorden();
+    }
 
-	public int geefAantalVoltooideBorden() {
-		// TODO - implement DomeinController.geefAantalVoltooideBorden
-		throw new UnsupportedOperationException();
-	}
-
-	/**
-	 * 
-	 * @param richting
-	 */
-	public void verplaatsMannetje(String richting) {
-		// TODO - implement DomeinController.verplaatsMannetje
-		throw new UnsupportedOperationException();
-	}
+    public String[] geefSpelNamen()
+    {
+        return spelRepository.geefSpelNamen();
+    }
 }

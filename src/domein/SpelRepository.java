@@ -4,7 +4,12 @@ import persistentie.SpelMapper;
 
 public class SpelRepository {
 
-    private SpelMapper spelMapper = new SpelMapper();
+    private final SpelMapper spelMapper;
+    
+    public SpelRepository()
+    {
+        spelMapper = new SpelMapper();
+    }
 	public String[] geefSpelNamen() {
 		// TODO - implement SpelRepository.geefSpelNamen
 		throw new UnsupportedOperationException();

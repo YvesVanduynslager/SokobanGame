@@ -89,7 +89,7 @@ public class SpelMapper
         
         Spel spel1 = new Spel();
         spelborden[0] = new Spelbord(velden, mannetje);
-        spel1.voegSpelbordenToe(spelborden);
+        spel1.setSpelborden(spelborden);
         return spel1;
     }
 }

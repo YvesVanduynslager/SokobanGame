@@ -86,7 +86,7 @@ public class ConsoleApplicatie
             switch (keuze)
             {
                 /*hier voorlopig nog System.exit(0) om het programma te doen stoppen */
-                case 1:
+                case 1: SpeelSpel speelSpel = new SpeelSpel(controller);
                     //System.exit(0); //START USE CASE Speel spel
                     break;
                 case 2:

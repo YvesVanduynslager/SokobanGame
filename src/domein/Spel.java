@@ -1,35 +1,69 @@
 package domein;
 
-public class Spel {
+public class Spel
+{
+    private Spelbord[] spelborden;
+    private final String spelNaam;
+    private Spelbord huidigSpelbord;
 
-	private Spelbord[] spelborden;
-	private int spelID;
-	private String spelNaam;
-	private boolean nogSpelborden;
+    public Spel(String spelNaam, Spelbord[] spelborden)
+    {
+        this.spelNaam = spelNaam;
+        this.spelborden = spelborden;
+    }
 
-	public Spelbord geefVolgendSpelbord(){
-		// TODO - implement Spel.geefVolgendSpelbord
-		throw new UnsupportedOperationException();
-	}
+    public void start()
+    {
+        for (Spelbord spelbord : spelborden)
+        {
+            if (!spelbord.isVoltooid())
+            {
+                this.setHuidigSpelbord(spelbord);
+                break;
+            }
+        }
+    }
 
-	public int geefAantalVoltooideBorden() {
-		// TODO - implement Spel.geefAantalVoltooideBorden
-		throw new UnsupportedOperationException();
-	}
+    public String getSpelNaam()
+    {
+        return this.spelNaam;
+    }
 
-	public int geefAantalSpelborden() {
-		// TODO - implement Spel.geefAantalSpelborden
-		throw new UnsupportedOperationException();
-	}
+    public int geefAantalVoltooideBorden()
+    {
+        int aantal = 0;
+        for (Spelbord spelbord : spelborden)
+        {
+            if (spelbord.isVoltooid())
+            {
+                ++aantal;
+            }
+        }
+        return aantal;
+    }
 
-    public void voegSpelbordenToe(Spelbord[] spelborden)
+    public int geefAantalSpelborden()
+    {
+        return spelborden.length;
+    }
+
+    public void setSpelborden(Spelbord[] spelborden)
     {
         this.spelborden = spelborden;
     }
-    
-    public Spelbord[] geefSpelborden()
+
+    public Spelbord[] getSpelborden()
     {
         return this.spelborden;
     }
 
+    public Spelbord getHuidigSpelbord()
+    {
+        return this.huidigSpelbord;
+    }
+
+    private void setHuidigSpelbord(Spelbord spelbord)
+    {
+        this.huidigSpelbord = spelbord;
+    }
 }

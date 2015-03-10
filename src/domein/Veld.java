@@ -52,7 +52,7 @@ public class Veld
     @Override
     public String toString()
     {
-        if (this.isDoel)
+        if (this.isDoel())
         {
             return "D";
         }

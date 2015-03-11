@@ -4,8 +4,8 @@ import java.util.*;
 
 public class Spelbord
 {
-    private Veld[][] velden;
-    private Mannetje mannetje;
+    private final Veld[][] velden;
+    private final Mannetje mannetje;
     private boolean isVoltooid;
     //private int spelbordID;
 

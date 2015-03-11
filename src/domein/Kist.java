@@ -15,6 +15,6 @@ public class Kist extends Veld
     @Override
     public String toString()
     {
-        return "K";
+        return "#";
     }
 }

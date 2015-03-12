@@ -15,7 +15,7 @@ public class Spelbord
         this.mannetje = mannetje;
     }
 
-    public void verplaatsMannetje(String richting)
+    /*public void verplaatsMannetje(String richting)
     {
         int x = mannetje.getxPositie();
         int y = mannetje.getyPositie();
@@ -170,6 +170,7 @@ public class Spelbord
         }
     }
 
+    */
     @Override
     public String toString()
     {

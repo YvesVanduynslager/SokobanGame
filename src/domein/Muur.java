@@ -11,6 +11,6 @@ public class Muur extends Veld
     @Override
     public String toString()
     {
-        return "//";
+        return "M";
     }
 }

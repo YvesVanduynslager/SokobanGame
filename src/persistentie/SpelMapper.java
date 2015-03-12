@@ -22,73 +22,78 @@ public class SpelMapper
     //Spelbord bord = new Spelbord(velden);
 
     /**
-     * 
+     *
      * @param naam makkelijk, gemiddeld, of moeilijk
-     * @return 
+     * @return
      */
     public Spel geefSpel(String naam)
     {
-        String[] elementen =
+        final String[] ELEMENTEN =
         {
-            "muur", "doel", "kist", "mannetje", "veld"
+            "muur", "veld", "doel", "mannetje", "kist"
         };
 
-        for (String element : elementen)
+        for (String element : ELEMENTEN)
         {
+            int veldVreemdeSleutel;
+            int spelbordVreemdeSleutel;
+            
             Connectie connectie = new Connectie();
+            PreparedStatement statement = null;
 
-            PreparedStatement sqlStatement;
-            String sqlString = "SELECT E.positieX, E.positieY "
-                    + "FROM " + element + " E JOIN spelbord SB ON E.Spelbord_spelbordID = SB.spelbordID"
-                    + " JOIN spel S ON SB.Spel_spelID = S.spelID"
-                    + " WHERE S.spelNaam = '" + naam + "';";
-//            
-//            SELECT E.positieX, E.positieY, SB.spelbordID
-//FROM muur E JOIN spelbord SB ON E.Spelbord_spelbordID = SB.spelbordID
-//JOIN spel S ON SB.Spel_spelID = S.spelID
-//WHERE S.spelNaam = 'makkelijk';
+            String sqlInstructie = "SELECT E.positieX, E.positieY, E.Spelbord_spelbordID FROM " + element + " E;";
 
             try
             {
-                sqlStatement = connectie.getDatabaseConnectie().prepareStatement(sqlString);
-                ResultSet rs = sqlStatement.executeQuery();
-
-                while (rs.next())
+                int x = 0, y = 0;
+                statement = connectie.getDatabaseConnectie().prepareStatement(sqlInstructie);
+                ResultSet rs = statement.executeQuery();
+                
+                while(rs.next())
                 {
-                    int i = rs.getInt(1);
-                    int j = rs.getInt(2);
+                    x = rs.getInt(1);
+                    y = rs.getInt(2);
+                    veldVreemdeSleutel = rs.getInt(3);
+                    
                     switch(element)
                     {
-                        case "muur" : velden[i][j] = new Muur(i,j);
+                        case "muur" :
+                            velden[x][y] = new Muur(x, y);
                             break;
-                        case "doel": velden[i][j] = new Veld(i,j,true);
+                        case "veld" :
+                            velden[x][y] = new Veld(x, y, false);
                             break;
-                        case "kist" : velden[i][j] = new Kist(i,j, false);
+                        case "doel" :
+                            velden[x][y] = new Veld(x, y, true);
                             break;
-                        case "mannetje" : mannetje = new Mannetje(i,j, false);
+                        case "mannetje" :
+                            velden[x][y] = new Mannetje(x, y, false);
                             break;
-                        case "veld" : velden[i][j] = new Veld(i,j, false);
-                            break;
-                        default : velden[i][j] = new Veld(i,j, false);
+                        case "kist" :
+                            velden[x][y] = new Kist(x, y, false);
                             break;
                     }
+                    //System.out.println(x + " " + y);
                 }
-
-                sqlStatement.close();
+                statement.close();
+                
             }
             catch (SQLException sqlEx)
             {
-                System.err.println("SQL fout" + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+                System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
             }
             finally
             {
                 connectie.sluit();
             }
+
         }
-        
-        Spel spel = new Spel();
+
+        Spel[] spellen = new Spel[1];
+        spellen[0] = new Spel();
         spelborden[0] = new Spelbord(velden, mannetje);
-        spel.setSpelborden(spelborden);
-        return spel;
+        spellen[0].setSpelborden(spelborden);
+        
+        return spellen[0];
     }
 }

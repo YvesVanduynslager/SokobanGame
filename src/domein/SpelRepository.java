@@ -23,4 +23,9 @@ public class SpelRepository {
 	public Spel geefSpel(String spelnaam) {
                     return spelMapper.geefSpel(spelnaam);
 	}
+        
+//        public Spel[] geefSpellen()
+//        {
+//            return spelMapper.geefSpellen();
+//        }
 }

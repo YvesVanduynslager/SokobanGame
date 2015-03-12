@@ -15,7 +15,7 @@ public class Spelbord
         this.mannetje = mannetje;
     }
 
-    /*public void verplaatsMannetje(String richting)
+    public void verplaatsMannetje(String richting)
     {
         int x = mannetje.getxPositie();
         int y = mannetje.getyPositie();
@@ -87,80 +87,193 @@ public class Spelbord
                 }
                 break;
             case "down":
-                if (velden.get(y).get(x + 1) instanceof Veld && x + 1 < 10)
+                if (velden[x + 1][y] instanceof Veld && x + 1 >= 0)
                 {
-                    mannetje.setxPositie(x + 1);
+                    if (velden[x + 1][y].isDoel())
+                    {
+                        mannetje.setxPositie(x + 1);
+                        mannetje.setIsDoel(true);
+                        velden[x + 1][y] = mannetje; //volgende veld instellen
+                    }
+                    else
+                    {
+                        mannetje.setxPositie(x + 1);
+                        mannetje.setIsDoel(false);
+                        velden[x + 1][y] = mannetje; //volgende veld instellen
+                    }
+
+                    if (velden[x][y].isDoel()) //huidige veld controleren op doel
+                    {
+                        velden[x][y] = new Veld(x, y, true);
+                    }
+                    else
+                    {
+                        velden[x][y] = new Veld(x, y, false);
+                    }
                 }
                 else
                 {
-                    if (velden.get(y).get(x + 1) instanceof Kist && x + 1 < 10)
+                    if (velden[x + 1][y] instanceof Kist && x + 1 > 0)
                     {
-                        if (velden.get(y).get(x + 2) instanceof Veld && x + 2 < 10)
+                        if (velden[x + 2][y] instanceof Veld && x + 2 > 0)
                         {
-                            boolean doel = velden.get(y).get(x + 2).isIsDoel();
-                            ArrayList<Veld> tijdelijkeRij = velden.get(y);
-                            Kist tijdelijkeKist = new Kist(x + 2, y);
-                            tijdelijkeKist.setIsDoel(doel);
-                            tijdelijkeRij.add(x + 2, tijdelijkeKist);
-                            Veld tijdelijkVeld = new Veld(x + 1, y);
-                            tijdelijkeRij.add(x + 1, tijdelijkVeld);
-                            velden.add(y, tijdelijkeRij);
+                            if (velden[x + 1][y].isDoel())
+                            {
+                                mannetje.setxPositie(x + 1);
+                                mannetje.setIsDoel(true);
+                                velden[x + 1][y] = mannetje; //volgende veld instellen
+                            }
+                            else
+                            {
+                                mannetje.setxPositie(x + 1);
+                                mannetje.setIsDoel(false);
+                                velden[x + 1][y] = mannetje; //volgende veld instellen
+                            }
 
-                            mannetje.setxPositie(x + 1);
+                            if (velden[x][y].isDoel()) //huidige veld controleren op doel en instellen
+                            {
+                                velden[x][y] = new Veld(x, y, true);
+                            }
+                            else
+                            {
+                                velden[x][y] = new Veld(x, y, false);
+                            }
+                            if (velden[x + 2][y].isDoel())
+                            {
+                                velden[x + 2][y] = new Kist(x + 2, y, true); //true voor doel
+                            }
+                            else
+                            {
+                                velden[x + 2][y] = new Kist(x + 2, y, false); //false voor geen doel
+                            }
                         }
                     }
                 }
                 break;
             case "left":
-                if (velden.get(y - 1).get(x) instanceof Veld && y - 1 > 0)
+                if (velden[x][y - 1] instanceof Veld && y - 1 >= 0)
                 {
-                    mannetje.setyPositie(y - 1);
+                    if (velden[x][y - 1].isDoel())
+                    {
+                        mannetje.setyPositie(y - 1);
+                        mannetje.setIsDoel(true);
+                        velden[x][y - 1] = mannetje; //volgende veld instellen
+                    }
+                    else
+                    {
+                        mannetje.setyPositie(y - 1);
+                        mannetje.setIsDoel(false);
+                        velden[x][y - 1] = mannetje; //volgende veld instellen
+                    }
+
+                    if (velden[x][y].isDoel()) //huidige veld controleren op doel
+                    {
+                        velden[x][y] = new Veld(x, y, true);
+                    }
+                    else
+                    {
+                        velden[x][y] = new Veld(x, y, false);
+                    }
                 }
                 else
                 {
-                    if (velden.get(y - 1).get(x) instanceof Kist && y - 1 > 0)
+                    if (velden[x][y - 1] instanceof Kist && y - 1 > 0)
                     {
-                        if (velden.get(y - 2).get(x) instanceof Veld && y - 2 > 0)
+                        if (velden[x][y - 2] instanceof Veld && y - 2 > 0)
                         {
-                            boolean doel = velden.get(y - 2).get(x).isIsDoel();
-                            ArrayList<Veld> tijdelijkeRij1 = velden.get(y - 1);
-                            ArrayList<Veld> tijdelijkeRij2 = velden.get(y - 2);
-                            Kist tijdelijkeKist = new Kist(x, y - 2);
-                            tijdelijkeKist.setIsDoel(doel);
-                            tijdelijkeRij2.add(x, tijdelijkeKist);
-                            Veld tijdelijkVeld = new Veld(x, y - 1);
-                            tijdelijkeRij1.add(x, tijdelijkVeld);
-                            velden.add(y - 1, tijdelijkeRij1);
-                            velden.add(y - 2, tijdelijkeRij2);
+                            if (velden[x][y - 1].isDoel())
+                            {
+                                mannetje.setyPositie(y - 1);
+                                mannetje.setIsDoel(true);
+                                velden[x][y - 1] = mannetje; //volgende veld instellen
+                            }
+                            else
+                            {
+                                mannetje.setyPositie(y - 1);
+                                mannetje.setIsDoel(false);
+                                velden[x][y - 1] = mannetje; //volgende veld instellen
+                            }
 
-                            mannetje.setyPositie(y - 1);
+                            if (velden[x][y].isDoel()) //huidige veld controleren op doel en instellen
+                            {
+                                velden[x][y] = new Veld(x, y, true);
+                            }
+                            else
+                            {
+                                velden[x][y] = new Veld(x, y, false);
+                            }
+                            if (velden[x][y - 2].isDoel())
+                            {
+                                velden[x][y - 2] = new Kist(x, y - 2, true); //true voor doel
+                            }
+                            else
+                            {
+                                velden[x][y - 2] = new Kist(x, y - 2, false); //false voor geen doel
+                            }
                         }
                     }
                 }
                 break;
             case "right":
-                if (velden.get(y + 1).get(x) instanceof Veld && y - 1 < 10)
+                if (velden[x][y + 1] instanceof Veld && y + 1 >= 0)
                 {
-                    mannetje.setyPositie(y + 1);
+                    if (velden[x][y + 1].isDoel())
+                    {
+                        mannetje.setyPositie(y + 1);
+                        mannetje.setIsDoel(true);
+                        velden[x][y + 1] = mannetje; //volgende veld instellen
+                    }
+                    else
+                    {
+                        mannetje.setyPositie(y + 1);
+                        mannetje.setIsDoel(false);
+                        velden[x][y + 1] = mannetje; //volgende veld instellen
+                    }
+
+                    if (velden[x][y].isDoel()) //huidige veld controleren op doel
+                    {
+                        velden[x][y] = new Veld(x, y, true);
+                    }
+                    else
+                    {
+                        velden[x][y] = new Veld(x, y, false);
+                    }
                 }
                 else
                 {
-                    if (velden.get(y + 1).get(x) instanceof Kist && y + 1 < 10)
+                    if (velden[x][y + 1] instanceof Kist && y + 1 > 0)
                     {
-                        if (velden.get(y + 2).get(x) instanceof Veld && y + 2 < 10)
+                        if (velden[x][y + 2] instanceof Veld && y + 2 > 0)
                         {
-                            boolean doel = velden.get(y + 2).get(x).isIsDoel();
-                            ArrayList<Veld> tijdelijkeRij1 = velden.get(y + 1);
-                            ArrayList<Veld> tijdelijkeRij2 = velden.get(y + 2);
-                            Kist tijdelijkeKist = new Kist(x, y + 2);
-                            tijdelijkeKist.setIsDoel(doel);
-                            tijdelijkeRij2.add(x, tijdelijkeKist);
-                            Veld tijdelijkVeld = new Veld(x, y + 1);
-                            tijdelijkeRij1.add(x, tijdelijkVeld);
-                            velden.add(y + 1, tijdelijkeRij1);
-                            velden.add(y + 2, tijdelijkeRij2);
+                            if (velden[x][y + 1].isDoel())
+                            {
+                                mannetje.setyPositie(y + 1);
+                                mannetje.setIsDoel(true);
+                                velden[x][y + 1] = mannetje; //volgende veld instellen
+                            }
+                            else
+                            {
+                                mannetje.setyPositie(y + 1);
+                                mannetje.setIsDoel(false);
+                                velden[x][y + 1] = mannetje; //volgende veld instellen
+                            }
 
-                            mannetje.setyPositie(y + 1);
+                            if (velden[x][y].isDoel()) //huidige veld controleren op doel en instellen
+                            {
+                                velden[x][y] = new Veld(x, y, true);
+                            }
+                            else
+                            {
+                                velden[x][y] = new Veld(x, y, false);
+                            }
+                            if (velden[x][y + 2].isDoel())
+                            {
+                                velden[x][y + 2] = new Kist(x, y + 2, true); //true voor doel
+                            }
+                            else
+                            {
+                                velden[x][y + 2] = new Kist(x, y + 2, false); //false voor geen doel
+                            }
                         }
                     }
                 }
@@ -170,7 +283,6 @@ public class Spelbord
         }
     }
 
-    */
     @Override
     public String toString()
     {

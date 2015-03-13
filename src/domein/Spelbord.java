@@ -304,14 +304,14 @@ public class Spelbord
 
         for (Veld[] rij : this.velden)
         {
-            output += "---------------------\n";
+            output += "-----------------------------------------\n";
             for (Veld cel : rij)
             {
-                output += "|" + cel.toString();
+                output += "| " + cel.toString() + " ";
             }
             output += "|\n";
         }
-        output += "---------------------";
+        output += "-----------------------------------------\n";
         return output;
     }
 

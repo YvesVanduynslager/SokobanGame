@@ -5,30 +5,28 @@ import java.util.List;
 
 public class Spel
 {
-    private List<Spelbord> borden = new ArrayList<>();
-    private Spelbord[] spelborden;
+    private List<Spelbord> spelborden = new ArrayList<>();
     private String spelNaam;
     private Spelbord huidigSpelbord;
 
     public Spel()
     {
-        
     }
-    
+
     public Spel(String spelNaam, List<Spelbord> borden)
     {
         this.spelNaam = spelNaam;
-        this.borden = borden;
+        this.spelborden = borden;
     }
-    public Spel(String spelNaam, Spelbord[] spelborden)
-    {
-        this.spelNaam = spelNaam;
-        this.spelborden = spelborden;
-    }
+//    public Spel(String spelNaam, Spelbord[] spelborden)
+//    {
+//        this.spelNaam = spelNaam;
+//        this.spelborden = spelborden;
+//    }
 
     public void start()
     {
-        for (Spelbord spelbord : borden)
+        for (Spelbord spelbord : spelborden)
         {
             if (!spelbord.isVoltooid())
             {
@@ -36,6 +34,7 @@ public class Spel
                 break;
             }
         }
+        System.out.println(huidigSpelbord.toString());
     }
 
     public String getSpelNaam()
@@ -46,7 +45,7 @@ public class Spel
     public int geefAantalVoltooideBorden()
     {
         int aantal = 0;
-        for (Spelbord spelbord : borden)
+        for (Spelbord spelbord : spelborden)
         {
             if (spelbord.isVoltooid())
             {
@@ -58,19 +57,19 @@ public class Spel
 
     public int geefAantalSpelborden()
     {
-        return borden.size();
+        return spelborden.size();
         //return spelborden.length;
     }
 
     public void setSpelborden(ArrayList<Spelbord> borden /*Spelbord[] spelborden*/)
     {
-        this.borden = borden;
+        this.spelborden = borden;
         //this.spelborden = spelborden;
     }
 
     public List<Spelbord>/*Spelbord[]*/ getSpelborden()
     {
-        return this.borden;
+        return this.spelborden;
         //return this.spelborden;
     }
 

@@ -1,6 +1,7 @@
 package domein;
 
 import exceptions.GebruikerBestaatException;
+import java.util.List;
 
 /**
  * Staat in voor communicatie tussen GUI en businuess-logica.
@@ -75,21 +76,9 @@ public class DomeinController
      */
     public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam) throws IllegalArgumentException, GebruikerBestaatException
     {
-//        try
-//        {
         Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, achternaam, "nee");
         spelerRepository.voegToe(sp);
         setHuidigeSpeler(sp);
-//        }
-//        catch (IllegalArgumentException iae)
-//        {
-//            throw iae;
-//            //throw new IllegalArgumentException(iae + resourceBundle.getStringUitBundle("registreer.ongeldig"));
-//        }
-//        catch (GebruikerBestaatException gbe)
-//        {
-//            throw new GebruikerBestaatException(gbe + resourceBundle.getStringUitBundle("registreer.gebruikerbestaat"));
-//        }
     }
 
     /**
@@ -118,14 +107,20 @@ public class DomeinController
      *
      * @param spelnaam
      */
-    public void selecteerSpel(String spelnaam)
+    public void selecteerSpel(String spelNaam)
     {
-        Spel spel;
-        spel = spelRepository.geefSpel(spelnaam);
-        this.setHuidigSpel(spel);
-        spel.start();
+        this.setHuidigSpel(spelRepository.geefSpel(spelNaam));
+//        Spel spel;
+//        spel = spelRepository.geefSpel(spelnaam);
+//        this.setHuidigSpel(spel);
+        
+        huidigSpel.start();
     }
 
+    public boolean huidigSpelbordVoltooid()
+    {
+        return false;
+    }
     /**
      *
      * @param spel
@@ -139,6 +134,7 @@ public class DomeinController
     {
         Spelbord huidigSpelbord = huidigSpel.getHuidigSpelbord();
         Veld[][] velden = huidigSpelbord.geefVelden();
+        
         String[][] veldenString = new String[10][10];
 
         for (int i = 0; i < velden.length; i++)
@@ -150,6 +146,11 @@ public class DomeinController
         }
         return veldenString;
     }
+    
+//    public void printHuidigSpelbord()
+//    {
+//        
+//    }
 
     public int geefAantalSpelborden()
     {
@@ -161,8 +162,27 @@ public class DomeinController
         return huidigSpel.geefAantalVoltooideBorden();
     }
 
-    public String[] geefSpelNamen()
+    public List<String> geefSpelNamen()
     {
         return spelRepository.geefSpelNamen();
+    }
+    
+    public void beweeg(int richting)
+    {
+        switch(richting)
+        {
+            case 1 :
+                huidigSpel.getHuidigSpelbord().verplaatsMannetje("up");
+                break;
+            case 2 :
+                huidigSpel.getHuidigSpelbord().verplaatsMannetje("right");
+                break;
+            case 3 :
+                huidigSpel.getHuidigSpelbord().verplaatsMannetje("down");
+                break;
+            case 4 :
+                huidigSpel.getHuidigSpelbord().verplaatsMannetje("left");
+                break;
+        }
     }
 }

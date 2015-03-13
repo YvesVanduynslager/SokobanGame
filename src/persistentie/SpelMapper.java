@@ -135,4 +135,34 @@ public class SpelMapper
 
         return aantal;
     }
+    
+    public List<String> geefSpelNamen()
+    {
+        List<String> spelNamen = new ArrayList();
+        String sqlSpelNamen = "SELECT spelNaam FROM spel;";
+        
+        Connectie connectie = new Connectie();
+        PreparedStatement stmtSpelNamen;
+        
+        try
+        {
+            stmtSpelNamen = connectie.getDatabaseConnectie().prepareStatement(sqlSpelNamen);
+            ResultSet rs = stmtSpelNamen.executeQuery();
+            
+            while (rs.next())
+            {
+                spelNamen.add(rs.getString(1));
+            }
+            stmtSpelNamen.close();
+        }
+        catch (SQLException sqlEx)
+        {
+            System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+        }
+        finally
+        {
+            connectie.sluit();
+        }
+        return spelNamen;
+    }
 }

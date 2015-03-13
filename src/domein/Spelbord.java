@@ -1,7 +1,7 @@
 package domein;
 
 /**
- * 
+ *
  * @author Yves
  */
 public class Spelbord
@@ -11,9 +11,9 @@ public class Spelbord
     private boolean isVoltooid;
 
     /**
-     * 
+     *
      * @param velden
-     * @param mannetje 
+     * @param mannetje
      */
     public Spelbord(Veld[][] velden, Mannetje mannetje)
     {
@@ -22,8 +22,8 @@ public class Spelbord
     }
 
     /**
-     * 
-     * @param richting 
+     *
+     * @param richting
      */
     public void verplaatsMannetje(String richting)
     {
@@ -68,6 +68,15 @@ public class Spelbord
                                 mannetje.setxPositie(x - 1);
                                 mannetje.setIsDoel(true);
                                 velden[x - 1][y] = mannetje; //volgende veld instellen
+                                
+                                if (velden[x][y - 2].isDoel())
+                                {
+                                    velden[x][y - 2] = new Kist(x, y - 2, true);
+                                }
+                                else
+                                {
+                                    velden[x][y - 2] = new Kist(x, y - 2, false);
+                                }
                             }
                             else
                             {
@@ -132,6 +141,15 @@ public class Spelbord
                                 mannetje.setxPositie(x + 1);
                                 mannetje.setIsDoel(true);
                                 velden[x + 1][y] = mannetje; //volgende veld instellen
+                                
+                                if (velden[x][y - 2].isDoel())
+                                {
+                                    velden[x][y - 2] = new Kist(x, y - 2, true);
+                                }
+                                else
+                                {
+                                    velden[x][y - 2] = new Kist(x, y - 2, false);
+                                }
                             }
                             else
                             {
@@ -196,6 +214,15 @@ public class Spelbord
                                 mannetje.setyPositie(y - 1);
                                 mannetje.setIsDoel(true);
                                 velden[x][y - 1] = mannetje; //volgende veld instellen
+
+                                if (velden[x][y - 2].isDoel())
+                                {
+                                    velden[x][y - 2] = new Kist(x, y - 2, true);
+                                }
+                                else
+                                {
+                                    velden[x][y - 2] = new Kist(x, y - 2, false);
+                                }
                             }
                             else
                             {
@@ -260,6 +287,15 @@ public class Spelbord
                                 mannetje.setyPositie(y + 1);
                                 mannetje.setIsDoel(true);
                                 velden[x][y + 1] = mannetje; //volgende veld instellen
+                                
+                                if (velden[x][y - 2].isDoel())
+                                {
+                                    velden[x][y - 2] = new Kist(x, y - 2, true);
+                                }
+                                else
+                                {
+                                    velden[x][y - 2] = new Kist(x, y - 2, false);
+                                }
                             }
                             else
                             {
@@ -291,11 +327,12 @@ public class Spelbord
             default:
                 break;
         }
+        System.out.print(this.toString());
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     @Override
     public String toString()
@@ -316,8 +353,8 @@ public class Spelbord
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public boolean isVoltooid()
     {
@@ -325,8 +362,8 @@ public class Spelbord
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public Veld[][] geefVelden()
     {

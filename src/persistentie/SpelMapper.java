@@ -41,7 +41,7 @@ public class SpelMapper
             for (String element : ELEMENTEN)
             {
                 Connectie connectie = new Connectie();
-                PreparedStatement stmtBordenOphalen = null;
+                PreparedStatement stmtBordenOphalen;// = null;
 
                 String sqlBordenOphalen = "SELECT Element.positieX, Element.positieY, Element.Spelbord_spelbordID, "
                         + "Spelbord.spelbordID, Spelbord.spelbordNaam, Spelbord.Spel_spelID, Spel.spelID, Spel.spelNaam "
@@ -51,7 +51,8 @@ public class SpelMapper
 
                 try
                 {
-                    int x = 0, y = 0;
+                    //int x = 0, y = 0;
+                    int x, y;
                     stmtBordenOphalen = connectie.getDatabaseConnectie().prepareStatement(sqlBordenOphalen);
                     ResultSet rs = stmtBordenOphalen.executeQuery();
 
@@ -110,17 +111,18 @@ public class SpelMapper
                 + "WHERE spel.spelNaam = '" + naam + "';";
 
         Connectie connectie = new Connectie();
-        PreparedStatement stmtBordenOphalen = null;
+        PreparedStatement stmtAantalBorden;// = null;
 
         try
         {
-            stmtBordenOphalen = connectie.getDatabaseConnectie().prepareStatement(sqlCount);
-            ResultSet rs = stmtBordenOphalen.executeQuery();
+            stmtAantalBorden = connectie.getDatabaseConnectie().prepareStatement(sqlCount);
+            ResultSet rs = stmtAantalBorden.executeQuery();
 
             while (rs.next())
             {
                 aantal = rs.getInt(1);
             }
+            stmtAantalBorden.close();
         }
         catch (SQLException sqlEx)
         {

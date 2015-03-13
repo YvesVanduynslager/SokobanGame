@@ -1,20 +1,30 @@
 package domein;
 
-import java.util.*;
-
+/**
+ * 
+ * @author Yves
+ */
 public class Spelbord
 {
     private final Veld[][] velden;
     private final Mannetje mannetje;
     private boolean isVoltooid;
-    //private int spelbordID;
 
+    /**
+     * 
+     * @param velden
+     * @param mannetje 
+     */
     public Spelbord(Veld[][] velden, Mannetje mannetje)
     {
         this.velden = velden;
         this.mannetje = mannetje;
     }
 
+    /**
+     * 
+     * @param richting 
+     */
     public void verplaatsMannetje(String richting)
     {
         int x = mannetje.getxPositie();
@@ -283,6 +293,10 @@ public class Spelbord
         }
     }
 
+    /**
+     * 
+     * @return 
+     */
     @Override
     public String toString()
     {
@@ -299,11 +313,19 @@ public class Spelbord
         return output;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public boolean isVoltooid()
     {
         return isVoltooid;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Veld[][] geefVelden()
     {
         return this.velden;

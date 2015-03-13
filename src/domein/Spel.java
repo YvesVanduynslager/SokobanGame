@@ -1,7 +1,11 @@
 package domein;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Spel
 {
+    private List<Spelbord> borden = new ArrayList<>();
     private Spelbord[] spelborden;
     private String spelNaam;
     private Spelbord huidigSpelbord;
@@ -9,6 +13,12 @@ public class Spel
     public Spel()
     {
         
+    }
+    
+    public Spel(String spelNaam, List<Spelbord> borden)
+    {
+        this.spelNaam = spelNaam;
+        this.borden = borden;
     }
     public Spel(String spelNaam, Spelbord[] spelborden)
     {
@@ -18,7 +28,7 @@ public class Spel
 
     public void start()
     {
-        for (Spelbord spelbord : spelborden)
+        for (Spelbord spelbord : borden)
         {
             if (!spelbord.isVoltooid())
             {
@@ -36,7 +46,7 @@ public class Spel
     public int geefAantalVoltooideBorden()
     {
         int aantal = 0;
-        for (Spelbord spelbord : spelborden)
+        for (Spelbord spelbord : borden)
         {
             if (spelbord.isVoltooid())
             {
@@ -48,17 +58,20 @@ public class Spel
 
     public int geefAantalSpelborden()
     {
-        return spelborden.length;
+        return borden.size();
+        //return spelborden.length;
     }
 
-    public void setSpelborden(Spelbord[] spelborden)
+    public void setSpelborden(ArrayList<Spelbord> borden /*Spelbord[] spelborden*/)
     {
-        this.spelborden = spelborden;
+        this.borden = borden;
+        //this.spelborden = spelborden;
     }
 
-    public Spelbord[] getSpelborden()
+    public List<Spelbord>/*Spelbord[]*/ getSpelborden()
     {
-        return this.spelborden;
+        return this.borden;
+        //return this.spelborden;
     }
 
     public Spelbord getHuidigSpelbord()

@@ -6,7 +6,6 @@
 package gui;
 
 import domein.Spel;
-import domein.Spelbord;
 import persistentie.SpelMapper;
 
 /**
@@ -19,7 +18,7 @@ public class test
     {
         SpelMapper sp = new SpelMapper();
         Spel s = sp.geefSpel("makkelijk");
-        Spelbord[] borden = s.getSpelborden();
-        System.out.print(borden[0].toString());
+        s.start();
+        System.out.print(s.getHuidigSpelbord().toString());
     }
 }

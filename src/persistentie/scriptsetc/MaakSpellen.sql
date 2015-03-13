@@ -1,4 +1,4 @@
-INSERT INTO sokobandatabase.spel(spelNaam) VALUES('makkelijk', 'gemiddeld', 'moeilijk');
+INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('makkelijk'), ('gemiddeld'), ('moeilijk');
 
 /* spelborden voor spel "makkelijk" */
 INSERT INTO sokobandatabase.spelbord (spelbordNaam, Spel_spelID) VALUES
@@ -8,7 +8,7 @@ INSERT INTO sokobandatabase.spelbord (spelbordNaam, Spel_spelID) VALUES
 
 INSERT INTO sokobandatabase.muur (positieX, positieY, Spelbord_spelbordID) VALUES
 (0,0,1),(0,1,1),(0,2,1),(0,3,1),(0,4,1),(0,5,1),(0,6,1),(0,7,1),(0,8,1),(0,9,1),
-(1,0,1),(1,1,1),(1,2,1),(1,3,1),(1,5,1),(1,6,1),(1,7,1),(1,8,1),(1,9,1),
+(1,0,1),(1,1,1),(1,2,1),(1,4,1),(1,5,1),(1,6,1),(1,7,1),(1,8,1),(1,9,1),
 (2,0,1),(2,1,1),(2,2,1),(2,4,1),(2,5,1),(2,6,1),(2,7,1),(2,8,1),(2,9,1),
 (3,0,1),(3,1,1),(3,2,1),(3,7,1),(3,8,1),(3,9,1),
 (4,0,1),(4,5,1),(4,6,1),(4,7,1),(4,8,1),(4,9,1),
@@ -22,7 +22,7 @@ INSERT INTO sokobandatabase.veld (positieX, positieY, Spelbord_spelbordID) VALUE
 (2,3,1),(3,4,1),(4,2,1);
 
 INSERT INTO sokobandatabase.doel (positieX, positieY, Spelbord_spelbordID) VALUES
-(1,4,1),(3,6,1),(4,1,1),(6,4,1);
+(1,3,1),(3,6,1),(4,1,1),(6,4,1);
 
 INSERT INTO sokobandatabase.kist (positieX, positieY, Spelbord_spelbordID) values
 (3,3,1),(3,5,1),(4,3,1),(5,4,1);

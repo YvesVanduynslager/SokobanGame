@@ -9,6 +9,8 @@ import domein.Veld;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,9 +19,7 @@ import java.sql.SQLException;
 public class SpelMapper
 {
     Veld[][] velden = new Veld[10][10];
-    Spelbord[] spelborden = new Spelbord[1];
     Mannetje mannetje;
-    //Spelbord bord = new Spelbord(velden);
 
     /**
      *
@@ -32,68 +32,105 @@ public class SpelMapper
         {
             "muur", "veld", "doel", "mannetje", "kist"
         };
+        final int aantalBorden = this.geefAantalSpelborden(naam);
 
-        for (String element : ELEMENTEN)
+        List<Spelbord> borden = new ArrayList();
+        
+        for (int spelbordID = 1; spelbordID <= aantalBorden; spelbordID++)
         {
-            int veldVreemdeSleutel;
-            int spelbordVreemdeSleutel;
-            
-            Connectie connectie = new Connectie();
-            PreparedStatement statement = null;
-
-            String sqlInstructie = "SELECT E.positieX, E.positieY, E.Spelbord_spelbordID FROM " + element + " E;";
-
-            try
+            for (String element : ELEMENTEN)
             {
-                int x = 0, y = 0;
-                statement = connectie.getDatabaseConnectie().prepareStatement(sqlInstructie);
-                ResultSet rs = statement.executeQuery();
-                
-                while(rs.next())
+                Connectie connectie = new Connectie();
+                PreparedStatement stmtBordenOphalen = null;
+
+                String sqlBordenOphalen = "SELECT Element.positieX, Element.positieY, Element.Spelbord_spelbordID, "
+                        + "Spelbord.spelbordID, Spelbord.spelbordNaam, Spelbord.Spel_spelID, Spel.spelID, Spel.spelNaam "
+                        + "FROM " + element + " Element JOIN spelbord Spelbord ON Element.Spelbord_spelbordID = Spelbord.spelbordID "
+                        + "JOIN spel Spel ON Spelbord.Spel_spelID = Spel.spelID "
+                        + "WHERE Spel.spelNaam = '" + naam + "' AND Spelbord.spelbordID = " + spelbordID + ";";
+
+                try
                 {
-                    x = rs.getInt(1);
-                    y = rs.getInt(2);
-                    veldVreemdeSleutel = rs.getInt(3);
-                    
-                    switch(element)
-                    {
-                        case "muur" :
-                            velden[x][y] = new Muur(x, y);
-                            break;
-                        case "veld" :
-                            velden[x][y] = new Veld(x, y, false);
-                            break;
-                        case "doel" :
-                            velden[x][y] = new Veld(x, y, true);
-                            break;
-                        case "mannetje" :
-                            velden[x][y] = new Mannetje(x, y, false);
-                            break;
-                        case "kist" :
-                            velden[x][y] = new Kist(x, y, false);
-                            break;
-                    }
-                    //System.out.println(x + " " + y);
-                }
-                statement.close();
-                
-            }
-            catch (SQLException sqlEx)
-            {
-                System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
-            }
-            finally
-            {
-                connectie.sluit();
-            }
+                    int x = 0, y = 0;
+                    stmtBordenOphalen = connectie.getDatabaseConnectie().prepareStatement(sqlBordenOphalen);
+                    ResultSet rs = stmtBordenOphalen.executeQuery();
 
+                    while (rs.next())
+                    {
+                        x = rs.getInt(1);
+                        y = rs.getInt(2);
+                        
+                        switch (element)
+                        {
+                            case "muur":
+                                velden[x][y] = new Muur(x, y);
+                                break;
+                            case "veld":
+                                velden[x][y] = new Veld(x, y, false);
+                                break;
+                            case "doel":
+                                velden[x][y] = new Veld(x, y, true);
+                                break;
+                            case "mannetje":
+                                mannetje = new Mannetje(x, y, false);
+                                velden[x][y] = new Mannetje(x, y, false);
+                                break;
+                            case "kist":
+                                velden[x][y] = new Kist(x, y, false);
+                                break;
+                        }
+                    }
+                    stmtBordenOphalen.close();
+                }
+                catch (SQLException sqlEx)
+                {
+                    System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+                }
+                finally
+                {
+                    connectie.sluit();
+                }
+            }
+            borden.add(new Spelbord(velden, mannetje));
         }
 
-        Spel[] spellen = new Spel[1];
-        spellen[0] = new Spel();
-        spelborden[0] = new Spelbord(velden, mannetje);
-        spellen[0].setSpelborden(spelborden);
-        
-        return spellen[0];
+        Spel spel = new Spel(naam, borden);
+        return spel;
+    }
+
+    /**
+     * Deze methode geeft het aantal spelborden terug die 1 enkel gekozen spel bevat
+     * @param naam De naam van het spel waarvan het aantal spelborden geweten moet zijn.
+     * @return Het aantal spelborden van het gekozen spel.
+     */
+    private int geefAantalSpelborden(String naam)
+    {
+        int aantal = 0;
+        String sqlCount = "SELECT Max(spelbord.spelbordID) FROM spelbord JOIN spel ON spelbord.Spel_spelID = spel.spelID "
+                + "WHERE spel.spelNaam = '" + naam + "';";
+
+        Connectie connectie = new Connectie();
+        PreparedStatement stmtBordenOphalen = null;
+
+        try
+        {
+            stmtBordenOphalen = connectie.getDatabaseConnectie().prepareStatement(sqlCount);
+            ResultSet rs = stmtBordenOphalen.executeQuery();
+
+            while (rs.next())
+            {
+                aantal = rs.getInt(1);
+            }
+        }
+        catch (SQLException sqlEx)
+        {
+            System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+        }
+        finally
+        {
+            connectie.sluit();
+        }
+
+        return aantal;
     }
 }

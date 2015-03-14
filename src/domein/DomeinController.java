@@ -104,16 +104,12 @@ public class DomeinController
     }
 
     /**
-     *
-     * @param spelnaam
+     * Staat in voor het instellen en starten van het gekozen spel. 
+     * @param spelNaam De moeilijkheidsgraad die gekozen wordt
      */
     public void selecteerSpel(String spelNaam)
     {
-        this.setHuidigSpel(spelRepository.geefSpel(spelNaam));
-//        Spel spel;
-//        spel = spelRepository.geefSpel(spelnaam);
-//        this.setHuidigSpel(spel);
-        
+        this.setHuidigSpel(spelRepository.geefSpel(spelNaam));        
         huidigSpel.start();
     }
 
@@ -121,15 +117,20 @@ public class DomeinController
     {
         return false;
     }
+    
     /**
-     *
-     * @param spel
+     * Stelt het huidige spel in.
+     * @param spel Object van Spel dat ingesteld moet worden als huidig Spel.
      */
     private void setHuidigSpel(Spel spel)
     {
         this.huidigSpel = spel;
     }
 
+    /**
+     * Geeft een twee dimensionale String-array terug van de velden.
+     * @return 2d String array van velden.
+     */
     public String[][] geefHuidigSpelbord()
     {
         Spelbord huidigSpelbord = huidigSpel.getHuidigSpelbord();
@@ -146,27 +147,39 @@ public class DomeinController
         }
         return veldenString;
     }
-    
-//    public void printHuidigSpelbord()
-//    {
-//        
-//    }
 
+    /**
+     * Geeft het totaal aantal beschikbare spelborden weer.
+     * @return Aantal beschikbare spelborden.
+     */
     public int geefAantalSpelborden()
     {
         return huidigSpel.geefAantalSpelborden();
     }
 
+    /**
+     * Geeft het aantal voltooide spelborden weer.
+     * @return Aantal voltooide spelborden.
+     */
     public int geefAantalVoltooideBorden()
     {
         return huidigSpel.geefAantalVoltooideBorden();
     }
 
+    /**
+     * Geeft alle beschikbare spelnamen terug.
+     * @return List van beschikbare spelnamen.
+     */
     public List<String> geefSpelNamen()
     {
         return spelRepository.geefSpelNamen();
     }
     
+    /**
+     * Staat in voor het kiezen van een richting waar het mannetje naar toe moet bewegen
+     * op het huidige spelbord.
+     * @param richting Bewegingsrichting.
+     */
     public void beweeg(int richting)
     {
         switch(richting)

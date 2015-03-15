@@ -91,6 +91,7 @@ public class Spelbord
                 }
             }
         }
+        System.out.print(this.toString());
     }
     public void verplaatsMannetje2(String richting)
     {

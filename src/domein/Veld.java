@@ -21,7 +21,7 @@ public class Veld extends Element
         }
         else
         {
-            return "V";
+            return ".";
         }
     }
 }

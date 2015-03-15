@@ -184,4 +184,9 @@ public class DomeinController
     {
         huidigSpel.getHuidigSpelbord().verplaatsMannetje(richting);
     }
+    
+    public String spelbordToString()
+    {
+        return huidigSpel.spelbordToString();
+    }
 }

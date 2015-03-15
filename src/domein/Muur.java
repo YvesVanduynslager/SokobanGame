@@ -1,6 +1,6 @@
 package domein;
 
-public class Muur extends Veld
+public class Muur extends Element
 {
 
     public Muur(int xPositie, int yPositie)

@@ -5,6 +5,7 @@ import domein.Mannetje;
 import domein.Muur;
 import domein.Spel;
 import domein.Spelbord;
+import domein.Element;
 import domein.Veld;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,12 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Staat in voor het ophalen van een spel en bijhorende spelborden uit de databank en deze op te slaan als een Spel-object.
  * @author Yves
  */
 public class SpelMapper
 {
-    Veld[][] velden = new Veld[10][10];
+    Element[][] velden = new Element[10][10];
     Mannetje mannetje;
 
     /**

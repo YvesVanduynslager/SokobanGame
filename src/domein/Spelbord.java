@@ -6,7 +6,7 @@ package domein;
  */
 public class Spelbord
 {
-    private final Veld[][] velden;
+    private final Element[][] velden;
     private final Mannetje mannetje;
     private boolean isVoltooid;
 
@@ -15,7 +15,7 @@ public class Spelbord
      * @param velden
      * @param mannetje
      */
-    public Spelbord(Veld[][] velden, Mannetje mannetje)
+    public Spelbord(Element[][] velden, Mannetje mannetje)
     {
         this.velden = velden;
         this.mannetje = mannetje;
@@ -339,10 +339,10 @@ public class Spelbord
     {
         String output = "";
 
-        for (Veld[] rij : this.velden)
+        for (Element[] rij : this.velden)
         {
             output += "-----------------------------------------\n";
-            for (Veld cel : rij)
+            for (Element cel : rij)
             {
                 output += "| " + cel.toString() + " ";
             }
@@ -365,7 +365,7 @@ public class Spelbord
      *
      * @return
      */
-    public Veld[][] geefVelden()
+    public Element[][] geefVelden()
     {
         return this.velden;
     }

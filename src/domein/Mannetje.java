@@ -1,6 +1,6 @@
 package domein;
 
-public class Mannetje extends Veld
+public class Mannetje extends Element
 {
     /**
      *

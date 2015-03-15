@@ -134,7 +134,7 @@ public class DomeinController
     public String[][] geefHuidigSpelbord()
     {
         Spelbord huidigSpelbord = huidigSpel.getHuidigSpelbord();
-        Veld[][] velden = huidigSpelbord.geefVelden();
+        Element[][] velden = huidigSpelbord.geefVelden();
         
         String[][] veldenString = new String[10][10];
 

@@ -1,6 +1,6 @@
 package domein;
 
-public class Kist extends Veld
+public class Kist extends Element
 {
     public Kist(int xPositie, int yPositie, boolean doel)
     {

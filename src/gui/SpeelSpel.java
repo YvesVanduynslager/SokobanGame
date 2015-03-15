@@ -66,6 +66,8 @@ public class SpeelSpel
                 beweeg(keuzeBeweging);
                 
             }
+            System.out.println(controller.spelbordToString());
+            System.out.println("GEWONNEN!");
             System.out.println("Wilt u verderspelen?\n[1] Ja\n[2] Nee");
             System.out.println("Uw keuze: ");
             verderSpelenKeuze = scanner.nextInt();

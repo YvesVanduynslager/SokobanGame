@@ -73,6 +73,6 @@ public class SpeelSpel
 
     private void beweeg(int keuzeBeweging)
     {
-        controller.beweeg(keuzeBeweging);
+        controller.beweeg(keuzeBeweging-1);
     }
 }

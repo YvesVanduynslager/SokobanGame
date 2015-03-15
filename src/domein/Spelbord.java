@@ -25,7 +25,74 @@ public class Spelbord
      *
      * @param richting
      */
-    public void verplaatsMannetje(String richting)
+    public void verplaatsMannetje(int richting)
+    {
+        int x0 = mannetje.getxPositie();
+        int y0 = mannetje.getyPositie();
+        int[] x1 = {x0 - 1, x0 + 1, x0, x0};
+        int[] y1 = {y0, y0, y0 - 1, y0 + 1};
+        int[] x2 = {x0 - 2, x0 + 2, x0, x0};
+        int[] y2 = {y0, y0, y0 - 2, y0 + 2};
+        int[] check1 = {x0 - 1, x0 + 1, y0 - 1, y0 + 1};
+        int[] check2 = {x0 - 2, x0 + 2, y0 - 2, y0 + 2};
+
+        if (velden[x1[richting]][y1[richting]] instanceof Veld && check1[richting] >= 0) {
+            if (velden[x1[richting]][y1[richting]].isDoel()) {
+                mannetje.setxPositie(x1[richting]);
+                mannetje.setyPositie(y1[richting]);
+                mannetje.setIsDoel(true);
+                velden[x1[richting]][y1[richting]] = mannetje; //volgende veld instellen
+            } else {
+                mannetje.setxPositie(x1[richting]);
+                mannetje.setyPositie(y1[richting]);
+                mannetje.setIsDoel(false);
+                velden[x1[richting]][y1[richting]] = mannetje; //volgende veld instellen
+            }
+
+            if (velden[x0][y0].isDoel()) //huidige veld controleren op doel
+            {
+                velden[x0][y0] = new Veld(x0, y0, true);
+            } else {
+                velden[x0][y0] = new Veld(x0, y0, false);
+            }
+        } else {
+            if (velden[x1[richting]][y1[richting]] instanceof Kist && check1[richting] > 0) {
+                if (velden[x2[richting]][y2[richting]] instanceof Veld && check2[richting] > 0) {
+                    if (velden[x1[richting]][y1[richting]].isDoel()) {
+                        mannetje.setxPositie(x1[richting]);
+                        mannetje.setyPositie(y1[richting]);
+                        mannetje.setIsDoel(true);
+                        velden[x1[richting]][y1[richting]] = mannetje; //volgende veld instellen
+
+                        if (velden[x2[richting]][y2[richting]].isDoel()) {
+                            velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], true);
+                            //hier incr
+                        } else {
+                            velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], false);
+                        }
+                    } else {
+                        mannetje.setxPositie(x1[richting]);
+                        mannetje.setyPositie(y1[richting]);
+                        mannetje.setIsDoel(false);
+                        velden[x1[richting]][y1[richting]] = mannetje; //volgende veld instellen
+                    }
+
+                    if (velden[x0][y0].isDoel()) //huidige veld controleren op doel en instellen
+                    {
+                        velden[x0][y0] = new Veld(x0, y0, true);
+                    } else {
+                        velden[x0][y0] = new Veld(x0, y0, false);
+                    }
+                    if (velden[x2[richting]][y2[richting]].isDoel()) {
+                        velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], true); //true voor doel
+                    } else {
+                        velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], false); //false voor geen doel
+                    }
+                }
+            }
+        }
+    }
+    public void verplaatsMannetje2(String richting)
     {
         int x = mannetje.getxPositie();
         int y = mannetje.getyPositie();

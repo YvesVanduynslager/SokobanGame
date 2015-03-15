@@ -8,7 +8,7 @@ public class Spelbord
 {
     private final Element[][] velden;
     private final Mannetje mannetje;
-    private boolean isVoltooid;
+    private boolean isVoltooid = false;
 
     /**
      *
@@ -68,10 +68,11 @@ public class Spelbord
                                 mannetje.setxPositie(x - 1);
                                 mannetje.setIsDoel(true);
                                 velden[x - 1][y] = mannetje; //volgende veld instellen
-                                
+
                                 if (velden[x][y - 2].isDoel())
                                 {
                                     velden[x][y - 2] = new Kist(x, y - 2, true);
+                                    //hier incr
                                 }
                                 else
                                 {
@@ -141,7 +142,7 @@ public class Spelbord
                                 mannetje.setxPositie(x + 1);
                                 mannetje.setIsDoel(true);
                                 velden[x + 1][y] = mannetje; //volgende veld instellen
-                                
+
                                 if (velden[x][y - 2].isDoel())
                                 {
                                     velden[x][y - 2] = new Kist(x, y - 2, true);
@@ -287,7 +288,7 @@ public class Spelbord
                                 mannetje.setyPositie(y + 1);
                                 mannetje.setIsDoel(true);
                                 velden[x][y + 1] = mannetje; //volgende veld instellen
-                                
+
                                 if (velden[x][y - 2].isDoel())
                                 {
                                     velden[x][y - 2] = new Kist(x, y - 2, true);
@@ -330,6 +331,52 @@ public class Spelbord
         System.out.print(this.toString());
     }
 
+    private int getAantalKisten()
+    {
+        int aantal = 0;
+        for (Element[] rij : velden)
+        {
+            for (Element cel : rij)
+            {
+                if (cel instanceof Kist)
+                {
+                    aantal++;
+                }
+            }
+        }
+        return aantal;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean isVoltooid()
+    {
+        int aantal = 0;
+        for (Element[] rij : velden)
+        {
+            for (Element cel : rij)
+            {
+                if (cel instanceof Kist)
+                {
+                    if(cel.isDoel())
+                    {
+                    aantal++;
+                    }
+                }
+            }
+        }
+        if (this.getAantalKisten() == aantal)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     /**
      *
      * @return
@@ -350,15 +397,6 @@ public class Spelbord
         }
         output += "-----------------------------------------\n";
         return output;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public boolean isVoltooid()
-    {
-        return isVoltooid;
     }
 
     /**

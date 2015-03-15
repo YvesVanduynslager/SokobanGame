@@ -115,7 +115,7 @@ public class DomeinController
 
     public boolean huidigSpelbordVoltooid()
     {
-        return false;
+        return huidigSpel.getHuidigSpelbord().isVoltooid();
     }
     
     /**

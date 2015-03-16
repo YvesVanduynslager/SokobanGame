@@ -5,29 +5,36 @@ import java.util.List;
 
 /**
  * Staat in voor communicatie tussen GUI en business-logica.
+ *
  * @author Yves
  */
 public class DomeinController
 {
-    private SpelerRepository spelerRepository;
-    private Taal resourceBundle;
-    private String[] spelerString;
+    private final SpelerRepository spelerRepository;
+    private final Taal resourceBundle;
     private Speler huidigeSpeler;
+    private String[] spelerString;
+
+    private final SpelRepository spelRepository;
     private Spel huidigSpel;
-    private SpelRepository spelRepository;
 
     /**
-     * Default-constructor maakt SpelerRepository-object aan.
+     * Default-constructor maakt een SpelerRepository (spelers opslaan en
+     * ophalen), SpelRepository (spellen opslaan en ophalen) en een Taal-object
+     * (object om de gewenste taal in te stellen) aan.
      */
     public DomeinController()
     {
+        /* Aanmaken van een SpelerRepository en SpelRepository.*/
         spelerRepository = new SpelerRepository();
         spelRepository = new SpelRepository();
+
+        /* Taalobject initialiseren om later een taal te kunnen instellen*/
         resourceBundle = new Taal();
     }
 
     /**
-     * Aanmelden van een gebruiker
+     * Methode die zorgt voor het aanmelden van een gebruiker
      *
      * @param gebruikersnaam Instellen ven gebruikersnaam
      * @param wachtwoord Instellen van wachtwoord
@@ -41,7 +48,7 @@ public class DomeinController
     /**
      *
      * @return geeft de gebruikersnaam en adminrechten weer van de speler via
-     * String[]
+     * een String[]
      */
     public String[] geefSpeler()
     {
@@ -95,7 +102,7 @@ public class DomeinController
      *
      * @param key de key die in de ResourceBundles overeenkomt met de op te
      * halen tekst
-     * @return
+     * @return De opgehaalde tekst adhv key.
      */
     public String getString(String key)
     {
@@ -103,22 +110,29 @@ public class DomeinController
     }
 
     /**
-	 * 
-	 * @param spelNaam
-	 */
+     * Methode om een opgeslaan spel te selecteren en te starten.
+     * 
+     * @param spelNaam Naam van het spel dat de gebruiker wenst te spelen.
+     */
     public void selecteerSpel(String spelNaam)
     {
-        this.setHuidigSpel(spelRepository.geefSpel(spelNaam));        
+        this.setHuidigSpel(spelRepository.geefSpel(spelNaam));
         huidigSpel.start();
     }
 
+    /**
+     * Geeft een boolean terug die laat weten of het spelbord voltooid is of niet.
+     * 
+     * @return True voor voltooid, false voor onvoltooid.
+     */
     public boolean huidigSpelbordVoltooid()
     {
         return huidigSpel.getHuidigSpelbord().isVoltooid();
     }
-    
+
     /**
      * Stelt het huidige spel in.
+     *
      * @param spel Object van Spel dat ingesteld moet worden als huidig Spel.
      */
     private void setHuidigSpel(Spel spel)
@@ -126,12 +140,15 @@ public class DomeinController
         this.huidigSpel = spel;
     }
 
-    
+    /**
+     * Deze methode geeft het huidige spelbord weer in String[][]-formaat.
+     * @return Het huidige spelbord als String[][]
+     */
     public String[][] geefHuidigSpelbord()
     {
         Spelbord huidigSpelbord = huidigSpel.getHuidigSpelbord();
         Element[][] velden = huidigSpelbord.geefVelden();
-        
+
         String[][] veldenString = new String[10][10];
 
         for (int i = 0; i < velden.length; i++)
@@ -146,6 +163,7 @@ public class DomeinController
 
     /**
      * Geeft het totaal aantal beschikbare spelborden weer.
+     *
      * @return Aantal beschikbare spelborden.
      */
     public int geefAantalSpelborden()
@@ -155,6 +173,7 @@ public class DomeinController
 
     /**
      * Geeft het aantal voltooide spelborden weer.
+     *
      * @return Aantal voltooide spelborden.
      */
     public int geefAantalVoltooideBorden()
@@ -162,22 +181,22 @@ public class DomeinController
         return huidigSpel.geefAantalVoltooideBorden();
     }
 
-    
     public List<String> geefSpelNamen()
     {
         return spelRepository.geefSpelNamen();
     }
-    
+
     /**
-     * Staat in voor het kiezen van een richting waar het mannetje naar toe moet bewegen
-     * op het huidige spelbord.
-     * @param richting Bewegingsrichting.
+     * Staat in voor het kiezen van een richting waar het mannetje naar toe moet
+     * bewegen op het huidige spelbord.
+     *
+     * @param richting Gewenste richting waar bewogen moet naar worden.
      */
     public void beweeg(int richting)
     {
         huidigSpel.getHuidigSpelbord().verplaatsMannetje(richting);
     }
-    
+
     public String spelbordToString()
     {
         return huidigSpel.spelbordToString();

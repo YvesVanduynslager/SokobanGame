@@ -3,12 +3,19 @@ package domein;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 
+ * @author Yves
+ */
 public class Spel
 {
     private List<Spelbord> spelborden = new ArrayList<>();
     private String spelNaam;
     private Spelbord huidigSpelbord;
 
+    /**
+     * 
+     */
     public Spel()
     {
     }
@@ -24,6 +31,9 @@ public class Spel
         this.spelborden = spelborden;
     }
 
+    /**
+     * 
+     */
     public void start()
     {
         for (Spelbord spelbord : spelborden)
@@ -35,11 +45,19 @@ public class Spel
         }
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String getSpelNaam()
     {
         return this.spelNaam;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int geefAantalVoltooideBorden()
     {
         int aantal = 0;
@@ -53,34 +71,56 @@ public class Spel
         return aantal;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public int geefAantalSpelborden()
     {
         return spelborden.size();
-        //return spelborden.length;
     }
 
-    public void setSpelborden(ArrayList<Spelbord> borden /*Spelbord[] spelborden*/)
+    /**
+     * 
+     * @param spelborden 
+     */
+    public void setSpelborden(ArrayList<Spelbord> spelborden)
     {
-        this.spelborden = borden;
-        //this.spelborden = spelborden;
+        this.spelborden = spelborden;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<Spelbord> getSpelborden()
     {
         return this.spelborden;
         //return this.spelborden;
     }
 
+    /**
+     * 
+     * @return 
+     */
     public Spelbord getHuidigSpelbord()
     {
         return this.huidigSpelbord;
     }
 
+    /**
+     * 
+     * @param spelbord 
+     */
     private void setHuidigSpelbord(Spelbord spelbord)
     {
         this.huidigSpelbord = spelbord;
     }
     
+    /**
+     * 
+     * @return 
+     */
     public String spelbordToString()
     {
         return huidigSpelbord.toString();

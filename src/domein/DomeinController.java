@@ -175,20 +175,11 @@ public class DomeinController
      */
     public void beweeg(int richting)
     {
-        switch(richting)
-        {
-            case 1 :
-                huidigSpel.getHuidigSpelbord().verplaatsMannetje("up");
-                break;
-            case 2 :
-                huidigSpel.getHuidigSpelbord().verplaatsMannetje("right");
-                break;
-            case 3 :
-                huidigSpel.getHuidigSpelbord().verplaatsMannetje("down");
-                break;
-            case 4 :
-                huidigSpel.getHuidigSpelbord().verplaatsMannetje("left");
-                break;
-        }
+        huidigSpel.getHuidigSpelbord().verplaatsMannetje(richting);
+    }
+    
+    public String spelbordToString()
+    {
+        return huidigSpel.spelbordToString();
     }
 }

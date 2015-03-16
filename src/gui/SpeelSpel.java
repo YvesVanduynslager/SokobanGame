@@ -54,16 +54,20 @@ public class SpeelSpel
 
             while (!controller.huidigSpelbordVoltooid())
             {
+                System.out.println(controller.spelbordToString());
                 System.out.println("Beweging:");
                 System.out.println("[1] Omhoog");
-                System.out.println("[2] Rechts");
-                System.out.println("[3] Beneden");
-                System.out.println("[4] Links");
+                System.out.println("[2] Beneden");
+                System.out.println("[3] Links");
+                System.out.println("[4] Rechts");
                 System.out.print("Uw keuze: ");
 
                 int keuzeBeweging = scanner.nextInt();
                 beweeg(keuzeBeweging);
+                
             }
+            System.out.println(controller.spelbordToString());
+            System.out.println("GEWONNEN!");
             System.out.println("Wilt u verderspelen?\n[1] Ja\n[2] Nee");
             System.out.println("Uw keuze: ");
             verderSpelenKeuze = scanner.nextInt();
@@ -73,6 +77,6 @@ public class SpeelSpel
 
     private void beweeg(int keuzeBeweging)
     {
-        controller.beweeg(keuzeBeweging);
+        controller.beweeg(keuzeBeweging-1);
     }
 }

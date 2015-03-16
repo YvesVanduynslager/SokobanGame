@@ -31,10 +31,8 @@ public class Spel
             if (!spelbord.isVoltooid())
             {
                 this.setHuidigSpelbord(spelbord);
-                break;
             }
         }
-        System.out.println(huidigSpelbord.toString());
     }
 
     public String getSpelNaam()
@@ -81,5 +79,10 @@ public class Spel
     private void setHuidigSpelbord(Spelbord spelbord)
     {
         this.huidigSpelbord = spelbord;
+    }
+    
+    public String spelbordToString()
+    {
+        return huidigSpelbord.toString();
     }
 }

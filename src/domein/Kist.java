@@ -7,7 +7,12 @@ public class Kist extends Element
         super(xPositie, yPositie, doel);
     }
     
-    public Kist(int xPositie, int yPositie)
+    /**
+	 * 
+	 * @param yPositie
+	 * @param xPositie
+	 */
+	public Kist(int yPositie, int xPositie)
     {
         super(xPositie, yPositie, false);
     }

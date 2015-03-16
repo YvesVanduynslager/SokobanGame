@@ -13,16 +13,16 @@ public class Spel
     {
     }
 
-    public Spel(String spelNaam, List<Spelbord> borden)
+    /**
+     *
+     * @param spelNaam
+     * @param spelborden
+     */
+    public Spel(String spelNaam, List<Spelbord> spelborden)
     {
         this.spelNaam = spelNaam;
-        this.spelborden = borden;
+        this.spelborden = spelborden;
     }
-//    public Spel(String spelNaam, Spelbord[] spelborden)
-//    {
-//        this.spelNaam = spelNaam;
-//        this.spelborden = spelborden;
-//    }
 
     public void start()
     {
@@ -67,7 +67,7 @@ public class Spel
         //this.spelborden = spelborden;
     }
 
-    public List<Spelbord>/*Spelbord[]*/ getSpelborden()
+    public List<Spelbord> getSpelborden()
     {
         return this.spelborden;
         //return this.spelborden;

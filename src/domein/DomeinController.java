@@ -4,18 +4,17 @@ import exceptions.GebruikerBestaatException;
 import java.util.List;
 
 /**
- * Staat in voor communicatie tussen GUI en businuess-logica.
- *
+ * Staat in voor communicatie tussen GUI en business-logica.
  * @author Yves
  */
 public class DomeinController
 {
-    private final SpelerRepository spelerRepository;
-    private final Taal resourceBundle;
+    private SpelerRepository spelerRepository;
+    private Taal resourceBundle;
     private String[] spelerString;
     private Speler huidigeSpeler;
     private Spel huidigSpel;
-    private final SpelRepository spelRepository;
+    private SpelRepository spelRepository;
 
     /**
      * Default-constructor maakt SpelerRepository-object aan.
@@ -104,9 +103,9 @@ public class DomeinController
     }
 
     /**
-     * Staat in voor het instellen en starten van het gekozen spel. 
-     * @param spelNaam De moeilijkheidsgraad die gekozen wordt
-     */
+	 * 
+	 * @param spelNaam
+	 */
     public void selecteerSpel(String spelNaam)
     {
         this.setHuidigSpel(spelRepository.geefSpel(spelNaam));        
@@ -127,10 +126,7 @@ public class DomeinController
         this.huidigSpel = spel;
     }
 
-    /**
-     * Geeft een twee dimensionale String-array terug van de velden.
-     * @return 2d String array van velden.
-     */
+    
     public String[][] geefHuidigSpelbord()
     {
         Spelbord huidigSpelbord = huidigSpel.getHuidigSpelbord();
@@ -166,10 +162,7 @@ public class DomeinController
         return huidigSpel.geefAantalVoltooideBorden();
     }
 
-    /**
-     * Geeft alle beschikbare spelnamen terug.
-     * @return List van beschikbare spelnamen.
-     */
+    
     public List<String> geefSpelNamen()
     {
         return spelRepository.geefSpelNamen();

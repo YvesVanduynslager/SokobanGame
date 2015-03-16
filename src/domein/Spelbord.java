@@ -1,5 +1,7 @@
 package domein;
 
+import java.util.*;
+
 /**
  *
  * @author Yves
@@ -8,7 +10,6 @@ public class Spelbord
 {
     private final Element[][] velden;
     private final Mannetje mannetje;
-    private boolean isVoltooid = false;
 
     /**
      *

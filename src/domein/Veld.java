@@ -2,11 +2,23 @@ package domein;
 
 public class Veld extends Element
 {
+
+    /**
+     *
+     * @param xPositie
+     * @param yPositie
+     */
     public Veld(int xPositie, int yPositie)
     {
         super(xPositie, yPositie);
     }
 
+    /**
+     *
+     * @param xPositie
+     * @param yPositie
+     * @param isDoel
+     */
     public Veld(int xPositie, int yPositie, boolean isDoel)
     {
         super(xPositie, yPositie, isDoel);
@@ -15,7 +27,7 @@ public class Veld extends Element
     @Override
     public String toString()
     {
-        if (super.isDoel())
+        if (this.isDoel())
         {
             return "D";
         }
@@ -24,4 +36,5 @@ public class Veld extends Element
             return "V";
         }
     }
+
 }

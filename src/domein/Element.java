@@ -48,17 +48,4 @@ public class Element
     {
         this.isDoel = isDoel;
     }
-
-//    @Override
-//    public String toString()
-//    {
-//        if (this.isDoel())
-//        {
-//            return "D";
-//        }
-//        else
-//        {
-//            return "V";
-//        }
-//    }
 }

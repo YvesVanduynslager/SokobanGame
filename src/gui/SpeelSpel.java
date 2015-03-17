@@ -25,7 +25,7 @@ public class SpeelSpel
 
         do
         {
-            System.out.println("Kies een spel uit de volgende mogelijkheden:");
+            System.out.println(controller.getString("speelspel.keuze"));
 
             int index = 0;
             for (String spelnaam : spelnamen)
@@ -34,7 +34,7 @@ public class SpeelSpel
                 System.out.print("[" + index + "] " + spelnaam + "\n");
             }
 
-            System.out.println("Uw keuze: ");
+            System.out.println(controller.getString("keuze"));
             int keuze = scanner.nextInt();
 
             String keuzeString = null;
@@ -55,21 +55,21 @@ public class SpeelSpel
             while (!controller.huidigSpelbordVoltooid())
             {
                 System.out.println(controller.spelbordToString());
-                System.out.println("Beweging:");
-                System.out.println("[1] Omhoog");
-                System.out.println("[2] Beneden");
-                System.out.println("[3] Links");
-                System.out.println("[4] Rechts");
-                System.out.print("Uw keuze: ");
+                System.out.println(controller.getString("speelspel.beweging"));
+                System.out.println(controller.getString("speelspel.omhoog"));
+                System.out.println(controller.getString("speelspel.omlaag"));
+                System.out.println(controller.getString("speelspel.links"));
+                System.out.println(controller.getString("speelspel.rechts"));
+                System.out.print(controller.getString("keuze"));
 
                 int keuzeBeweging = scanner.nextInt();
                 beweeg(keuzeBeweging);
                 
             }
             System.out.println(controller.spelbordToString());
-            System.out.println("GEWONNEN!");
-            System.out.println("Wilt u verderspelen?\n[1] Ja\n[2] Nee");
-            System.out.println("Uw keuze: ");
+            System.out.println(controller.getString("speelspel.gewonnen1")+controller.getAantalZetten()+controller.getString("speelspel.gewonnen2"));
+            System.out.println(controller.getString("speelspel.verderspelen"));
+            System.out.println(controller.getString("keuze"));
             verderSpelenKeuze = scanner.nextInt();
         }
         while (verderSpelenKeuze != 2);

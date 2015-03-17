@@ -17,6 +17,8 @@ public class DomeinController
 
     private final SpelRepository spelRepository;
     private Spel huidigSpel;
+    
+    private int aantalZetten;
 
     /**
      * Default-constructor maakt een SpelerRepository (spelers opslaan en
@@ -138,6 +140,7 @@ public class DomeinController
     private void setHuidigSpel(Spel spel)
     {
         this.huidigSpel = spel;
+        this.aantalZetten = 0;
     }
 
     /**
@@ -195,10 +198,16 @@ public class DomeinController
     public void beweeg(int richting)
     {
         huidigSpel.getHuidigSpelbord().verplaatsMannetje(richting);
+        ++aantalZetten;
     }
 
     public String spelbordToString()
     {
         return huidigSpel.spelbordToString();
+    }
+    
+    public int getAantalZetten()
+    {
+        return aantalZetten;
     }
 }

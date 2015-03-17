@@ -36,7 +36,7 @@ public class ConsoleApplicatie
         {
             System.out.println();
             System.out.printf("%s%n%s%n%s%n%s%n", controller.getString("hoofdmenu.main"), controller.getString("hoofdmenu.optie1"), controller.getString("hoofdmenu.optie2"), controller.getString("hoofdmenu.optie0"));
-            System.out.print(controller.getString("hoofdmenu.keuze"));
+            System.out.print(controller.getString("keuze"));
             keuze = scanner.nextInt();
 
             if (keuze == 1)
@@ -81,7 +81,7 @@ public class ConsoleApplicatie
         {
             System.out.println();
             System.out.printf("%s%n%s%n%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"), controller.getString("spelmenu.optie2"), controller.getString("spelmenu.optie3"));
-            System.out.print("Uw keuze: ");
+            System.out.print(controller.getString("keuze"));
             keuze = scanner.nextInt();
 
             switch (keuze)
@@ -104,7 +104,7 @@ public class ConsoleApplicatie
         {
             System.out.println();
             System.out.printf("%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"));
-            System.out.print("Uw keuze: ");
+            System.out.print(controller.getString("keuze"));
             keuze = scanner.nextInt();
             System.out.println();
 

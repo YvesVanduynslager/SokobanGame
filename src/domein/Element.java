@@ -1,10 +1,10 @@
 package domein;
 
-public class Element
+public abstract class Element
 {
-    protected int xPositie;
-    protected int yPositie;
-    protected boolean isDoel;
+    private int xPositie;
+    private int yPositie;
+    private boolean isDoel;
 
     public Element(int xPositie, int yPositie)
     {

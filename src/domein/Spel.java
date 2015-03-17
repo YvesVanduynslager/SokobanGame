@@ -9,7 +9,7 @@ import java.util.List;
  */
 public class Spel
 {
-    private List<Spelbord> spelborden = new ArrayList<>();
+    private List<Spelbord> spelborden;
     private String spelNaam;
     private Spelbord huidigSpelbord;
 
@@ -18,6 +18,7 @@ public class Spel
      */
     public Spel()
     {
+        spelborden = new ArrayList<>();
     }
 
     /**

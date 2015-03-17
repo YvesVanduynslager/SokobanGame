@@ -19,8 +19,9 @@ import java.util.List;
  */
 public class SpelMapper
 {
-    Element[][] velden = new Element[10][10];
-    Mannetje mannetje;
+    private final int VELDEN_ARRAY_GROOTTE = 10;
+    private final Element[][] velden = new Element[VELDEN_ARRAY_GROOTTE][VELDEN_ARRAY_GROOTTE];
+    private Mannetje mannetje;
 
     /**
      *

@@ -22,7 +22,7 @@ public class Spelbord
 
     /**
      *
-     * @param richting
+     * @param richting Gewenste richting waar bewogen moet naar worden. 0 voor omhoog, 1 voor omlaag, 2 voor links en 3 voor rechts
      */
     public void verplaatsMannetje(int richting)
     {

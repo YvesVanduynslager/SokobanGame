@@ -32,7 +32,9 @@ public class ConsoleApplicatie
 
         controller.setTaalKeuze(locale);
 
-        do //bij ingeven van "terug" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden
+        /* MAIN LOOP:
+        bij ingeven van "terug" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden */
+        do
         {
             System.out.println();
             System.out.printf("%s%n%s%n%s%n%s%n", controller.getString("hoofdmenu.main"), controller.getString("hoofdmenu.optie1"), controller.getString("hoofdmenu.optie2"), controller.getString("hoofdmenu.optie0"));
@@ -66,6 +68,8 @@ public class ConsoleApplicatie
             }
         }
         while (keuze != 0);
+        
+        System.exit(0); //Afsluiten
     }
 
     public void toonSpelMenu()
@@ -77,7 +81,7 @@ public class ConsoleApplicatie
         String[] spelerGegevens = controller.geefSpeler();
         heeftAdminrechten = (spelerGegevens[1].equals("ja"));
 
-        if (heeftAdminrechten)
+        if (heeftAdminrechten) //Menu voor gebruiker MET ADMINRECHTEN
         {
             System.out.println();
             System.out.printf("%s%n%s%n%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"), controller.getString("spelmenu.optie2"), controller.getString("spelmenu.optie3"));
@@ -86,21 +90,19 @@ public class ConsoleApplicatie
 
             switch (keuze)
             {
-                /*hier voorlopig nog System.exit(0) om het programma te doen stoppen */
                 case 1: //Start UC Speel Spel
                     SpeelSpel speelSpel = new SpeelSpel(controller);
                     speelSpel.startSpelSpelUI();
-                    
                     break;
-                case 2:
-                    System.exit(0); //START USE CASE Configureer nieuw spel
+                case 2: //START USE CASE Configureer nieuw spel
+                    System.exit(0); //hier voorlopig nog System.exit(0) om het programma te doen stoppen.
                     break;
-                case 3:
-                    System.exit(0); //START USE CASE Wijzig spel
+                case 3: //START USE CASE Wijzig spel
+                    System.exit(0); //hier voorlopig nog System.exit(0) om het programma te doen stoppen.
                     break;
             }
         }
-        else
+        else //Menu voor gebruiker ZONDER ADMINRECHTEN
         {
             System.out.println();
             System.out.printf("%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"));
@@ -110,9 +112,9 @@ public class ConsoleApplicatie
 
             switch (keuze)
             {
-                /*hier voorlopig nog System.exit(0) om het programma te doen stoppen */
-                case 1:
-                    System.exit(0); //START USE CASE Speel spel
+                case 1: //Start UC Speel Spel
+                    SpeelSpel speelSpel = new SpeelSpel(controller);
+                    speelSpel.startSpelSpelUI();
                     break;
             }
         }

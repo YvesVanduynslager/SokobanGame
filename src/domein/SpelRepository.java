@@ -3,20 +3,29 @@ package domein;
 import java.util.List;
 import persistentie.SpelMapper;
 
+/**
+ * 
+ * @author Yves
+ */
 public class SpelRepository
 {
-
     private final SpelMapper spelMapper;
 
+    /**
+     * 
+     */
     public SpelRepository()
     {
         spelMapper = new SpelMapper();
     }
 
+    /**
+     * 
+     * @return 
+     */
     public List<String> geefSpelNamen()
     {
-       return spelMapper.geefSpelNamen();// TODO - implement SpelRepository.geefSpelNamen
-        //throw new UnsupportedOperationException();
+       return spelMapper.geefSpelNamen();
     }
 
     /**
@@ -28,9 +37,4 @@ public class SpelRepository
     {
         return spelMapper.geefSpel(spelnaam);
     }
-
-//        public Spel[] geefSpellen()
-//        {
-//            return spelMapper.geefSpellen();
-//        }
 }

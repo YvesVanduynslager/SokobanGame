@@ -105,8 +105,6 @@ public class DomeinController
 
     /**
      * Alle UC's
-     * Haalt de correcte String op uit het Taal-object
-     *
      * @param key de key die in de ResourceBundles overeenkomt met de op te
      * halen tekst
      * @return De opgehaalde tekst adhv key.
@@ -119,7 +117,6 @@ public class DomeinController
     /**
      * UC3: Speel spel
      * Methode om een opgeslaan spel te selecteren en te starten.
-     * 
      * @param spelNaam Naam van het spel dat de gebruiker wenst te spelen.
      */
     public void selecteerSpel(String spelNaam)
@@ -131,7 +128,6 @@ public class DomeinController
     /**
      * UC3: Speel spel, UC4: Voltooi spelbord
      * Geeft een boolean terug die laat weten of het spelbord voltooid is of niet.
-     * 
      * @return True voor voltooid, false voor onvoltooid.
      */
     public boolean huidigSpelbordVoltooid()
@@ -142,7 +138,6 @@ public class DomeinController
     /**
      * UC3: Speel spel, UC4: Voltooi spelbord
      * Stelt het huidige spel in.
-     *
      * @param spel Object van Spel dat ingesteld moet worden als huidig Spel.
      */
     private void setHuidigSpel(Spel spel)
@@ -176,7 +171,6 @@ public class DomeinController
     /**
      * UC3: Speel spel
      * Geeft het totaal aantal beschikbare spelborden weer.
-     *
      * @return Aantal beschikbare spelborden.
      */
     public int geefAantalSpelborden()
@@ -187,7 +181,6 @@ public class DomeinController
     /**
      * UC3: Speel spel
      * Geeft het aantal voltooide spelborden weer.
-     *
      * @return Aantal voltooide spelborden.
      */
     public int geefAantalVoltooideBorden()
@@ -208,7 +201,6 @@ public class DomeinController
      * UC4: Voltooi spelbord
      * Staat in voor het kiezen van een richting waar het mannetje naar toe moet
      * bewegen op het huidige spelbord.
-     *
      * @param richting Gewenste richting waar bewogen moet naar worden.
      */
     public void beweeg(int richting)
@@ -219,13 +211,18 @@ public class DomeinController
 
     /**
      * UC3: Speel spel, UC4: Voltooi spelbord
-     * @return 
+     * Geeft het huidige spelbord terug als een String;
+     * @return huidige spelbord als String;
      */
     public String spelbordToString()
     {
         return huidigSpel.spelbordToString();
     }
     
+    /**
+     * UC4: Voltooi spelbord
+     * @return het aantal gedane zetten als int.
+     */
     public int getAantalZetten()
     {
         return aantalZetten;

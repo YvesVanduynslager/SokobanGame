@@ -44,7 +44,7 @@ public class SpeelSpel
                     keuzeString = spelnamen.get(--keuze);
                     break;
                 case 2:
-                    keuzeString = "makkelijk";
+                    keuzeString = "makkelijk"; //spelnamen.get(--keuze);
                     break;
                 case 3:
                     keuzeString = spelnamen.get(--keuze);
@@ -67,7 +67,9 @@ public class SpeelSpel
                 
             }
             System.out.println(controller.spelbordToString());
-            System.out.println(controller.getString("speelspel.gewonnen1")+controller.getAantalZetten()+controller.getString("speelspel.gewonnen2"));
+            System.out.println(controller.getString("speelspel.gewonnen1")+controller.getAantalZetten()+ " " + controller.getString("speelspel.gewonnen2"));
+            System.out.println("Aantal spelborden voltooid: " + controller.geefAantalVoltooideBorden() + " van " + controller.geefAantalSpelborden()
+                    + " spelborden.");
             System.out.println(controller.getString("speelspel.verderspelen"));
             System.out.println(controller.getString("keuze"));
             verderSpelenKeuze = scanner.nextInt();

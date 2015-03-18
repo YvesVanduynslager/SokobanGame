@@ -34,11 +34,11 @@ public class SpelMapper
         {
             "muur", "veld", "doel", "mannetje", "kist"
         };
-        final int aantalBorden = this.geefAantalSpelborden(naam);
+        final int AANTAL_BORDEN = this.geefAantalSpelborden(naam);
 
         List<Spelbord> borden = new ArrayList();
         
-        for (int spelbordID = 1; spelbordID <= aantalBorden; spelbordID++)
+        for (int spelbordID = 1; spelbordID <= AANTAL_BORDEN; spelbordID++)
         {
             for (String element : ELEMENTEN)
             {
@@ -53,7 +53,6 @@ public class SpelMapper
 
                 try
                 {
-                    //int x = 0, y = 0;
                     int x, y;
                     stmtBordenOphalen = connectie.getDatabaseConnectie().prepareStatement(sqlBordenOphalen);
                     ResultSet rs = stmtBordenOphalen.executeQuery();
@@ -109,7 +108,7 @@ public class SpelMapper
     private int geefAantalSpelborden(String naam)
     {
         int aantal = 0;
-        String sqlCount = "SELECT Max(spelbord.spelbordID) FROM spelbord JOIN spel ON spelbord.Spel_spelID = spel.spelID "
+        String sqlCount = "SELECT COUNT(spelbord.spelbordID) FROM spelbord JOIN spel ON spelbord.Spel_spelID = spel.spelID "
                 + "WHERE spel.spelNaam = '" + naam + "';";
 
         Connectie connectie = new Connectie();

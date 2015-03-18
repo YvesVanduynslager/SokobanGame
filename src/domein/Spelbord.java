@@ -122,12 +122,16 @@ public class Spelbord
         int aantal = 0;
         for (Element[] rij : velden)
         {
-            for (Element cel : rij)
+            for (Element element : rij)
             {
-                if (cel instanceof Kist)
+                if(element instanceof Veld && element.isDoel())
                 {
                     aantal++;
                 }
+//                if (cel instanceof Kist)
+//                {
+//                    aantal++;
+//                }
             }
         }
         return aantal;
@@ -142,9 +146,9 @@ public class Spelbord
         int aantal = 0;
         for (Element[] rij : velden)
         {
-            for (Element cel : rij)
+            for (Element element : rij)
             {
-                if (cel instanceof Kist && cel.isDoel())
+                if (element instanceof Kist && element.isDoel())
                 {
                     aantal++;
                 }

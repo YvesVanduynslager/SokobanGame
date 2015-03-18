@@ -124,6 +124,11 @@ public class DomeinController
         this.setHuidigSpel(spelRepository.geefSpel(spelNaam));
         huidigSpel.start();
     }
+    
+    public void startVolgendSpelbord()
+    {
+        huidigSpel.start();
+    }
 
     /**
      * UC3: Speel spel, UC4: Voltooi spelbord

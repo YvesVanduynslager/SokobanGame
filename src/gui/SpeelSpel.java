@@ -34,7 +34,8 @@ public class SpeelSpel
                 System.out.print("[" + index + "] " + spelnaam + "\n");
             }
 
-            System.out.println(controller.getString("keuze"));
+            System.out.print(controller.getString("keuze"));
+            System.out.println();
             int keuze = scanner.nextInt();
 
             String keuzeString = null;
@@ -50,28 +51,45 @@ public class SpeelSpel
                     keuzeString = spelnamen.get(--keuze);
             }
 
-            controller.selecteerSpel(keuzeString);
+            controller.selecteerSpel(keuzeString); //selecteert spel en start het eerste spelbord
 
-            while (!controller.huidigSpelbordVoltooid())
+            do
             {
-                System.out.println(controller.spelbordToString());
-                System.out.println(controller.getString("speelspel.beweging"));
-                System.out.println(controller.getString("speelspel.omhoog"));
-                System.out.println(controller.getString("speelspel.omlaag"));
-                System.out.println(controller.getString("speelspel.links"));
-                System.out.println(controller.getString("speelspel.rechts"));
-                System.out.print(controller.getString("keuze"));
+                while (!controller.huidigSpelbordVoltooid()) ///Wordt uitgevoerd als het spelbord nog niet alle kisten op de doelen heeft staan.
+                {
+                    System.out.println(controller.spelbordToString());
+                    System.out.println(controller.getString("speelspel.beweging"));
+                    System.out.println(controller.getString("speelspel.omhoog"));
+                    System.out.println(controller.getString("speelspel.omlaag"));
+                    System.out.println(controller.getString("speelspel.links"));
+                    System.out.println(controller.getString("speelspel.rechts"));
+                    System.out.print(controller.getString("keuze"));
 
-                int keuzeBeweging = scanner.nextInt();
-                beweeg(keuzeBeweging);
+                    int keuzeBeweging = scanner.nextInt();
+                    beweeg(keuzeBeweging);
+
+                }
                 
+                /* Wordt uitgevoerd vanaf het spelbord alle kisten op de doelen heeft staan */
+                System.out.println(controller.spelbordToString());
+                System.out.println(controller.getString("speelspel.gewonnen1") + controller.getAantalZetten() + " " + controller.getString("speelspel.gewonnen2"));
+                System.out.println("Aantal spelborden voltooid: " + controller.geefAantalVoltooideBorden() + " van " + controller.geefAantalSpelborden()
+                        + " spelborden.");
+                System.out.println(controller.getString("speelspel.verderspelen"));
+                System.out.println(controller.getString("keuze"));
+                verderSpelenKeuze = scanner.nextInt();
+
+                if (verderSpelenKeuze == 1)
+                {
+                    controller.startVolgendSpelbord();
+                }
             }
-            System.out.println(controller.spelbordToString());
-            System.out.println(controller.getString("speelspel.gewonnen1")+controller.getAantalZetten()+ " " + controller.getString("speelspel.gewonnen2"));
-            System.out.println("Aantal spelborden voltooid: " + controller.geefAantalVoltooideBorden() + " van " + controller.geefAantalSpelborden()
-                    + " spelborden.");
-            System.out.println(controller.getString("speelspel.verderspelen"));
-            System.out.println(controller.getString("keuze"));
+            while (verderSpelenKeuze != 2);
+            
+            System.out.println("Nog een spel? ");
+            System.out.println("[1] Ja");
+            System.out.println("[2] Nee");
+            System.out.println("Uw keuze: ");
             verderSpelenKeuze = scanner.nextInt();
         }
         while (verderSpelenKeuze != 2);
@@ -79,6 +97,6 @@ public class SpeelSpel
 
     private void beweeg(int keuzeBeweging)
     {
-        controller.beweeg(keuzeBeweging-1);
+        controller.beweeg(keuzeBeweging - 1);
     }
 }

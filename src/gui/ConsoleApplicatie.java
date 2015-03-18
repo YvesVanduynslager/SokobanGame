@@ -33,7 +33,7 @@ public class ConsoleApplicatie
         controller.setTaalKeuze(locale);
 
         /* MAIN LOOP:
-        bij ingeven van "terug" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden */
+         bij ingeven van "terug" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden */
         do
         {
             System.out.println();
@@ -68,7 +68,7 @@ public class ConsoleApplicatie
             }
         }
         while (keuze != 0);
-        
+
         System.exit(0); //Afsluiten
     }
 
@@ -87,6 +87,7 @@ public class ConsoleApplicatie
             System.out.printf("%s%n%s%n%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"), controller.getString("spelmenu.optie2"), controller.getString("spelmenu.optie3"));
             System.out.print(controller.getString("keuze"));
             keuze = scanner.nextInt();
+            System.out.println();
 
             switch (keuze)
             {

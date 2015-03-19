@@ -56,7 +56,7 @@ public class SpeelSpel
             
             do
             {
-                while (!controller.huidigSpelbordVoltooid()) ///Wordt uitgevoerd als het spelbord nog niet alle kisten op de doelen heeft staan.
+                while (!controller.huidigSpelbordVoltooid()) //Wordt uitgevoerd als het spelbord nog niet alle kisten op de doelen heeft staan.
                 {
                     System.out.println(controller.spelbordToString());
                     System.out.println(controller.getString("speelspel.beweging"));

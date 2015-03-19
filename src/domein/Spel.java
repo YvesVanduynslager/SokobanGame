@@ -14,6 +14,7 @@ public class Spel
     private String spelNaam;
     private Spelbord huidigSpelbord;
     private int spelbordIndex = 0;
+    private int aantalSpelbordenVoltooid = 0;
 
     /**
      * Default-constructor Spel() initialiseert een ArrayList van
@@ -42,11 +43,15 @@ public class Spel
      */
     public void start()
     {
+        //spelborden.set(spelbordIndex, huidigSpelbord);
+        
         if (spelbordIndex < spelborden.size())
         {
             this.setHuidigSpelbord(spelborden.get(spelbordIndex));
         }
         spelbordIndex++;
+        
+        
 //        for (Spelbord spelbord : spelborden)
 //        {
 //            if (!spelbord.isVoltooid())
@@ -74,15 +79,20 @@ public class Spel
      */
     public int geefAantalVoltooideBorden()
     {
-        int aantal = 0;
-        for (Spelbord spelbord : spelborden)
+        if(huidigSpelbord != null && huidigSpelbord.isVoltooid())
         {
-            if (spelbord.isVoltooid())
-            {
-                ++aantal;
-            }
+            aantalSpelbordenVoltooid++;
         }
-        return aantal;
+        return aantalSpelbordenVoltooid;
+//        int aantal = 0;
+//        for (Spelbord spelbord : spelborden)
+//        {
+//            if (spelbord.isVoltooid())
+//            {
+//                ++aantal;
+//            }
+//        }
+//        return aantal;
     }
 
     /**

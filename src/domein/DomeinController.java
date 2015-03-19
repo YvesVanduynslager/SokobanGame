@@ -233,9 +233,4 @@ public class DomeinController
     {
         return aantalZetten;
     }
-
-//    public void setSpelbordVoltooid()
-//    {
-//        huidigSpel.getHuidigSpelbord().setVoltooid(true);
-//    }
 }

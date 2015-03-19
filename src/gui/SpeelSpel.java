@@ -21,7 +21,8 @@ public class SpeelSpel
     {
         List<String> spelnamen = controller.geefSpelNamen();
         Scanner scanner = new Scanner(System.in);
-        int verderSpelenKeuze, keuzeBeweging, spelKeuze;
+        int verderSpelenKeuze = 0, keuzeBeweging, spelKeuze;
+        boolean nogSpelborden = true;
 
         do
         {
@@ -45,7 +46,7 @@ public class SpeelSpel
                     keuzeString = spelnamen.get(--spelKeuze);
                     break;
                 case 2:
-                    keuzeString = "makkelijk"; //spelnamen.get(--keuze);
+                    keuzeString = spelnamen.get(--spelKeuze); //"easy"; //spelnamen.get(--keuze);
                     break;
                 case 3:
                     keuzeString = spelnamen.get(--spelKeuze);
@@ -69,30 +70,40 @@ public class SpeelSpel
                     keuzeBeweging = scanner.nextInt();
                     beweeg(keuzeBeweging);
                 }
-                
+
                 /* Wordt uitgevoerd vanaf het spelbord alle kisten op de doelen heeft staan */
                 System.out.println(controller.spelbordToString());
-                
+
                 System.out.println(controller.getString("speelspel.gewonnen1") + controller.getAantalZetten() + " " + controller.getString("speelspel.gewonnen2"));
-                System.out.println("Aantal spelborden voltooid: " + controller.geefAantalVoltooideBorden() + " van " + controller.geefAantalSpelborden()
-                        + " spelborden.");
-                System.out.println(controller.getString("speelspel.verderspelen"));
-                System.out.print(controller.getString("keuze"));
-                verderSpelenKeuze = scanner.nextInt();
+                System.out.println(controller.getString("speelspel.bordenvoltooid1") + " " + controller.geefAantalVoltooideBorden() + " "
+                        + controller.getString("speelspel.bordenvoltooid2") + " " + controller.geefAantalSpelborden() + " "
+                        + controller.getString("speelspel.bordenvoltooid3"));
+
                 System.out.println();
-                
-                if (verderSpelenKeuze == 1)
+
+                if (controller.geefAantalSpelborden() == controller.geefAantalVoltooideBorden())
                 {
-                    controller.startVolgendSpelbord();
+                    nogSpelborden = false;
+                    System.out.println(controller.getString("speelspel.geenspelborden"));
+                }
+                else
+                {
+                    nogSpelborden = true;
+                    System.out.println(controller.getString("speelspel.volgendspelbord"));
+                    System.out.print(controller.getString("keuze"));
+                    verderSpelenKeuze = scanner.nextInt();
+                    if (verderSpelenKeuze == 1)
+                    {
+                        controller.startVolgendSpelbord();
+                    }
                 }
             }
-            while (verderSpelenKeuze != 2);
-            
-            System.out.println("Nog een spel? ");
-            System.out.println("[1] Ja");
-            System.out.println("[2] Nee");
-            System.out.println("Uw keuze: ");
+            while (verderSpelenKeuze != 2 && nogSpelborden);
+
+            System.out.println(controller.getString("speelspel.volgendspel"));
+            System.out.print(controller.getString("keuze"));
             verderSpelenKeuze = scanner.nextInt();
+            System.out.println();
         }
         while (verderSpelenKeuze != 2);
     }

@@ -17,12 +17,10 @@ public class test
     public static void main(String[] args)
     {
         SpelMapper sp = new SpelMapper();
-        Spel s = sp.geefSpel("makkelijk");
+        Spel s = sp.geefSpel("easy");
         s.start();
         System.out.println(s.getHuidigSpelbord().toString());
-        System.out.println(s.geefAantalVoltooideBorden());
         s.start();
         System.out.println(s.getHuidigSpelbord().toString());
-        System.out.println(s.geefAantalVoltooideBorden());
     }
 }

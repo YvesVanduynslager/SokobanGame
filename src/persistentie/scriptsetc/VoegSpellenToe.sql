@@ -1,7 +1,6 @@
-/*INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('makkelijk'), ('gemiddeld'), ('moeilijk');*/
-INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('makkelijk');
-INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('gemiddeld');
-INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('moeilijk'); 
+INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('easy');
+INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('medium');
+INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('hard'); 
 
 /* spelbordnamen voor spellen */
 INSERT INTO sokobandatabase.spelbord (spelbordNaam, Spel_spelID) VALUES

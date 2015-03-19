@@ -148,7 +148,7 @@ public class SpelMapper
     public List<String> geefSpelNamen()
     {
         List<String> spelNamen = new ArrayList();
-        String sqlSpelNamen = "SELECT spelNaam FROM spel;";
+        String sqlSpelNamen = "SELECT spelNaam FROM spel ORDER BY spelID;";
         
         Connectie connectie = new Connectie();
         PreparedStatement stmtSpelNamen;

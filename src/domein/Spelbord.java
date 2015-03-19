@@ -8,6 +8,7 @@ public class Spelbord
 {
     private final Element[][] velden;
     private final Mannetje mannetje;
+    private boolean isVoltooid = false;
 
     /**
      *
@@ -124,14 +125,10 @@ public class Spelbord
         {
             for (Element element : rij)
             {
-                if(element instanceof Veld && element.isDoel())
+                if(element instanceof Kist)
                 {
                     aantal++;
                 }
-//                if (cel instanceof Kist)
-//                {
-//                    aantal++;
-//                }
             }
         }
         return aantal;
@@ -156,12 +153,13 @@ public class Spelbord
         }
         if (this.getAantalKisten() == aantal)
         {
-            return true;
+            isVoltooid = true;
         }
-        else
-        {
-            return false;
-        }
+//        else
+//        {
+//            return false;
+//        }
+        return isVoltooid;
     }
 
     /**
@@ -194,4 +192,9 @@ public class Spelbord
     {
         return this.velden;
     }
+//
+//    void setVoltooid(boolean isVoltooid)
+//    {
+//        this.isVoltooid = isVoltooid;
+//    }
 }

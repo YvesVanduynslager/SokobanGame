@@ -122,13 +122,14 @@ public class DomeinController
     public void selecteerSpel(String spelNaam)
     {
         this.setHuidigSpel(spelRepository.geefSpel(spelNaam));
-        huidigSpel.start();
+        huidigSpel.start(0);
     }
     
-    public void startVolgendSpelbord()
+    public void startVolgendSpelbord(int spelbordIndex)
     {
-        huidigSpel.start();
+        huidigSpel.start(spelbordIndex);
     }
+
 
     /**
      * UC3: Speel spel, UC4: Voltooi spelbord
@@ -232,4 +233,9 @@ public class DomeinController
     {
         return aantalZetten;
     }
+
+//    public void setSpelbordVoltooid()
+//    {
+//        huidigSpel.getHuidigSpelbord().setVoltooid(true);
+//    }
 }

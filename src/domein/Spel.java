@@ -12,6 +12,7 @@ public class Spel
     private List<Spelbord> spelborden;
     private String spelNaam;
     private Spelbord huidigSpelbord;
+    private int updateIndex = 0;
 
 /**
  * Default-constructor Spel() initialiseert een ArrayList van Spelbord-objecten.
@@ -35,15 +36,17 @@ public class Spel
     /**
      * Deze methode loopt door de aanwezige spelborden en stelt het huidige spelbord in als dit nog niet is voltooid.
      */
-    public void start()
+    public void start(int spelbordIndex)
     {
-        for (Spelbord spelbord : spelborden)
-        {
-            if (!spelbord.isVoltooid())
-            {
-                this.setHuidigSpelbord(spelbord);
-            }
-        }
+        this.setHuidigSpelbord(spelborden.get(spelbordIndex));
+//        for (Spelbord spelbord : spelborden)
+//        {
+//            if (!spelbord.isVoltooid())
+//            {
+//                this.setHuidigSpelbord(spelbord);
+//                this.updateIndex = spelborden.indexOf(spelbord);
+//            }
+//        }
     }
 
     /**
@@ -89,15 +92,20 @@ public class Spel
     {
         this.spelborden = spelborden;
     }
-//
-//    /**
-//     * 
-//     * @return 
-//     */
-//    public List<Spelbord> getSpelborden()
-//    {
-//        return this.spelborden;
-//    }
+    
+    public void updateSpelborden()
+    {
+        this.spelborden.set(updateIndex, huidigSpelbord);
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    public List<Spelbord> getSpelborden()
+    {
+        return this.spelborden;
+    }
 
     /**
      * Geeft het huidig ingestelde spelbord terug

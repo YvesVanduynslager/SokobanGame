@@ -122,7 +122,7 @@ public class DomeinController
     public void selecteerSpel(String spelNaam)
     {
         this.setHuidigSpel(spelRepository.geefSpel(spelNaam));
-        huidigSpel.start();
+        //huidigSpel.start();
     }
     
     public void startVolgendSpelbord()

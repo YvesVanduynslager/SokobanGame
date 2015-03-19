@@ -52,8 +52,8 @@ public class SpeelSpel
             }
 
             controller.selecteerSpel(keuzeString); //selecteert spel en start het eerste spelbord
+            controller.startVolgendSpelbord();
 
-            
             do
             {
                 while (!controller.huidigSpelbordVoltooid()) //Wordt uitgevoerd als het spelbord nog niet alle kisten op de doelen heeft staan.

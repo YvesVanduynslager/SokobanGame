@@ -79,20 +79,11 @@ public class Spel
      */
     public int geefAantalVoltooideBorden()
     {
-        if(huidigSpelbord != null && huidigSpelbord.isVoltooid())
+        if(huidigSpelbord != null && huidigSpelbord.isVoltooid() && aantalSpelbordenVoltooid < this.geefAantalSpelborden())
         {
             aantalSpelbordenVoltooid++;
         }
         return aantalSpelbordenVoltooid;
-//        int aantal = 0;
-//        for (Spelbord spelbord : spelborden)
-//        {
-//            if (spelbord.isVoltooid())
-//            {
-//                ++aantal;
-//            }
-//        }
-//        return aantal;
     }
 
     /**

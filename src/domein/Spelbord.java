@@ -8,7 +8,7 @@ public class Spelbord
 {
     private final Element[][] velden;
     private final Mannetje mannetje;
-    private String naam;
+    private final String naam;
 
     /**
      *

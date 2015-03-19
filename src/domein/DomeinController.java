@@ -17,6 +17,7 @@ public class DomeinController
 
     private final SpelRepository spelRepository;
     private Spel huidigSpel;
+    private Spelbord huidigSpelbord;
     
     private int aantalZetten;
 
@@ -128,6 +129,8 @@ public class DomeinController
     public void startVolgendSpelbord()
     {
         huidigSpel.start();
+        this.setHuidigSpelbord(huidigSpel.getHuidigSpelbord());
+        //huidigSpelbord = huidigSpel.getHuidigSpelbord();
     }
 
 
@@ -138,7 +141,8 @@ public class DomeinController
      */
     public boolean huidigSpelbordVoltooid()
     {
-        return huidigSpel.getHuidigSpelbord().isVoltooid();
+        return huidigSpelbord.isVoltooid();
+//        return huidigSpel.getHuidigSpelbord().isVoltooid();
     }
 
     /**
@@ -151,6 +155,11 @@ public class DomeinController
         this.huidigSpel = spel;
         this.aantalZetten = 0;
     }
+    
+    private void setHuidigSpelbord(Spelbord spelbord)
+    {
+        this.huidigSpelbord = spelbord;
+    }
 
     /**
      * UC3: Speel spel, UC4: Voltooi spelbord
@@ -159,7 +168,7 @@ public class DomeinController
      */
     public String[][] geefHuidigSpelbord()
     {
-        Spelbord huidigSpelbord = huidigSpel.getHuidigSpelbord();
+        //huidigSpelbord = huidigSpel.getHuidigSpelbord();
         Element[][] velden = huidigSpelbord.geefVelden();
 
         String[][] veldenString = new String[10][10];
@@ -211,8 +220,9 @@ public class DomeinController
      */
     public void beweeg(int richting)
     {
-        huidigSpel.getHuidigSpelbord().verplaatsMannetje(richting);
-        ++aantalZetten;
+        huidigSpelbord.verplaatsMannetje(richting);
+        //huidigSpel.getHuidigSpelbord().verplaatsMannetje(richting);
+        ++aantalZetten; // naar spelbord verplaatsMannetje verplaatsen?
     }
 
     /**
@@ -222,7 +232,8 @@ public class DomeinController
      */
     public String spelbordToString()
     {
-        return huidigSpel.spelbordToString();
+        return huidigSpelbord.toString();
+        //return huidigSpel.spelbordToString();
     }
     
     /**

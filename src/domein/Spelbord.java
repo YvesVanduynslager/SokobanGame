@@ -197,9 +197,4 @@ public class Spelbord
     {
         return this.velden;
     }
-//
-//    void setVoltooid(boolean isVoltooid)
-//    {
-//        this.isVoltooid = isVoltooid;
-//    }
 }

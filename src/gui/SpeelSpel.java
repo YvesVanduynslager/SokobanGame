@@ -21,7 +21,7 @@ public class SpeelSpel
     {
         List<String> spelnamen = controller.geefSpelNamen();
         Scanner scanner = new Scanner(System.in);
-        int verderSpelenKeuze;
+        int verderSpelenKeuze, keuzeBeweging, spelKeuze;
 
         do
         {
@@ -36,23 +36,23 @@ public class SpeelSpel
 
             System.out.print(controller.getString("keuze"));
             System.out.println();
-            int keuze = scanner.nextInt();
+            spelKeuze = scanner.nextInt();
 
             String keuzeString = null;
-            switch (keuze)
+            switch (spelKeuze)
             {
                 case 1:
-                    keuzeString = spelnamen.get(--keuze);
+                    keuzeString = spelnamen.get(--spelKeuze);
                     break;
                 case 2:
                     keuzeString = "makkelijk"; //spelnamen.get(--keuze);
                     break;
                 case 3:
-                    keuzeString = spelnamen.get(--keuze);
+                    keuzeString = spelnamen.get(--spelKeuze);
             }
 
-            controller.selecteerSpel(keuzeString); //selecteert spel en start het eerste spelbord
-            controller.startVolgendSpelbord();
+            controller.selecteerSpel(keuzeString); //selecteert spel
+            controller.startVolgendSpelbord(); //start het volgende spelbord
 
             do
             {
@@ -66,7 +66,7 @@ public class SpeelSpel
                     System.out.println(controller.getString("speelspel.rechts"));
                     System.out.print(controller.getString("keuze"));
 
-                    int keuzeBeweging = scanner.nextInt();
+                    keuzeBeweging = scanner.nextInt();
                     beweeg(keuzeBeweging);
                 }
                 
@@ -77,9 +77,10 @@ public class SpeelSpel
                 System.out.println("Aantal spelborden voltooid: " + controller.geefAantalVoltooideBorden() + " van " + controller.geefAantalSpelborden()
                         + " spelborden.");
                 System.out.println(controller.getString("speelspel.verderspelen"));
-                System.out.println(controller.getString("keuze"));
+                System.out.print(controller.getString("keuze"));
                 verderSpelenKeuze = scanner.nextInt();
-
+                System.out.println();
+                
                 if (verderSpelenKeuze == 1)
                 {
                     controller.startVolgendSpelbord();

@@ -50,8 +50,7 @@ public class Spel
             this.setHuidigSpelbord(spelborden.get(spelbordIndex));
         }
         spelbordIndex++;
-        
-        
+               
 //        for (Spelbord spelbord : spelborden)
 //        {
 //            if (!spelbord.isVoltooid())
@@ -105,11 +104,7 @@ public class Spel
     {
         this.spelborden = spelborden;
     }
-
-//    public void updateSpelborden()
-//    {
-//        this.spelborden.set(updateIndex, huidigSpelbord);
-//    }
+    
     /**
      *
      * @return

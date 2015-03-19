@@ -20,7 +20,7 @@ import java.util.List;
 public class SpelMapper
 {
     private final int VELDEN_ARRAY_GROOTTE = 10;
-    private final Element[][] velden = new Element[VELDEN_ARRAY_GROOTTE][VELDEN_ARRAY_GROOTTE];
+    private Element[][] velden;
     private Mannetje mannetje;
 
     /**
@@ -41,10 +41,11 @@ public class SpelMapper
         
         for (int spelbordID = 1; spelbordID <= AANTAL_BORDEN; spelbordID++)
         {
+            velden = new Element[VELDEN_ARRAY_GROOTTE][VELDEN_ARRAY_GROOTTE];
             for (String element : ELEMENTEN)
             {
                 Connectie connectie = new Connectie();
-                PreparedStatement stmtBordenOphalen;// = null;
+                PreparedStatement stmtBordenOphalen;
 
                 String sqlBordenOphalen = "SELECT Element.positieX, Element.positieY, Spelbord.spelbordNaam "
                         + "FROM " + element + " Element JOIN spelbord Spelbord ON Element.Spelbord_spelbordID = Spelbord.spelbordID "
@@ -102,7 +103,7 @@ public class SpelMapper
             }
             borden.add(new Spelbord(spelbordNaam, velden, mannetje));
         }
-
+        
         Spel spel = new Spel(naam, borden);
         return spel;
     }

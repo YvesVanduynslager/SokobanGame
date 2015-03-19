@@ -30,6 +30,7 @@ public class SpelMapper
      */
     public Spel geefSpel(String naam)
     {
+        String spelbordNaam = "";
         final String[] ELEMENTEN =
         {
             "muur", "veld", "doel", "mannetje", "kist"
@@ -45,15 +46,20 @@ public class SpelMapper
                 Connectie connectie = new Connectie();
                 PreparedStatement stmtBordenOphalen;// = null;
 
-                String sqlBordenOphalen = "SELECT Element.positieX, Element.positieY, Element.Spelbord_spelbordID, "
-                        + "Spelbord.spelbordID, Spelbord.spelbordNaam, Spelbord.Spel_spelID, Spel.spelID, Spel.spelNaam "
+                String sqlBordenOphalen = "SELECT Element.positieX, Element.positieY, Spelbord.spelbordNaam "
                         + "FROM " + element + " Element JOIN spelbord Spelbord ON Element.Spelbord_spelbordID = Spelbord.spelbordID "
                         + "JOIN spel Spel ON Spelbord.Spel_spelID = Spel.spelID "
                         + "WHERE Spel.spelNaam = '" + naam + "' AND Spelbord.spelbordID = " + spelbordID + ";";
+//                String sqlBordenOphalen = "SELECT Element.positieX, Element.positieY, Element.Spelbord_spelbordID, "
+//                        + "Spelbord.spelbordID, Spelbord.spelbordNaam, Spelbord.Spel_spelID, Spel.spelID, Spel.spelNaam "
+//                        + "FROM " + element + " Element JOIN spelbord Spelbord ON Element.Spelbord_spelbordID = Spelbord.spelbordID "
+//                        + "JOIN spel Spel ON Spelbord.Spel_spelID = Spel.spelID "
+//                        + "WHERE Spel.spelNaam = '" + naam + "' AND Spelbord.spelbordID = " + spelbordID + ";";
 
                 try
                 {
                     int x, y;
+                   
                     stmtBordenOphalen = connectie.getDatabaseConnectie().prepareStatement(sqlBordenOphalen);
                     ResultSet rs = stmtBordenOphalen.executeQuery();
 
@@ -61,6 +67,7 @@ public class SpelMapper
                     {
                         x = rs.getInt(1);
                         y = rs.getInt(2);
+                        spelbordNaam = rs.getString(3);
                         
                         switch (element)
                         {
@@ -93,7 +100,7 @@ public class SpelMapper
                     connectie.sluit();
                 }
             }
-            borden.add(new Spelbord(velden, mannetje));
+            borden.add(new Spelbord(spelbordNaam, velden, mannetje));
         }
 
         Spel spel = new Spel(naam, borden);

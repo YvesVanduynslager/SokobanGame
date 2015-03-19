@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Staat in voor het starten en beheren van een Spel.
+ *
  * @author Yves
  */
 public class Spel
@@ -12,11 +13,12 @@ public class Spel
     private List<Spelbord> spelborden;
     private String spelNaam;
     private Spelbord huidigSpelbord;
-    private int updateIndex = 0;
+    private int spelbordIndex = 0;
 
-/**
- * Default-constructor Spel() initialiseert een ArrayList van Spelbord-objecten.
- */
+    /**
+     * Default-constructor Spel() initialiseert een ArrayList van
+     * Spelbord-objecten.
+     */
     public Spel()
     {
         spelborden = new ArrayList<>();
@@ -24,6 +26,7 @@ public class Spel
 
     /**
      * Constructor stelt een Spel in met een spelNaam en een List van Spelbord.
+     *
      * @param spelNaam Naam van het spel.
      * @param spelborden List van Spelbord-objecten.
      */
@@ -34,23 +37,29 @@ public class Spel
     }
 
     /**
-     * Deze methode loopt door de aanwezige spelborden en stelt het huidige spelbord in als dit nog niet is voltooid.
+     * Deze methode loopt door de aanwezige spelborden en stelt het huidige
+     * spelbord in als dit nog niet is voltooid.
      */
-    public void start(int spelbordIndex)
+    public void start()
     {
-        this.setHuidigSpelbord(spelborden.get(spelbordIndex));
+        if (spelbordIndex < spelborden.size())
+        {
+            this.setHuidigSpelbord(spelborden.get(spelbordIndex));
+        }
+        spelbordIndex++;
 //        for (Spelbord spelbord : spelborden)
 //        {
 //            if (!spelbord.isVoltooid())
 //            {
 //                this.setHuidigSpelbord(spelbord);
-//                this.updateIndex = spelborden.indexOf(spelbord);
+//                
 //            }
 //        }
     }
 
     /**
      * Geeft de naam van het spel.
+     *
      * @return Geeft de naam van het spel terug als een String.
      */
     public String getSpelNaam()
@@ -60,6 +69,7 @@ public class Spel
 
     /**
      * Geeft het aantal voltooide spelborden.
+     *
      * @return Het aantal voltooide spelborden als int.
      */
     public int geefAantalVoltooideBorden()
@@ -77,6 +87,7 @@ public class Spel
 
     /**
      * Geeft het aantal spelborden.
+     *
      * @return Het aantal spelborden als int.
      */
     public int geefAantalSpelborden()
@@ -86,21 +97,21 @@ public class Spel
 
     /**
      * Stelt de spelborden in die zullen behoren tot het spel.
+     *
      * @param spelborden ArrayList van Spelbord-objecten.
      */
     public void setSpelborden(ArrayList<Spelbord> spelborden)
     {
         this.spelborden = spelborden;
     }
-    
-    public void updateSpelborden()
-    {
-        this.spelborden.set(updateIndex, huidigSpelbord);
-    }
 
+//    public void updateSpelborden()
+//    {
+//        this.spelborden.set(updateIndex, huidigSpelbord);
+//    }
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public List<Spelbord> getSpelborden()
     {
@@ -109,6 +120,7 @@ public class Spel
 
     /**
      * Geeft het huidig ingestelde spelbord terug
+     *
      * @return Huidig ingestelde Spelbord-object
      */
     public Spelbord getHuidigSpelbord()
@@ -118,15 +130,18 @@ public class Spel
 
     /**
      * Instellen van het huidige spelbord
-     * @param spelbord Spelbord-object dat in te stellen valt als huidig spelbord.
+     *
+     * @param spelbord Spelbord-object dat in te stellen valt als huidig
+     * spelbord.
      */
     private void setHuidigSpelbord(Spelbord spelbord)
     {
         this.huidigSpelbord = spelbord;
     }
-    
+
     /**
      * Geeft het huidigSpelbord object terug als String.
+     *
      * @return huidigSpelbord als String.
      */
     public String spelbordToString()

@@ -18,10 +18,10 @@ public class test
     {
         SpelMapper sp = new SpelMapper();
         Spel s = sp.geefSpel("makkelijk");
-        s.start(0);
+        s.start();
         System.out.println(s.getHuidigSpelbord().toString());
         System.out.println(s.geefAantalVoltooideBorden());
-        s.start(1);
+        s.start();
         System.out.println(s.getHuidigSpelbord().toString());
         System.out.println(s.geefAantalVoltooideBorden());
     }

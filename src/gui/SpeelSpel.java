@@ -52,7 +52,7 @@ public class SpeelSpel
             }
 
             controller.selecteerSpel(keuzeString); //selecteert spel en start het eerste spelbord
-            int spelbordTeller = 0;
+
             
             do
             {
@@ -70,11 +70,9 @@ public class SpeelSpel
                     beweeg(keuzeBeweging);
                 }
                 
-                if(controller.huidigSpelbordVoltooid())
-                    spelbordTeller++;
-                
                 /* Wordt uitgevoerd vanaf het spelbord alle kisten op de doelen heeft staan */
                 System.out.println(controller.spelbordToString());
+                
                 System.out.println(controller.getString("speelspel.gewonnen1") + controller.getAantalZetten() + " " + controller.getString("speelspel.gewonnen2"));
                 System.out.println("Aantal spelborden voltooid: " + controller.geefAantalVoltooideBorden() + " van " + controller.geefAantalSpelborden()
                         + " spelborden.");
@@ -82,9 +80,9 @@ public class SpeelSpel
                 System.out.println(controller.getString("keuze"));
                 verderSpelenKeuze = scanner.nextInt();
 
-                if (verderSpelenKeuze == 1 && spelbordTeller < controller.geefAantalSpelborden())
+                if (verderSpelenKeuze == 1)
                 {
-                    controller.startVolgendSpelbord(spelbordTeller);
+                    controller.startVolgendSpelbord();
                 }
             }
             while (verderSpelenKeuze != 2);

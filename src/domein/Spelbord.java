@@ -8,17 +8,23 @@ public class Spelbord
 {
     private final Element[][] velden;
     private final Mannetje mannetje;
-    private boolean isVoltooid = false;
+    private String naam;
 
     /**
      *
+     * @param naam
      * @param velden
      * @param mannetje
      */
-    public Spelbord(Element[][] velden, Mannetje mannetje)
+    public Spelbord(String naam, Element[][] velden, Mannetje mannetje)
     {
+        this.naam = naam;
         this.velden = velden;
         this.mannetje = mannetje;
+    }
+    public String getNaam()
+    {
+        return naam;
     }
 
     /**
@@ -120,18 +126,18 @@ public class Spelbord
 
     private int getAantalKisten()
     {
-        int aantal = 0;
+        int aantalKisten = 0;
         for (Element[] rij : velden)
         {
             for (Element element : rij)
             {
                 if(element instanceof Kist)
                 {
-                    aantal++;
+                    aantalKisten++;
                 }
             }
         }
-        return aantal;
+        return aantalKisten;
     }
 
     /**
@@ -140,26 +146,25 @@ public class Spelbord
      */
     public boolean isVoltooid()
     {
-        int aantal = 0;
+        int aantalKistenOpDoel = 0;
         for (Element[] rij : velden)
         {
             for (Element element : rij)
             {
                 if (element instanceof Kist && element.isDoel())
                 {
-                    aantal++;
+                    aantalKistenOpDoel++;
                 }
             }
         }
-        if (this.getAantalKisten() == aantal)
+        if (this.getAantalKisten() == aantalKistenOpDoel)
         {
-            isVoltooid = true;
+            return true;
         }
-//        else
-//        {
-//            return false;
-//        }
-        return isVoltooid;
+        else
+        {
+            return false;
+        }
     }
 
     /**
@@ -169,7 +174,7 @@ public class Spelbord
     @Override
     public String toString()
     {
-        String output = "";
+        String output = naam + "\n";
 
         for (Element[] rij : this.velden)
         {

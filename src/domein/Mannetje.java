@@ -1,23 +1,32 @@
 package domein;
 
+/**
+ * Behandelt Mannetje-element. Subklasse van Element.
+ *
+ * @author Yves
+ *
+ */
 public class Mannetje extends Element
 {
     /**
+     * Constructor stelt x positie, y positie in van het element, en stelt in of
+     * het element als een doel behandelt moet worden.
      *
-     * @param xPositie
-     * @param yPositie
+     * @param xPositie x-coördinaat, int.
+     * @param yPositie y-coördinaat, int
+     * @param isDoel true als doel, false als geen doel.
      */
-    public Mannetje(int xPositie, int yPositie)
-    {
-        super(xPositie, yPositie);
-    }
-
     public Mannetje(int xPositie, int yPositie, boolean isDoel)
     {
         super(xPositie, yPositie, isDoel);
 
     }
 
+    /**
+     * Geeft de representatie terug van een Mannetje.
+     *
+     * @return representatie van een Mannetje.
+     */
     @Override
     public String toString()
     {

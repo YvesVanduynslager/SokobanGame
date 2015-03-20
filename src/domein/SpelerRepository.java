@@ -1,8 +1,8 @@
 package domein;
 
+/* IMPORTS */
 import exceptions.GebruikerBestaatException;
 import persistentie.SpelerMapper;
-
 
 /**
  * Staat in voor het beheren, toevoegen en verwijderen van spelers. (CRUD)
@@ -11,6 +11,7 @@ import persistentie.SpelerMapper;
  */
 public class SpelerRepository
 {
+    /* DECLARATIES CONSTANTEN */
     private final SpelerMapper spelerMapper;
 
     public SpelerRepository()
@@ -27,20 +28,21 @@ public class SpelerRepository
      */
     public Speler geefSpeler(String gebruikersnaam, String wachtwoord)
     {
-            return spelerMapper.zoek(gebruikersnaam, wachtwoord);
+        return spelerMapper.zoek(gebruikersnaam, wachtwoord);
     }
 
     /**
      *
      * @param speler Het spelerobject die toegevoegd moet worden aan de
      * database.
-     * @throws exceptions.GebruikerBestaatException throws naar DomeinController.
+     * @throws exceptions.GebruikerBestaatException throws naar
+     * DomeinController.
      */
     public void voegToe(Speler speler) throws GebruikerBestaatException //throw naar DomeinController
     {
 //        try
 //        {
-            spelerMapper.voegToe(speler);
+        spelerMapper.voegToe(speler);
 //        }
 //        catch (GebruikerBestaatException gbe)
 //        {

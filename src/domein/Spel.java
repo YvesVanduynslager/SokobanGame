@@ -1,5 +1,6 @@
 package domein;
 
+/* IMPORTS */
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  */
 public class Spel
 {
+    /* DECLARATIES VARIABELEN */
     private List<Spelbord> spelborden;
     private String spelNaam;
     private Spelbord huidigSpelbord;
@@ -17,7 +19,7 @@ public class Spel
     private int aantalSpelbordenVoltooid = 0;
 
     /**
-     * Default-constructor Spel() initialiseert een ArrayList van
+     * Default-constructor initialiseert een ArrayList van
      * Spelbord-objecten.
      */
     public Spel()
@@ -43,14 +45,12 @@ public class Spel
      */
     public void start()
     {
-        //spelborden.set(spelbordIndex, huidigSpelbord);
-        
         if (spelbordIndex < spelborden.size())
         {
             this.setHuidigSpelbord(spelborden.get(spelbordIndex));
         }
         spelbordIndex++;
-               
+
 //        for (Spelbord spelbord : spelborden)
 //        {
 //            if (!spelbord.isVoltooid())
@@ -86,11 +86,12 @@ public class Spel
      */
     public void verhoogAantalVoltooideBorden()
     {
-        if(huidigSpelbord != null && huidigSpelbord.isVoltooid() && aantalSpelbordenVoltooid < this.geefAantalSpelborden())
+        if (huidigSpelbord != null && huidigSpelbord.isVoltooid() && aantalSpelbordenVoltooid < this.geefAantalSpelborden())
         {
             aantalSpelbordenVoltooid++;
         }
     }
+
     /**
      * Geeft het aantal spelborden.
      *
@@ -110,15 +111,15 @@ public class Spel
     {
         this.spelborden = spelborden;
     }
-    
-    /**
-     *
-     * @return
-     */
-    public List<Spelbord> getSpelborden()
-    {
-        return this.spelborden;
-    }
+
+//    /**
+//     *
+//     * @return
+//     */
+//    public List<Spelbord> getSpelborden()
+//    {
+//        return this.spelborden;
+//    }
 
     /**
      * Geeft het huidig ingestelde spelbord terug

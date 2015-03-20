@@ -1,18 +1,23 @@
 package domein;
 
 /**
+ * Beheert de Spelbord-objecten. Verplaatsen van mannetje, teruggeven van
+ * spelbord, bijhouden aantal zetten.
  *
  * @author Yves
  */
 public class Spelbord
 {
+    /* DECLARATIES VARIABELEN */
+    private int aantalZetten;
+    private boolean voltooid;
+    /* DECLARATIES CONSTANTEN */
     private final Element[][] velden;
     private final Mannetje mannetje;
     private final String naam;
-    private int aantalZetten;
-    private boolean voltooid;
 
     /**
+     * Initialiseert de naam, velden, het mannetje en het aantal zetten.
      *
      * @param naam Naam van het spelbord.
      * @param velden De 2D-Element Array van het spelbord.
@@ -23,12 +28,13 @@ public class Spelbord
         this.naam = naam;
         this.velden = velden;
         this.mannetje = mannetje;
-        aantalZetten=0;
+        this.aantalZetten = 0;
     }
-    
+
     /**
-     * 
-     * @return 
+     * Geeft de naam van het spel terug.
+     *
+     * @return Naam van het spel als String.
      */
     public String getNaam()
     {
@@ -36,8 +42,10 @@ public class Spelbord
     }
 
     /**
+     * Staat in voor het bewegen van het mannetje en kisten over het spelbord.
      *
-     * @param richting Gewenste richting waar bewogen moet naar worden. 0 voor omhoog, 1 voor omlaag, 2 voor links en 3 voor rechts.
+     * @param richting Gewenste richting waar bewogen moet naar worden. 0 voor
+     * omhoog, 1 voor omlaag, 2 voor links en 3 voor rechts.
      */
     public void verplaatsMannetje(int richting)
     {
@@ -134,8 +142,9 @@ public class Spelbord
     }
 
     /**
-     * 
-     * @return 
+     * Geeft het totaal aantal aanwezige kisten in het spelbord terug.
+     *
+     * @return Aantal kisten als int.
      */
     private int getAantalKisten()
     {
@@ -144,7 +153,7 @@ public class Spelbord
         {
             for (Element element : rij)
             {
-                if(element instanceof Kist)
+                if (element instanceof Kist)
                 {
                     aantalKisten++;
                 }
@@ -154,8 +163,9 @@ public class Spelbord
     }
 
     /**
+     * Controleert of het spelbord is voltooid mbv getAantalKisten().
      *
-     * @return
+     * @return True voor voltooid, false voor niet voltooid.
      */
     public boolean isVoltooid()
     {
@@ -182,8 +192,9 @@ public class Spelbord
     }
 
     /**
+     * Bouwt het spelbord op als String.
      *
-     * @return
+     * @return spelbord als String.
      */
     @Override
     public String toString()
@@ -204,17 +215,19 @@ public class Spelbord
     }
 
     /**
+     * Geeft een array van alle elementen op het spelbord terug.
      *
-     * @return
+     * @return array van elementen op spelbord.
      */
     public Element[][] geefVelden()
     {
         return this.velden;
     }
-    
+
     /**
-     * 
-     * @return 
+     * Geeft het aantal gemaakte zetten terug.
+     *
+     * @return Aantal gemaakte zetten.
      */
     public int geefAantalZetten()
     {

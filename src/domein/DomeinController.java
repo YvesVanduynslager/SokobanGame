@@ -1,5 +1,6 @@
 package domein;
 
+/* IMPORTS */
 import exceptions.GebruikerBestaatException;
 import java.util.List;
 
@@ -10,14 +11,15 @@ import java.util.List;
  */
 public class DomeinController
 {
+    /* DECLARATIES CONSTANTEN */
     private final SpelerRepository spelerRepository;
-    private final Taal resourceBundle;
-    private Speler huidigeSpeler;
-    private String[] spelerString;
-
     private final SpelRepository spelRepository;
+    private final Taal resourceBundle;
+
+    /* DECLARATIES VARIABELEN */
+    private Speler huidigeSpeler;
     private Spel huidigSpel;
-    //private Spelbord huidigSpelbord;
+    private String[] spelerString;
 
     /**
      * Default-constructor maakt een SpelerRepository (spelers opslaan en
@@ -26,17 +28,16 @@ public class DomeinController
      */
     public DomeinController()
     {
-        /* Aanmaken van een SpelerRepository en SpelRepository.*/
+        /* Initialiseren van een SpelerRepository en SpelRepository voor ophalen en opslaan van Speler -en Spelgegevens. */
         spelerRepository = new SpelerRepository();
         spelRepository = new SpelRepository();
 
-        /* Taalobject initialiseren om later een taal te kunnen instellen*/
+        /* Initialiseren van een Taalobject om een taal te kunnen instellen*/
         resourceBundle = new Taal();
     }
 
     /**
-     * UC1 Meld aan
-     * Methode die zorgt voor het aanmelden van een gebruiker
+     * UC1 Meld aan. Methode die zorgt voor het aanmelden van een gebruiker
      *
      * @param gebruikersnaam Instellen ven gebruikersnaam
      * @param wachtwoord Instellen van wachtwoord
@@ -48,9 +49,10 @@ public class DomeinController
     }
 
     /**
-     * UC1 Meld aan, UC2 Registreer
-     * @return geeft de gebruikersnaam en adminrechten weer van de speler via
-     * een String[]
+     * UC1 Meld aan, UC2 Registreer. Bevat de gebruikersnaam en adminrechten van
+     * de aangemelde speler.
+     *
+     * @return String[] met gebruikersnaam en adminrechten.
      */
     public String[] geefSpeler()
     {
@@ -61,28 +63,26 @@ public class DomeinController
     }
 
     /**
-     * UC1 Meld aan, UC2 Registreer
-     * Bijhouden welke speler is aangemeld.
+     * UC1 Meld aan, UC2 Registreer. Instellen van de aangemelde speler.
      *
-     * @param speler Speler-object die tussentijds bewaard moet worden.
+     * @param speler Speler-object met gegevens van aangemelde speler.
      */
-    private void setHuidigeSpeler(Speler speler) //UC1 Meld aan, UC2 Registreer
+    private void setHuidigeSpeler(Speler speler)
     {
         this.huidigeSpeler = speler;
     }
 
     /**
-     * UC2 Registreer
-     * Maakt een Speler-object aan met ingegeven parameters, en geeft dit object
-     * door aan spelerRepository-object, stelt de huidige speler in met het
-     * gemaakte Speler-object.
+     * UC2 Registreer. Maakt een Speler-object aan met ingegeven parameters, en
+     * geeft dit object door aan spelerRepository-object. Stelt de huidige
+     * speler in met het gemaakte Speler-object.
      *
      * @param gebruikersnaam gebruikersnaam van de speler
      * @param wachtwoord wachtwoord van de speler
      * @param voornaam voornaam van de speler
      * @param achternaam achternaam van de speler
-     * @throws exceptions.GebruikerBestaatException throws naar en handelt af in
-     * Registreer.
+     * @throws exceptions.GebruikerBestaatException Als de gebruiker al
+     * geregistreerd is in het systeem. Throws naar en handelt af in Registreer.
      */
     public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam) throws IllegalArgumentException, GebruikerBestaatException
     {
@@ -92,10 +92,10 @@ public class DomeinController
     }
 
     /**
-     * Alle UC's
-     * Geeft de taalkeuze van de gebruiker door aan het Taal-object.
+     * Alle UC's. Selecteren van de gewenste taal. Geeft de taalkeuze van de
+     * gebruiker door aan het Taal-object.
      *
-     * @param locale code van de taalkeuze
+     * @param locale Code van de taalkeuze als int.
      */
     public void setTaalKeuze(int locale)
     {
@@ -103,10 +103,11 @@ public class DomeinController
     }
 
     /**
-     * Alle UC's
+     * Alle UC's. Ophalen van een String uit ingestelde resource bundle.
+     *
      * @param key de key die in de ResourceBundles overeenkomt met de op te
-     * halen tekst
-     * @return De opgehaalde tekst adhv key.
+     * halen tekst.
+     * @return De opgehaalde tekst adhv key, als String.
      */
     public String getString(String key)
     {
@@ -114,58 +115,55 @@ public class DomeinController
     }
 
     /**
-     * UC3: Speel spel
-     * Methode om een opgeslaan spel te selecteren en te starten.
-     * @param spelNaam Naam van het spel dat de gebruiker wenst te spelen.
+     * UC3: Speel spel. Selecteert het gewenste spel. Haalt het gewenste spel op
+     * en stelt dit spel in als huidige spel.
+     *
+     * @param spelNaam De naam van het spel dat de gebruiker wenst te spelen,
+     * als String.
      */
     public void selecteerSpel(String spelNaam)
     {
         this.setHuidigSpel(spelRepository.geefSpel(spelNaam));
-        //huidigSpel.start();
     }
-    
+
+    /**
+     * UC4: Voltooi spelbord. Stelt het volgende spelbord in.
+     */
     public void startVolgendSpelbord()
     {
         huidigSpel.start();
-        //this.setHuidigSpelbord(huidigSpel.getHuidigSpelbord());
-        //huidigSpelbord = huidigSpel.getHuidigSpelbord();
     }
 
-
     /**
-     * UC3: Speel spel, UC4: Voltooi spelbord
-     * Geeft een boolean terug die laat weten of het spelbord voltooid is of niet.
+     * UC3: Speel spel, UC4: Voltooi spelbord. Geeft een boolean terug die laat
+     * weten of het spelbord voltooid is of niet.
+     *
      * @return True voor voltooid, false voor onvoltooid.
      */
     public boolean huidigSpelbordVoltooid()
     {
         return huidigSpel.getHuidigSpelbord().isVoltooid();
-//        return huidigSpel.getHuidigSpelbord().isVoltooid();
     }
 
     /**
-     * UC3: Speel spel, UC4: Voltooi spelbord
-     * Stelt het huidige spel in.
-     * @param spel Object van Spel dat ingesteld moet worden als huidig Spel.
+     * UC3: Speel spel, UC4: Voltooi spelbord. Stelt het huidige spel in.
+     *
+     * @param spel Object van Spel dat ingesteld moet worden als huidig spel.
      */
     private void setHuidigSpel(Spel spel)
     {
         this.huidigSpel = spel;
     }
-    
-//    private void setHuidigSpelbord(Spelbord spelbord)
-//    {
-//        this.huidigSpel.getHuidigSpelbord() = spelbord;
-//    }
 
     /**
-     * UC3: Speel spel, UC4: Voltooi spelbord
-     * Deze methode geeft het huidige spelbord weer in String[][]-formaat.
+     * UC3: Speel spel, UC4: Voltooi spelbord. Deze methode geeft het huidige
+     * spelbord terug in String[][]-formaat. Dient als basis voor de opbouw van
+     * het spelbord in de GUI.
+     *
      * @return Het huidige spelbord als String[][]
      */
     public String[][] geefHuidigSpelbord()
     {
-        //huidigSpelbord = huidigSpel.getHuidigSpelbord();
         Element[][] velden = huidigSpel.getHuidigSpelbord().geefVelden();
 
         String[][] veldenString = new String[10][10];
@@ -181,8 +179,8 @@ public class DomeinController
     }
 
     /**
-     * UC3: Speel spel
-     * Geeft het totaal aantal beschikbare spelborden weer.
+     * UC3: Speel spel. Geeft het totaal aantal spelborden terug.
+     *
      * @return Aantal beschikbare spelborden.
      */
     public int geefAantalSpelborden()
@@ -191,17 +189,17 @@ public class DomeinController
     }
 
     /**
-     * UC3: Speel spel
-     * Geeft het aantal voltooide spelborden weer.
+     * UC3: Speel spel. Geeft het aantal voltooide spelborden weer.
+     *
      * @return Aantal voltooide spelborden.
      */
     public int geefAantalVoltooideBorden()
     {
         return huidigSpel.geefAantalVoltooideBorden();
     }
-    
+
     /**
-     * Verhoogd het aantal voltooide spelborden.
+     * UC4: Voltooi spelbord. Verhoogt het aantal voltooide spelborden.
      */
     public void verhoogAantalVoltooideBorden()
     {
@@ -209,8 +207,9 @@ public class DomeinController
     }
 
     /**
-     * UC3: Speel spel
-     * @return Lijst met beschikbare spellen
+     * UC3: Speel spel. Geeft een lijst terug met beschikbare spellen.
+     *
+     * @return List met beschikbare spellen, String.
      */
     public List<String> geefSpelNamen()
     {
@@ -218,10 +217,11 @@ public class DomeinController
     }
 
     /**
-     * UC4: Voltooi spelbord
-     * Staat in voor het kiezen van een richting waar het mannetje naar toe moet
-     * bewegen op het huidige spelbord.
-     * @param richting Gewenste richting waar bewogen moet naar worden. 0 voor omhoog, 1 voor omlaag, 2 voor links en 3 voor rechts.
+     * UC4: Voltooi spelbord. Staat in voor het kiezen van een richting waar het
+     * mannetje naar toe moet bewegen op het huidige spelbord.
+     *
+     * @param richting Gewenste richting waar bewogen moet naar worden. 0 voor
+     * omhoog, 1 voor omlaag, 2 voor links en 3 voor rechts.
      */
     public void beweeg(int richting)
     {
@@ -229,19 +229,21 @@ public class DomeinController
     }
 
     /**
-     * UC3: Speel spel, UC4: Voltooi spelbord
-     * Geeft het huidige spelbord terug als een String;
-     * @return huidige spelbord als String;
+     * UC3: Speel spel, UC4: Voltooi spelbord. Geeft het huidige spelbord terug
+     * als String.
+     *
+     * @return Huidige spelbord als String;
      */
     public String spelbordToString()
     {
         return huidigSpel.getHuidigSpelbord().toString();
-        //return huidigSpel.spelbordToString();
     }
-    
+
     /**
-     * UC4: Voltooi spelbord
-     * @return het aantal gedane zetten als int.
+     * UC4: Voltooi spelbord. Geeft het aantal gemaakte zetten op het spelbord
+     * terug.
+     *
+     * @return Het aantal gemaakte zetten als int.
      */
     public int getAantalZetten()
     {

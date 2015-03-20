@@ -1,22 +1,28 @@
 package domein;
 
+/**
+ * Behandelt Kistelement. Subklasse van Element.
+ *
+ * @author Yves
+ *
+ */
 public class Kist extends Element
 {
-    public Kist(int xPositie, int yPositie, boolean doel)
-    {
-        super(xPositie, yPositie, doel);
-    }
-    
     /**
-	 * 
-	 * @param yPositie
-	 * @param xPositie
-	 */
-	public Kist(int yPositie, int xPositie)
+     * Constructor stelt x positie, y positie in van het element, en stelt in of het element als een doel behandelt moet worden.
+     * @param xPositie x-coördinaat, int.
+     * @param yPositie y-coördinaat, int
+     * @param isDoel true als doel, false als geen doel.
+     */
+    public Kist(int xPositie, int yPositie, boolean isDoel)
     {
-        super(xPositie, yPositie, false);
+        super(xPositie, yPositie, isDoel);
     }
 
+    /**
+     * Geeft de representatie terug van een Kist.
+     * @return representatie van een Kist.
+     */
     @Override
     public String toString()
     {

@@ -43,7 +43,7 @@ public class ConsoleApplicatie
 
             if (keuze == 1)
             {
-                //START USE CASE 2: Registreer
+                //START UC 2: Registreer
                 Registreer registreren = new Registreer(controller);
                 registreren.startRegistreerUI();
 
@@ -56,7 +56,7 @@ public class ConsoleApplicatie
             {
                 if (keuze == 2)
                 {
-                    //START USE CASE 1: Meld aan
+                    //START UC 1: Meld aan
                     MeldAan aanmelden = new MeldAan(controller);
                     aanmelden.startMeldAanUI();
 
@@ -84,14 +84,18 @@ public class ConsoleApplicatie
         if (heeftAdminrechten) //Menu voor gebruiker MET ADMINRECHTEN
         {
             System.out.println();
-            System.out.printf("%s%n%s%n%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"), controller.getString("spelmenu.optie2"), controller.getString("spelmenu.optie3"));
+            System.out.printf("%s%n%s%n%s%n%s%n%s%n", controller.getString("spelmenu.main"),
+                    controller.getString("spelmenu.optie1"),
+                    controller.getString("spelmenu.optie2"),
+                    controller.getString("spelmenu.optie3"),
+                    controller.getString("spelmenu.optie4"));
             System.out.print(controller.getString("keuze"));
             keuze = scanner.nextInt();
             System.out.println();
 
             switch (keuze)
             {
-                case 1: //Start UC Speel Spel
+                case 1: //START UC3: Speel Spel
                     SpeelSpel speelSpel = new SpeelSpel(controller);
                     speelSpel.startSpelSpelUI();
                     break;
@@ -106,7 +110,7 @@ public class ConsoleApplicatie
         else //Menu voor gebruiker ZONDER ADMINRECHTEN
         {
             System.out.println();
-            System.out.printf("%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"));
+            System.out.printf("%s%n%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"), controller.getString("spelmenu.optie4"));
             System.out.print(controller.getString("keuze"));
             keuze = scanner.nextInt();
             System.out.println();

@@ -33,7 +33,7 @@ public class SpelMapper
         String spelbordNaam = "";
         final String[] ELEMENTEN =
         {
-            "muur", "veld", "doel", "mannetje", "kist"
+            /*"muur", */"veld", "doel", "mannetje", "kist"
         };
         final int AANTAL_BORDEN = this.geefAantalSpelborden(naam);
 
@@ -72,9 +72,9 @@ public class SpelMapper
                         
                         switch (element)
                         {
-                            case "muur":
+                            /*case "muur":
                                 velden[x][y] = new Muur(x, y);
-                                break;
+                                break;*/
                             case "veld":
                                 velden[x][y] = new Veld(x, y, false);
                                 break;
@@ -99,6 +99,18 @@ public class SpelMapper
                 finally
                 {
                     connectie.sluit();
+                }
+            }
+            //for-loop om te controleren op null-waarden in de velden array en die dan te vullen met een muur.
+            //Ik doe dit bewust met een gewone for-loop zodat ik de teller kan gebruiken in de declaratie van de Muur.
+            for(int x=0; x<10; x++)
+            {
+                for(int y=0; y<10; y++)
+                {
+                    if(velden[x][y] == null)
+                    {
+                        velden[x][y] = new Muur(x, y);
+                    }
                 }
             }
             borden.add(new Spelbord(spelbordNaam, velden, mannetje));

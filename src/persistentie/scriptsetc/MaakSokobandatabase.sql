@@ -105,20 +105,20 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `sokobandatabase`.`muur`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `sokobandatabase`.`muur` (
-  `muurID` INT(3) NOT NULL AUTO_INCREMENT,
-  `PositieX` INT(1) NOT NULL,
-  `PositieY` INT(1) NOT NULL,
-  `Spelbord_spelbordID` INT(3) NOT NULL,
-  INDEX `fk_Muur_Spelbord1_idx` (`Spelbord_spelbordID` ASC),
-  PRIMARY KEY (`muurID`),
-  CONSTRAINT `fk_Muur_Spelbord1`
-    FOREIGN KEY (`Spelbord_spelbordID`)
-    REFERENCES `sokobandatabase`.`spelbord` (`spelbordID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
+-- CREATE TABLE IF NOT EXISTS `sokobandatabase`.`muur` (
+--   `muurID` INT(3) NOT NULL AUTO_INCREMENT,
+--   `PositieX` INT(1) NOT NULL,
+--   `PositieY` INT(1) NOT NULL,
+--   `Spelbord_spelbordID` INT(3) NOT NULL,
+--   INDEX `fk_Muur_Spelbord1_idx` (`Spelbord_spelbordID` ASC),
+--   PRIMARY KEY (`muurID`),
+--   CONSTRAINT `fk_Muur_Spelbord1`
+--     FOREIGN KEY (`Spelbord_spelbordID`)
+--     REFERENCES `sokobandatabase`.`spelbord` (`spelbordID`)
+--     ON DELETE NO ACTION
+--     ON UPDATE NO ACTION)
+-- ENGINE = InnoDB
+-- DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------

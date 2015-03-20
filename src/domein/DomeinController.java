@@ -17,7 +17,7 @@ public class DomeinController
 
     private final SpelRepository spelRepository;
     private Spel huidigSpel;
-    private Spelbord huidigSpelbord;
+    //private Spelbord huidigSpelbord;
 
     /**
      * Default-constructor maakt een SpelerRepository (spelers opslaan en
@@ -127,7 +127,7 @@ public class DomeinController
     public void startVolgendSpelbord()
     {
         huidigSpel.start();
-        this.setHuidigSpelbord(huidigSpel.getHuidigSpelbord());
+        //this.setHuidigSpelbord(huidigSpel.getHuidigSpelbord());
         //huidigSpelbord = huidigSpel.getHuidigSpelbord();
     }
 
@@ -139,7 +139,7 @@ public class DomeinController
      */
     public boolean huidigSpelbordVoltooid()
     {
-        return huidigSpelbord.isVoltooid();
+        return huidigSpel.getHuidigSpelbord().isVoltooid();
 //        return huidigSpel.getHuidigSpelbord().isVoltooid();
     }
 
@@ -153,10 +153,10 @@ public class DomeinController
         this.huidigSpel = spel;
     }
     
-    private void setHuidigSpelbord(Spelbord spelbord)
-    {
-        this.huidigSpelbord = spelbord;
-    }
+//    private void setHuidigSpelbord(Spelbord spelbord)
+//    {
+//        this.huidigSpel.getHuidigSpelbord() = spelbord;
+//    }
 
     /**
      * UC3: Speel spel, UC4: Voltooi spelbord
@@ -166,7 +166,7 @@ public class DomeinController
     public String[][] geefHuidigSpelbord()
     {
         //huidigSpelbord = huidigSpel.getHuidigSpelbord();
-        Element[][] velden = huidigSpelbord.geefVelden();
+        Element[][] velden = huidigSpel.getHuidigSpelbord().geefVelden();
 
         String[][] veldenString = new String[10][10];
 
@@ -225,7 +225,7 @@ public class DomeinController
      */
     public void beweeg(int richting)
     {
-        huidigSpelbord.verplaatsMannetje(richting);
+        huidigSpel.getHuidigSpelbord().verplaatsMannetje(richting);
     }
 
     /**
@@ -235,7 +235,7 @@ public class DomeinController
      */
     public String spelbordToString()
     {
-        return huidigSpelbord.toString();
+        return huidigSpel.getHuidigSpelbord().toString();
         //return huidigSpel.spelbordToString();
     }
     
@@ -245,6 +245,6 @@ public class DomeinController
      */
     public int getAantalZetten()
     {
-        return huidigSpelbord.geefAantalZetten();
+        return huidigSpel.getHuidigSpelbord().geefAantalZetten();
     }
 }

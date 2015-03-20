@@ -18,8 +18,6 @@ public class DomeinController
     private final SpelRepository spelRepository;
     private Spel huidigSpel;
     private Spelbord huidigSpelbord;
-    
-    private int aantalZetten;
 
     /**
      * Default-constructor maakt een SpelerRepository (spelers opslaan en
@@ -153,7 +151,6 @@ public class DomeinController
     private void setHuidigSpel(Spel spel)
     {
         this.huidigSpel = spel;
-        this.aantalZetten = 0;
     }
     
     private void setHuidigSpelbord(Spelbord spelbord)
@@ -216,13 +213,11 @@ public class DomeinController
      * UC4: Voltooi spelbord
      * Staat in voor het kiezen van een richting waar het mannetje naar toe moet
      * bewegen op het huidige spelbord.
-     * @param richting Gewenste richting waar bewogen moet naar worden.
+     * @param richting Gewenste richting waar bewogen moet naar worden. 0 voor omhoog, 1 voor omlaag, 2 voor links en 3 voor rechts.
      */
     public void beweeg(int richting)
     {
         huidigSpelbord.verplaatsMannetje(richting);
-        //huidigSpel.getHuidigSpelbord().verplaatsMannetje(richting);
-        ++aantalZetten; // naar spelbord verplaatsMannetje verplaatsen?
     }
 
     /**
@@ -242,6 +237,6 @@ public class DomeinController
      */
     public int getAantalZetten()
     {
-        return aantalZetten;
+        return huidigSpelbord.geefAantalZetten();
     }
 }

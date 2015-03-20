@@ -9,19 +9,26 @@ public class Spelbord
     private final Element[][] velden;
     private final Mannetje mannetje;
     private final String naam;
+    private int aantalZetten;
 
     /**
      *
-     * @param naam
-     * @param velden
-     * @param mannetje
+     * @param naam Naam van het spelbord.
+     * @param velden De 2D-Element Array van het spelbord.
+     * @param mannetje Het mannetje van dit spelbord.
      */
     public Spelbord(String naam, Element[][] velden, Mannetje mannetje)
     {
         this.naam = naam;
         this.velden = velden;
         this.mannetje = mannetje;
+        aantalZetten=0;
     }
+    
+    /**
+     * 
+     * @return 
+     */
     public String getNaam()
     {
         return naam;
@@ -29,7 +36,7 @@ public class Spelbord
 
     /**
      *
-     * @param richting Gewenste richting waar bewogen moet naar worden. 0 voor omhoog, 1 voor omlaag, 2 voor links en 3 voor rechts
+     * @param richting Gewenste richting waar bewogen moet naar worden. 0 voor omhoog, 1 voor omlaag, 2 voor links en 3 voor rechts.
      */
     public void verplaatsMannetje(int richting)
     {
@@ -122,8 +129,13 @@ public class Spelbord
                 }
             }
         }
+        ++aantalZetten; //verhoog het aantal zetten met 1
     }
 
+    /**
+     * 
+     * @return 
+     */
     private int getAantalKisten()
     {
         int aantalKisten = 0;
@@ -196,5 +208,14 @@ public class Spelbord
     public Element[][] geefVelden()
     {
         return this.velden;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public int geefAantalZetten()
+    {
+        return this.aantalZetten;
     }
 }

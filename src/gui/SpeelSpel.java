@@ -72,6 +72,7 @@ public class SpeelSpel
                 }
 
                 /* Wordt uitgevoerd vanaf het spelbord alle kisten op de doelen heeft staan */
+                controller.verhoogAantalVoltooideBorden();
                 System.out.println(controller.spelbordToString());
 
                 System.out.println(controller.getString("speelspel.gewonnen1") + controller.getAantalZetten() + " " + controller.getString("speelspel.gewonnen2"));
@@ -81,7 +82,7 @@ public class SpeelSpel
 
                 System.out.println();
 
-                if (controller.geefAantalSpelborden() == controller.geefAantalVoltooideBorden())
+                if (controller.geefAantalVoltooideBorden() == controller.geefAantalSpelborden())
                 {
                     nogSpelborden = false;
                     System.out.println(controller.getString("speelspel.geenspelborden"));

@@ -78,13 +78,19 @@ public class Spel
      */
     public int geefAantalVoltooideBorden()
     {
+        return aantalSpelbordenVoltooid;
+    }
+
+    /**
+     * Verhoogd het aantal voltooide spelborden.
+     */
+    public void verhoogAantalVoltooideBorden()
+    {
         if(huidigSpelbord != null && huidigSpelbord.isVoltooid() && aantalSpelbordenVoltooid < this.geefAantalSpelborden())
         {
             aantalSpelbordenVoltooid++;
         }
-        return aantalSpelbordenVoltooid;
     }
-
     /**
      * Geeft het aantal spelborden.
      *

@@ -10,6 +10,7 @@ public class Spelbord
     private final Mannetje mannetje;
     private final String naam;
     private int aantalZetten;
+    private boolean voltooid;
 
     /**
      *
@@ -169,14 +170,15 @@ public class Spelbord
                 }
             }
         }
-        if (this.getAantalKisten() == aantalKistenOpDoel)
+        if (getAantalKisten() == aantalKistenOpDoel)
         {
-            return true;
+            this.voltooid = true;
         }
         else
         {
-            return false;
+            this.voltooid = false;
         }
+        return voltooid;
     }
 
     /**

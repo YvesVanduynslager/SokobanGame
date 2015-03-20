@@ -199,6 +199,14 @@ public class DomeinController
     {
         return huidigSpel.geefAantalVoltooideBorden();
     }
+    
+    /**
+     * Verhoogd het aantal voltooide spelborden.
+     */
+    public void verhoogAantalVoltooideBorden()
+    {
+        huidigSpel.verhoogAantalVoltooideBorden();
+    }
 
     /**
      * UC3: Speel spel

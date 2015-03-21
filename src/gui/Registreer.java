@@ -1,5 +1,6 @@
 package gui;
 
+/* IMPORTS */
 import domein.DomeinController;
 import exceptions.GebruikerBestaatException;
 import java.util.Scanner;
@@ -12,7 +13,9 @@ import java.util.Scanner;
  */
 public class Registreer
 {
+    /* DECLARATIES CONSTANTEN */
     private final DomeinController controller;
+    /* DECLARATIES VARIABELEN */
     private boolean geldig = false;
 
     public Registreer(DomeinController controller)
@@ -21,8 +24,8 @@ public class Registreer
     }
 
     /**
-     * Tekent ui en vraagt gegevens van gebruiker om deze te registreren in het
-     * systeem.
+     * Tekent de registratie-ui en vraagt gegevens van gebruiker om deze te
+     * registreren in het systeem.
      */
     public void startRegistreerUI()
     {
@@ -81,18 +84,24 @@ public class Registreer
         while (!geldig);
 
         String[] spelerGegevens = controller.geefSpeler();
-        
+
         System.out.println();
         System.out.println(controller.getString("registreer.succes"));
         System.out.printf("%s%14s%n", controller.getString("output.gebruikersnaam"), controller.getString("output.rechten")); //wachtwoord wordt hier niet meer weergegeven.
-        
+
         for (String spelerGegeven : spelerGegevens)
         {
             System.out.printf("%14s", spelerGegeven);
         }
         System.out.println();
     }
-    
+
+    /**
+     * Geeft een boolean terug om later te controleren of het registreren een
+     * succes is of niet.
+     *
+     * @return True voor registreren succes, false voor registreren geen succes.
+     */
     public boolean isSucces()
     {
         return geldig;

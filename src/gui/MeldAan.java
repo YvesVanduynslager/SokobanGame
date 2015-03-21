@@ -1,5 +1,6 @@
 package gui; 
 
+/* IMPORTS */
 import java.util.Scanner;
 import domein.DomeinController;
 
@@ -11,14 +12,23 @@ import domein.DomeinController;
  */
 public class MeldAan
 {
+    /* DECLARATIES CONSTANTEN */
     private final DomeinController controller;
+    /* DECLARATIES VARIABELEN */
     private boolean geldig = false;
 
+    /**
+     * Constructor initialiseert een DomeinController object.
+     * @param controller DomeinController object dat moet ingesteld worden.
+     */
     public MeldAan(DomeinController controller)
     {
         this.controller = controller;
     }
 
+    /**
+     * Start de ui voor het aanmelden.
+     */
     public void startMeldAanUI()
     {
         Scanner scanner = new Scanner(System.in);
@@ -72,6 +82,10 @@ public class MeldAan
         System.out.println();
     }
     
+    /**
+     * Geeft een boolean terug om later te controleren of het aanmelden een succes is of niet.
+     * @return True voor aanmelden succes, false voor aanmelden geen succes.
+     */
     public boolean isSucces()
     {
         return geldig;

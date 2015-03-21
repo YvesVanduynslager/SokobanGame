@@ -1,5 +1,6 @@
 package gui;
 
+/* IMPORTS */
 import domein.DomeinController;
 import java.util.Scanner;
 
@@ -10,13 +11,21 @@ import java.util.Scanner;
  */
 public class ConsoleApplicatie
 {
+    /* DECLARATIES CONSTANTEN */
     private final DomeinController controller;
 
+    /**
+     * Constructor initialiseert een DomeinController object.
+     * @param controller DomeinController object dat ingesteld moet worden.
+     */
     public ConsoleApplicatie(DomeinController controller)
     {
         this.controller = controller;
     }
 
+    /**
+     * Toont het hoofdmenu met opties om te registreren, om aan te melden of om af te sluiten.
+     */
     public void toonHoofdmenu()
     {
         Scanner scanner = new Scanner(System.in);
@@ -72,6 +81,9 @@ public class ConsoleApplicatie
         System.exit(0); //Afsluiten
     }
 
+    /**
+     * Toont het spelmenu met opties om een spel te spelen, een spel te configureren of een spel te creëren.
+     */
     public void toonSpelMenu()
     {
         Scanner scanner = new Scanner(System.in);
@@ -97,7 +109,7 @@ public class ConsoleApplicatie
             {
                 case 1: //START UC3: Speel Spel
                     SpeelSpel speelSpel = new SpeelSpel(controller);
-                    speelSpel.startSpelSpelUI();
+                    speelSpel.startSpeelSpelUI();
                     break;
                 case 2: //START USE CASE Configureer nieuw spel
                     System.exit(0); //hier voorlopig nog System.exit(0) om het programma te doen stoppen.
@@ -119,7 +131,7 @@ public class ConsoleApplicatie
             {
                 case 1: //Start UC Speel Spel
                     SpeelSpel speelSpel = new SpeelSpel(controller);
-                    speelSpel.startSpelSpelUI();
+                    speelSpel.startSpeelSpelUI();
                     break;
             }
         }

@@ -1,28 +1,39 @@
 package gui;
 
+/* IMPORTS */
 import domein.DomeinController;
 import java.util.List;
 import java.util.Scanner;
 
 /**
- *
+ * Staat in voor het Speel spel menu.
+ * 
  * @author Yves
  */
 public class SpeelSpel
 {
-    DomeinController controller;
+    /* DECLARATIES CONSTANTEN */
+    private final DomeinController controller;
 
+    /**
+     * Constructor initialiseert een DomeinController object.
+     * @param controller DomeinController object dat moet ingesteld worden.
+     */
     public SpeelSpel(DomeinController controller)
     {
         this.controller = controller;
     }
 
-    public void startSpelSpelUI()
+    /**
+     * Start de ui voor Speel spel.
+     */
+    public void startSpeelSpelUI()
     {
+        /* DECLARATIES EN/OF INITIALISATIES VARIABELEN */
         List<String> spelnamen = controller.geefSpelNamen();
         Scanner scanner = new Scanner(System.in);
         int verderSpelenKeuze = 0, keuzeBeweging, spelKeuze;
-        boolean nogSpelborden = true;
+        boolean nogSpelborden;
 
         do
         {
@@ -109,6 +120,10 @@ public class SpeelSpel
         while (verderSpelenKeuze != 2);
     }
 
+    /**
+     * Geeft de keuze van beweging door aan DomeinController.
+     * @param keuzeBeweging de keuze van beweging als int.
+     */
     private void beweeg(int keuzeBeweging)
     {
         controller.beweeg(keuzeBeweging - 1);

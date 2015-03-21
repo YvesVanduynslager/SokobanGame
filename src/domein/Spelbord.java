@@ -68,19 +68,23 @@ public class Spelbord
             y0, y0, y0 - 2, y0 + 2
         }; //y2 bevat de y-waarden voor de veplaatsing van de kist in de vorm {omhoog, omlaag, links, recht}
 
-        if (velden[x1[richting]][y1[richting]] instanceof Veld)
+        if (velden[x1[richting]][y1[richting]] instanceof Veld) // -1
         {
             mannetje.setxPositie(x1[richting]);
             mannetje.setyPositie(y1[richting]);
-            if (velden[x1[richting]][y1[richting]].isDoel())
+            velden[x1[richting]][y1[richting]] = mannetje;
+
+            if (velden[x1[richting]][y1[richting]].isDoel()) //-1
             {
+                velden[x1[richting]][y1[richting]].setIsDoel(true);
                 mannetje.setIsDoel(true);
             }
             else
             {
+                velden[x1[richting]][y1[richting]].setIsDoel(false);
                 mannetje.setIsDoel(false);
             }
-            velden[x1[richting]][y1[richting]] = mannetje; //volgende veld instellen
+            //velden[x1[richting]][y1[richting]] = mannetje; //volgende veld instellen
 
             if (velden[x0][y0].isDoel()) //huidige veld controleren op doel
             {
@@ -93,32 +97,14 @@ public class Spelbord
         }
         else
         {
-            if (velden[x1[richting]][y1[richting]] instanceof Kist)
+            if (velden[x1[richting]][y1[richting]] instanceof Kist) //x-1
             {
-                if (velden[x2[richting]][y2[richting]] instanceof Veld)
+                if (velden[x2[richting]][y2[richting]] instanceof Veld) //x-2
                 {
                     mannetje.setxPositie(x1[richting]);
                     mannetje.setyPositie(y1[richting]);
-                    if (velden[x1[richting]][y1[richting]].isDoel())
-                    {
-                        mannetje.setIsDoel(true);
-                        if (velden[x2[richting]][y2[richting]].isDoel())
-                        {
-                            velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], true);
-                            //hier incr
-                        }
-                        else
-                        {
-                            velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], false);
-                        }
-                    }
-                    else
-                    {
-                        mannetje.setIsDoel(false);
-
-                    }
-                    velden[x1[richting]][y1[richting]] = mannetje; //volgende veld instellen
-
+                    velden[x1[richting]][y1[richting]] = mannetje;
+                    
                     if (velden[x0][y0].isDoel()) //huidige veld controleren op doel en instellen
                     {
                         velden[x0][y0] = new Veld(x0, y0, true);
@@ -127,6 +113,20 @@ public class Spelbord
                     {
                         velden[x0][y0] = new Veld(x0, y0, false);
                     }
+                    
+                    if (velden[x1[richting]][y1[richting]].isDoel()) //x-1
+                    {
+                        velden[x1[richting]][y1[richting]].setIsDoel(true);
+                        mannetje.setIsDoel(true);
+
+                    }
+                    else
+                    {
+                        velden[x1[richting]][y1[richting]].setIsDoel(false);
+                        mannetje.setIsDoel(false);
+                    }
+                    
+                    
                     if (velden[x2[richting]][y2[richting]].isDoel())
                     {
                         velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], true); //true voor doel
@@ -135,6 +135,7 @@ public class Spelbord
                     {
                         velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], false); //false voor geen doel
                     }
+                    velden[x1[richting]][y1[richting]] = mannetje;
                 }
             }
         }

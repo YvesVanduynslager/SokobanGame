@@ -22,5 +22,7 @@ public class test
         System.out.println(s.getHuidigSpelbord().toString());
         s.start();
         System.out.println(s.getHuidigSpelbord().toString());
+        s.start();
+        System.out.println(s.getHuidigSpelbord().toString());
     }
 }

@@ -14,7 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Staat in voor het ophalen van een spel en bijhorende spelborden uit de databank en deze op te slaan als een Spel-object.
+ * Staat in voor het ophalen van een spel en bijhorende spelborden uit de
+ * databank en deze op te slaan als een Spel-object.
+ *
  * @author Yves
  */
 public class SpelMapper
@@ -33,12 +35,13 @@ public class SpelMapper
         String spelbordNaam = "";
         final String[] ELEMENTEN =
         {
-            /*"muur", */"veld", "doel", "mannetje", "kist"
+            /*"muur", */
+            "veld", "doel", "mannetje", "kist"
         };
         final int AANTAL_BORDEN = this.geefAantalSpelborden(naam);
 
         List<Spelbord> borden = new ArrayList();
-        
+
         for (int spelbordID = 1; spelbordID <= AANTAL_BORDEN; spelbordID++)
         {
             velden = new Element[VELDEN_ARRAY_GROOTTE][VELDEN_ARRAY_GROOTTE];
@@ -51,16 +54,11 @@ public class SpelMapper
                         + "FROM " + element + " Element JOIN spelbord Spelbord ON Element.Spelbord_spelbordID = Spelbord.spelbordID "
                         + "JOIN spel Spel ON Spelbord.Spel_spelID = Spel.spelID "
                         + "WHERE Spel.spelNaam = '" + naam + "' AND Spelbord.spelbordID = " + spelbordID + ";";
-//                String sqlBordenOphalen = "SELECT Element.positieX, Element.positieY, Element.Spelbord_spelbordID, "
-//                        + "Spelbord.spelbordID, Spelbord.spelbordNaam, Spelbord.Spel_spelID, Spel.spelID, Spel.spelNaam "
-//                        + "FROM " + element + " Element JOIN spelbord Spelbord ON Element.Spelbord_spelbordID = Spelbord.spelbordID "
-//                        + "JOIN spel Spel ON Spelbord.Spel_spelID = Spel.spelID "
-//                        + "WHERE Spel.spelNaam = '" + naam + "' AND Spelbord.spelbordID = " + spelbordID + ";";
 
                 try
                 {
                     int x, y;
-                   
+
                     stmtBordenOphalen = connectie.getDatabaseConnectie().prepareStatement(sqlBordenOphalen);
                     ResultSet rs = stmtBordenOphalen.executeQuery();
 
@@ -69,12 +67,12 @@ public class SpelMapper
                         x = rs.getInt(1);
                         y = rs.getInt(2);
                         spelbordNaam = rs.getString(3);
-                        
+
                         switch (element)
                         {
                             /*case "muur":
-                                velden[x][y] = new Muur(x, y);
-                                break;*/
+                             velden[x][y] = new Muur(x, y);
+                             break;*/
                             case "veld":
                                 velden[x][y] = new Veld(x, y, false);
                                 break;
@@ -103,11 +101,11 @@ public class SpelMapper
             }
             //for-loop om te controleren op null-waarden in de velden array en die dan te vullen met een muur.
             //Ik doe dit bewust met een gewone for-loop zodat ik de teller kan gebruiken in de declaratie van de Muur.
-            for(int x=0; x<10; x++)
+            for (int x = 0; x < 10; x++)
             {
-                for(int y=0; y<10; y++)
+                for (int y = 0; y < 10; y++)
                 {
-                    if(velden[x][y] == null)
+                    if (velden[x][y] == null)
                     {
                         velden[x][y] = new Muur(x, y);
                     }
@@ -115,14 +113,17 @@ public class SpelMapper
             }
             borden.add(new Spelbord(spelbordNaam, velden, mannetje));
         }
-        
+
         Spel spel = new Spel(naam, borden);
         return spel;
     }
 
     /**
-     * Deze methode geeft het aantal spelborden terug die 1 enkel gekozen spel bevat
-     * @param naam De naam van het spel waarvan het aantal spelborden geweten moet zijn.
+     * Deze methode geeft het aantal spelborden terug die 1 enkel gekozen spel
+     * bevat
+     *
+     * @param naam De naam van het spel waarvan het aantal spelborden geweten
+     * moet zijn.
      * @return Het aantal spelborden van het gekozen spel.
      */
     private int geefAantalSpelborden(String naam)
@@ -156,20 +157,20 @@ public class SpelMapper
 
         return aantal;
     }
-    
+
     public List<String> geefSpelNamen()
     {
         List<String> spelNamen = new ArrayList();
         String sqlSpelNamen = "SELECT spelNaam FROM spel ORDER BY spelID;";
-        
+
         Connectie connectie = new Connectie();
         PreparedStatement stmtSpelNamen;
-        
+
         try
         {
             stmtSpelNamen = connectie.getDatabaseConnectie().prepareStatement(sqlSpelNamen);
             ResultSet rs = stmtSpelNamen.executeQuery();
-            
+
             while (rs.next())
             {
                 spelNamen.add(rs.getString(1));

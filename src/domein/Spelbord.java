@@ -41,16 +41,45 @@ public class Spelbord
         return naam;
     }
 
-    /**
-     * Staat in voor het bewegen van het mannetje en kisten over het spelbord.
-     *
-     * @param richting Gewenste richting waar bewogen moet naar worden. 0 voor
-     * omhoog, 1 voor omlaag, 2 voor links en 3 voor rechts.
-     */
+    public Element geefAangrenzendElement(Element element, int richting)
+    {
+        int x0 = mannetje.getxPositie();
+        int y0 = mannetje.getyPositie();
+        int[] x1 =
+        {
+            x0 - 1, x0 + 1, x0, x0
+        }; //x1 bevat de x-waarden voor de veplaatsing van het mannetje in de vorm {omhoog, omlaag, links, recht}
+        int[] y1 =
+        {
+            y0, y0, y0 - 1, y0 + 1
+        }; //y1 bevat de y-waarden voor de veplaatsing van het mannetje in de vorm {omhoog, omlaag, links, recht}
+
+        return velden[x1[richting]][y1[richting]];
+    }
+
+    public Element geefNaAangrenzendElement(Element element, int richting)
+    {
+        int x0 = mannetje.getxPositie();
+        int y0 = mannetje.getyPositie();
+        int[] x2 =
+        {
+            x0 - 2, x0 + 2, x0, x0
+        }; //x2 bevat de x-waarden voor de veplaatsing van de kist in de vorm {omhoog, omlaag, links, recht}
+        int[] y2 =
+        {
+            y0, y0, y0 - 2, y0 + 2
+        }; //y2 bevat de y-waarden voor de veplaatsing van de kist in de vorm {omhoog, omlaag, links, recht}
+
+        return velden[x2[richting]][y2[richting]];
+
+    }
+
     public void verplaatsMannetje(int richting)
     {
         int x0 = mannetje.getxPositie();
         int y0 = mannetje.getyPositie();
+        //velden[x0][y0] = mannetje;
+
         int[] x1 =
         {
             x0 - 1, x0 + 1, x0, x0
@@ -68,11 +97,60 @@ public class Spelbord
             y0, y0, y0 - 2, y0 + 2
         }; //y2 bevat de y-waarden voor de veplaatsing van de kist in de vorm {omhoog, omlaag, links, recht}
 
-        if (velden[x1[richting]][y1[richting]] instanceof Veld)
-        {
-            mannetje.setxPositie(x1[richting]);
-            mannetje.setyPositie(y1[richting]);
-            if (velden[x1[richting]][y1[richting]].isDoel())
+        int x, y, xNa, yNa;
+
+        Element aangrenzend = this.geefAangrenzendElement(mannetje, richting);
+        Element naAangrenzend = this.geefNaAangrenzendElement(aangrenzend, richting);
+
+        x = aangrenzend.getxPositie();
+        y = aangrenzend.getyPositie();
+        xNa = naAangrenzend.getxPositie();
+        yNa = naAangrenzend.getyPositie();
+
+//        if (velden[x0][y0].isDoel()) //als huidige veld doel is
+//        {
+//            velden[x0][y0] = new Veld(x0, y0, true);
+//        }
+//        else //als huidige veld geen doel is
+//        {
+//            velden[x0][y0] = new Veld(x0, y0, false);
+//        }
+        if (aangrenzend instanceof Veld) //als volgend element een Veld is
+        { 
+            if (mannetje/*velden[x0][y0]*/.isDoel()) //als huidige veld doel is
+            {
+                velden[x0][y0] = new Veld(x0, y0, true);
+            }
+            else //als huidige veld geen doel is
+            {
+                velden[x0][y0] = new Veld(x0, y0, false);
+            }
+            if (aangrenzend.isDoel()) //en volgend element een doel is
+            {
+                mannetje.setIsDoel(true);
+            }
+            else //en volgend element geen doel is
+            {
+                mannetje.setIsDoel(false);
+            }
+            
+            /* NIET VERPLAATSEN */
+            mannetje.setxPositie(x);
+            mannetje.setyPositie(y);
+            velden[x][y] = mannetje;
+        }
+
+        if (aangrenzend instanceof Kist && naAangrenzend instanceof Veld)
+        {            
+            if (/*velden[x0][y0]*/mannetje.isDoel()) //als huidige veld doel is
+            {
+                velden[x0][y0] = new Veld(x0, y0, true);
+            }
+            else //als huidige veld geen doel is
+            {
+                velden[x0][y0] = new Veld(x0, y0, false);
+            }
+            if (aangrenzend.isDoel())
             {
                 mannetje.setIsDoel(true);
             }
@@ -80,66 +158,125 @@ public class Spelbord
             {
                 mannetje.setIsDoel(false);
             }
-            velden[x1[richting]][y1[richting]] = mannetje; //volgende veld instellen
 
-            if (velden[x0][y0].isDoel()) //huidige veld controleren op doel
+            if (naAangrenzend.isDoel())
             {
-                velden[x0][y0] = new Veld(x0, y0, true);
+                aangrenzend.setIsDoel(true);
             }
             else
             {
-                velden[x0][y0] = new Veld(x0, y0, false);
+                aangrenzend.setIsDoel(false);
             }
+            
+            /* NIET VERPLAATSEN */
+            mannetje.setxPositie(x);
+            mannetje.setyPositie(y);
+            aangrenzend.setxPositie(xNa);
+            aangrenzend.setyPositie(yNa);
+            
+            velden[x][y] = mannetje;
+            velden[xNa][yNa] = aangrenzend;
         }
-        else
-        {
-            if (velden[x1[richting]][y1[richting]] instanceof Kist)
-            {
-                if (velden[x2[richting]][y2[richting]] instanceof Veld)
-                {
-                    mannetje.setxPositie(x1[richting]);
-                    mannetje.setyPositie(y1[richting]);
-                    if (velden[x1[richting]][y1[richting]].isDoel())
-                    {
-                        mannetje.setIsDoel(true);
-                        if (velden[x2[richting]][y2[richting]].isDoel())
-                        {
-                            velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], true);
-                        }
-                        else
-                        {
-                            velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], false);
-                        }
-                    }
-                    else
-                    {
-                        mannetje.setIsDoel(false);
-
-                    }
-                    velden[x1[richting]][y1[richting]] = mannetje; //volgende veld instellen
-
-                    if (velden[x0][y0].isDoel()) //huidige veld controleren op doel en instellen
-                    {
-                        velden[x0][y0] = new Veld(x0, y0, true);
-                    }
-                    else
-                    {
-                        velden[x0][y0] = new Veld(x0, y0, false);
-                    }
-                    if (velden[x2[richting]][y2[richting]].isDoel())
-                    {
-                        velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], true); //true voor doel
-                    }
-                    else
-                    {
-                        velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], false); //false voor geen doel
-                    }
-                }
-            }
-        }
-        ++aantalZetten; //verhoog het aantal zetten met 1
+        ++aantalZetten;
     }
 
+    /**
+     * Staat in voor het bewegen van het mannetje en kisten over het spelbord.
+     *
+     * @param richting Gewenste richting waar bewogen moet naar worden. 0 voor
+     * omhoog, 1 voor omlaag, 2 voor links en 3 voor rechts.
+     */
+//    public void verplaatsMannetje(int richting)
+//    {
+//        int x0 = mannetje.getxPositie();
+//        int y0 = mannetje.getyPositie();
+//        int[] 
+//            x0 - 1, x0 + 1, x0, x0
+//        }; //x1 bevat de x-waarden voor de veplaatsing van het mannetje in de vorm {omhoog, omlaag, links, recht}
+//        int[] y1 =
+//        {
+//            y0, y0, y0 - 1, y0 + 1
+//        }; //y1 bevat de y-waarden voor de veplaatsing van het mannetje in de vorm {omhoog, omlaag, links, recht}
+//        int[] x2 =
+//        {
+//            x0 - 2, x0 + 2, x0, x0
+//        }; //x2 bevat de x-waarden voor de veplaatsing van de kist in de vorm {omhoog, omlaag, links, recht}
+//        int[] y2 =
+//        {
+//            y0, y0, y0 - 2, y0 + 2
+//        }; //y2 bevat de y-waarden voor de veplaatsing van de kist in de vorm {omhoog, omlaag, links, recht}
+//
+//        if (velden[x1[richting]][y1[richting]] instanceof Veld)
+//        {
+//            mannetje.setxPositie(x1[richting]);
+//            mannetje.setyPositie(y1[richting]);
+//            if (velden[x1[richting]][y1[richting]].isDoel())
+//            {
+//                mannetje.setIsDoel(true);
+//            }
+//            else
+//            {
+//                mannetje.setIsDoel(false);
+//            }
+//            velden[x1[richting]][y1[richting]] = mannetje; //volgende veld instellen
+//
+//            if (velden[x0][y0].isDoel()) //huidige veld controleren op doel
+//            {
+//                velden[x0][y0] = new Veld(x0, y0, true);
+//            }
+//            else
+//            {
+//                velden[x0][y0] = new Veld(x0, y0, false);
+//            }
+//        }
+//        else
+//        {
+//            if (velden[x1[richting]][y1[richting]] instanceof Kist)
+//            {
+//                if (velden[x2[richting]][y2[richting]] instanceof Veld)
+//                {
+//                    mannetje.setxPositie(x1[richting]);
+//                    mannetje.setyPositie(y1[richting]);
+//                    if (velden[x1[richting]][y1[richting]].isDoel())
+//                    {
+//                        mannetje.setIsDoel(true);
+//                        if (velden[x2[richting]][y2[richting]].isDoel())
+//                        {
+//                            velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], true);
+//                        }
+//                        else
+//                        {
+//                            velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], false);
+//                        }
+//                    }
+//                    else
+//                    {
+//                        mannetje.setIsDoel(false);
+//
+//                    }
+//                    velden[x1[richting]][y1[richting]] = mannetje; //volgende veld instellen
+//
+//                    if (velden[x0][y0].isDoel()) //huidige veld controleren op doel en instellen
+//                    {
+//                        velden[x0][y0] = new Veld(x0, y0, true);
+//                    }
+//                    else
+//                    {
+//                        velden[x0][y0] = new Veld(x0, y0, false);
+//                    }
+//                    if (velden[x2[richting]][y2[richting]].isDoel())
+//                    {
+//                        velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], true); //true voor doel
+//                    }
+//                    else
+//                    {
+//                        velden[x2[richting]][y2[richting]] = new Kist(x2[richting], y2[richting], false); //false voor geen doel
+//                    }
+//                }
+//            }
+//        }
+//        ++aantalZetten; //verhoog het aantal zetten met 1
+//    }
     /**
      * Geeft het totaal aantal aanwezige kisten in het spelbord terug.
      *

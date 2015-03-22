@@ -245,7 +245,7 @@ public class DomeinController
      *
      * @return Het aantal gemaakte zetten als int.
      */
-    public int getAantalZetten()
+    public int geefAantalZetten()
     {
         return huidigSpel.getHuidigSpelbord().geefAantalZetten();
     }

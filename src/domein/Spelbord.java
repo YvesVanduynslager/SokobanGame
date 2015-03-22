@@ -41,10 +41,11 @@ public class Spelbord
         return naam;
     }
 
-    public Element geefAangrenzendElement(Element element, int richting)
+    private Element geefAangrenzendElement(Element element, int richting)
     {
-        int x0 = mannetje.getxPositie();
-        int y0 = mannetje.getyPositie();
+        int x0 = element.getxPositie();
+        int y0 = element.getyPositie();
+        
         int[] x1 =
         {
             x0 - 1, x0 + 1, x0, x0
@@ -57,23 +58,6 @@ public class Spelbord
         return velden[x1[richting]][y1[richting]];
     }
 
-    public Element geefNaAangrenzendElement(Element element, int richting)
-    {
-        int x0 = mannetje.getxPositie();
-        int y0 = mannetje.getyPositie();
-        int[] x2 =
-        {
-            x0 - 2, x0 + 2, x0, x0
-        }; //x2 bevat de x-waarden voor de veplaatsing van de kist in de vorm {omhoog, omlaag, links, recht}
-        int[] y2 =
-        {
-            y0, y0, y0 - 2, y0 + 2
-        }; //y2 bevat de y-waarden voor de veplaatsing van de kist in de vorm {omhoog, omlaag, links, recht}
-
-        return velden[x2[richting]][y2[richting]];
-
-    }
-
     /**
      * Staat in voor het bewegen van het mannetje en kisten over het spelbord.
      *
@@ -84,28 +68,10 @@ public class Spelbord
     {
         int x0 = mannetje.getxPositie();
         int y0 = mannetje.getyPositie();
-
-        int[] x1 =
-        {
-            x0 - 1, x0 + 1, x0, x0
-        }; //x1 bevat de x-waarden voor de veplaatsing van het mannetje in de vorm {omhoog, omlaag, links, recht}
-        int[] y1 =
-        {
-            y0, y0, y0 - 1, y0 + 1
-        }; //y1 bevat de y-waarden voor de veplaatsing van het mannetje in de vorm {omhoog, omlaag, links, recht}
-        int[] x2 =
-        {
-            x0 - 2, x0 + 2, x0, x0
-        }; //x2 bevat de x-waarden voor de veplaatsing van de kist in de vorm {omhoog, omlaag, links, recht}
-        int[] y2 =
-        {
-            y0, y0, y0 - 2, y0 + 2
-        }; //y2 bevat de y-waarden voor de veplaatsing van de kist in de vorm {omhoog, omlaag, links, recht}
-
         int x, y, xNa, yNa;
 
         Element aangrenzend = this.geefAangrenzendElement(mannetje, richting);
-        Element naAangrenzend = this.geefNaAangrenzendElement(aangrenzend, richting);
+        Element naAangrenzend = this.geefAangrenzendElement(aangrenzend, richting);
 
         x = aangrenzend.getxPositie();
         y = aangrenzend.getyPositie();
@@ -147,11 +113,11 @@ public class Spelbord
             {
                 velden[x0][y0] = new Veld(x0, y0, false);
             }
-            if (aangrenzend.isDoel())
+            if (aangrenzend.isDoel()) //als aangrenzend veld doel is
             {
                 mannetje.setIsDoel(true);
             }
-            else
+            else //als aangrenzend veld geen doel is
             {
                 mannetje.setIsDoel(false);
             }

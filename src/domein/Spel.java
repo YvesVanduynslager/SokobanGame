@@ -50,15 +50,6 @@ public class Spel
             this.setHuidigSpelbord(spelborden.get(spelbordIndex));
         }
         spelbordIndex++;
-
-//        for (Spelbord spelbord : spelborden)
-//        {
-//            if (!spelbord.isVoltooid())
-//            {
-//                this.setHuidigSpelbord(spelbord);
-//                
-//            }
-//        }
     }
 
     /**
@@ -111,15 +102,6 @@ public class Spel
     {
         this.spelborden = spelborden;
     }
-
-//    /**
-//     *
-//     * @return
-//     */
-//    public List<Spelbord> getSpelborden()
-//    {
-//        return this.spelborden;
-//    }
 
     /**
      * Geeft het huidig ingestelde spelbord terug

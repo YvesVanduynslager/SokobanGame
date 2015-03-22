@@ -86,7 +86,7 @@ public class SpeelSpel
                 controller.verhoogAantalVoltooideBorden();
                 System.out.println(controller.spelbordToString());
 
-                System.out.println(controller.getString("speelspel.gewonnen1") + controller.getAantalZetten() + " " + controller.getString("speelspel.gewonnen2"));
+                System.out.println(controller.getString("speelspel.gewonnen1") + controller.geefAantalZetten() + " " + controller.getString("speelspel.gewonnen2"));
                 System.out.println(controller.getString("speelspel.bordenvoltooid1") + " " + controller.geefAantalVoltooideBorden() + " "
                         + controller.getString("speelspel.bordenvoltooid2") + " " + controller.geefAantalSpelborden() + " "
                         + controller.getString("speelspel.bordenvoltooid3"));

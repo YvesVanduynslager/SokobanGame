@@ -67,6 +67,7 @@ INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) V
 /* EINDE SPEL: easy */
 
 /* SPEL: medium */
+
 /* SPELBORD 2-1 */
 /* EINDE SPELBORD 2-1 */
 
@@ -75,9 +76,11 @@ INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) V
 
 /* SPELBORD 2-3 */
 /* EINDE SPELBORD 2-3 */
+
 /* EINDE SPEL: medium */
 
 /* SPEL: hard */
+
 /* SPELBORD 3-1 */
 /* EINDE SPELBORD 3-1 */
 
@@ -86,4 +89,5 @@ INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) V
 
 /* SPELBORD 3-3 */
 /* EINDE SPELBORD 3-3 */
+
 /* EINDE SPEL: hard */

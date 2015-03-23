@@ -9,6 +9,7 @@ INSERT INTO sokobandatabase.spelbord (spelbordNaam, Spel_spelID) VALUES
 ('3-1', 3), ('3-2', 3), ('3-3', 3)*/;
 
 /* SPEL: easy */
+
 /* SPELBORD 1-1 */
 INSERT INTO sokobandatabase.veld (positieX, positieY, Spelbord_spelbordID) VALUES
 (4,4,1);
@@ -64,3 +65,25 @@ INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) V
 /*EINDE SPELBORD 1-3 */
 
 /* EINDE SPEL: easy */
+
+/* SPEL: medium */
+/* SPELBORD 2-1 */
+/* EINDE SPELBORD 2-1 */
+
+/* SPELBORD 2-2 */
+/* EINDE SPELBORD 2-2 */
+
+/* SPELBORD 2-3 */
+/* EINDE SPELBORD 2-3 */
+/* EINDE SPEL: medium */
+
+/* SPEL: hard */
+/* SPELBORD 3-1 */
+/* EINDE SPELBORD 3-1 */
+
+/* SPELBORD 3-2 */
+/* EINDE SPELBORD 3-2 */
+
+/* SPELBORD 3-3 */
+/* EINDE SPELBORD 3-3 */
+/* EINDE SPEL: hard */

@@ -92,29 +92,6 @@ public class DomeinController
     }
 
     /**
-     * Alle UC's. Selecteren van de gewenste taal. Geeft de taalkeuze van de
-     * gebruiker door aan het Taal-object.
-     *
-     * @param locale Code van de taalkeuze als int.
-     */
-    public void setTaalKeuze(int locale)
-    {
-        resourceBundle.setTaalKeuze(locale);
-    }
-
-    /**
-     * Alle UC's. Ophalen van een String uit ingestelde resource bundle.
-     *
-     * @param key de key die in de ResourceBundles overeenkomt met de op te
-     * halen tekst.
-     * @return De opgehaalde tekst adhv key, als String.
-     */
-    public String getString(String key)
-    {
-        return resourceBundle.getStringUitBundle(key);
-    }
-
-    /**
      * UC3: Speel spel. Selecteert het gewenste spel. Haalt het gewenste spel op
      * en stelt dit spel in als huidige spel.
      *
@@ -154,6 +131,47 @@ public class DomeinController
     {
         this.huidigSpel = spel;
     }
+    
+    /**
+     * UC3: Speel spel. Geeft het totaal aantal spelborden terug.
+     *
+     * @return Aantal beschikbare spelborden.
+     */
+    public int geefAantalSpelborden()
+    {
+        return huidigSpel.geefAantalSpelborden();
+    }
+
+    /**
+     * UC3: Speel spel. Geeft het aantal voltooide spelborden weer.
+     *
+     * @return Aantal voltooide spelborden.
+     */
+    public int geefAantalVoltooideBorden()
+    {
+        return huidigSpel.geefAantalVoltooideBorden();
+    }
+    
+    /**
+     * UC3: Speel spel. Geeft een lijst terug met beschikbare spellen.
+     *
+     * @return List met beschikbare spellen, String.
+     */
+    public List<String> geefSpelNamen()
+    {
+        return spelRepository.geefSpelNamen();
+    }
+    
+    /**
+     * UC3: Speel spel, UC4: Voltooi spelbord. Geeft het huidige spelbord terug
+     * als String.
+     *
+     * @return Huidige spelbord als String;
+     */
+    public String spelbordToString()
+    {
+        return huidigSpel.getHuidigSpelbord().toString();
+    }
 
     /**
      * UC3: Speel spel, UC4: Voltooi spelbord. Deze methode geeft het huidige
@@ -179,41 +197,11 @@ public class DomeinController
     }
 
     /**
-     * UC3: Speel spel. Geeft het totaal aantal spelborden terug.
-     *
-     * @return Aantal beschikbare spelborden.
-     */
-    public int geefAantalSpelborden()
-    {
-        return huidigSpel.geefAantalSpelborden();
-    }
-
-    /**
-     * UC3: Speel spel. Geeft het aantal voltooide spelborden weer.
-     *
-     * @return Aantal voltooide spelborden.
-     */
-    public int geefAantalVoltooideBorden()
-    {
-        return huidigSpel.geefAantalVoltooideBorden();
-    }
-
-    /**
      * UC4: Voltooi spelbord. Verhoogt het aantal voltooide spelborden.
      */
     public void verhoogAantalVoltooideBorden()
     {
         huidigSpel.verhoogAantalVoltooideBorden();
-    }
-
-    /**
-     * UC3: Speel spel. Geeft een lijst terug met beschikbare spellen.
-     *
-     * @return List met beschikbare spellen, String.
-     */
-    public List<String> geefSpelNamen()
-    {
-        return spelRepository.geefSpelNamen();
     }
 
     /**
@@ -229,17 +217,6 @@ public class DomeinController
     }
 
     /**
-     * UC3: Speel spel, UC4: Voltooi spelbord. Geeft het huidige spelbord terug
-     * als String.
-     *
-     * @return Huidige spelbord als String;
-     */
-    public String spelbordToString()
-    {
-        return huidigSpel.getHuidigSpelbord().toString();
-    }
-
-    /**
      * UC4: Voltooi spelbord. Geeft het aantal gemaakte zetten op het spelbord
      * terug.
      *
@@ -248,5 +225,28 @@ public class DomeinController
     public int geefAantalZetten()
     {
         return huidigSpel.getHuidigSpelbord().geefAantalZetten();
+    }
+    
+        /**
+     * Alle UC's. Selecteren van de gewenste taal. Geeft de taalkeuze van de
+     * gebruiker door aan het Taal-object.
+     *
+     * @param locale Code van de taalkeuze als int.
+     */
+    public void setTaalKeuze(int locale)
+    {
+        resourceBundle.setTaalKeuze(locale);
+    }
+
+    /**
+     * Alle UC's. Ophalen van een String uit ingestelde resource bundle.
+     *
+     * @param key de key die in de ResourceBundles overeenkomt met de op te
+     * halen tekst.
+     * @return De opgehaalde tekst adhv key, als String.
+     */
+    public String getString(String key)
+    {
+        return resourceBundle.getStringUitBundle(key);
     }
 }

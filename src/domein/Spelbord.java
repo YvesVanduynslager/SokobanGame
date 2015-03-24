@@ -78,7 +78,7 @@ public class Spelbord
         xNa = naAangrenzend.getxPositie();
         yNa = naAangrenzend.getyPositie();
 
-        if (aangrenzend instanceof Veld) //als volgend element een Veld is
+        if (aangrenzend instanceof Veld) //als aangrenzend element een Veld is
         {
             if (mannetje/*velden[x0][y0]*/.isDoel()) //als huidige veld doel is
             {

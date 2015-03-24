@@ -26,6 +26,42 @@ public class SpelMapper
     private Mannetje mannetje;
 
     /**
+     * Geeft de eerste ID terug van een spelbord binnen een spel. Adhv deze id zal er geloopt worden door de borden van een spel in de geefSpel()-methode.
+     * @param naam
+     * @return 
+     */
+    private int geefEersteSpelbordID(String naam)
+    {
+        int eersteID = 0;
+        String sqlEerste = "SELECT MIN(spelbord.spelbordID) FROM spelbord JOIN spel ON spelbord.Spel_spelID = spel.spelID "
+                + "WHERE spel.spelNaam = '" + naam + "';";
+
+        Connectie connectie = new Connectie();
+        PreparedStatement stmtEersteID;// = null;
+
+        try
+        {
+            stmtEersteID = connectie.getDatabaseConnectie().prepareStatement(sqlEerste);
+            ResultSet rs = stmtEersteID.executeQuery();
+
+            while (rs.next())
+            {
+                eersteID = rs.getInt(1);
+            }
+            stmtEersteID.close();
+        }
+        catch (SQLException sqlEx)
+        {
+            System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+        }
+        finally
+        {
+            connectie.sluit();
+        }
+
+        return eersteID;
+    }
+    /**
      *
      * @param naam makkelijk, gemiddeld, of moeilijk
      * @return
@@ -35,14 +71,14 @@ public class SpelMapper
         String spelbordNaam = "";
         final String[] ELEMENTEN =
         {
-            /*"muur", */
             "veld", "doel", "mannetje", "kist"
         };
-        final int AANTAL_BORDEN = this.geefAantalSpelborden(naam);
+        int eersteSpelbordID = this.geefEersteSpelbordID(naam);
+        int aantalBorden = this.geefAantalSpelborden(naam) + eersteSpelbordID;
 
         List<Spelbord> borden = new ArrayList();
 
-        for (int spelbordID = 1; spelbordID <= AANTAL_BORDEN; spelbordID++)
+        for (int spelbordID = eersteSpelbordID; spelbordID < aantalBorden; spelbordID++)
         {
             velden = new Element[VELDEN_ARRAY_GROOTTE][VELDEN_ARRAY_GROOTTE];
             for (String element : ELEMENTEN)
@@ -70,9 +106,6 @@ public class SpelMapper
 
                         switch (element)
                         {
-                            /*case "muur":
-                             velden[x][y] = new Muur(x, y);
-                             break;*/
                             case "veld":
                                 velden[x][y] = new Veld(x, y, false);
                                 break;

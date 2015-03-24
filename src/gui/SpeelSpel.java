@@ -57,10 +57,11 @@ public class SpeelSpel
                     keuzeString = spelnamen.get(--spelKeuze);
                     break;
                 case 2:
-                    keuzeString = spelnamen.get(--spelKeuze); //"easy"; //spelnamen.get(--keuze);
+                    keuzeString = spelnamen.get(--spelKeuze); 
                     break;
                 case 3:
                     keuzeString = spelnamen.get(--spelKeuze);
+                    break;
             }
 
             controller.selecteerSpel(keuzeString); //selecteert spel

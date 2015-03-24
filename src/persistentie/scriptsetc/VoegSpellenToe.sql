@@ -4,39 +4,28 @@ INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('hard');
 
 /* spelbordnamen voor spellen */
 INSERT INTO sokobandatabase.spelbord (spelbordNaam, Spel_spelID) VALUES
-('1-1', 1), ('1-2', 1), ('1-3', 1)/*,
-('2-1', 2), ('2-2', 2), ('2-3', 2),
+('1-1', 1), ('1-2', 1), ('1-3', 1),
+('2-1', 2)/*, ('2-2', 2), ('2-3', 2),
 ('3-1', 3), ('3-2', 3), ('3-3', 3)*/;
 
-/* SPEL: easy */
-
+/* SPEL: makkelijk */
 /* SPELBORD 1-1 */
+
 INSERT INTO sokobandatabase.veld (positieX, positieY, Spelbord_spelbordID) VALUES
-(4,4,1);
+(1,1,1),(2,1,1),(2,2,1),(5,3,1),(5,4,1),(2,3,1), (2,4,1),(3,3,1),(3,4,1),(4,2,1),(4,4,1),(5,1,1),(5,2,1);
 
 INSERT INTO sokobandatabase.doel (positieX, positieY, Spelbord_spelbordID) VALUES
-(2,4,1);
+(1,2,1),(3,1,1);
 
 INSERT INTO sokobandatabase.kist (positieX, positieY, Spelbord_spelbordID) values
-(3,4,1);
+(4,1,1),(4,3,1);
 
 INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) VALUES
-(5,4,1);
-
--- INSERT INTO sokobandatabase.veld (positieX, positieY, Spelbord_spelbordID) VALUES
--- (2,3,1),(3,4,1),(4,2,1);
--- 
--- INSERT INTO sokobandatabase.doel (positieX, positieY, Spelbord_spelbordID) VALUES
--- (1,3,1),(3,6,1),(4,1,1),(6,4,1);
--- 
--- INSERT INTO sokobandatabase.kist (positieX, positieY, Spelbord_spelbordID) values
--- (3,3,1),(3,5,1),(4,3,1),(5,4,1);
--- 
--- INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) VALUES
--- (4,4,1);
+(3,2,1);
 /* EINDE SPELBORD 1-1 */
 
 /* SPELBORD 1-2 */
+
 INSERT INTO sokobandatabase.veld (positieX, positieY, Spelbord_spelbordID) VALUES
 (2,3,2),(3,4,2),(4,2,2);
 
@@ -52,23 +41,33 @@ INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) V
 
 /* SPELBORD 1-3 */
 INSERT INTO sokobandatabase.veld (positieX, positieY, Spelbord_spelbordID) VALUES
-(2,2,3),(2,3,3),(2,5,3),(2,6,3),(3,2,3),(3,6,3),(4,2,3),(4,3,3),(4,4,3),(4,6,3),(5,5,3),(6,2,3),(6,3,3);
+(1,2,3),(1,3,3),(2,1,3),(3,3,3),(6,3,3),(4,2,3),(4,4,3),(5,3,3),(5,4,3);
 
 INSERT INTO sokobandatabase.doel (positieX, positieY, Spelbord_spelbordID) VALUES
-(2,4,3),(3,4,3),(5,2,3);
+(5,1,3),(6,1,3),(6,2,3),(6,4,3);
 
-INSERT INTO sokobandatabase.kist (positieX, positieY, Spelbord_spelbordID) VALUES
-(4,5,3),(5,3,3),(5,4,3);
+INSERT INTO sokobandatabase.kist (positieX, positieY, Spelbord_spelbordID) values
+(2,3,3),(3,2,3),(4,3,3),(5,2,3);
 
 INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) VALUES
-(2,5,3);
-/*EINDE SPELBORD 1-3 */
+(2,2,3);
+/* EINDE SPELBORD 1-3 */
+/* EINDE SPEL: makkelijk */
 
-/* EINDE SPEL: easy */
-
-/* SPEL: medium */
+/* SPEL: gemiddeld */
 
 /* SPELBORD 2-1 */
+INSERT INTO sokobandatabase.veld (positieX, positieY, Spelbord_spelbordID) VALUES
+(1,2,4),(1,3,4),(1,4,4),(1,5,4),(2,1,4),(2,6,4),(4,1,4),(4,4,4),(4,6,4),(5,3,4),(5,4,4);
+
+INSERT INTO sokobandatabase.doel (positieX, positieY, Spelbord_spelbordID) VALUES
+(3,1,4),(3,2,4),(3,3,4),(3,4,4),(3,5,4),(3,6,4);
+
+INSERT INTO sokobandatabase.kist (positieX, positieY, Spelbord_spelbordID) VALUES
+(2,3,4),(2,4,4),(2,5,4),(4,2,4),(4,3,4),(4,5,4);
+
+INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) VALUES
+(2,2,4);
 /* EINDE SPELBORD 2-1 */
 
 /* SPELBORD 2-2 */
@@ -76,11 +75,9 @@ INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) V
 
 /* SPELBORD 2-3 */
 /* EINDE SPELBORD 2-3 */
+/* EINDE SPEL: gemiddeld */
 
-/* EINDE SPEL: medium */
-
-/* SPEL: hard */
-
+/* SPEL: moeilijk */
 /* SPELBORD 3-1 */
 /* EINDE SPELBORD 3-1 */
 
@@ -89,5 +86,4 @@ INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) V
 
 /* SPELBORD 3-3 */
 /* EINDE SPELBORD 3-3 */
-
-/* EINDE SPEL: hard */
+/* EINDE SPEL: moeilijk */

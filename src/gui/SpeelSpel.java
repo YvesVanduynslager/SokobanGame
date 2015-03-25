@@ -73,6 +73,7 @@ public class SpeelSpel
                 while (!controller.huidigSpelbordVoltooid()) //Wordt uitgevoerd als het spelbord nog niet alle kisten op de doelen heeft staan.
                 {
                     System.out.println(controller.spelbordToString());
+                    System.out.println(localeString("speelspel.aantalzetten") + ": " + controller.geefAantalZetten());
                     System.out.println(localeString("speelspel.beweging"));
                     System.out.println(localeString("speelspel.omhoog"));
                     System.out.println(localeString("speelspel.omlaag"));

@@ -37,20 +37,20 @@ public class MeldAan
         String gebruikersnaam, wachtwoord;
 
         System.out.println();
-        System.out.printf("%s%n%s%n%s%n", controller.getString("meldaan.border"), controller.getString("meldaan.main"), controller.getString("meldaan.border"));
+        System.out.printf("%s%n%s%n%s%n", localeString("meldaan.border"), localeString("meldaan.main"), localeString("meldaan.border"));
         do
         {
-            System.out.print(controller.getString("meldaan.input.gebruikersnaam"));
+            System.out.print(localeString("meldaan.input.gebruikersnaam"));
             gebruikersnaam = scanner.next();
-            if (gebruikersnaam.equals(controller.getString("terug")))
+            if (gebruikersnaam.equals(localeString("terug")))
             {
                 return;  /* toonHoofdmenu() in ConsoleApplicatie opnieuw uitvoeren.
                  dus kortweg: opnieuw tonen van hoofdmenu */
 
             }
-            System.out.print(controller.getString("meldaan.input.wachtwoord"));
+            System.out.print(localeString("meldaan.input.wachtwoord"));
             wachtwoord = scanner.next();
-            if (wachtwoord.equals(controller.getString("terug")))
+            if (wachtwoord.equals(localeString("terug")))
             {
                 return;
             }
@@ -62,7 +62,7 @@ public class MeldAan
              gebruikersnaam of onbestaand wachtwoord, zal de spelerGegevens-string gevuld worden met null-waarden.*/
 
             {
-                System.out.println(controller.getString("meldaan.fout"));
+                System.out.println(localeString("meldaan.fout"));
             }
         }
         while (spelerGegevens[0] == null); /*als er geen gegevens opgehaald werden uit de databank
@@ -70,11 +70,11 @@ public class MeldAan
          opnieuw doorlopen worden.
          */
 
-        geldig = true;
+        geldig = true; //nadat lus breekt, dus speler gevonden en opgehaald.
         
         System.out.println();
-        System.out.println(controller.getString("meldaan.success"));
-        System.out.printf("%s%14s%n", controller.getString("output.gebruikersnaam"), controller.getString("output.rechten")); //wachtwoord wordt hier niet meer weergegeven.
+        System.out.println(localeString("meldaan.success"));
+        System.out.printf("%s%14s%n", localeString("output.gebruikersnaam"), localeString("output.rechten")); //wachtwoord wordt hier niet meer weergegeven.
         for (String spelerGegeven : spelerGegevens)
         {
             System.out.printf("%14s", spelerGegeven);
@@ -89,5 +89,10 @@ public class MeldAan
     public boolean isSucces()
     {
         return geldig;
+    }
+    
+    private String localeString(String key)
+    {
+        return controller.getString(key);
     }
 }

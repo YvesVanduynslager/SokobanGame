@@ -33,34 +33,34 @@ public class Registreer
         String gebruikersnaam, wachtwoord, naam, voornaam;
 
         System.out.println();
-        System.out.printf("%s%n%s%n%s%n", controller.getString("registreer.border"), controller.getString("registreer.main"), controller.getString("registreer.border"));
+        System.out.printf("%s%n%s%n%s%n", localeString("registreer.border"), localeString("registreer.main"), localeString("registreer.border"));
         do
         {
-            System.out.print(controller.getString("registreer.naam"));
+            System.out.print(localeString("registreer.naam"));
             naam = scanner.next();
-            if (naam.equals(controller.getString("terug")))
+            if (naam.equals(localeString("terug")))
             {
                 return; /* toonHoofdmenu() in ConsoleApplicatie opnieuw uitvoeren.
                  dus kortweg: opnieuw tonen van hoofdmenu */
 
             }
-            System.out.print(controller.getString("registreer.voornaam"));
+            System.out.print(localeString("registreer.voornaam"));
             voornaam = scanner.next();
-            if (voornaam.equals(controller.getString("terug")))
+            if (voornaam.equals(localeString("terug")))
             {
                 return;
 
             }
-            System.out.print(controller.getString("registreer.gebruikersnaam"));
+            System.out.print(localeString("registreer.gebruikersnaam"));
             gebruikersnaam = scanner.next();
-            if (gebruikersnaam.equals(controller.getString("terug")))
+            if (gebruikersnaam.equals(localeString("terug")))
             {
                 return;
 
             }
-            System.out.print(controller.getString("registreer.wachtwoord"));
+            System.out.print(localeString("registreer.wachtwoord"));
             wachtwoord = scanner.next();
-            if (wachtwoord.equals(controller.getString("terug")))
+            if (wachtwoord.equals(localeString("terug")))
             {
                 return;
             }
@@ -72,12 +72,12 @@ public class Registreer
             }
             catch (GebruikerBestaatException gbe)
             {
-                System.err.println(gbe + controller.getString("registreer.gebruikerbestaat"));
+                System.err.println(gbe + localeString("registreer.gebruikerbestaat"));
                 geldig = false;
             }
             catch (IllegalArgumentException iae)
             {
-                System.err.println(iae + controller.getString("registreer.ongeldig"));
+                System.err.println(iae + localeString("registreer.ongeldig"));
                 geldig = false;
             }
         }
@@ -86,8 +86,8 @@ public class Registreer
         String[] spelerGegevens = controller.geefSpeler();
 
         System.out.println();
-        System.out.println(controller.getString("registreer.succes"));
-        System.out.printf("%s%14s%n", controller.getString("output.gebruikersnaam"), controller.getString("output.rechten")); //wachtwoord wordt hier niet meer weergegeven.
+        System.out.println(localeString("registreer.succes"));
+        System.out.printf("%s%14s%n", localeString("output.gebruikersnaam"), localeString("output.rechten")); //wachtwoord wordt hier niet meer weergegeven.
 
         for (String spelerGegeven : spelerGegevens)
         {
@@ -105,5 +105,10 @@ public class Registreer
     public boolean isSucces()
     {
         return geldig;
+    }
+    
+    private String localeString(String key)
+    {
+        return controller.getString(key);
     }
 }

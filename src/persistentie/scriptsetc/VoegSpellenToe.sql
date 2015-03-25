@@ -3,9 +3,10 @@ INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('medium');
 INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('hard');
 /* spelbordnamen voor spellen */
 INSERT INTO sokobandatabase.spelbord (spelbordNaam, Spel_spelID) VALUES
-('1-1', 1), ('1-2', 1), ('1-3', 1)/*,
-('2-1', 2), ('2-2', 2), ('2-3', 2),
+('1-1', 1), ('1-2', 1), ('1-3', 1),
+('2-1', 2)/*, ('2-2', 2), ('2-3', 2),
 ('3-1', 3), ('3-2', 3), ('3-3', 3)*/;
+
 /* SPEL: easy */
 /* SPELBORD 1-1 */
 INSERT INTO sokobandatabase.veld (positieX, positieY, Spelbord_spelbordID) VALUES
@@ -51,7 +52,6 @@ INSERT INTO sokobandatabase.mannetje (positieX, positieY, Spelbord_spelbordID) V
 /* EINDE SPEL: easy */
 
 /* SPEL: gemiddeld */
-
 /* SPELBORD 2-1 */
 INSERT INTO sokobandatabase.veld (positieX, positieY, Spelbord_spelbordID) VALUES
 (1,2,4),(1,3,4),(1,4,4),(1,5,4),(2,1,4),(2,6,4),(4,1,4),(4,4,4),(4,6,4),(5,3,4),(5,4,4);

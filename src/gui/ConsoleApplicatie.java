@@ -16,6 +16,7 @@ public class ConsoleApplicatie
 
     /**
      * Constructor initialiseert een DomeinController object.
+     *
      * @param controller DomeinController object dat ingesteld moet worden.
      */
     public ConsoleApplicatie(DomeinController controller)
@@ -24,7 +25,8 @@ public class ConsoleApplicatie
     }
 
     /**
-     * Toont het hoofdmenu met opties om te registreren, om aan te melden of om af te sluiten.
+     * Toont het hoofdmenu met opties om te registreren, om aan te melden of om
+     * af te sluiten.
      */
     public void toonHoofdmenu()
     {
@@ -82,7 +84,8 @@ public class ConsoleApplicatie
     }
 
     /**
-     * Toont het spelmenu met opties om een spel te spelen, een spel te configureren of een spel te creëren.
+     * Toont het spelmenu met opties om een spel te spelen, een spel te
+     * configureren of een spel te creëren.
      */
     public void toonSpelMenu()
     {
@@ -93,47 +96,51 @@ public class ConsoleApplicatie
         String[] spelerGegevens = controller.geefSpeler();
         heeftAdminrechten = (spelerGegevens[1].equals("ja"));
 
-        if (heeftAdminrechten) //Menu voor gebruiker MET ADMINRECHTEN
+        do
         {
-            System.out.println();
-            System.out.printf("%s%n%s%n%s%n%s%n%s%n", controller.getString("spelmenu.main"),
-                    controller.getString("spelmenu.optie1"),
-                    controller.getString("spelmenu.optie2"),
-                    controller.getString("spelmenu.optie3"),
-                    controller.getString("spelmenu.optie4"));
-            System.out.print(controller.getString("keuze"));
-            keuze = scanner.nextInt();
-            System.out.println();
-
-            switch (keuze)
+            if (heeftAdminrechten) //Menu voor gebruiker MET ADMINRECHTEN
             {
-                case 1: //START UC3: Speel Spel
-                    SpeelSpel speelSpel = new SpeelSpel(controller);
-                    speelSpel.startSpeelSpelUI();
-                    break;
-                case 2: //START USE CASE Configureer nieuw spel
-                    System.exit(0); //hier voorlopig nog System.exit(0) om het programma te doen stoppen.
-                    break;
-                case 3: //START USE CASE Wijzig spel
-                    System.exit(0); //hier voorlopig nog System.exit(0) om het programma te doen stoppen.
-                    break;
+                System.out.println();
+                System.out.printf("%s%n%s%n%s%n%s%n%s%n", controller.getString("spelmenu.main"),
+                        controller.getString("spelmenu.optie1"),
+                        controller.getString("spelmenu.optie2"),
+                        controller.getString("spelmenu.optie3"),
+                        controller.getString("spelmenu.optie4"));
+                System.out.print(controller.getString("keuze"));
+                keuze = scanner.nextInt();
+                System.out.println();
+
+                switch (keuze)
+                {
+                    case 1: //START UC3: Speel Spel
+                        SpeelSpel speelSpel = new SpeelSpel(controller);
+                        speelSpel.startSpeelSpelUI();
+                        break;
+                    case 2: //START USE CASE Configureer nieuw spel
+                        System.exit(0); //hier voorlopig nog System.exit(0) om het programma te doen stoppen.
+                        break;
+                    case 3: //START USE CASE Wijzig spel
+                        System.exit(0); //hier voorlopig nog System.exit(0) om het programma te doen stoppen.
+                        break;
+                }
+            }
+            else //Menu voor gebruiker ZONDER ADMINRECHTEN
+            {
+                System.out.println();
+                System.out.printf("%s%n%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"), controller.getString("spelmenu.optie4"));
+                System.out.print(controller.getString("keuze"));
+                keuze = scanner.nextInt();
+                System.out.println();
+
+                switch (keuze)
+                {
+                    case 1: //Start UC Speel Spel
+                        SpeelSpel speelSpel = new SpeelSpel(controller);
+                        speelSpel.startSpeelSpelUI();
+                        break;
+                }
             }
         }
-        else //Menu voor gebruiker ZONDER ADMINRECHTEN
-        {
-            System.out.println();
-            System.out.printf("%s%n%s%n%s%n", controller.getString("spelmenu.main"), controller.getString("spelmenu.optie1"), controller.getString("spelmenu.optie4"));
-            System.out.print(controller.getString("keuze"));
-            keuze = scanner.nextInt();
-            System.out.println();
-
-            switch (keuze)
-            {
-                case 1: //Start UC Speel Spel
-                    SpeelSpel speelSpel = new SpeelSpel(controller);
-                    speelSpel.startSpeelSpelUI();
-                    break;
-            }
-        }
+        while (keuze != 0);
     }
 }

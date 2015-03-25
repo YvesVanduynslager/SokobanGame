@@ -123,7 +123,7 @@ public class DomeinController
     }
 
     /**
-     * UC3: Speel spel, UC4: Voltooi spelbord. Stelt het huidige spel in.
+     * UC3: Speel spel. Stelt het huidige spel in.
      *
      * @param spel Object van Spel dat ingesteld moet worden als huidig spel.
      */
@@ -226,6 +226,11 @@ public class DomeinController
     {
         return huidigSpel.getHuidigSpelbord().geefAantalZetten();
     }
+    
+//    public void resetSpelbord()
+//    {
+//        huidigSpel.reset();
+//    }
     
         /**
      * Alle UC's. Selecteren van de gewenste taal. Geeft de taalkeuze van de

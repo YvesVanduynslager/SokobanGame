@@ -51,20 +51,8 @@ public class SpeelSpel
             System.out.println();
             keuze = scanner.nextInt();
 
-            String keuzeString = null;
-            switch (keuze)
-            {
-                case 1:
-                    keuzeString = spelnamen.get(--keuze);
-                    break;
-                case 2:
-                    keuzeString = spelnamen.get(--keuze);
-                    break;
-                case 3:
-                    keuzeString = spelnamen.get(--keuze);
-                    break;
-            }
-
+            String keuzeString = spelnamen.get(--keuze);
+            
             controller.selecteerSpel(keuzeString); //selecteert spel
             controller.startVolgendSpelbord(); //start het volgende spelbord
 
@@ -79,7 +67,7 @@ public class SpeelSpel
                     System.out.println(localeString("speelspel.omlaag"));
                     System.out.println(localeString("speelspel.links"));
                     System.out.println(localeString("speelspel.rechts"));
-                    //System.out.println(localeString("speelspel.reset"));
+//                    System.out.println(localeString("speelspel.reset"));
                     System.out.println("[0] " + localeString("terug"));
                     System.out.print(localeString("keuze"));
 
@@ -89,15 +77,14 @@ public class SpeelSpel
                     {
                         return;
                     }
+//                    else if (keuze == 5)
+//                    {
+//                        controller.resetSpelbord();
+//                    }
                     else
                     {
                         beweeg(keuze);
                     }
-
-//                    if (keuze == 5)
-//                    {
-//                        controller.resetSpelbord();
-//                    }
                 }
 
                 /* Wordt uitgevoerd vanaf het spelbord alle kisten op de doelen heeft staan */

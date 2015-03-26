@@ -14,7 +14,7 @@ public class Spel
     /* DECLARATIES VARIABELEN */
     private List<Spelbord> spelborden;
     private String spelNaam;
-    //private Spelbord origineelSpelbord;
+//    private Spelbord origineelSpelbord;
     private Spelbord huidigSpelbord;
     private int spelbordIndex = 0;
     private int aantalSpelbordenVoltooid = 0;
@@ -57,7 +57,7 @@ public class Spel
     
 //    public void reset()
 //    {
-//        this.setHuidigSpelbord(origineelSpelbord);
+//        huidigSpelbord=setHuidigSpelbord(origineelSpelbord);
 //    }
 
     /**

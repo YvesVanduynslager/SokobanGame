@@ -67,7 +67,7 @@ public class SpeelSpel
                     System.out.println(localeString("speelspel.omlaag"));
                     System.out.println(localeString("speelspel.links"));
                     System.out.println(localeString("speelspel.rechts"));
-//                    System.out.println(localeString("speelspel.reset"));
+                    System.out.println(localeString("speelspel.reset"));
                     System.out.println("[0] " + localeString("terug"));
                     System.out.print(localeString("keuze"));
 

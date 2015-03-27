@@ -41,6 +41,12 @@ public class Spelbord
         return naam;
     }
 
+    /**
+     * 
+     * @param element
+     * @param richting
+     * @return 
+     */
     private Element geefAangrenzendElement(Element element, int richting)
     {
         int x0 = element.getxPositie();

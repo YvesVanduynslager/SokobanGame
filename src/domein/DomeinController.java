@@ -229,7 +229,7 @@ public class DomeinController
     
 //    public void resetSpelbord()
 //    {
-//        huidigSpel.reset();
+//        huidigSpel.resetHuidigSpelbord();
 //    }
     
         /**

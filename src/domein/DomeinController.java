@@ -227,10 +227,10 @@ public class DomeinController
         return huidigSpel.getHuidigSpelbord().geefAantalZetten();
     }
     
-//    public void resetSpelbord()
-//    {
-//        huidigSpel.resetHuidigSpelbord();
-//    }
+    public void resetSpelbord()
+    {
+        huidigSpel.resetHuidigSpelbord();
+    }
     
         /**
      * Alle UC's. Selecteren van de gewenste taal. Geeft de taalkeuze van de

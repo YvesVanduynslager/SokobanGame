@@ -50,10 +50,9 @@ public class Spel
         {
             if(!bord.isVoltooid())
             {
-                origineelSpelbord = bord;
-                this.setHuidigSpelbord(bord);
+                origineelSpelbord = new Spelbord(bord);
+                this.setHuidigSpelbord(bord);   
                 break;
-                
             }
         }
 //        if (spelbordIndex < spelborden.size())
@@ -65,12 +64,11 @@ public class Spel
 //        spelbordIndex++;
     }
     
-//    public void resetHuidigSpelbord()
-//    {
-//        
-//        this.setHuidigSpelbord(origineelSpelbord);
-//        //huidigSpelbord.resetVelden();
-//    }
+    public void resetHuidigSpelbord()
+    {
+        
+        this.huidigSpelbord = new Spelbord(origineelSpelbord);
+    }
 
     /**
      * Geeft de naam van het spel.
@@ -141,7 +139,7 @@ public class Spel
      */
     private void setHuidigSpelbord(Spelbord spelbord)
     {
-        this.huidigSpelbord = spelbord;
+        this.huidigSpelbord = new Spelbord(spelbord);
     }
 
     /**

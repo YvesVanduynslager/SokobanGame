@@ -77,10 +77,10 @@ public class SpeelSpel
                     {
                         return;
                     }
-//                    else if (keuze == 5)
-//                    {
-//                        controller.resetSpelbord();
-//                    }
+                    else if (keuze == 5)
+                    {
+                        controller.resetSpelbord();
+                    }
                     else
                     {
                         beweeg(keuze);

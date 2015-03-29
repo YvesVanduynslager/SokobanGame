@@ -15,7 +15,7 @@ public class Spel
     private List<Spelbord> spelborden;
     private String spelNaam;
     private Spelbord huidigSpelbord;
-    private int spelbordIndex = 0;
+//    private int spelbordIndex = 0;
     private int aantalSpelbordenVoltooid = 0;
 
     /**
@@ -52,7 +52,6 @@ public class Spel
                 this.setHuidigSpelbord(bord);   
                 break;
             }
-            this.spelbordIndex++;
         }
 //        if (spelbordIndex < spelborden.size())
 //        {
@@ -69,7 +68,7 @@ public class Spel
     
     public void resetHuidigSpelbord(Spel spel)
     {
-        spelborden.set(spelbordIndex, spel.getSpelborden().get(spelbordIndex));
+//        spelborden.set(spelbordIndex, spel.getSpelborden().get(spelbordIndex));
     }
 
     /**

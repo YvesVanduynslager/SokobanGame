@@ -30,6 +30,29 @@ public class Spelbord
         this.mannetje = mannetje;
         this.aantalZetten = 0;
     }
+    /**
+     * Initialiseert de naam, velden, het mannetje en het aantal zetten aan de
+     * hand van een bestaand spelbord.
+     * 
+     * @param spelbord Spelbord waarnaar een nieuw object wordt aangemaakt.
+     */
+    public Spelbord(Spelbord spelbord)
+    {
+        this.naam = spelbord.getNaam();
+        this.velden = spelbord.geefVelden();
+        this.mannetje = spelbord.getMannetje();
+        this.aantalZetten = spelbord.geefAantalZetten();
+    }
+    
+    /**
+     * Geeft het mannetje van het huidige spelbord terug.
+     * 
+     * @return het mannetje van het huidige spelbord.
+     */
+    public Mannetje getMannetje()
+    {
+        return this.mannetje;
+    }
 
     /**
      * Geeft de naam van het spel terug.
@@ -38,7 +61,7 @@ public class Spelbord
      */
     public String getNaam()
     {
-        return naam;
+        return this.naam;
     }
 
     /**
@@ -227,6 +250,7 @@ public class Spelbord
      *
      * @return array van elementen op spelbord.
      */
+    
     public Element[][] geefVelden()
     {
         return this.velden;

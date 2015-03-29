@@ -14,9 +14,8 @@ public class Spel
     /* DECLARATIES VARIABELEN */
     private List<Spelbord> spelborden;
     private String spelNaam;
-    private Spelbord origineelSpelbord;
     private Spelbord huidigSpelbord;
-    private int spelbordIndex = 0;
+//    private int spelbordIndex = 0;
     private int aantalSpelbordenVoltooid = 0;
 
     /**
@@ -37,7 +36,7 @@ public class Spel
     public Spel(String spelNaam, List<Spelbord> spelborden)
     {
         this.spelNaam = spelNaam;
-        this.spelborden = spelborden;
+        this.spelborden = spelborden;        
     }
 
     /**
@@ -50,10 +49,8 @@ public class Spel
         {
             if(!bord.isVoltooid())
             {
-                origineelSpelbord = bord;
-                this.setHuidigSpelbord(bord);
+                this.setHuidigSpelbord(bord);   
                 break;
-                
             }
         }
 //        if (spelbordIndex < spelborden.size())
@@ -64,13 +61,15 @@ public class Spel
 //        }
 //        spelbordIndex++;
     }
+
+    public List<Spelbord> getSpelborden() {
+        return spelborden;
+    }
     
-//    public void resetHuidigSpelbord()
-//    {
-//        
-//        this.setHuidigSpelbord(origineelSpelbord);
-//        //huidigSpelbord.resetVelden();
-//    }
+    public void resetHuidigSpelbord(Spel spel)
+    {
+//        spelborden.set(spelbordIndex, spel.getSpelborden().get(spelbordIndex));
+    }
 
     /**
      * Geeft de naam van het spel.

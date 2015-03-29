@@ -77,10 +77,10 @@ public class SpeelSpel
                     {
                         return;
                     }
-//                    else if (keuze == 5)
-//                    {
-//                        controller.resetSpelbord();
-//                    }
+                    else if (keuze == 5)
+                    {
+                        controller.resetSpelbord(keuzeString);
+                    }
                     else
                     {
                         beweeg(keuze);
@@ -132,7 +132,7 @@ public class SpeelSpel
      */
     private void beweeg(int keuzeBeweging)
     {
-        controller.beweeg(keuzeBeweging - 1);
+        controller.beweeg(--keuzeBeweging);
     }
     
     private String localeString(String key)

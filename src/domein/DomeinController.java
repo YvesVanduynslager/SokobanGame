@@ -227,9 +227,9 @@ public class DomeinController
         return huidigSpel.getHuidigSpelbord().geefAantalZetten();
     }
     
-    public void resetSpelbord()
+    public void resetSpelbord(String spelnaam)
     {
-        huidigSpel.resetHuidigSpelbord();
+        huidigSpel.resetHuidigSpelbord(this.spelRepository.geefSpel(spelnaam));
     }
     
         /**

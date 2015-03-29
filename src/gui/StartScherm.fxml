@@ -7,19 +7,18 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="GridPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxWidth="-Infinity" minWidth="-Infinity" prefWidth="600.0" type="GridPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints fillHeight="false" maxHeight="30.0" minHeight="3.0" prefHeight="30.0" vgrow="NEVER" />
-    <RowConstraints maxHeight="333.0" minHeight="10.0" prefHeight="333.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="186.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+    <RowConstraints fillHeight="false" maxHeight="47.0" minHeight="3.0" prefHeight="42.0" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="333.0" minHeight="10.0" prefHeight="290.0" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
-      <Pane fx:id="pnStart" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+      <Pane fx:id="pnStart" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <children>
-            <Label fx:id="lblTitel" layoutX="205.0" layoutY="138.0" text="Sokoban">
+            <Label fx:id="lblTitel" layoutX="205.0" layoutY="122.0" text="Sokoban">
                <font>
                   <Font name="AR DESTINE" size="50.0" />
                </font>

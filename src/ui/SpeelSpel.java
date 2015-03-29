@@ -1,4 +1,4 @@
-package gui;
+package ui;
 
 /* IMPORTS */
 import domein.DomeinController;

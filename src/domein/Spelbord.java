@@ -30,6 +30,7 @@ public class Spelbord
         this.mannetje = mannetje;
         this.aantalZetten = 0;
     }
+    
     /**
      * Initialiseert de naam, velden, het mannetje en het aantal zetten aan de
      * hand van een bestaand spelbord.

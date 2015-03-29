@@ -20,7 +20,7 @@ public class StartUp extends Application
         DomeinController controller = new DomeinController();
         Scene scene = new Scene(new StartScherm(controller));
         stage.setScene(scene);
-        stage.setTitle("sokoban");
+        stage.setTitle("Sokoban");
         
         stage.setOnShown(e -> {
             stage.setMinWidth(stage.getWidth());

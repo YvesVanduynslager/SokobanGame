@@ -9,21 +9,53 @@
 
 <fx:root maxWidth="-Infinity" minWidth="-Infinity" prefWidth="600.0" type="GridPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
+      <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints fillHeight="false" maxHeight="47.0" minHeight="3.0" prefHeight="42.0" vgrow="ALWAYS" />
-    <RowConstraints maxHeight="333.0" minHeight="10.0" prefHeight="290.0" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="35.0" minHeight="35.0" prefHeight="35.0" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="300.0" minHeight="300.0" prefHeight="300.0" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
-      <Pane fx:id="pnStart" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
+      <Pane fx:id="pnStart" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="271.0" prefWidth="454.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS" />
+      <GridPane vgap="5.0" GridPane.rowIndex="1">
+        <columnConstraints>
+          <ColumnConstraints hgrow="NEVER" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
          <children>
-            <Label fx:id="lblTitel" layoutX="205.0" layoutY="122.0" text="Sokoban">
+            <Button fx:id="btnSpelen" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Spelen" />
+            <Button fx:id="btnAanpassen" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Aanpassen" GridPane.rowIndex="1" />
+            <Button fx:id="btnMaken" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Maken" GridPane.rowIndex="2" />
+         </children>
+      </GridPane>
+      <GridPane hgap="5.0" GridPane.columnIndex="1" GridPane.valignment="TOP">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="btnRegistreren" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Registreren" GridPane.columnIndex="1" />
+            <Button fx:id="btnAanmelden" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Aanmelden" GridPane.columnIndex="2" />
+            <Label alignment="CENTER_RIGHT" maxWidth="1.7976931348623157E308" text="Speler:" textAlignment="RIGHT">
                <font>
-                  <Font name="AR DESTINE" size="50.0" />
+                  <Font name="AR DESTINE" size="30.0" />
                </font>
             </Label>
          </children>
-      </Pane>
+      </GridPane>
+      <Label alignment="BOTTOM_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Spel:" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="TOP">
+         <font>
+            <Font name="AR DESTINE" size="30.0" />
+         </font>
+      </Label>
    </children>
 </fx:root>

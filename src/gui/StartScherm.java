@@ -40,6 +40,7 @@ public class StartScherm extends GridPane
     protected Label lblStatus;
 
     private DomeinController c;
+    private GridPane content;
 
     public StartScherm(DomeinController c)
     {
@@ -66,6 +67,7 @@ public class StartScherm extends GridPane
     {
         aanmelden = new AanmeldenScherm(this, c);
         this.add(aanmelden, 0, 1);
+        
     }
     
     protected void afsluiten(ActionEvent event)

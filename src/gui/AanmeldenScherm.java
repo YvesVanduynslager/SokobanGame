@@ -103,7 +103,7 @@ public class AanmeldenScherm extends GridPane
     
     protected void annuleren(ActionEvent event)
     {
-        
+        this.getChildren().clear();
     }
     
     public boolean isSuccess()

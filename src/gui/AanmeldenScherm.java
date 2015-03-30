@@ -10,6 +10,7 @@ import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -33,27 +34,14 @@ public class AanmeldenScherm extends GridPane
 
     private DomeinController c;
     private StartScherm startScherm;
+    private boolean geldig;
     
-    public AanmeldenScherm(DomeinController c)
+    public AanmeldenScherm(StartScherm startScherm, DomeinController c)
     {
-        //this.startScherm = startScherm;
+        this.startScherm = startScherm;
         this.c = c;
-        
-        txtGebruikersnaam = new TextField();
-        txtGebruikersnaam.setPromptText("Gebruikesnaam");
-        
-        pswWachtwoord = new PasswordField();
-        pswWachtwoord.setPromptText("Wachtwoord");
-        
-        btnOK = new Button();
-        btnOK.setText("OK");
-        btnOK.setOnAction(this::ok);
-        
-        btnAnnuleren = new Button();
-        btnAnnuleren.setText("Annuleren");
-        btnAnnuleren.setOnAction(this::annuleren);
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Aanmelden.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("AanmeldenScherm.fxml"));
         loader.setRoot(this);
         loader.setController(this);
         try
@@ -64,15 +52,62 @@ public class AanmeldenScherm extends GridPane
         {
             throw new RuntimeException(ex);
         }
+        
+        //txtGebruikersnaam.setPromptText("Gebruikersnaam");
+        
+        //pswWachtwoord = new PasswordField();
+        //pswWachtwoord.setPromptText("Wachtwoord");
+        
+        btnOK.setOnAction(this::ok_Pressed);
+        
+//        btnAnnuleren = new Button();
+//        btnAnnuleren.setText("Annuleren");
+        btnAnnuleren.setOnAction(this::annuleren);
     }
     
-    protected void ok(ActionEvent event)
+    private void ok_Pressed(ActionEvent event)
     {
-        c.meldAan(txtGebruikersnaam.getText(), pswWachtwoord.getText());
+        String[] speler;
+        String gebruikersnaam, wachtwoord;
+        
+        gebruikersnaam = txtGebruikersnaam.getText();
+        System.out.println(gebruikersnaam);
+        wachtwoord = pswWachtwoord.getText();
+        System.out.println(wachtwoord);
+        
+        c.meldAan(gebruikersnaam, wachtwoord);
+        speler = c.geefSpeler();
+        
+        if (speler[0] == null)
+        {
+            geldig = false;
+            startScherm.lblStatus.setText("Speler niet gevonden!");
+        }
+        else
+        {
+            geldig = true;
+            String adminrechtenHulp = (speler[1].equals("ja") ? " MET " : " ZONDER ");
+            startScherm.lblStatus.setText("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.");
+            if(speler[1].equals("ja"))
+            {
+                startScherm.mItemNieuwSpel.setDisable(false);
+                startScherm.mItemMaakSpelbord.setDisable(false);
+                startScherm.mItemAanpassenSpelbord.setDisable(false);
+            }
+            else
+            {
+                startScherm.mItemNieuwSpel.setDisable(false);
+            }
+        }
     }
     
     protected void annuleren(ActionEvent event)
     {
         
+    }
+    
+    public boolean isSuccess()
+    {
+        return geldig;
     }
 }

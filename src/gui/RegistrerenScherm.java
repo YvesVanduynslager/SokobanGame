@@ -12,8 +12,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
@@ -64,21 +64,31 @@ public class RegistrerenScherm extends GridPane
 
     private void ok_Pressed(ActionEvent event)
     {
+        Label lblStatus;
         try
         {
+            //lblStatus = new Label("Aangemeld als " + txtGebruikersnaam.getText() + " ZONDER adminrechten.");
             c.registreer(txtGebruikersnaam.getText(), pswWachtwoord.getText(), txtNaam.getText(), txtVoornaam.getText());
             startScherm.setLblStatus("Aangemeld als " + txtGebruikersnaam.getText() + " ZONDER adminrechten.");
+            //startScherm.setLblStatus(lblStatus);
             geldig = true;
         }
         catch (GebruikerBestaatException gbe)
         {
+//            lblStatus = new Label("Gebruikersnaam bestaat al");
+//            lblStatus.setStyle("-fx-text-fill: #c4d8de;");
             System.err.println(gbe);
             startScherm.setLblStatus("Gebruikersnaam bestaat al");
+            //startScherm.setLblStatus(lblStatus);
             geldig = false;
         }
         catch (IllegalArgumentException iae)
         {
+            //lblStatus = new Label("Ongeldige gebruikersnaam of wachtwoord ingegeven. Probeer opnieuw");
             System.err.println(iae);
+            
+            //lblStatus.setStyle("-fx-text-fill: #c4d8de;");
+            //startScherm.setLblStatus(lblStatus);
             startScherm.setLblStatus("Ongeldige gebruikersnaam of wachtwoord ingegeven. Probeer opnieuw");
             geldig = false;
         }

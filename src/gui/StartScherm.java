@@ -43,11 +43,15 @@ public class StartScherm extends GridPane
 
     private DomeinController c;
     private GridPane content;
-    //private AanmeldenScherm aanmelden;
 
     public StartScherm(DomeinController c)
     {
         this.c = c;
+        
+        /* Lege gridpane instellen bij start, anders overlappen gridpanes elkaar na 2x selecteren in menu's.
+        Bvb. klikken op Gebruiker -> aanmelden, daarna op Gebruiker -> registreren */
+        this.content = new GridPane();
+        this.add(content, 1,0);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScherm.fxml"));
         loader.setRoot(this);
@@ -75,14 +79,20 @@ public class StartScherm extends GridPane
     
     private void aanmelden(ActionEvent event)
     {
+        content.getChildren().clear();
+        //this.getChildren().remove(1, 0);
         //wisContent();
+        this.setLblStatus("");
         content = new AanmeldenScherm(this, c);
         addContent(content);
     }
     
     private void registreren(ActionEvent event)
     {
+        content.getChildren().clear();
+        //this.getChildren().remove(1, 0);
         //wisContent();
+        this.setLblStatus("");
         content = new RegistrerenScherm(this, c);
         addContent(content);
     }
@@ -94,27 +104,28 @@ public class StartScherm extends GridPane
     
     private void nederlands(ActionEvent event)
     {
+        c.setTaalKeuze(1);
+        this.setLblStatus("Taal: Nederlands");
         
     }
     
     private void frans(ActionEvent event)
     {
+        c.setTaalKeuze(3);
+        this.setLblStatus("Langue: Français");
         
     }
     
     private void engels(ActionEvent event)
     {
+        c.setTaalKeuze(2);
+        this.setLblStatus("Language: English");
         
     }
     
     private void info(ActionEvent event)
     {
         
-    }
-    
-    private void wisContent()
-    {
-        this.getChildren().clear();
     }
     
     private void addContent(GridPane content)
@@ -126,6 +137,11 @@ public class StartScherm extends GridPane
     {
         this.lblStatus.setText(bericht);
     }
+    
+//    public void setLblStatus(Label label)
+//    {
+//        this.lblStatus = label;
+//    }
 
     public void setMenuItemNieuwSpel(boolean disabled)
     {

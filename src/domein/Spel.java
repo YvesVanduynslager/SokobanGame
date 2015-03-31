@@ -66,10 +66,10 @@ public class Spel
         return spelborden;
     }
     
-    public void resetHuidigSpelbord(Spel spel)
-    {
-//        spelborden.set(spelbordIndex, spel.getSpelborden().get(spelbordIndex));
-    }
+//    public void resetHuidigSpelbord(Spel spel)
+//    {
+////        spelborden.set(spelbordIndex, spel.getSpelborden().get(spelbordIndex));
+//    }
 
     /**
      * Geeft de naam van het spel.

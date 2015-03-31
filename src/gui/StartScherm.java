@@ -7,6 +7,7 @@ package gui;
 
 import domein.DomeinController;
 import java.io.IOException;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +22,6 @@ import javafx.scene.layout.GridPane;
  */
 public class StartScherm extends GridPane
 {
-    private AanmeldenScherm aanmelden;
     @FXML
     protected MenuItem mItemNieuwSpel;
     @FXML
@@ -37,10 +37,13 @@ public class StartScherm extends GridPane
     @FXML
     private MenuItem mItemInfo;
     @FXML
+    private MenuItem mItemNederlands, mItemFrans, mItemEngels;
+    @FXML
     protected Label lblStatus;
 
     private DomeinController c;
     private GridPane content;
+    //private AanmeldenScherm aanmelden;
 
     public StartScherm(DomeinController c)
     {
@@ -60,18 +63,82 @@ public class StartScherm extends GridPane
         }
         
         mItemAanmelden.setOnAction(this::aanmelden);
+        mItemRegistreren.setOnAction(this::registreren);
         mItemAfsluiten.setOnAction(this::afsluiten);
+        
+        mItemNederlands.setOnAction(this::nederlands);
+        mItemFrans.setOnAction(this::frans);
+        mItemEngels.setOnAction(this::engels);
+        
+        mItemInfo.setOnAction(this::info);
     }
     
-    protected void aanmelden(ActionEvent event)
+    private void aanmelden(ActionEvent event)
     {
-        aanmelden = new AanmeldenScherm(this, c);
-        this.add(aanmelden, 0, 1);
+        //wisContent();
+        content = new AanmeldenScherm(this, c);
+        addContent(content);
+    }
+    
+    private void registreren(ActionEvent event)
+    {
+        //wisContent();
+        content = new RegistrerenScherm(this, c);
+        addContent(content);
+    }
+    
+    private void afsluiten(ActionEvent event)
+    {
+        Platform.exit();
+    }
+    
+    private void nederlands(ActionEvent event)
+    {
         
     }
     
-    protected void afsluiten(ActionEvent event)
+    private void frans(ActionEvent event)
     {
         
+    }
+    
+    private void engels(ActionEvent event)
+    {
+        
+    }
+    
+    private void info(ActionEvent event)
+    {
+        
+    }
+    
+    private void wisContent()
+    {
+        this.getChildren().clear();
+    }
+    
+    private void addContent(GridPane content)
+    {
+        this.add(content,0,1);
+    }
+
+    public void setLblStatus(String bericht)
+    {
+        this.lblStatus.setText(bericht);
+    }
+
+    public void setMenuItemNieuwSpel(boolean disabled)
+    {
+        this.mItemNieuwSpel.setDisable(disabled);
+    }
+
+    public void setMenuItemMaakSpelbord(boolean disabled)
+    {
+        this.mItemMaakSpelbord.setDisable(disabled);
+    }
+
+    public void setMenuAanpassenSpelbord(boolean disabled)
+    {
+        this.mItemAanpassenSpelbord.setDisable(disabled);
     }
 }

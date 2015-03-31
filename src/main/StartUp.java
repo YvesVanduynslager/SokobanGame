@@ -5,7 +5,10 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 import domein.DomeinController;
 import gui.StartScherm;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.stage.WindowEvent;
 
 /**
  * Main-klasse. Dit is de klasse die de UI zal starten en weergeven/tekenen
@@ -25,6 +28,15 @@ public class StartUp extends Application
         stage.setOnShown(e -> {
             stage.setMinWidth(stage.getWidth());
             stage.setMinHeight(stage.getHeight());
+        });
+        
+        
+        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent t) {
+                Platform.exit();
+                System.exit(0);
+            }
         });
         
         stage.show();

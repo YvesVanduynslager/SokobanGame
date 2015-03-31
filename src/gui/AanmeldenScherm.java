@@ -52,16 +52,8 @@ public class AanmeldenScherm extends GridPane
         {
             throw new RuntimeException(ex);
         }
-        
-        //txtGebruikersnaam.setPromptText("Gebruikersnaam");
-        
-        //pswWachtwoord = new PasswordField();
-        //pswWachtwoord.setPromptText("Wachtwoord");
-        
+
         btnOK.setOnAction(this::ok_Pressed);
-        
-//        btnAnnuleren = new Button();
-//        btnAnnuleren.setText("Annuleren");
         btnAnnuleren.setOnAction(this::annuleren);
     }
     
@@ -81,27 +73,30 @@ public class AanmeldenScherm extends GridPane
         if (speler[0] == null)
         {
             geldig = false;
-            startScherm.lblStatus.setText("Speler niet gevonden!");
+            spelerNietGevonden("Speler niet gevonden of fout wachtwoord ingevuld!");
+            //startScherm.lblStatus.setText("Speler niet gevonden!");
         }
         else
         {
             geldig = true;
             String adminrechtenHulp = (speler[1].equals("ja") ? " MET " : " ZONDER ");
-            startScherm.lblStatus.setText("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.");
+            
+            //startScherm.lblStatus.setText("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.");
             if(speler[1].equals("ja"))
             {
+                spelerGevonden("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.", true);
                 startScherm.mItemNieuwSpel.setDisable(false);
                 startScherm.mItemMaakSpelbord.setDisable(false);
                 startScherm.mItemAanpassenSpelbord.setDisable(false);
             }
             else
-            {
+            { spelerGevonden("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.", false);
                 startScherm.mItemNieuwSpel.setDisable(false);
             }
         }
     }
     
-    protected void annuleren(ActionEvent event)
+    private void annuleren(ActionEvent event)
     {
         this.getChildren().clear();
     }
@@ -109,5 +104,29 @@ public class AanmeldenScherm extends GridPane
     public boolean isSuccess()
     {
         return geldig;
+    }
+    
+    private void spelerGevonden(String bericht, boolean adminRechten)
+    {
+        startScherm.setLblStatus(bericht);
+        
+        if(adminRechten)
+        {
+            startScherm.setMenuItemNieuwSpel(false);
+            startScherm.setMenuItemMaakSpelbord(false);
+            startScherm.setMenuAanpassenSpelbord(false);
+        }
+        else
+        {
+            startScherm.setMenuItemNieuwSpel(false);
+            startScherm.setMenuItemMaakSpelbord(true);
+            startScherm.setMenuAanpassenSpelbord(true);
+        }
+        //Scene scene = new Scene(startScherm);
+    }
+    
+    private void spelerNietGevonden(String bericht)
+    {
+        startScherm.setLblStatus(bericht);
     }
 }

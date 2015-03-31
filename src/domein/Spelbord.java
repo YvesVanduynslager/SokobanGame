@@ -31,19 +31,19 @@ public class Spelbord
         this.aantalZetten = 0;
     }
     
-    /**
-     * Initialiseert de naam, velden, het mannetje en het aantal zetten aan de
-     * hand van een bestaand spelbord.
-     * 
-     * @param spelbord Spelbord waarnaar een nieuw object wordt aangemaakt.
-     */
-    public Spelbord(Spelbord spelbord)
-    {
-        this.naam = spelbord.getNaam();
-        this.velden = spelbord.geefVelden();
-        this.mannetje = spelbord.getMannetje();
-        this.aantalZetten = spelbord.geefAantalZetten();
-    }
+//    /**
+//     * Initialiseert de naam, velden, het mannetje en het aantal zetten aan de
+//     * hand van een bestaand spelbord.
+//     * 
+//     * @param spelbord Spelbord waarnaar een nieuw object wordt aangemaakt.
+//     */
+//    public Spelbord(Spelbord spelbord)
+//    {
+//        this.naam = spelbord.getNaam();
+//        this.velden = spelbord.geefVelden();
+//        this.mannetje = spelbord.getMannetje();
+//        this.aantalZetten = spelbord.geefAantalZetten();
+//    }
     
     /**
      * Geeft het mannetje van het huidige spelbord terug.

@@ -37,6 +37,13 @@
                   <MenuItem fx:id="mItemRegistreren" mnemonicParsing="false" text="Registreren" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Taal">
+              <items>
+                <MenuItem fx:id="mItemNederlands" mnemonicParsing="false" text="Nederlands" />
+                  <MenuItem fx:id="mItemFrans" mnemonicParsing="false" text="Français" />
+                  <MenuItem fx:id="mItemEngels" mnemonicParsing="false" text="English" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <items>
               <MenuItem fx:id="mItemInfo" mnemonicParsing="false" text="Info" />

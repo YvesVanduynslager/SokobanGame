@@ -82,7 +82,7 @@ public class AanmeldenScherm extends GridPane implements SpelerMenuInterface
         if (speler[0] == null)
         {
             geldig = false;
-            spelerNietGevonden("Speler niet gevonden of fout wachtwoord ingevuld!");
+            startScherm.updateControls("Speler niet gevonden of verkeerd wachtwoord ingegeven!");
         }
         else
         {
@@ -91,17 +91,12 @@ public class AanmeldenScherm extends GridPane implements SpelerMenuInterface
 
             if (speler[1].equals("ja"))
             {
-                spelerGevonden("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.", true);
-                startScherm.setMenuItemNieuwSpel(false);
-                startScherm.setMenuAanpassenSpelbord(false);
-                startScherm.setMenuItemMaakSpelbord(false);
+                startScherm.updateControls("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.", true);
             }
             else
             {
-                spelerGevonden("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.", false);
-                startScherm.setMenuItemNieuwSpel(false);
-                startScherm.setMenuAanpassenSpelbord(true);
-                startScherm.setMenuItemMaakSpelbord(true);
+                
+                startScherm.updateControls("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.", false);
             }
         }
     }
@@ -125,28 +120,5 @@ public class AanmeldenScherm extends GridPane implements SpelerMenuInterface
     public boolean isSuccess()
     {
         return geldig;
-    }
-
-    private void spelerGevonden(String bericht, boolean adminRechten)
-    {
-        startScherm.setLblStatus(bericht);
-
-        if (adminRechten)
-        {
-            startScherm.setMenuItemNieuwSpel(false);
-            startScherm.setMenuItemMaakSpelbord(false);
-            startScherm.setMenuAanpassenSpelbord(false);
-        }
-        else
-        {
-            startScherm.setMenuItemNieuwSpel(false);
-            startScherm.setMenuItemMaakSpelbord(true);
-            startScherm.setMenuAanpassenSpelbord(true);
-        }
-    }
-
-    private void spelerNietGevonden(String bericht)
-    {
-        startScherm.setLblStatus(bericht);
     }
 }

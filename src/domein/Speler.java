@@ -9,7 +9,8 @@ package domein;
 public class Speler
 {
     /* DECLARATIES VARIABELEN */
-    private String gebruikersnaam, wachtwoord, adminrechten, voornaam, achternaam;
+    private String gebruikersnaam, wachtwoord, adminrechten, voornaam,
+            achternaam;
 
     /**
      * Default-constructor.
@@ -29,7 +30,8 @@ public class Speler
      * @param adminrechten "ja" als speler adminrechten heeft, "nee" als speler
      * geen adminrechten heeft.
      */
-    public Speler(String gebruikersnaam, String wachtwoord, String achternaam, String voornaam, String adminrechten)
+    public Speler(String gebruikersnaam, String wachtwoord, String achternaam,
+            String voornaam, String adminrechten)
     {
         this.setEnControleerGebruikersnaam(gebruikersnaam);
         this.setEnControleerWachtwoord(wachtwoord);
@@ -208,7 +210,8 @@ public class Speler
             }
         }
         // indien aan alles werd voldaan: resultaat >= 1; anders 0
-        if (numOfDigits * numOfUpperLetters * numOfLowerLetters * (wachtwoord.length() / 8) >= 1)
+        if (numOfDigits * numOfUpperLetters * numOfLowerLetters *
+                (wachtwoord.length() / 8) >= 1)
         {
             return true;
         }

@@ -38,15 +38,8 @@ public class SpelerRepository
      * @throws exceptions.GebruikerBestaatException throws naar
      * DomeinController.
      */
-    public void voegToe(Speler speler) throws GebruikerBestaatException //throw naar DomeinController
+    public void voegToe(Speler speler) throws GebruikerBestaatException
     {
-//        try
-//        {
         spelerMapper.voegToe(speler);
-//        }
-//        catch (GebruikerBestaatException gbe)
-//        {
-//            throw gbe;
-//        }
     }
 }

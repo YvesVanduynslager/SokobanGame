@@ -11,11 +11,6 @@ public abstract class Element
     private int yPositie;
     private boolean isDoel;
 
-//    public Element(int xPositie, int yPositie)
-//    {
-//        this(xPositie, yPositie, false);
-//    }
-
     /**
      * Constructor stelt x positie, y positie in van het element, en stelt in of het element als een doel behandelt moet worden.
      * @param xPositie x-coördinaat, int.

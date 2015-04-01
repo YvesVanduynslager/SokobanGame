@@ -38,8 +38,8 @@ public class StartScherm extends GridPane
     public StartScherm(DomeinController c)
     {
         this.c = c;
-        c.setTaalKeuze(1);      
-        
+        c.setTaalKeuze(1);
+
         /* Lege gridpane instellen bij start, anders overlappen gridpanes elkaar na 2x selecteren in menu's.
          Bvb. klikken op Gebruiker -> aanmelden, daarna op Gebruiker -> registreren */
         this.content = new GridPane();
@@ -66,14 +66,12 @@ public class StartScherm extends GridPane
         mItemEngels.setOnAction(this::engels);
 
         mItemInfo.setOnAction(this::info);
-        
-        //lblStatus.setStyle("-fx-text-fill: #00d8d8;");
     }
 
     private void aanmelden(ActionEvent event)
     {
         content.getChildren().clear();
-        this.setLblStatus("");
+        this.lblStatus.setText("");
         content = new AanmeldenScherm(this, c);
         addContent(content);
     }
@@ -81,7 +79,7 @@ public class StartScherm extends GridPane
     private void registreren(ActionEvent event)
     {
         content.getChildren().clear();
-        this.setLblStatus("");
+        this.lblStatus.setText("");
         content = new RegistrerenScherm(this, c);
         addContent(content);
     }
@@ -94,35 +92,35 @@ public class StartScherm extends GridPane
     private void nederlands(ActionEvent event)
     {
         c.setTaalKeuze(1);
-        this.setLblStatus("Taal: Nederlands");
+       this.lblStatus.setText("Taal: Nederlands");
         refreshContent();
     }
 
     private void frans(ActionEvent event)
     {
         c.setTaalKeuze(3);
-        this.setLblStatus("Langue: Français");
+        this.lblStatus.setText("Langue: Français");
         refreshContent();
     }
 
     private void engels(ActionEvent event)
     {
         c.setTaalKeuze(2);
-        this.setLblStatus("Language: English");
+        this.lblStatus.setText("Language: English");
         refreshContent();
     }
-    
+
     private void refreshContent()
     {
-        if(content instanceof AanmeldenScherm)
+        if (content instanceof AanmeldenScherm)
         {
-            ((AanmeldenScherm)content).refresh();
+            ((AanmeldenScherm) content).refresh();
         }
         else
         {
-            if(content instanceof RegistrerenScherm)
+            if (content instanceof RegistrerenScherm)
             {
-                ((RegistrerenScherm)content).refresh();
+                ((RegistrerenScherm) content).refresh();
             }
         }
     }
@@ -137,23 +135,25 @@ public class StartScherm extends GridPane
         this.add(content, 0, 1);
     }
 
-    public void setLblStatus(String bericht)
+    public void updateControls(String lblStatus, boolean isAdmin)
     {
-        this.lblStatus.setText(bericht);
+        this.lblStatus.setText(lblStatus);
+        if (isAdmin)
+        {
+            this.mItemNieuwSpel.setDisable(false);
+            this.mItemAanpassenSpelbord.setDisable(false);
+            this.mItemMaakSpelbord.setDisable(false);
+        }
+        else
+        {
+            this.mItemNieuwSpel.setDisable(false);
+            this.mItemAanpassenSpelbord.setDisable(true);
+            this.mItemMaakSpelbord.setDisable(true);
+        }
     }
 
-    public void setMenuItemNieuwSpel(boolean disabled)
+    public void updateControls(String lblStatus)
     {
-        this.mItemNieuwSpel.setDisable(disabled);
-    }
-
-    public void setMenuItemMaakSpelbord(boolean disabled)
-    {
-        this.mItemMaakSpelbord.setDisable(disabled);
-    }
-
-    public void setMenuAanpassenSpelbord(boolean disabled)
-    {
-        this.mItemAanpassenSpelbord.setDisable(disabled);
+        this.lblStatus.setText(lblStatus);
     }
 }

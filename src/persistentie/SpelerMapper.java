@@ -90,10 +90,6 @@ public class SpelerMapper
         {
             System.err.println("SQL fout" + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
         }
-//        catch (GebruikerBestaatException gbe) //throws naar SpelerRepository
-//        {
-//            throw gbe;
-//        }
         finally
         {
             connectie.sluit();

@@ -28,7 +28,8 @@ public class DomeinController
      */
     public DomeinController()
     {
-        /* Initialiseren van een SpelerRepository en SpelRepository voor ophalen en opslaan van Speler -en Spelgegevens. */
+        /* Initialiseren van een SpelerRepository en SpelRepository voor ophalen
+        en opslaan van Speler -en Spelgegevens. */
         spelerRepository = new SpelerRepository();
         spelRepository = new SpelRepository();
 
@@ -84,9 +85,12 @@ public class DomeinController
      * @throws exceptions.GebruikerBestaatException Als de gebruiker al
      * geregistreerd is in het systeem. Throws naar en handelt af in Registreer.
      */
-    public void registreer(String gebruikersnaam, String wachtwoord, String voornaam, String achternaam) throws IllegalArgumentException, GebruikerBestaatException
+    public void registreer(String gebruikersnaam, String wachtwoord,
+            String voornaam, String achternaam)
+            throws IllegalArgumentException, GebruikerBestaatException
     {
-        Speler sp = new Speler(gebruikersnaam, wachtwoord, voornaam, achternaam, "nee");
+        Speler sp = new Speler(gebruikersnaam, wachtwoord,
+                voornaam, achternaam, "nee");
         spelerRepository.voegToe(sp);
         setHuidigeSpeler(sp);
     }
@@ -227,12 +231,7 @@ public class DomeinController
         return huidigSpel.getHuidigSpelbord().geefAantalZetten();
     }
     
-//    public void resetSpelbord(String spelnaam)
-//    {
-//        huidigSpel.resetHuidigSpelbord(this.spelRepository.geefSpel(spelnaam));
-//    }
-    
-        /**
+    /**
      * Alle UC's. Selecteren van de gewenste taal. Geeft de taalkeuze van de
      * gebruiker door aan het Taal-object.
      *

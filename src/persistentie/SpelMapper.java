@@ -27,14 +27,14 @@ public class SpelMapper
 
     /**
      * Geeft de eerste ID terug van een spelbord binnen een spel. Adhv deze id zal er geloopt worden door de borden van een spel in de geefSpel()-methode.
-     * @param naam
+     * @param spelNaam
      * @return 
      */
-    private int geefEersteSpelbordID(String naam)
+    private int geefEersteSpelbordID(String spelNaam)
     {
         int eersteID = 0;
         String sqlEerste = "SELECT MIN(spelbord.spelbordID) FROM spelbord JOIN spel ON spelbord.Spel_spelID = spel.spelID "
-                + "WHERE spel.spelNaam = '" + naam + "';";
+                + "WHERE spel.spelNaam = '" + spelNaam + "';";
 
         Connectie connectie = new Connectie();
         PreparedStatement stmtEersteID;// = null;

@@ -96,7 +96,8 @@ public class Spel
      */
     public void verhoogAantalVoltooideBorden()
     {
-        if (huidigSpelbord != null && huidigSpelbord.isVoltooid() && aantalSpelbordenVoltooid < this.geefAantalSpelborden())
+        if (huidigSpelbord != null && huidigSpelbord.isVoltooid()
+                && aantalSpelbordenVoltooid < this.geefAantalSpelborden())
         {
             aantalSpelbordenVoltooid++;
         }

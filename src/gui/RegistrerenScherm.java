@@ -76,13 +76,14 @@ public class RegistrerenScherm extends GridPane implements SpelerMenuInterface
     {
         try
         {
+            startScherm.updateControls("Aangemeld als " + txtGebruikersnaam.getText() + " ZONDER adminrechten.", false);
             //lblStatus = new Label("Aangemeld als " + txtGebruikersnaam.getText() + " ZONDER adminrechten.");
             c.registreer(txtGebruikersnaam.getText(), pswWachtwoord.getText(), txtNaam.getText(), txtVoornaam.getText());
-            startScherm.setLblStatus("Aangemeld als " + txtGebruikersnaam.getText() + " ZONDER adminrechten.");
+            //startScherm.setLblStatus();
             //startScherm.setLblStatus(lblStatus);
-            startScherm.setMenuItemNieuwSpel(false);
-            startScherm.setMenuAanpassenSpelbord(true);
-            startScherm.setMenuItemMaakSpelbord(true);
+//            startScherm.setMenuItemNieuwSpel(false);
+//            startScherm.setMenuAanpassenSpelbord(true);
+//            startScherm.setMenuItemMaakSpelbord(true);
             geldig = true;
         }
         catch (GebruikerBestaatException gbe)
@@ -90,7 +91,8 @@ public class RegistrerenScherm extends GridPane implements SpelerMenuInterface
 //            lblStatus = new Label("Gebruikersnaam bestaat al");
 //            lblStatus.setStyle("-fx-text-fill: #c4d8de;");
             System.err.println(gbe);
-            startScherm.setLblStatus("Gebruikersnaam bestaat al");
+            startScherm.updateControls("Gebruikersnaam bestaat al");
+            //startScherm.setLblStatus("Gebruikersnaam bestaat al");
             geldig = false;
         }
         catch (IllegalArgumentException iae)
@@ -100,7 +102,8 @@ public class RegistrerenScherm extends GridPane implements SpelerMenuInterface
             
             //lblStatus.setStyle("-fx-text-fill: #c4d8de;");
             //startScherm.setLblStatus(lblStatus);
-            startScherm.setLblStatus("Ongeldige gebruikersnaam of wachtwoord ingegeven. Probeer opnieuw");
+            //startScherm.setLblStatus("Ongeldige gebruikersnaam of wachtwoord ingegeven. Probeer opnieuw");
+            startScherm.updateControls("Ongeldige gebruikersnaam of wachtwoord ingegeven.Probeer opnieuw");
             geldig = false;
         }
     }

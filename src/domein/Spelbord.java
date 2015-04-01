@@ -79,11 +79,13 @@ public class Spelbord
         int[] x1 =
         {
             x0 - 1, x0 + 1, x0, x0
-        }; //x1 bevat de x-waarden voor de veplaatsing van het mannetje in de vorm {omhoog, omlaag, links, recht}
+        }; /*x1 bevat de x-waarden voor de veplaatsing van het mannetje
+        in de vorm {omhoog, omlaag, links, recht}*/
         int[] y1 =
         {
             y0, y0, y0 - 1, y0 + 1
-        }; //y1 bevat de y-waarden voor de veplaatsing van het mannetje in de vorm {omhoog, omlaag, links, recht}
+        }; /*y1 bevat de y-waarden voor de veplaatsing van het mannetje
+        in de vorm {omhoog, omlaag, links, recht}*/
 
         return velden[x1[richting]][y1[richting]];
     }

@@ -17,15 +17,15 @@
       <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="40.0" valignment="BOTTOM" vgrow="NEVER" />
   </rowConstraints>
    <children>
-      <MenuBar>
+      <MenuBar fx:id="menuBar">
         <menus>
-          <Menu mnemonicParsing="false" text="Bestand">
+          <Menu fx:id="menuSpel" mnemonicParsing="false" text="Bestand">
             <items>
                   <MenuItem fx:id="mItemNieuwSpel" disable="true" mnemonicParsing="false" text="Nieuw Spel" />
               <MenuItem fx:id="mItemAfsluiten" mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Bewerken">
+          <Menu fx:id="menuBewerken" mnemonicParsing="false" text="Bewerken">
             <items>
                   <MenuItem fx:id="mItemAanpassenSpelbord" disable="true" mnemonicParsing="false" text="Aanpassen spelbord" />
                   <MenuItem fx:id="mItemMaakSpelbord" disable="true" mnemonicParsing="false" text="Maak spelbord" />

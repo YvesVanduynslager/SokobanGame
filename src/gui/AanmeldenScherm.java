@@ -14,6 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -21,26 +22,23 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class AanmeldenScherm extends GridPane
+public class AanmeldenScherm extends GridPane implements SpelerMenuInterface
 {
+    @FXML
+    private Label lblTitel;
     @FXML
     private TextField txtGebruikersnaam;
     @FXML
-    private Button btnAnnuleren;
-    @FXML
-    private Button btnOK;
+    private Button btnAnnuleren, btnOK;
     @FXML
     private PasswordField pswWachtwoord;
 
     private DomeinController c;
     private StartScherm startScherm;
     private boolean geldig;
-    
+
     public AanmeldenScherm(StartScherm startScherm, DomeinController c)
     {
-        this.startScherm = startScherm;
-        this.c = c;
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AanmeldenScherm.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -48,71 +46,92 @@ public class AanmeldenScherm extends GridPane
         {
             loader.load();
         }
-        catch(IOException ex)
+        catch (IOException ex)
         {
             throw new RuntimeException(ex);
         }
+        
+        this.startScherm = startScherm;
+        this.c = c;
 
         btnOK.setOnAction(this::ok_Pressed);
-        btnAnnuleren.setOnAction(this::annuleren);
+        btnAnnuleren.setOnAction(this::annuleren_Pressed);
+
+        //refresh();
+        lblTitel.setText(c.getString("aanmelden.titel"));
+        txtGebruikersnaam.setPromptText(c.getString("aanmelden.gebruikersnaam"));
+        txtGebruikersnaam.setTooltip(new Tooltip(c.getString("aanmelden.gebruikersnaam.tooltip")));
+        pswWachtwoord.setPromptText(c.getString("aanmelden.wachtwoord"));
+        pswWachtwoord.setTooltip(new Tooltip(c.getString("aanmelden.wachtwoord.tooltip")));
+        btnAnnuleren.setText(c.getString("aanmelden.annuleren"));
     }
-    
+
     private void ok_Pressed(ActionEvent event)
     {
         String[] speler;
         String gebruikersnaam, wachtwoord;
-        
+
         gebruikersnaam = txtGebruikersnaam.getText();
         System.out.println(gebruikersnaam);
         wachtwoord = pswWachtwoord.getText();
         System.out.println(wachtwoord);
-        
+
         c.meldAan(gebruikersnaam, wachtwoord);
         speler = c.geefSpeler();
-        
+
         if (speler[0] == null)
         {
             geldig = false;
             spelerNietGevonden("Speler niet gevonden of fout wachtwoord ingevuld!");
-            //startScherm.lblStatus.setText("Speler niet gevonden!");
         }
         else
         {
             geldig = true;
             String adminrechtenHulp = (speler[1].equals("ja") ? " MET " : " ZONDER ");
-            
-            //startScherm.lblStatus.setText("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.");
-            if(speler[1].equals("ja"))
+
+            if (speler[1].equals("ja"))
             {
                 spelerGevonden("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.", true);
-                startScherm.mItemNieuwSpel.setDisable(false);
-                startScherm.mItemMaakSpelbord.setDisable(false);
-                startScherm.mItemAanpassenSpelbord.setDisable(false);
+                startScherm.setMenuItemNieuwSpel(false);
+                startScherm.setMenuAanpassenSpelbord(false);
+                startScherm.setMenuItemMaakSpelbord(false);
             }
             else
             {
                 spelerGevonden("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.", false);
-                startScherm.mItemNieuwSpel.setDisable(false);
+                startScherm.setMenuItemNieuwSpel(false);
+                startScherm.setMenuAanpassenSpelbord(true);
+                startScherm.setMenuItemMaakSpelbord(true);
             }
         }
     }
-    
-    private void annuleren(ActionEvent event)
+
+    @Override
+    public void refresh()
+    {
+        lblTitel.setText(c.getString("aanmelden.titel"));
+        txtGebruikersnaam.setPromptText(c.getString("aanmelden.gebruikersnaam"));
+        txtGebruikersnaam.setTooltip(new Tooltip(c.getString("aanmelden.gebruikersnaam.tooltip")));
+        pswWachtwoord.setPromptText(c.getString("aanmelden.wachtwoord"));
+        pswWachtwoord.setTooltip(new Tooltip(c.getString("aanmelden.wachtwoord.tooltip")));
+        btnAnnuleren.setText(c.getString("aanmelden.annuleren"));
+    }
+
+    private void annuleren_Pressed(ActionEvent event)
     {
         this.getChildren().clear();
     }
-    
+
     public boolean isSuccess()
     {
         return geldig;
     }
-    
+
     private void spelerGevonden(String bericht, boolean adminRechten)
     {
-        //Label lblStatus = new Label(bericht);
-        startScherm.setLblStatus(bericht/*lblStatus*/);
-        
-        if(adminRechten)
+        startScherm.setLblStatus(bericht);
+
+        if (adminRechten)
         {
             startScherm.setMenuItemNieuwSpel(false);
             startScherm.setMenuItemMaakSpelbord(false);
@@ -124,12 +143,10 @@ public class AanmeldenScherm extends GridPane
             startScherm.setMenuItemMaakSpelbord(true);
             startScherm.setMenuAanpassenSpelbord(true);
         }
-        //Scene scene = new Scene(startScherm);
     }
-    
+
     private void spelerNietGevonden(String bericht)
     {
-        //Label lblStatus = new Label(bericht);
         startScherm.setLblStatus(bericht);
     }
 }

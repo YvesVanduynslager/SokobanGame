@@ -22,7 +22,7 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="BOTTOM" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <Label text="Registreren:">
+      <Label fx:id="lblTitel" text="Registreren:">
          <font>
             <Font name="AR DESTINE" size="30.0" />
          </font>

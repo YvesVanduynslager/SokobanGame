@@ -22,7 +22,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class RegistrerenScherm extends GridPane
+public class RegistrerenScherm extends GridPane implements SpelerMenuInterface
 {
     @FXML
     private TextField txtGebruikersnaam;
@@ -36,6 +36,8 @@ public class RegistrerenScherm extends GridPane
     private TextField txtVoornaam;
     @FXML
     private TextField txtNaam;
+    @FXML
+    private Label lblTitel;
 
     private StartScherm startScherm;
     private DomeinController c;
@@ -60,17 +62,27 @@ public class RegistrerenScherm extends GridPane
 
         btnOK.setOnAction(this::ok_Pressed);
         btnAnnuleren.setOnAction(this::annuleren_Pressed);
+        
+        lblTitel.setText(c.getString("registreer.main"));
     }
 
+    @Override
+    public void refresh()
+    {
+        lblTitel.setText(c.getString("registreer.main"));
+    }
+    
     private void ok_Pressed(ActionEvent event)
     {
-        Label lblStatus;
         try
         {
             //lblStatus = new Label("Aangemeld als " + txtGebruikersnaam.getText() + " ZONDER adminrechten.");
             c.registreer(txtGebruikersnaam.getText(), pswWachtwoord.getText(), txtNaam.getText(), txtVoornaam.getText());
             startScherm.setLblStatus("Aangemeld als " + txtGebruikersnaam.getText() + " ZONDER adminrechten.");
             //startScherm.setLblStatus(lblStatus);
+            startScherm.setMenuItemNieuwSpel(false);
+            startScherm.setMenuAanpassenSpelbord(true);
+            startScherm.setMenuItemMaakSpelbord(true);
             geldig = true;
         }
         catch (GebruikerBestaatException gbe)
@@ -79,7 +91,6 @@ public class RegistrerenScherm extends GridPane
 //            lblStatus.setStyle("-fx-text-fill: #c4d8de;");
             System.err.println(gbe);
             startScherm.setLblStatus("Gebruikersnaam bestaat al");
-            //startScherm.setLblStatus(lblStatus);
             geldig = false;
         }
         catch (IllegalArgumentException iae)

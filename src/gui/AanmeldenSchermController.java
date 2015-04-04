@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import domein.DomeinController;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -22,7 +20,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class AanmeldenScherm extends GridPane implements SpelerMenuInterface
+public class AanmeldenSchermController extends GridPane implements Initializable, SpelerMenuInterface
 {
     @FXML
     private Label lblTitel;
@@ -34,10 +32,10 @@ public class AanmeldenScherm extends GridPane implements SpelerMenuInterface
     private PasswordField pswWachtwoord;
 
     private DomeinController c;
-    private StartScherm startScherm;
+    private StartSchermController startScherm;
     private boolean geldig;
 
-    public AanmeldenScherm(StartScherm startScherm, DomeinController c)
+    public AanmeldenSchermController(StartSchermController startScherm, DomeinController c)
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AanmeldenScherm.fxml"));
         loader.setRoot(this);
@@ -120,5 +118,11 @@ public class AanmeldenScherm extends GridPane implements SpelerMenuInterface
     public boolean isSuccess()
     {
         return geldig;
+    }
+    
+        @Override
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        // TODO
     }
 }

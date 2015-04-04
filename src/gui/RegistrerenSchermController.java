@@ -1,16 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import domein.DomeinController;
 import exceptions.GebruikerBestaatException;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -22,28 +20,22 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class RegistrerenScherm extends GridPane implements SpelerMenuInterface
+public class RegistrerenSchermController extends GridPane implements Initializable, SpelerMenuInterface
 {
     @FXML
-    private TextField txtGebruikersnaam;
+    private TextField txtGebruikersnaam, txtVoornaam, txtNaam;
     @FXML
-    private Button btnAnnuleren;
-    @FXML
-    private Button btnOK;
+    private Button btnAnnuleren, btnOK;
     @FXML
     private PasswordField pswWachtwoord;
     @FXML
-    private TextField txtVoornaam;
-    @FXML
-    private TextField txtNaam;
-    @FXML
     private Label lblTitel;
 
-    private StartScherm startScherm;
+    private StartSchermController startScherm;
     private DomeinController c;
     private boolean geldig;
 
-    RegistrerenScherm(StartScherm startScherm, DomeinController c)
+    RegistrerenSchermController(StartSchermController startScherm, DomeinController c)
     {
         this.startScherm = startScherm;
         this.c = c;
@@ -62,7 +54,7 @@ public class RegistrerenScherm extends GridPane implements SpelerMenuInterface
 
         btnOK.setOnAction(this::ok_Pressed);
         btnAnnuleren.setOnAction(this::annuleren_Pressed);
-        
+
         lblTitel.setText(c.getString("registreer.main"));
     }
 
@@ -71,7 +63,7 @@ public class RegistrerenScherm extends GridPane implements SpelerMenuInterface
     {
         lblTitel.setText(c.getString("registreer.main"));
     }
-    
+
     private void ok_Pressed(ActionEvent event)
     {
         try
@@ -99,7 +91,7 @@ public class RegistrerenScherm extends GridPane implements SpelerMenuInterface
         {
             //lblStatus = new Label("Ongeldige gebruikersnaam of wachtwoord ingegeven. Probeer opnieuw");
             System.err.println(iae);
-            
+
             //lblStatus.setStyle("-fx-text-fill: #c4d8de;");
             //startScherm.setLblStatus(lblStatus);
             //startScherm.setLblStatus("Ongeldige gebruikersnaam of wachtwoord ingegeven. Probeer opnieuw");
@@ -116,5 +108,11 @@ public class RegistrerenScherm extends GridPane implements SpelerMenuInterface
     public boolean isGeldig()
     {
         return geldig;
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        // TODO
     }
 }

@@ -1,16 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import domein.DomeinController;
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -21,7 +20,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class StartScherm extends GridPane
+public class StartSchermController extends GridPane implements Initializable
 {
     @FXML
     private Menu menuSpel, menuBewerken, menuGebruiker, menuTaal, menuHelp;
@@ -35,7 +34,7 @@ public class StartScherm extends GridPane
     private DomeinController c;
     private GridPane content;
 
-    public StartScherm(DomeinController c)
+    public StartSchermController(DomeinController c)
     {
         this.c = c;
         c.setTaalKeuze(1);
@@ -56,6 +55,8 @@ public class StartScherm extends GridPane
         {
             throw new RuntimeException(ex);
         }
+        
+        mItemNieuwSpel.setOnAction(this::nieuwspel_Pressed);
 
         mItemAanmelden.setOnAction(this::aanmelden);
         mItemRegistreren.setOnAction(this::registreren);
@@ -67,12 +68,19 @@ public class StartScherm extends GridPane
 
         mItemInfo.setOnAction(this::info);
     }
+    
+    private void nieuwspel_Pressed(ActionEvent event)
+    {
+        content.getChildren().clear();
+        content = new SpeelSpelSchermController(this, c);
+        addContent(content);
+    }
 
     private void aanmelden(ActionEvent event)
     {
         content.getChildren().clear();
         this.lblStatus.setText("");
-        content = new AanmeldenScherm(this, c);
+        content = new AanmeldenSchermController(this, c);
         addContent(content);
     }
 
@@ -80,7 +88,7 @@ public class StartScherm extends GridPane
     {
         content.getChildren().clear();
         this.lblStatus.setText("");
-        content = new RegistrerenScherm(this, c);
+        content = new RegistrerenSchermController(this, c);
         addContent(content);
     }
 
@@ -92,7 +100,7 @@ public class StartScherm extends GridPane
     private void nederlands(ActionEvent event)
     {
         c.setTaalKeuze(1);
-       this.lblStatus.setText("Taal: Nederlands");
+        this.lblStatus.setText("Taal: Nederlands");
         refreshContent();
     }
 
@@ -112,15 +120,15 @@ public class StartScherm extends GridPane
 
     private void refreshContent()
     {
-        if (content instanceof AanmeldenScherm)
+        if (content instanceof AanmeldenSchermController)
         {
-            ((AanmeldenScherm) content).refresh();
+            ((AanmeldenSchermController) content).refresh();
         }
         else
         {
-            if (content instanceof RegistrerenScherm)
+            if (content instanceof RegistrerenSchermController)
             {
-                ((RegistrerenScherm) content).refresh();
+                ((RegistrerenSchermController) content).refresh();
             }
         }
     }
@@ -155,5 +163,11 @@ public class StartScherm extends GridPane
     public void updateControls(String lblStatus)
     {
         this.lblStatus.setText(lblStatus);
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb)
+    {
+        // TODO
     }
 }

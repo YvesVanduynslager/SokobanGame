@@ -4,7 +4,7 @@ package main;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import domein.DomeinController;
-import gui.StartScherm;
+import gui.StartSchermController;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -20,8 +20,8 @@ public class StartUp extends Application
     @Override
     public void start(Stage stage)
     {
-        DomeinController controller = new DomeinController();
-        Scene scene = new Scene(new StartScherm(controller));
+        DomeinController domeinController = new DomeinController();
+        Scene scene = new Scene(new StartSchermController(domeinController));
         stage.setScene(scene);
         stage.setTitle("Sokoban");
         

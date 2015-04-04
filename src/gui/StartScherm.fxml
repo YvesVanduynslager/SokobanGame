@@ -7,17 +7,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root minWidth="-Infinity" prefHeight="313.0" prefWidth="562.0" type="GridPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" type="GridPane" vgap="1.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
-    <ColumnConstraints hgrow="ALWAYS" maxWidth="595.0" minWidth="500.0" prefWidth="500.0" />
+    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" minWidth="500.0" />
   </columnConstraints>
   <rowConstraints>
       <RowConstraints maxHeight="-Infinity" valignment="TOP" vgrow="NEVER" />
-    <RowConstraints maxHeight="600.0" minHeight="224.0" prefHeight="247.0" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="600.0" minHeight="224.0" prefHeight="247.0" valignment="TOP" vgrow="ALWAYS" />
       <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="40.0" valignment="BOTTOM" vgrow="NEVER" />
   </rowConstraints>
    <children>
-      <MenuBar fx:id="menuBar">
+      <MenuBar fx:id="menuBar" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS">
         <menus>
           <Menu fx:id="menuSpel" mnemonicParsing="false" text="Bestand">
             <items>

@@ -6,10 +6,12 @@
 package gui;
 
 import domein.DomeinController;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -19,11 +21,22 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class SpeelSpelSchermController extends GridPane
+public class SpelbordController extends GridPane
 {
     private DomeinController c;
-    public SpeelSpelSchermController(StartSchermController startscherm, DomeinController c)
+    public SpelbordController(StartSchermController startscherm, DomeinController c)
     {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SpeelSpelScherm.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        try
+        {
+            loader.load();
+        }
+        catch (IOException ex)
+        {
+            throw new RuntimeException(ex);
+        }
         this.c = c;
         List namen = c.geefSpelNamen();
         int aantalSpellen = namen.size();
@@ -36,11 +49,13 @@ public class SpeelSpelSchermController extends GridPane
     
     private void addElements()
     {
-        for (int rij = 0; rij < c.geefHuidigSpelbord().length; rij++)
+        String[][] elementen = c.geefHuidigSpelbord();
+        
+        for (int rij = 0; rij < elementen.length; rij++)
         {
-            for (int celInRij = 0; celInRij < c.geefHuidigSpelbord()[0].length; celInRij++)
+            for (int kolom = 0; kolom < elementen[rij].length; kolom++)
             {
-                this.add(new Label(c.geefHuidigSpelbord()[rij][celInRij]), rij, celInRij);
+                this.add(new Label(elementen[rij][kolom]), kolom, rij);
             }
         }
     }

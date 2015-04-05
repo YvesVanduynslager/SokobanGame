@@ -72,7 +72,8 @@ public class StartSchermController extends GridPane implements Initializable
     private void nieuwspel_Pressed(ActionEvent event)
     {
         content.getChildren().clear();
-        content = new SpeelSpelSchermController(this, c);
+        this.lblStatus.setText("");
+        content = new SpelbordController(this, c);
         addContent(content);
     }
 

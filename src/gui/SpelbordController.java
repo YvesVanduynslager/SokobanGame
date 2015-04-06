@@ -26,8 +26,8 @@ public class SpelbordController extends GridPane
     private DomeinController c;
     public SpelbordController(StartSchermController startscherm, DomeinController c)
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("SpeelSpelScherm.fxml"));
-        loader.setRoot(this);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("SpelScherm.fxml"));
+//        loader.setRoot(this);
         loader.setController(this);
         try
         {

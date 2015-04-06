@@ -1,18 +1,21 @@
 package gui;
 
 import domein.DomeinController;
+import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -23,7 +26,7 @@ import javafx.scene.layout.GridPane;
 public class StartSchermController extends GridPane implements Initializable
 {
     @FXML
-    private Menu menuSpel, menuBewerken, menuGebruiker, menuTaal, menuHelp;
+    private Menu menuSpel, menuBewerken, menuGebruiker, menuTaal, menuHelp, menuKiesSpel;
     @FXML
     private MenuItem mItemNieuwSpel, mItemAfsluiten, mItemAanpassenSpelbord,
             mItemMaakSpelbord, mItemAanmelden, mItemRegistreren, mItemInfo,
@@ -37,7 +40,7 @@ public class StartSchermController extends GridPane implements Initializable
     public StartSchermController(DomeinController c)
     {
         this.c = c;
-        c.setTaalKeuze(1);
+        this.c.setTaalKeuze(1);
 
         /* Lege gridpane instellen bij start, anders overlappen gridpanes elkaar na 2x selecteren in menu's.
          Bvb. klikken op Gebruiker -> aanmelden, daarna op Gebruiker -> registreren */
@@ -55,9 +58,8 @@ public class StartSchermController extends GridPane implements Initializable
         {
             throw new RuntimeException(ex);
         }
-        
-        mItemNieuwSpel.setOnAction(this::nieuwspel_Pressed);
 
+        //mItemNieuwSpel.setOnAction(this::nieuwspel_Pressed);
         mItemAanmelden.setOnAction(this::aanmelden);
         mItemRegistreren.setOnAction(this::registreren);
         mItemAfsluiten.setOnAction(this::afsluiten);
@@ -67,14 +69,33 @@ public class StartSchermController extends GridPane implements Initializable
         mItemEngels.setOnAction(this::engels);
 
         mItemInfo.setOnAction(this::info);
+
+        MenuItem keuzeSpel;
+        for (String spelNaam : this.c.geefSpelNamen())
+        {
+            keuzeSpel = new MenuItem(spelNaam);
+            //keuzeSpel.setId(spelNaam);
+            keuzeSpel.setOnAction(this::spel_gekozen);
+            menuKiesSpel.getItems().add(keuzeSpel);
+        }
     }
-    
-    private void nieuwspel_Pressed(ActionEvent event)
+
+    private void spel_gekozen(ActionEvent event)
     {
-        content.getChildren().clear();
-        this.lblStatus.setText("");
-        content = new SpelbordController(this, c);
-        addContent(content);
+        for (int spelIndex = 0; spelIndex < c.geefSpelNamen().size(); spelIndex++)
+        {
+            if (event.getSource() == menuKiesSpel.getItems().get(spelIndex))
+            {
+                c.selecteerSpel(c.geefSpelNamen().get(spelIndex));
+                c.startVolgendSpelbord();
+                content.getChildren().clear();
+                this.lblStatus.setText("");
+                content = new SpelbordController(this, c);
+
+                addContent(content);
+                content.requestFocus(); //BELANGRIJK!!! NIET IN SpelbordController oproepen!
+            }
+        }
     }
 
     private void aanmelden(ActionEvent event)
@@ -131,6 +152,13 @@ public class StartSchermController extends GridPane implements Initializable
             {
                 ((RegistrerenSchermController) content).refresh();
             }
+            else
+            {
+                if (content instanceof SpelbordController)
+                {
+                    ((SpelbordController) content).refresh();
+                }
+            }
         }
     }
 
@@ -149,19 +177,21 @@ public class StartSchermController extends GridPane implements Initializable
         this.lblStatus.setText(lblStatus);
         if (isAdmin)
         {
-            this.mItemNieuwSpel.setDisable(false);
+            this.menuKiesSpel.setDisable(false);
+            //this.mItemNieuwSpel.setDisable(false);
             this.mItemAanpassenSpelbord.setDisable(false);
             this.mItemMaakSpelbord.setDisable(false);
         }
         else
         {
-            this.mItemNieuwSpel.setDisable(false);
+            this.menuKiesSpel.setDisable(false);
+            //this.mItemNieuwSpel.setDisable(false);
             this.mItemAanpassenSpelbord.setDisable(true);
             this.mItemMaakSpelbord.setDisable(true);
         }
     }
 
-    public void updateControls(String lblStatus)
+    public void updateStatusLabel(String lblStatus)
     {
         this.lblStatus.setText(lblStatus);
     }

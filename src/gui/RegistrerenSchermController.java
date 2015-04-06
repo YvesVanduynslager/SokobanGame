@@ -83,7 +83,7 @@ public class RegistrerenSchermController extends GridPane implements Initializab
 //            lblStatus = new Label("Gebruikersnaam bestaat al");
 //            lblStatus.setStyle("-fx-text-fill: #c4d8de;");
             System.err.println(gbe);
-            startScherm.updateControls("Gebruikersnaam bestaat al");
+            startScherm.updateStatusLabel("Gebruikersnaam bestaat al");
             //startScherm.setLblStatus("Gebruikersnaam bestaat al");
             geldig = false;
         }
@@ -95,7 +95,7 @@ public class RegistrerenSchermController extends GridPane implements Initializab
             //lblStatus.setStyle("-fx-text-fill: #c4d8de;");
             //startScherm.setLblStatus(lblStatus);
             //startScherm.setLblStatus("Ongeldige gebruikersnaam of wachtwoord ingegeven. Probeer opnieuw");
-            startScherm.updateControls("Ongeldige gebruikersnaam of wachtwoord ingegeven.Probeer opnieuw");
+            startScherm.updateStatusLabel("Ongeldige gebruikersnaam of wachtwoord ingegeven.Probeer opnieuw");
             geldig = false;
         }
     }

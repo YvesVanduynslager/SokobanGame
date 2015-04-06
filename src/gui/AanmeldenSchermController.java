@@ -80,7 +80,7 @@ public class AanmeldenSchermController extends GridPane implements Initializable
         if (speler[0] == null)
         {
             geldig = false;
-            startScherm.updateControls("Speler niet gevonden of verkeerd wachtwoord ingegeven!");
+            startScherm.updateStatusLabel("Speler niet gevonden of verkeerd wachtwoord ingegeven!");
         }
         else
         {

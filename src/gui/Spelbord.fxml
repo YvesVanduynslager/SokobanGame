@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -9,10 +11,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<fx:root alignment="TOP_CENTER" gridLinesVisible="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" type="GridPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <columnConstraints>
-    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
-    <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
+<fx:root fx:id="grdSpelbord" alignment="CENTER" gridLinesVisible="true" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" type="GridPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
       <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
       <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
       <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
@@ -21,8 +21,10 @@
       <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
       <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
       <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
-  </columnConstraints>
-  <rowConstraints>
+      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
+      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
+   </columnConstraints>
+   <rowConstraints>
       <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
       <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
       <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
@@ -30,8 +32,11 @@
       <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
       <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
       <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-    <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-    <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
       <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-  </rowConstraints>
+      <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+      <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+   </rowConstraints>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
 </fx:root>

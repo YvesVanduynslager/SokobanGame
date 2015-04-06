@@ -13,15 +13,15 @@
   </columnConstraints>
   <rowConstraints>
       <RowConstraints maxHeight="-Infinity" valignment="TOP" vgrow="NEVER" />
-    <RowConstraints maxHeight="600.0" minHeight="224.0" prefHeight="247.0" valignment="TOP" vgrow="ALWAYS" />
+    <RowConstraints maxHeight="600.0" valignment="CENTER" vgrow="ALWAYS" />
       <RowConstraints maxHeight="40.0" minHeight="0.0" prefHeight="40.0" valignment="BOTTOM" vgrow="NEVER" />
   </rowConstraints>
    <children>
       <MenuBar fx:id="menuBar" maxWidth="1.7976931348623157E308" GridPane.hgrow="ALWAYS">
         <menus>
-          <Menu fx:id="menuSpel" mnemonicParsing="false" text="Bestand">
+          <Menu fx:id="menuSpel" mnemonicParsing="false" text="Spel">
             <items>
-                  <MenuItem fx:id="mItemNieuwSpel" disable="true" mnemonicParsing="false" text="Nieuw Spel" />
+                  <Menu fx:id="menuKiesSpel" disable="true" mnemonicParsing="false" text="Kies" />
               <MenuItem fx:id="mItemAfsluiten" mnemonicParsing="false" text="Close" />
             </items>
           </Menu>

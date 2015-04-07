@@ -24,8 +24,9 @@ import javafx.scene.layout.GridPane;
 public class SpelbordController extends GridPane
 {
     private DomeinController c;
+    private StartSchermController startScherm;
 
-    public SpelbordController(StartSchermController startscherm, DomeinController c)
+    public SpelbordController(StartSchermController startScherm, DomeinController c)
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("Spelbord.fxml"));
         loader.setRoot(this);
@@ -38,28 +39,13 @@ public class SpelbordController extends GridPane
         {
             throw new RuntimeException(ex);
         }
+        this.startScherm = startScherm;
         this.c = c;
-//        List namen = c.geefSpelNamen();
-//        int aantalSpellen = namen.size();
+        
+        
 
         addElements();
-
-        this.requestFocus();
-
-        final EventHandler<KeyEvent> keyEventHandler
-                = new EventHandler<KeyEvent>()
-                {
-                    @Override
-                    public void handle(final KeyEvent keyEvent)
-                    {
-                        System.out.println("Test");
-                        keyEvent.consume();
-
-                    }
-                };
-        this.setOnKeyPressed(keyEventHandler);
-//        this.addEventHandler(KeyEvent.KEY_RELEASED, keyEventHandler);
-//        this.addEventHandler(KeyEvent.KEY_PRESSED, keyEventHandler);
+        installEventHandler();
     }
 
     private void addElements()
@@ -75,15 +61,57 @@ public class SpelbordController extends GridPane
         }
     }
 
-//    private void beweeg(KeyEvent event)
-//    {
-//        System.out.println("Key pressed test");
-//        
-//    }
     public void refresh()
     {
         this.getChildren().clear();
+        
         this.addElements();
+        this.setGridLinesVisible(true);
+    }
+    
+    private void installEventHandler()
+    {
+        final EventHandler<KeyEvent> keyEventHandler
+                = new EventHandler<KeyEvent>()
+                {
+                    @Override
+                    public void handle(final KeyEvent keyEvent)
+                    {
+                        if(keyEvent.getCode() == KeyCode.Z)
+                        {
+                            c.beweeg(0);
+                        }
+                        else
+                        {
+                            if(keyEvent.getCode() == KeyCode.Q)
+                            {
+                                c.beweeg(2);
+                            }
+                            else
+                            {
+                                if(keyEvent.getCode() == KeyCode.S)
+                                {
+                                    c.beweeg(1);
+                                }
+                                else
+                                {
+                                    if(keyEvent.getCode() == KeyCode.D)
+                                    {
+                                        c.beweeg(3);
+                                    }
+                                    else
+                                    {
+                                        startScherm.updateStatusLabel("Ongeldige invoer");
+                                    }
+                                }
+                            }
+                        }
+                        refresh();
+                        keyEvent.consume();
+                    }
+                };
+        
+        this.setOnKeyPressed(keyEventHandler);
     }
 }
 

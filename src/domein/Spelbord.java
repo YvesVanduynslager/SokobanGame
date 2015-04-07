@@ -73,19 +73,19 @@ public class Spelbord
      */
     private Element geefAangrenzendElement(Element element, int richting)
     {
-        int x0 = element.getxPositie();
-        int y0 = element.getyPositie();
+        int x = element.getxPositie();
+        int y = element.getyPositie();
         
         int[] x1 =
         {
-            x0 - 1, x0 + 1, x0, x0
+            x - 1, x + 1, x, x
         }; /*x1 bevat de x-waarden voor de veplaatsing van het mannetje
-        in de vorm {omhoog, omlaag, links, recht}*/
+        in de vorm {omhoog, omlaag, links, rechts}*/
         int[] y1 =
         {
-            y0, y0, y0 - 1, y0 + 1
+            y, y, y - 1, y + 1
         }; /*y1 bevat de y-waarden voor de veplaatsing van het mannetje
-        in de vorm {omhoog, omlaag, links, recht}*/
+        in de vorm {omhoog, omlaag, links, rechts}*/
 
         return velden[x1[richting]][y1[richting]];
     }
@@ -103,7 +103,17 @@ public class Spelbord
         int x, y, xNa, yNa;
 
         Element aangrenzend = this.geefAangrenzendElement(mannetje, richting);
-        Element naAangrenzend = this.geefAangrenzendElement(aangrenzend, richting);
+        Element naAangrenzend;
+        
+        if(!(aangrenzend instanceof Muur))
+        {
+            naAangrenzend = this.geefAangrenzendElement(aangrenzend, richting);
+        }
+        else
+        {
+            naAangrenzend = aangrenzend; //Om geen nullpointer te krijgen. Dit gaf plots een fout waar er vroeger geen was maar er wel een moest zijn.
+        }
+        
 
         x = aangrenzend.getxPositie();
         y = aangrenzend.getyPositie();

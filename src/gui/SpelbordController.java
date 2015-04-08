@@ -7,11 +7,13 @@ package gui;
 
 import domein.DomeinController;
 import java.io.IOException;
-import javafx.event.Event;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -25,6 +27,15 @@ public class SpelbordController extends GridPane
 {
     private DomeinController c;
     private StartSchermController startScherm;
+    //private boolean spelVoltooid;
+    //private EventHandler<KeyEvent> keyEventHandler;
+
+    @FXML
+    private Button btnJa, btnNee;
+    @FXML
+    private TextArea txtVolgendSpelbord;
+    @FXML
+    private GridPane grdSpelbord;
 
     public SpelbordController(StartSchermController startScherm, DomeinController c)
     {
@@ -41,11 +52,12 @@ public class SpelbordController extends GridPane
         }
         this.startScherm = startScherm;
         this.c = c;
-        
-        
 
         addElements();
-        installEventHandler();
+        enableKeyHandler();
+
+        btnJa.setOnAction(this::ja_Pressed);
+        btnNee.setOnAction(this::nee_Pressed);
     }
 
     private void addElements()
@@ -56,62 +68,119 @@ public class SpelbordController extends GridPane
         {
             for (int kolom = 0; kolom < elementen[rij].length; kolom++)
             {
-                this.add(new Label(elementen[rij][kolom]), kolom, rij);
+                grdSpelbord.add(new Label(elementen[rij][kolom]), kolom, rij);
             }
         }
     }
 
     public void refresh()
     {
-        this.getChildren().clear();
-        
+        //controleEindeSpelbord();
+        grdSpelbord.getChildren().clear();
         this.addElements();
-        this.setGridLinesVisible(true);
+
+        this.requestFocus();
+    }
+
+    private void controleEindeSpelbord()
+    {
+        if (c.huidigSpelbordVoltooid()) //spelbord voltooid
+        {
+            disableKeyHandler();
+            //this.removeEventHandler(KeyEvent.KEY_PRESSED, keyEventHandler);
+
+            if (c.geefAantalVoltooideBorden() == c.geefAantalSpelborden()) //spel voltooid
+            {
+                txtVolgendSpelbord.setVisible(true);
+                txtVolgendSpelbord.setText("Spel voltooid!");
+                btnJa.setVisible(false);
+                btnNee.setVisible(false);
+            }
+            else //spel niet voltooid
+            {
+                btnJa.setVisible(true);
+                btnNee.setVisible(true);
+                txtVolgendSpelbord.setVisible(true);
+                c.verhoogAantalVoltooideBorden();
+            }
+            startScherm.updateStatusLabel("" + c.geefAantalVoltooideBorden() + " van " + c.geefAantalSpelborden() + " spelborden voltooid in " + c.geefAantalZetten() + " zetten !");
+        }
+        else //spelbord niet voltooid
+        {
+            txtVolgendSpelbord.setVisible(false);
+            btnJa.setVisible(false);
+            btnNee.setVisible(false);
+            startScherm.updateStatusLabel("" + c.geefAantalZetten() + " zetten!");
+        }
     }
     
-    private void installEventHandler()
+    private void disableKeyHandler()
     {
-        final EventHandler<KeyEvent> keyEventHandler
-                = new EventHandler<KeyEvent>()
+        this.setOnKeyPressed(null);
+    }
+
+    private void enableKeyHandler()
+    {
+        final EventHandler<KeyEvent> keyEventHandler = new EventHandler<KeyEvent>()
+        {
+            @Override
+            public void handle(final KeyEvent keyEvent)
+            {
+                if (keyEvent.getCode() == KeyCode.Z)
                 {
-                    @Override
-                    public void handle(final KeyEvent keyEvent)
+                    c.beweeg(0);
+                }
+                else
+                {
+                    if (keyEvent.getCode() == KeyCode.Q)
                     {
-                        if(keyEvent.getCode() == KeyCode.Z)
+                        c.beweeg(2);
+                    }
+                    else
+                    {
+                        if (keyEvent.getCode() == KeyCode.S)
                         {
-                            c.beweeg(0);
+                            c.beweeg(1);
                         }
                         else
                         {
-                            if(keyEvent.getCode() == KeyCode.Q)
+                            if (keyEvent.getCode() == KeyCode.D)
                             {
-                                c.beweeg(2);
+                                c.beweeg(3);
                             }
                             else
                             {
-                                if(keyEvent.getCode() == KeyCode.S)
-                                {
-                                    c.beweeg(1);
-                                }
-                                else
-                                {
-                                    if(keyEvent.getCode() == KeyCode.D)
-                                    {
-                                        c.beweeg(3);
-                                    }
-                                    else
-                                    {
-                                        startScherm.updateStatusLabel("Ongeldige invoer");
-                                    }
-                                }
+                                startScherm.updateStatusLabel("Ongeldige invoer");
                             }
                         }
-                        refresh();
-                        keyEvent.consume();
                     }
-                };
-        
+                }
+
+                controleEindeSpelbord();
+                refresh();
+
+                keyEvent.consume();
+            }
+        };
+
         this.setOnKeyPressed(keyEventHandler);
+    }
+
+    private void ja_Pressed(ActionEvent event)
+    {
+        btnJa.setVisible(false);
+        btnNee.setVisible(false);
+        txtVolgendSpelbord.setVisible(false);
+        c.startVolgendSpelbord();
+        //controleEindeSpelbord();
+        refresh();
+        enableKeyHandler();
+    }
+
+    private void nee_Pressed(ActionEvent event)
+    {
+        startScherm.updateStatusLabel("");
+        this.getChildren().clear();
     }
 }
 

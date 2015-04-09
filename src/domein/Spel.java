@@ -16,7 +16,7 @@ public class Spel
     private String spelNaam;
     private Spelbord huidigSpelbord;
 //    private int spelbordIndex = 0;
-    private int aantalSpelbordenVoltooid = 0;
+    //private int aantalSpelbordenVoltooid = 0;
 
     /**
      * Default-constructor initialiseert een ArrayList van
@@ -61,6 +61,19 @@ public class Spel
 //        }
 //        spelbordIndex++;
     }
+    
+    public int geefAantalVoltooideBorden()
+    {
+        int aantal = 0;
+        for(Spelbord bord : spelborden)
+        {
+            if(bord.isVoltooid())
+            {
+                aantal++;
+            }
+        }
+        return aantal;
+    }
 
     public List<Spelbord> getSpelborden() {
         return spelborden;
@@ -86,22 +99,22 @@ public class Spel
      *
      * @return Het aantal voltooide spelborden als int.
      */
-    public int geefAantalVoltooideBorden()
-    {
-        return aantalSpelbordenVoltooid;
-    }
+//    public int geefAantalVoltooideBorden()
+//    {
+//        return aantalSpelbordenVoltooid;
+//    }
 
     /**
      * Verhoogd het aantal voltooide spelborden.
      */
-    public void verhoogAantalVoltooideBorden()
-    {
-        if (huidigSpelbord != null && huidigSpelbord.isVoltooid()
-                && aantalSpelbordenVoltooid < this.geefAantalSpelborden())
-        {
-            aantalSpelbordenVoltooid++;
-        }
-    }
+//    public void verhoogAantalVoltooideBorden()
+//    {
+//        if (huidigSpelbord != null && huidigSpelbord.isVoltooid()
+//                && aantalSpelbordenVoltooid < this.geefAantalSpelborden())
+//        {
+//            aantalSpelbordenVoltooid++;
+//        }
+//    }
 
     /**
      * Geeft het aantal spelborden.

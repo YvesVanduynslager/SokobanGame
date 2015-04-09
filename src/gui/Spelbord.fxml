@@ -11,7 +11,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <fx:root prefHeight="300.0" prefWidth="579.0" type="GridPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
@@ -23,28 +22,28 @@
    <children>
       <GridPane fx:id="grdSpelbord" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" GridPane.columnIndex="1">
          <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" minWidth="20.0" prefWidth="35.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="-Infinity" prefWidth="30.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
-            <RowConstraints maxHeight="-Infinity" minHeight="20.0" prefHeight="35.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="ALWAYS" />
          </rowConstraints>
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -59,7 +58,7 @@
           <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="267.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <GridPane GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane fx:id="grdButtons" GridPane.rowIndex="1" GridPane.valignment="TOP">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="10.0" prefWidth="231.0" />
@@ -80,7 +79,7 @@
                   </Button>
                </children>
             </GridPane>
-            <TextArea fx:id="txtVolgendSpelbord" editable="false" prefHeight="80.0" text="Wilt u het volgend spelbord spelen?" visible="false" wrapText="true" GridPane.vgrow="ALWAYS" />
+            <TextArea fx:id="txaInfo" editable="false" prefHeight="80.0" text="Wilt u het volgend spelbord spelen?" visible="false" wrapText="true" GridPane.vgrow="ALWAYS" />
          </children>
       </GridPane>
    </children>

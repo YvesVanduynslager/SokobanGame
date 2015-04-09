@@ -14,6 +14,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
@@ -33,9 +35,9 @@ public class SpelbordController extends GridPane
     @FXML
     private Button btnJa, btnNee;
     @FXML
-    private TextArea txtVolgendSpelbord;
+    private TextArea txaInfo;
     @FXML
-    private GridPane grdSpelbord;
+    private GridPane grdSpelbord/*, grdButtons*/;
 
     public SpelbordController(StartSchermController startScherm, DomeinController c)
     {
@@ -53,14 +55,22 @@ public class SpelbordController extends GridPane
         this.startScherm = startScherm;
         this.c = c;
 
-        addElements();
+        tekenBord();
         enableKeyHandler();
 
         btnJa.setOnAction(this::ja_Pressed);
         btnNee.setOnAction(this::nee_Pressed);
     }
+    
+    public void refresh()
+    {
+        this.wisBord();
+        this.tekenBord();
 
-    private void addElements()
+        this.requestFocus();
+    }
+
+    private void tekenBord()
     {
         String[][] elementen = c.geefHuidigSpelbord();
 
@@ -68,46 +78,78 @@ public class SpelbordController extends GridPane
         {
             for (int kolom = 0; kolom < elementen[rij].length; kolom++)
             {
-                grdSpelbord.add(new Label(elementen[rij][kolom]), kolom, rij);
+                switch(elementen[rij][kolom])
+                {
+                    case "#":
+                        grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/muur.jpg"))), kolom, rij);
+                        break;
+                    case "K":
+                        grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/kist.jpg"))), kolom, rij);
+                        break;
+                    case ".":
+                        grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/veld.jpg"))), kolom, rij);
+                        break;
+                    case "D":
+                        grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/doel.gif"))), kolom, rij);
+                        break;
+                    case "O":
+                        grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/mannetje.gif"))), kolom, rij);
+                        break;
+                    default:
+                        grdSpelbord.add(new Label(elementen[rij][kolom]), kolom,rij);
+                        break;
+                }
             }
         }
     }
-
-    public void refresh()
+    
+    private void wisBord()
     {
-        //controleEindeSpelbord();
         grdSpelbord.getChildren().clear();
-        this.addElements();
-
-        this.requestFocus();
     }
 
-    private void controleEindeSpelbord()
+    private boolean spelIsVoltooid()
     {
-        if (c.huidigSpelbordVoltooid()) //spelbord voltooid
+        return c.geefAantalVoltooideBorden() == c.geefAantalSpelborden();
+    }
+    
+    private boolean spelbordIsVoltooid()
+    {
+        return c.huidigSpelbordVoltooid();
+    }
+    
+    private void updateControls()
+    {
+        if(spelbordIsVoltooid())
         {
             disableKeyHandler();
-            //this.removeEventHandler(KeyEvent.KEY_PRESSED, keyEventHandler);
-
-            if (c.geefAantalVoltooideBorden() == c.geefAantalSpelborden()) //spel voltooid
+            startScherm.updateStatusLabel(
+                    "" + c.geefAantalVoltooideBorden() +
+                            " van " + c.geefAantalSpelborden() +
+                            " spelborden voltooid in " +
+                            c.geefAantalZetten() + " zetten !");
+            txaInfo.setText("Wilt u verder spelen?");
+            txaInfo.setVisible(true);
+            btnJa.setVisible(true);
+            btnNee.setVisible(true);
+            
+            if(spelIsVoltooid())
             {
-                txtVolgendSpelbord.setVisible(true);
-                txtVolgendSpelbord.setText("Spel voltooid!");
+                txaInfo.setVisible(true);
+                txaInfo.setText("Spel voltooid!");
                 btnJa.setVisible(false);
                 btnNee.setVisible(false);
             }
-            else //spel niet voltooid
+            else
             {
                 btnJa.setVisible(true);
                 btnNee.setVisible(true);
-                txtVolgendSpelbord.setVisible(true);
-                c.verhoogAantalVoltooideBorden();
+                txaInfo.setVisible(true);
             }
-            startScherm.updateStatusLabel("" + c.geefAantalVoltooideBorden() + " van " + c.geefAantalSpelborden() + " spelborden voltooid in " + c.geefAantalZetten() + " zetten !");
         }
-        else //spelbord niet voltooid
+        else
         {
-            txtVolgendSpelbord.setVisible(false);
+            txaInfo.setVisible(false);
             btnJa.setVisible(false);
             btnNee.setVisible(false);
             startScherm.updateStatusLabel("" + c.geefAantalZetten() + " zetten!");
@@ -156,7 +198,7 @@ public class SpelbordController extends GridPane
                     }
                 }
 
-                controleEindeSpelbord();
+                updateControls();
                 refresh();
 
                 keyEvent.consume();
@@ -170,7 +212,7 @@ public class SpelbordController extends GridPane
     {
         btnJa.setVisible(false);
         btnNee.setVisible(false);
-        txtVolgendSpelbord.setVisible(false);
+        txaInfo.setVisible(false);
         c.startVolgendSpelbord();
         //controleEindeSpelbord();
         refresh();

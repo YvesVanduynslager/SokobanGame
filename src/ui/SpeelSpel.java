@@ -84,7 +84,7 @@ public class SpeelSpel
                 }
 
                 /* Wordt uitgevoerd vanaf het spelbord alle kisten op de doelen heeft staan */
-                controller.verhoogAantalVoltooideBorden();
+                //controller.verhoogAantalVoltooideBorden();
                 System.out.println(controller.spelbordToString());
 
                 System.out.println(localeString("speelspel.gewonnen1") + controller.geefAantalZetten() + " " + localeString("speelspel.gewonnen2"));

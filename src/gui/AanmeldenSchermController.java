@@ -70,9 +70,9 @@ public class AanmeldenSchermController extends GridPane implements Initializable
         String gebruikersnaam, wachtwoord;
 
         gebruikersnaam = txtGebruikersnaam.getText();
-        System.out.println(gebruikersnaam);
+//        System.out.println(gebruikersnaam);
         wachtwoord = pswWachtwoord.getText();
-        System.out.println(wachtwoord);
+//        System.out.println(wachtwoord);
 
         c.meldAan(gebruikersnaam, wachtwoord);
         speler = c.geefSpeler();
@@ -80,21 +80,21 @@ public class AanmeldenSchermController extends GridPane implements Initializable
         if (speler[0] == null)
         {
             geldig = false;
-            startScherm.updateStatusLabel("Speler niet gevonden of verkeerd wachtwoord ingegeven!");
+            startScherm.updateStatusLabel(c.getString("aanmelden.nietgevonden"));
         }
         else
         {
             geldig = true;
-            String adminrechtenHulp = (speler[1].equals("ja") ? " MET " : " ZONDER ");
+            String adminrechtenHulp = (speler[1].equals("ja") ? c.getString("aanmelden.met") : c.getString("aanmelden.zonder"));
 
             if (speler[1].equals("ja"))
             {
-                startScherm.updateControls("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.", true);
+                startScherm.updateControls(c.getString("aangemeld.1") + speler[0] + " " + adminrechtenHulp + c.getString("aangemeld.2"), true);
             }
             else
             {
                 
-                startScherm.updateControls("Aangemeld als: " + speler[0] + " " + adminrechtenHulp + " adminrechten.", false);
+                startScherm.updateControls(c.getString("aangemeld.1") + speler[0] + " " + adminrechtenHulp + c.getString("aangemeld.2"), false);
             }
         }
     }

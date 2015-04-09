@@ -68,7 +68,7 @@ public class RegistrerenSchermController extends GridPane implements Initializab
     {
         try
         {
-            startScherm.updateControls("Aangemeld als " + txtGebruikersnaam.getText() + " ZONDER adminrechten.", false);
+            startScherm.updateControls(c.getString("aangemeld.1") + txtGebruikersnaam.getText() + c.getString("aanmelden.zonder") + c.getString("aangemeld.2"), false);
             //lblStatus = new Label("Aangemeld als " + txtGebruikersnaam.getText() + " ZONDER adminrechten.");
             c.registreer(txtGebruikersnaam.getText(), pswWachtwoord.getText(), txtNaam.getText(), txtVoornaam.getText());
             //startScherm.setLblStatus();
@@ -83,7 +83,7 @@ public class RegistrerenSchermController extends GridPane implements Initializab
 //            lblStatus = new Label("Gebruikersnaam bestaat al");
 //            lblStatus.setStyle("-fx-text-fill: #c4d8de;");
             System.err.println(gbe);
-            startScherm.updateStatusLabel("Gebruikersnaam bestaat al");
+            startScherm.updateStatusLabel(c.getString("registreer.bestaat"));
             //startScherm.setLblStatus("Gebruikersnaam bestaat al");
             geldig = false;
         }
@@ -95,7 +95,7 @@ public class RegistrerenSchermController extends GridPane implements Initializab
             //lblStatus.setStyle("-fx-text-fill: #c4d8de;");
             //startScherm.setLblStatus(lblStatus);
             //startScherm.setLblStatus("Ongeldige gebruikersnaam of wachtwoord ingegeven. Probeer opnieuw");
-            startScherm.updateStatusLabel("Ongeldige gebruikersnaam of wachtwoord ingegeven.Probeer opnieuw");
+            startScherm.updateStatusLabel(c.getString("registreer.ongeldig"));
             geldig = false;
         }
     }

@@ -88,10 +88,10 @@ public class SpelbordController extends GridPane
                         grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/veld.jpg"))), kolom, rij);
                         break;
                     case "D":
-                        grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/doel.gif"))), kolom, rij);
+                        grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/doel.jpg"))), kolom, rij);
                         break;
                     case "O":
-                        grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/mannetje.gif"))), kolom, rij);
+                        grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/mannetje.jpg"))), kolom, rij);
                         break;
                     default:
                         grdSpelbord.add(new Label(elementen[rij][kolom]), kolom,rij);

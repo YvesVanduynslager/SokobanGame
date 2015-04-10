@@ -28,16 +28,14 @@ import javafx.scene.layout.GridPane;
 public class SpelbordController extends GridPane
 {
     private DomeinController c;
-    private StartSchermController startScherm;
-    //private boolean spelVoltooid;
-    //private EventHandler<KeyEvent> keyEventHandler;
+    private final StartSchermController startScherm;
 
     @FXML
     private Button btnJa, btnNee;
     @FXML
     private TextArea txaInfo;
     @FXML
-    private GridPane grdSpelbord/*, grdButtons*/;
+    private GridPane grdSpelbord;
 
     public SpelbordController(StartSchermController startScherm, DomeinController c)
     {
@@ -214,7 +212,6 @@ public class SpelbordController extends GridPane
         btnNee.setVisible(false);
         txaInfo.setVisible(false);
         c.startVolgendSpelbord();
-        //controleEindeSpelbord();
         refresh();
         enableKeyHandler();
     }
@@ -225,5 +222,3 @@ public class SpelbordController extends GridPane
         this.getChildren().clear();
     }
 }
-
-//https://docs.oracle.com/javafx/2/events/handlers.htm

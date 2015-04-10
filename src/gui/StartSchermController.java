@@ -59,7 +59,6 @@ public class StartSchermController extends GridPane implements Initializable
             throw new RuntimeException(ex);
         }
 
-        //mItemNieuwSpel.setOnAction(this::nieuwspel_Pressed);
         mItemAanmelden.setOnAction(this::aanmelden);
         mItemRegistreren.setOnAction(this::registreren);
         mItemAfsluiten.setOnAction(this::afsluiten);
@@ -73,8 +72,8 @@ public class StartSchermController extends GridPane implements Initializable
         MenuItem keuzeSpel;
         for (String spelNaam : this.c.geefSpelNamen())
         {
-            keuzeSpel = new MenuItem(spelNaam);
-            //keuzeSpel.setId(spelNaam);
+            String naam = spelNaam.substring(0, 1).toUpperCase() + spelNaam.substring(1); //Eerste letter omzetten naar hoofdletter
+            keuzeSpel = new MenuItem(naam);
             keuzeSpel.setOnAction(this::spel_gekozen);
             menuKiesSpel.getItems().add(keuzeSpel);
         }

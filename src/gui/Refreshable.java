@@ -9,7 +9,7 @@ package gui;
  *
  * @author Yves
  */
-public interface SpelerMenuInterface
+public interface Refreshable
 {
     public void refresh();
 }

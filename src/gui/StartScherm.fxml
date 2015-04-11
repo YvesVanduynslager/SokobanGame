@@ -31,20 +31,20 @@
                   <MenuItem fx:id="mItemMaakSpelbord" disable="true" mnemonicParsing="false" text="Maak spelbord" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="Gebruiker">
+            <Menu fx:id="menuGebruiker" mnemonicParsing="false" text="Gebruiker">
               <items>
                 <MenuItem fx:id="mItemAanmelden" mnemonicParsing="false" text="Aanmelden" />
                   <MenuItem fx:id="mItemRegistreren" mnemonicParsing="false" text="Registreren" />
               </items>
             </Menu>
-            <Menu mnemonicParsing="false" text="Taal">
+            <Menu fx:id="menuTaal" mnemonicParsing="false" text="Taal">
               <items>
                 <MenuItem fx:id="mItemNederlands" mnemonicParsing="false" text="Nederlands" />
                   <MenuItem fx:id="mItemFrans" mnemonicParsing="false" text="Français" />
                   <MenuItem fx:id="mItemEngels" mnemonicParsing="false" text="English" />
               </items>
             </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu fx:id="menuHelp" mnemonicParsing="false" text="Help">
             <items>
               <MenuItem fx:id="mItemInfo" mnemonicParsing="false" text="Info" />
             </items>

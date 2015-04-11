@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import domein.DomeinController;
@@ -25,7 +20,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class SpelbordController extends GridPane
+public class SpelbordController extends GridPane implements Refreshable
 {
     private DomeinController c;
     private final StartSchermController startScherm;
@@ -60,8 +55,12 @@ public class SpelbordController extends GridPane
         btnNee.setOnAction(this::nee_Pressed);
     }
     
+    @Override
     public void refresh()
     {
+        btnJa.setText(c.getString("spelbord.ja"));
+        btnNee.setText(c.getString("spelbord.nee"));
+
         this.wisBord();
         this.tekenBord();
 
@@ -123,10 +122,10 @@ public class SpelbordController extends GridPane
             disableKeyHandler();
             startScherm.updateStatusLabel(
                     "" + c.geefAantalVoltooideBorden() +
-                            " van " + c.geefAantalSpelborden() +
-                            " spelborden voltooid in " +
-                            c.geefAantalZetten() + " zetten !");
-            txaInfo.setText("Wilt u verder spelen?");
+                            " " + c.getString("spelbord.van") + " " + c.geefAantalSpelborden() +
+                            " " + c.getString("spelbord.spelbordVoltooidIn") + " " +
+                            c.geefAantalZetten() + " " + c.getString("spelbord.zetten"));
+            txaInfo.setText(c.getString("spelbord.verderspelen"));
             txaInfo.setVisible(true);
             btnJa.setVisible(true);
             btnNee.setVisible(true);
@@ -134,7 +133,7 @@ public class SpelbordController extends GridPane
             if(spelIsVoltooid())
             {
                 txaInfo.setVisible(true);
-                txaInfo.setText("Spel voltooid!");
+                txaInfo.setText(c.getString("spelbord.voltooid"));
                 btnJa.setVisible(false);
                 btnNee.setVisible(false);
             }
@@ -150,7 +149,7 @@ public class SpelbordController extends GridPane
             txaInfo.setVisible(false);
             btnJa.setVisible(false);
             btnNee.setVisible(false);
-            startScherm.updateStatusLabel("" + c.geefAantalZetten() + " zetten!");
+            startScherm.updateStatusLabel("" + c.geefAantalZetten() + " " + c.getString("spelbord.zetten"));
         }
     }
     
@@ -190,7 +189,7 @@ public class SpelbordController extends GridPane
                             }
                             else
                             {
-                                startScherm.updateStatusLabel("Ongeldige invoer");
+                                startScherm.updateStatusLabel(c.getString("spelbord.ongeldigeInvoer"));
                             }
                         }
                     }

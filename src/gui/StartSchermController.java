@@ -1,21 +1,17 @@
 package gui;
 
 import domein.DomeinController;
-import java.awt.event.KeyListener;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -23,12 +19,12 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class StartSchermController extends GridPane implements Initializable
+public class StartSchermController extends GridPane implements Refreshable, Initializable
 {
     @FXML
     private Menu menuSpel, menuBewerken, menuGebruiker, menuTaal, menuHelp, menuKiesSpel;
     @FXML
-    private MenuItem mItemNieuwSpel, mItemAfsluiten, mItemAanpassenSpelbord,
+    private MenuItem mItemAfsluiten, mItemAanpassenSpelbord,
             mItemMaakSpelbord, mItemAanmelden, mItemRegistreren, mItemInfo,
             mItemNederlands, mItemFrans, mItemEngels;
     @FXML
@@ -77,6 +73,8 @@ public class StartSchermController extends GridPane implements Initializable
             keuzeSpel.setOnAction(this::spel_gekozen);
             menuKiesSpel.getItems().add(keuzeSpel);
         }
+        
+        refreshMenuLabels();
     }
 
     private void spel_gekozen(ActionEvent event)
@@ -122,25 +120,51 @@ public class StartSchermController extends GridPane implements Initializable
     {
         c.setTaalKeuze(1);
         this.lblStatus.setText("Taal: Nederlands");
-        refreshContent();
+        refresh();
     }
 
     private void frans(ActionEvent event)
     {
         c.setTaalKeuze(3);
         this.lblStatus.setText("Langue: Français");
-        refreshContent();
+        refresh();
     }
 
     private void engels(ActionEvent event)
     {
         c.setTaalKeuze(2);
         this.lblStatus.setText("Language: English");
-        refreshContent();
+        refresh();
+    }
+    
+    private void refreshMenuLabels()
+    {
+        this.menuSpel.setText(c.getString("menu.spel"));
+        this.menuKiesSpel.setText(c.getString("menu.spel.kies"));
+        this.mItemAfsluiten.setText(c.getString("menu.spel.afsluiten"));
+
+        this.menuBewerken.setText(c.getString("menu.bewerken"));
+        this.mItemAanpassenSpelbord.setText(c.getString("menu.bewerken.aanpassen"));
+        this.mItemMaakSpelbord.setText(c.getString("menu.bewerken.maak"));
+
+        this.menuGebruiker.setText(c.getString("menu.gebruiker"));
+        this.mItemAanmelden.setText(c.getString("menu.gebruiker.aanmelden"));
+        this.mItemRegistreren.setText(c.getString("menu.gebruiker.registreren"));
+
+        this.menuTaal.setText(c.getString("menu.taal"));
+        this.mItemNederlands.setText(c.getString("menu.taal.nederlands"));
+        this.mItemFrans.setText(c.getString("menu.taal.frans"));
+        this.mItemEngels.setText(c.getString("menu.taal.engels"));
+
+        this.menuHelp.setText(c.getString("menu.help"));
+        this.mItemInfo.setText(c.getString("menu.help.info"));
     }
 
-    private void refreshContent()
+    @Override
+    public void refresh()
     {
+        refreshMenuLabels();
+        
         if (content instanceof AanmeldenSchermController)
         {
             ((AanmeldenSchermController) content).refresh();
@@ -171,20 +195,17 @@ public class StartSchermController extends GridPane implements Initializable
         this.add(content, 0, 1);
     }
 
-    public void updateControls(String lblStatus, boolean isAdmin)
+    public void updateControls(/*String lblStatus, */boolean isAdmin)
     {
-        this.lblStatus.setText(lblStatus);
         if (isAdmin)
         {
             this.menuKiesSpel.setDisable(false);
-            //this.mItemNieuwSpel.setDisable(false);
             this.mItemAanpassenSpelbord.setDisable(false);
             this.mItemMaakSpelbord.setDisable(false);
         }
         else
         {
             this.menuKiesSpel.setDisable(false);
-            //this.mItemNieuwSpel.setDisable(false);
             this.mItemAanpassenSpelbord.setDisable(true);
             this.mItemMaakSpelbord.setDisable(true);
         }

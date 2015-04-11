@@ -20,7 +20,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class AanmeldenSchermController extends GridPane implements Initializable, SpelerMenuInterface
+public class AanmeldenSchermController extends GridPane implements Initializable, Refreshable
 {
     @FXML
     private Label lblTitel;
@@ -55,13 +55,7 @@ public class AanmeldenSchermController extends GridPane implements Initializable
         btnOK.setOnAction(this::ok_Pressed);
         btnAnnuleren.setOnAction(this::annuleren_Pressed);
 
-        //refresh();
-        lblTitel.setText(c.getString("aanmelden.titel"));
-        txtGebruikersnaam.setPromptText(c.getString("aanmelden.gebruikersnaam"));
-        txtGebruikersnaam.setTooltip(new Tooltip(c.getString("aanmelden.gebruikersnaam.tooltip")));
-        pswWachtwoord.setPromptText(c.getString("aanmelden.wachtwoord"));
-        pswWachtwoord.setTooltip(new Tooltip(c.getString("aanmelden.wachtwoord.tooltip")));
-        btnAnnuleren.setText(c.getString("aanmelden.annuleren"));
+        refresh();
     }
 
     private void ok_Pressed(ActionEvent event)
@@ -70,9 +64,7 @@ public class AanmeldenSchermController extends GridPane implements Initializable
         String gebruikersnaam, wachtwoord;
 
         gebruikersnaam = txtGebruikersnaam.getText();
-//        System.out.println(gebruikersnaam);
         wachtwoord = pswWachtwoord.getText();
-//        System.out.println(wachtwoord);
 
         c.meldAan(gebruikersnaam, wachtwoord);
         speler = c.geefSpeler();
@@ -89,25 +81,26 @@ public class AanmeldenSchermController extends GridPane implements Initializable
 
             if (speler[1].equals("ja"))
             {
-                startScherm.updateControls(c.getString("aangemeld.1") + speler[0] + " " + adminrechtenHulp + c.getString("aangemeld.2"), true);
+                startScherm.updateControls(true);
             }
             else
             {
-                
-                startScherm.updateControls(c.getString("aangemeld.1") + speler[0] + " " + adminrechtenHulp + c.getString("aangemeld.2"), false);
+                startScherm.updateControls(false);
             }
+            
+            startScherm.updateStatusLabel(c.getString("aangemeld.1") + speler[0] + " " + adminrechtenHulp + c.getString("aangemeld.2"));
         }
     }
 
     @Override
-    public void refresh()
+    public final void refresh()
     {
         lblTitel.setText(c.getString("aanmelden.titel"));
         txtGebruikersnaam.setPromptText(c.getString("aanmelden.gebruikersnaam"));
         txtGebruikersnaam.setTooltip(new Tooltip(c.getString("aanmelden.gebruikersnaam.tooltip")));
         pswWachtwoord.setPromptText(c.getString("aanmelden.wachtwoord"));
         pswWachtwoord.setTooltip(new Tooltip(c.getString("aanmelden.wachtwoord.tooltip")));
-        btnAnnuleren.setText(c.getString("aanmelden.annuleren"));
+        btnAnnuleren.setText(c.getString("annuleren"));
     }
 
     private void annuleren_Pressed(ActionEvent event)

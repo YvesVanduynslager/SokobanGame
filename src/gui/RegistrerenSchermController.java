@@ -20,7 +20,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class RegistrerenSchermController extends GridPane implements Initializable, SpelerMenuInterface
+public class RegistrerenSchermController extends GridPane implements Initializable, Refreshable
 {
     @FXML
     private TextField txtGebruikersnaam, txtVoornaam, txtNaam;
@@ -55,46 +55,39 @@ public class RegistrerenSchermController extends GridPane implements Initializab
         btnOK.setOnAction(this::ok_Pressed);
         btnAnnuleren.setOnAction(this::annuleren_Pressed);
 
-        lblTitel.setText(c.getString("registreer.main"));
+        refresh();
     }
 
     @Override
-    public void refresh()
+    public final void refresh()
     {
-        lblTitel.setText(c.getString("registreer.main"));
+        lblTitel.setText(c.getString("registreer.titel"));
+        txtGebruikersnaam.setPromptText(c.getString("registreer.gebruikersnaam"));
+        txtVoornaam.setPromptText(c.getString("registreer.voornaam"));
+        txtNaam.setPromptText(c.getString("registreer.naam"));
+        btnAnnuleren.setText(c.getString("annuleren"));
+        btnOK.setText(c.getString("ok"));
+        pswWachtwoord.setPromptText(c.getString("registreer.wachtwoord"));
     }
 
     private void ok_Pressed(ActionEvent event)
     {
         try
         {
-            startScherm.updateControls(c.getString("aangemeld.1") + txtGebruikersnaam.getText() + c.getString("aanmelden.zonder") + c.getString("aangemeld.2"), false);
-            //lblStatus = new Label("Aangemeld als " + txtGebruikersnaam.getText() + " ZONDER adminrechten.");
+            startScherm.updateStatusLabel(c.getString("aangemeld.1") + txtGebruikersnaam.getText() + c.getString("aanmelden.zonder") + c.getString("aangemeld.2"));
+            startScherm.updateControls(false);
             c.registreer(txtGebruikersnaam.getText(), pswWachtwoord.getText(), txtNaam.getText(), txtVoornaam.getText());
-            //startScherm.setLblStatus();
-            //startScherm.setLblStatus(lblStatus);
-//            startScherm.setMenuItemNieuwSpel(false);
-//            startScherm.setMenuAanpassenSpelbord(true);
-//            startScherm.setMenuItemMaakSpelbord(true);
             geldig = true;
         }
         catch (GebruikerBestaatException gbe)
         {
-//            lblStatus = new Label("Gebruikersnaam bestaat al");
-//            lblStatus.setStyle("-fx-text-fill: #c4d8de;");
             System.err.println(gbe);
             startScherm.updateStatusLabel(c.getString("registreer.bestaat"));
-            //startScherm.setLblStatus("Gebruikersnaam bestaat al");
             geldig = false;
         }
         catch (IllegalArgumentException iae)
         {
-            //lblStatus = new Label("Ongeldige gebruikersnaam of wachtwoord ingegeven. Probeer opnieuw");
             System.err.println(iae);
-
-            //lblStatus.setStyle("-fx-text-fill: #c4d8de;");
-            //startScherm.setLblStatus(lblStatus);
-            //startScherm.setLblStatus("Ongeldige gebruikersnaam of wachtwoord ingegeven. Probeer opnieuw");
             startScherm.updateStatusLabel(c.getString("registreer.ongeldig"));
             geldig = false;
         }

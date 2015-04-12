@@ -22,7 +22,7 @@ import javafx.scene.layout.GridPane;
  */
 public class SpelbordController extends GridPane implements Refreshable
 {
-    private DomeinController c;
+    private final DomeinController c;
     private final StartSchermController startScherm;
 
     @FXML
@@ -54,10 +54,18 @@ public class SpelbordController extends GridPane implements Refreshable
         btnJa.setOnAction(this::ja_Pressed);
         btnNee.setOnAction(this::nee_Pressed);
     }
-    
+
     @Override
     public void refresh()
     {
+        if (spelbordIsVoltooid())
+        {
+            txaInfo.setText(c.getString("spelbord.verderspelen"));
+            if (spelIsVoltooid())
+            {
+                txaInfo.setText(c.getString("spelbord.voltooid"));
+            }
+        }
         btnJa.setText(c.getString("spelbord.ja"));
         btnNee.setText(c.getString("spelbord.nee"));
 
@@ -75,7 +83,7 @@ public class SpelbordController extends GridPane implements Refreshable
         {
             for (int kolom = 0; kolom < elementen[rij].length; kolom++)
             {
-                switch(elementen[rij][kolom])
+                switch (elementen[rij][kolom])
                 {
                     case "#":
                         grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/muur.jpg"))), kolom, rij);
@@ -93,13 +101,13 @@ public class SpelbordController extends GridPane implements Refreshable
                         grdSpelbord.add(new ImageView(new Image(getClass().getResourceAsStream("/images/mannetje.jpg"))), kolom, rij);
                         break;
                     default:
-                        grdSpelbord.add(new Label(elementen[rij][kolom]), kolom,rij);
+                        grdSpelbord.add(new Label(elementen[rij][kolom]), kolom, rij);
                         break;
                 }
             }
         }
     }
-    
+
     private void wisBord()
     {
         grdSpelbord.getChildren().clear();
@@ -109,28 +117,28 @@ public class SpelbordController extends GridPane implements Refreshable
     {
         return c.geefAantalVoltooideBorden() == c.geefAantalSpelborden();
     }
-    
+
     private boolean spelbordIsVoltooid()
     {
         return c.huidigSpelbordVoltooid();
     }
-    
+
     private void updateControls()
     {
-        if(spelbordIsVoltooid())
+        if (spelbordIsVoltooid())
         {
             disableKeyHandler();
             startScherm.updateStatusLabel(
-                    "" + c.geefAantalVoltooideBorden() +
-                            " " + c.getString("spelbord.van") + " " + c.geefAantalSpelborden() +
-                            " " + c.getString("spelbord.spelbordVoltooidIn") + " " +
-                            c.geefAantalZetten() + " " + c.getString("spelbord.zetten"));
+                    "" + c.geefAantalVoltooideBorden()
+                    + " " + c.getString("spelbord.van") + " " + c.geefAantalSpelborden()
+                    + " " + c.getString("spelbord.spelbordVoltooidIn") + " "
+                    + c.geefAantalZetten() + " " + c.getString("spelbord.zetten"));
             txaInfo.setText(c.getString("spelbord.verderspelen"));
             txaInfo.setVisible(true);
             btnJa.setVisible(true);
             btnNee.setVisible(true);
-            
-            if(spelIsVoltooid())
+
+            if (spelIsVoltooid())
             {
                 txaInfo.setVisible(true);
                 txaInfo.setText(c.getString("spelbord.voltooid"));
@@ -152,7 +160,7 @@ public class SpelbordController extends GridPane implements Refreshable
             startScherm.updateStatusLabel("" + c.geefAantalZetten() + " " + c.getString("spelbord.zetten"));
         }
     }
-    
+
     private void disableKeyHandler()
     {
         this.setOnKeyPressed(null);
@@ -210,6 +218,8 @@ public class SpelbordController extends GridPane implements Refreshable
         btnJa.setVisible(false);
         btnNee.setVisible(false);
         txaInfo.setVisible(false);
+        startScherm.updateStatusLabel("");
+        
         c.startVolgendSpelbord();
         refresh();
         enableKeyHandler();

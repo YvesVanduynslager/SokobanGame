@@ -31,8 +31,8 @@ public class AanmeldenSchermController extends GridPane implements Initializable
     @FXML
     private PasswordField pswWachtwoord;
 
-    private DomeinController c;
-    private StartSchermController startScherm;
+    private final DomeinController c;
+    private final StartSchermController startScherm;
     private boolean geldig;
 
     public AanmeldenSchermController(StartSchermController startScherm, DomeinController c)

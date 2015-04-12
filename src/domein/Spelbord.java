@@ -182,7 +182,11 @@ public class Spelbord
             velden[x][y] = mannetje;
             velden[xNa][yNa] = aangrenzend;
         }
-        ++aantalZetten;
+        
+        if(x0 != mannetje.getxPositie() || y0 != mannetje.getyPositie()) //Als het mannetje effectief heeft bewogen
+        {
+            ++aantalZetten;
+        }
     }
 
     /**

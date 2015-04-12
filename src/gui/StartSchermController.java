@@ -38,10 +38,12 @@ public class StartSchermController extends GridPane implements Refreshable, Init
         this.c = c;
         this.c.setTaalKeuze(1);
 
-        /* Lege gridpane instellen bij start, anders overlappen gridpanes elkaar na 2x selecteren in menu's.
-         Bvb. klikken op Gebruiker -> aanmelden, daarna op Gebruiker -> registreren */
         this.content = new GridPane();
-        this.add(content, 1, 0);
+//        ImageView afbeelding = new ImageView(new Image(getClass().getResourceAsStream("/images/sokobanMain.gif")));
+//        afbeelding.resize(USE_COMPUTED_SIZE, USE_COMPUTED_SIZE);
+//        content.add(afbeelding, 0, 0);
+        
+        addContent(content);//this.add(content, 1, 0);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScherm.fxml"));
         loader.setRoot(this);

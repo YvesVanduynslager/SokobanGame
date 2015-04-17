@@ -108,7 +108,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `sokobandatabase`.`speler` (
   `spelerID` INT(3) NOT NULL AUTO_INCREMENT,
   `gebruikernaam` VARCHAR(30) NOT NULL,
-  `wachtwoord` VARCHAR(45) NOT NULL,
+  `wachtwoord` VARCHAR(60) NOT NULL,
   `isAdmin` TINYINT(1) NOT NULL,
   `achternaam` VARCHAR(45) NULL DEFAULT NULL,
   `voornaam` VARCHAR(45) NULL DEFAULT NULL,

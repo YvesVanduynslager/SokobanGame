@@ -14,6 +14,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
+import wachtwoordbeveiliging.BCrypt;
 
 /**
  * FXML Controller class
@@ -64,7 +65,7 @@ public class AanmeldenSchermController extends GridPane implements Initializable
         String gebruikersnaam, wachtwoord;
 
         gebruikersnaam = txtGebruikersnaam.getText();
-        wachtwoord = pswWachtwoord.getText();
+        wachtwoord = BCrypt.hashpw(pswWachtwoord.getText(),"$2a$10$RV4IhXXJFyL3EmzvS4sqHu");
 
         c.meldAan(gebruikersnaam, wachtwoord);
         speler = c.geefSpeler();

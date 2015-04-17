@@ -4,6 +4,7 @@ package ui;
 import domein.DomeinController;
 import exceptions.GebruikerBestaatException;
 import java.util.Scanner;
+import wachtwoordbeveiliging.BCrypt;
 
 /**
  * USE CASE 2 REGISTREER. Deze klasse staat in voor het tekenen en beheer van de
@@ -64,6 +65,7 @@ public class Registreer
             {
                 return;
             }
+            wachtwoord = BCrypt.hashpw(wachtwoord, "$2a$10$RV4IhXXJFyL3EmzvS4sqHu");
 
             try
             {

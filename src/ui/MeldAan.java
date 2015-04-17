@@ -3,6 +3,7 @@ package ui;
 /* IMPORTS */
 import java.util.Scanner;
 import domein.DomeinController;
+import wachtwoordbeveiliging.BCrypt;
 
 /**
  * USE CASE 1 Meld aan. Deze klasse staat in voor het tekenen en beheer van de
@@ -54,6 +55,7 @@ public class MeldAan
             {
                 return;
             }
+            wachtwoord = BCrypt.hashpw(wachtwoord, "$2a$10$RV4IhXXJFyL3EmzvS4sqHu");
 
             controller.meldAan(gebruikersnaam, wachtwoord);
             spelerGegevens = controller.geefSpeler();

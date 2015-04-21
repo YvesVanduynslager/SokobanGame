@@ -42,6 +42,8 @@ public class InfoSchermController extends GridPane implements Initializable, Ref
         {
             throw new RuntimeException(ex);
         }
+        
+        refresh();
     }
     /**
      * Initializes the controller class.
@@ -53,8 +55,8 @@ public class InfoSchermController extends GridPane implements Initializable, Ref
     }    
 
     @Override
-    public void refresh()
+    public final void refresh()
     {
-        this.lblTitel.setText(c.getString("groep"));
+        lblTitel.setText("Sokoban " + c.getString("groep") + " 8");
     }
 }

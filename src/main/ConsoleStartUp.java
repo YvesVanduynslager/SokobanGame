@@ -5,7 +5,7 @@ package main;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import domein.DomeinController;
-import ui.ConsoleApplicatie;
+import cui.ConsoleApplicatie;
 
 /**
  * Main-klasse. Dit is de klasse die de UI zal starten en weergeven/tekenen

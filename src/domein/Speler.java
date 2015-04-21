@@ -9,6 +9,7 @@ package domein;
 public class Speler
 {
     /* DECLARATIES VARIABELEN */
+    private int id;
     private String gebruikersnaam, wachtwoord, adminrechten, voornaam,
             achternaam;
 

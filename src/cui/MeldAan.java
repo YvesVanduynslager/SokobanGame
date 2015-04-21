@@ -1,4 +1,4 @@
-package ui; 
+package cui; 
 
 /* IMPORTS */
 import java.util.Scanner;

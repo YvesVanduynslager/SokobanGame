@@ -220,4 +220,32 @@ public class SpelMapper
         }
         return spelNamen;
     }
+    
+    public void invoerenTopscore(int score, int spelerID, int spelbordID)
+    {
+        String sqlTopScores = "INSERT INTO sokobandatabase.topscore(tijdstip, speler_spelerID, spelbord_spelbordID, topscore) " +
+                "VALUES (NOW(), ?, ?, ?); ";
+        
+        Connectie connectie = new Connectie();
+        PreparedStatement stmtTopscores;
+        
+        try
+        {
+            stmtTopscores = connectie.getDatabaseConnectie().prepareStatement(sqlTopScores);
+            
+            stmtTopscores.setInt(2, spelerID);
+            stmtTopscores.setInt(3, spelbordID);
+            stmtTopscores.setInt(4, score);
+            
+            stmtTopscores.executeUpdate();
+        }
+        catch(SQLException sqlEx)
+        {
+            System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+        }
+        finally
+        {
+            connectie.sluit();
+        }
+    }
 }

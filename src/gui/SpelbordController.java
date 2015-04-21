@@ -51,8 +51,8 @@ public class SpelbordController extends GridPane implements Refreshable
         tekenBord();
         enableKeyHandler();
 
-        btnJa.setOnAction(this::ja_Pressed);
-        btnNee.setOnAction(this::nee_Pressed);
+        btnJa.setOnAction(this::btnJa_gekozen);
+        btnNee.setOnAction(this::btnNee_gekozen);
     }
 
     @Override
@@ -213,7 +213,7 @@ public class SpelbordController extends GridPane implements Refreshable
         this.setOnKeyPressed(keyEventHandler);
     }
 
-    private void ja_Pressed(ActionEvent event)
+    private void btnJa_gekozen(ActionEvent event)
     {
         btnJa.setVisible(false);
         btnNee.setVisible(false);
@@ -225,7 +225,7 @@ public class SpelbordController extends GridPane implements Refreshable
         enableKeyHandler();
     }
 
-    private void nee_Pressed(ActionEvent event)
+    private void btnNee_gekozen(ActionEvent event)
     {
         startScherm.updateStatusLabel("");
         this.getChildren().clear();

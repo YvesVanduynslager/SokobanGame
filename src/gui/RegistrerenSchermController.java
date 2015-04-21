@@ -53,8 +53,8 @@ public class RegistrerenSchermController extends GridPane implements Initializab
             throw new RuntimeException(ex);
         }
 
-        btnOK.setOnAction(this::ok_Pressed);
-        btnAnnuleren.setOnAction(this::annuleren_Pressed);
+        btnOK.setOnAction(this::btnOK_gekozen);
+        btnAnnuleren.setOnAction(this::btnAnnuleren_gekozen);
 
         refresh();
     }
@@ -71,7 +71,7 @@ public class RegistrerenSchermController extends GridPane implements Initializab
         pswWachtwoord.setPromptText(c.getString("registreer.wachtwoord"));
     }
 
-    private void ok_Pressed(ActionEvent event)
+    private void btnOK_gekozen(ActionEvent event)
     {
         try
         {
@@ -94,7 +94,7 @@ public class RegistrerenSchermController extends GridPane implements Initializab
         }
     }
 
-    private void annuleren_Pressed(ActionEvent event)
+    private void btnAnnuleren_gekozen(ActionEvent event)
     {
         this.getChildren().clear();
     }

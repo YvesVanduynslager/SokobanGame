@@ -40,6 +40,6 @@ public class SpelerRepository
      */
     public void voegToe(Speler speler) throws GebruikerBestaatException
     {
-        spelerMapper.voegToe(speler);
+            spelerMapper.voegToe(speler);
     }
 }

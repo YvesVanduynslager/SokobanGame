@@ -53,13 +53,13 @@ public class AanmeldenSchermController extends GridPane implements Initializable
         this.startScherm = startScherm;
         this.c = c;
 
-        btnOK.setOnAction(this::ok_Pressed);
-        btnAnnuleren.setOnAction(this::annuleren_Pressed);
+        btnOK.setOnAction(this::btnOK_gekozen);
+        btnAnnuleren.setOnAction(this::btnAnnuleren_gekozen);
 
         refresh();
     }
 
-    private void ok_Pressed(ActionEvent event)
+    private void btnOK_gekozen(ActionEvent event)
     {
         String[] speler;
         String gebruikersnaam, wachtwoord;
@@ -104,7 +104,7 @@ public class AanmeldenSchermController extends GridPane implements Initializable
         btnAnnuleren.setText(c.getString("annuleren"));
     }
 
-    private void annuleren_Pressed(ActionEvent event)
+    private void btnAnnuleren_gekozen(ActionEvent event)
     {
         this.getChildren().clear();
     }

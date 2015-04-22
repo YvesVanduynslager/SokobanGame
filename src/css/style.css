@@ -1,0 +1,24 @@
+#spelbord
+{
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 5px;
+}
+/*
+.button
+{
+    -fx-border-radius: 10px;
+    -fx-background-color: orange;
+    -fx-border-color: orangered;
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+}
+
+.button:hover
+{
+    -fx-border-radius: 10px;
+    -fx-background-color: orangered;
+    -fx-border-color: darkred;
+    -fx-border-width: 3px;
+    -fx-border-style: solid;
+}*/

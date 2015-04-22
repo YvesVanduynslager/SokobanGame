@@ -54,8 +54,11 @@ public class RegistrerenSchermController extends GridPane implements Initializab
         }
 
         btnOK.setOnAction(this::btnOK_gekozen);
+        //btnOK.getStyleClass().add("button"); //niet meer nodig om dit ook te doen in AanmeldenSchermController
         btnAnnuleren.setOnAction(this::btnAnnuleren_gekozen);
+        //btnAnnuleren.getStyleClass().add("button");
 
+        //btnOK.requestFocus();
         refresh();
     }
 

@@ -12,6 +12,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -44,6 +50,9 @@ public class StartSchermController extends GridPane implements Refreshable, Init
         this.content = new GridPane();
         
         addContent(content);
+        
+        BackgroundImage achtergrond = new BackgroundImage(new Image("/images/achtergrond.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        this.setBackground(new Background(achtergrond));
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScherm.fxml"));
         loader.setRoot(this);

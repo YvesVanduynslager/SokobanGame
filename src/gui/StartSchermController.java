@@ -159,6 +159,10 @@ public class StartSchermController extends GridPane implements Refreshable, Init
     
     private void mItemControls_gekozen(ActionEvent event)
     {
+        content.getChildren().clear();
+        this.lblStatus.setText("");
+        content = new ControlsSchermController(c);
+        addContent(content);
         
     }
     
@@ -211,6 +215,13 @@ public class StartSchermController extends GridPane implements Refreshable, Init
                     if(content instanceof InfoSchermController)
                     {
                         ((InfoSchermController) content).refresh();
+                    }
+                    else
+                    {
+                        if(content instanceof ControlsSchermController)
+                        {
+                            ((ControlsSchermController) content).refresh();
+                        }
                     }
                 }
             }

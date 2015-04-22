@@ -4,6 +4,16 @@
     -fx-border-style: solid;
     -fx-border-width: 5px;
 }
+
+.keys
+{
+    -fx-border-radius: 15px;
+    -fx-background-color: orangered;
+    -fx-border-color: black;
+    -fx-border-width: 5px;
+    -fx-border-style: solid;
+    
+}
 /*
 .button
 {

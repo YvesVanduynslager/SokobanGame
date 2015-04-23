@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -19,7 +20,7 @@
     <RowConstraints minHeight="10.0" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
-      <Label fx:id="lblTitel" text="Sokoban Groep 8" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+      <Label fx:id="lblTitel" style="-fx-font-weight: bold;" text="Sokoban Groep 8" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="TOP">
          <font>
             <Font name="AR DESTINE" size="30.0" />
          </font>
@@ -27,17 +28,17 @@
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label text="Yves Vanduynslager" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+      <Label text="Yves Vanduynslager" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label text="Michiel Mertens" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+      <Label text="Michiel Mertens" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Label>
-      <Label text="2015 Hogent Schoonmeerssen" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
+      <Label text="2015 Hogent Schoonmeerssen" textFill="WHITE" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="BOTTOM">
          <padding>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>

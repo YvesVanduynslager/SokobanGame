@@ -20,7 +20,7 @@
       <RowConstraints minHeight="10.0" valignment="BOTTOM" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
-      <Label fx:id="lblTitel" focusTraversable="false" text="Aanmelden:">
+      <Label fx:id="lblTitel" style="-fx-font-weight: bold;" text="Aanmelden:" textFill="WHITE">
          <font>
             <Font name="AR DESTINE" size="30.0" />
          </font>

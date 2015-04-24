@@ -51,35 +51,35 @@
       </GridPane>
       <GridPane GridPane.halignment="CENTER" GridPane.valignment="TOP">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints valignment="TOP" vgrow="ALWAYS" />
           <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="267.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <GridPane fx:id="grdButtons" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="TOP">
+            <GridPane fx:id="grdButtons" hgap="5.0" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="TOP">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="236.0" minWidth="10.0" prefWidth="231.0" />
+                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnJa" mnemonicParsing="false" text="Ja" visible="false">
+                  <Button fx:id="btnJa" mnemonicParsing="false" text="Ja" visible="false" GridPane.halignment="RIGHT">
                      <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets top="5.0" />
                      </GridPane.margin>
                   </Button>
-                  <Button fx:id="btnNee" mnemonicParsing="false" text="Nee" visible="false" GridPane.columnIndex="1">
+                  <Button fx:id="btnNee" mnemonicParsing="false" text="Nee" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                      <GridPane.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets top="5.0" />
                      </GridPane.margin>
                   </Button>
                </children>
             </GridPane>
-            <TextArea fx:id="txaInfo" editable="false" prefHeight="80.0" text="Wilt u het volgend spelbord spelen?" visible="false" wrapText="true" GridPane.halignment="LEFT" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS" />
+            <TextArea fx:id="txaInfo" editable="false" focusTraversable="false" prefHeight="80.0" visible="false" wrapText="true" GridPane.halignment="LEFT" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS" />
          </children>
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

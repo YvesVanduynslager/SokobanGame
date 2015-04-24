@@ -55,6 +55,7 @@ public class SpelbordController extends GridPane implements Refreshable
         btnNee.setOnAction(this::btnNee_gekozen);
         
         grdSpelbord.setId("spelbord");
+        txaInfo.setId("txaInfo");
     }
 
     @Override

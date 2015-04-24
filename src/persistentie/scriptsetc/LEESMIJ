@@ -1,4 +1,0 @@
-Om een werkende databank aan te maken volgende scripts uitvoeren in volgorde:
-1. MaakSokobandatabase.sql
-2. VoegAdminsToe.sql
-3. VoegSpellenToe.sql

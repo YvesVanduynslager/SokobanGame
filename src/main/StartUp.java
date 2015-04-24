@@ -24,7 +24,7 @@ public class StartUp extends Application
         Scene scene = new Scene(new StartSchermController(domeinController));
         
         scene.getStylesheets().add("/css/style.css");
-        
+
         stage.setScene(scene);
         stage.setTitle("Sokoban");
         

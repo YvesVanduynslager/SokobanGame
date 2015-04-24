@@ -22,7 +22,7 @@
       <RowConstraints minHeight="10.0" valignment="BOTTOM" vgrow="ALWAYS" />
   </rowConstraints>
    <children>
-      <Label fx:id="lblTitel" text="Registreren:">
+      <Label fx:id="lblTitel" focusTraversable="false" text="Registreren:">
          <font>
             <Font name="AR DESTINE" size="30.0" />
          </font>
@@ -36,12 +36,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
+            <Button fx:id="btnOK" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="OK" />
             <Button fx:id="btnAnnuleren" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Annuleren" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
                <GridPane.margin>
                   <Insets />
                </GridPane.margin>
             </Button>
-            <Button fx:id="btnOK" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="OK" />
          </children>
       </GridPane>
       <TextField fx:id="txtGebruikersnaam" promptText="Gebruikersnaam" GridPane.columnIndex="1" GridPane.rowIndex="1" />

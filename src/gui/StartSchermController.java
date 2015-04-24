@@ -9,16 +9,21 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
 
 /**
  * FXML Controller class
@@ -38,6 +43,8 @@ public class StartSchermController extends GridPane implements Refreshable, Init
             mItemNederlands, mItemFrans, mItemEngels;
     @FXML
     private Label lblStatus;
+    @FXML
+    private Pane pnlStatus;
 
     private DomeinController c;
     private GridPane content;
@@ -48,12 +55,15 @@ public class StartSchermController extends GridPane implements Refreshable, Init
         this.c.setTaalKeuze(1);
 
         this.content = new GridPane();
-        
         addContent(content);
         
-        BackgroundImage achtergrond = new BackgroundImage(new Image("/images/achtergrond.png"), BackgroundRepeat.REPEAT, BackgroundRepeat.REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+        BackgroundImage achtergrond = new BackgroundImage(new Image("/images/achtergrond.png"),
+                BackgroundRepeat.REPEAT,
+                BackgroundRepeat.REPEAT,
+                BackgroundPosition.DEFAULT,
+                BackgroundSize.DEFAULT);
         this.setBackground(new Background(achtergrond));
-
+        
         FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScherm.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -66,6 +76,9 @@ public class StartSchermController extends GridPane implements Refreshable, Init
             throw new RuntimeException(ex);
         }
 
+        //pnlStatus.setId("pnlStatus");
+        //pnlStatus.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        
         mItemAanmelden.setOnAction(this::mItemAanmelden_gekozen);
         mItemRegistreren.setOnAction(this::mItemRegistreren_gekozen);
         mItemAfsluiten.setOnAction(this::mItemAfsluiten_gekozen);
@@ -110,7 +123,7 @@ public class StartSchermController extends GridPane implements Refreshable, Init
                 content = new SpelbordController(this, c);
 
                 addContent(content);
-                content.requestFocus(); //BELANGRIJK!!! NIET IN SpelbordController oproepen!
+                content.requestFocus(); //BELANGRIJK!!! NIET in SpelbordController oproepen!
                 break;
             }
         }

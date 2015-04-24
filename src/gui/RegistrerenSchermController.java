@@ -78,22 +78,24 @@ public class RegistrerenSchermController extends GridPane implements Initializab
     {
         try
         {
+            c.registreer(txtGebruikersnaam.getText(), BCrypt.hashpw(pswWachtwoord.getText(), "$2a$10$RV4IhXXJFyL3EmzvS4sqHu"), txtNaam.getText(), txtVoornaam.getText());
+            
+            //Wordt uitgevoerd als er geen exception werd gethrowd
             startScherm.updateStatusLabel(c.getString("aangemeld.1") + txtGebruikersnaam.getText() + c.getString("aanmelden.zonder") + c.getString("aangemeld.2"));
             startScherm.updateControls(false);
-            c.registreer(txtGebruikersnaam.getText(), BCrypt.hashpw(pswWachtwoord.getText(), "$2a$10$RV4IhXXJFyL3EmzvS4sqHu"), txtNaam.getText(), txtVoornaam.getText());
-            geldig = true;
+            //geldig = true;
         }
         catch (GebruikerBestaatException gbe)
         {
             System.err.println(gbe);
             startScherm.updateStatusLabel(c.getString("registreer.bestaat"));
-            geldig = false;
+            //geldig = false;
         }
         catch (IllegalArgumentException iae)
         {
             System.err.println(iae);
             startScherm.updateStatusLabel(c.getString("registreer.ongeldig"));
-            geldig = false;
+            //geldig = false;
         }
     }
 
@@ -101,11 +103,11 @@ public class RegistrerenSchermController extends GridPane implements Initializab
     {
         this.getChildren().clear();
     }
-
-    public boolean isGeldig()
-    {
-        return geldig;
-    }
+//
+//    public boolean isGeldig()
+//    {
+//        return geldig;
+//    }
 
     @Override
     public void initialize(URL url, ResourceBundle rb)

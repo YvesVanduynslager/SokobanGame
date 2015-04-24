@@ -53,13 +53,6 @@ public class Spel
                 break;
             }
         }
-//        if (spelbordIndex < spelborden.size())
-//        {
-//            Spelbord bord = spelborden.get(spelbordIndex);
-//            origineelSpelbord = bord;
-//            this.setHuidigSpelbord(bord);
-//        }
-//        spelbordIndex++;
     }
     
     public int geefAantalVoltooideBorden()
@@ -75,9 +68,9 @@ public class Spel
         return aantal;
     }
 
-    public List<Spelbord> getSpelborden() {
-        return spelborden;
-    }
+//    public List<Spelbord> getSpelborden() {
+//        return spelborden;
+//    }
     
 //    public void resetHuidigSpelbord(Spel spel)
 //    {
@@ -93,28 +86,6 @@ public class Spel
     {
         return this.spelNaam;
     }
-
-    /**
-     * Geeft het aantal voltooide spelborden.
-     *
-     * @return Het aantal voltooide spelborden als int.
-     */
-//    public int geefAantalVoltooideBorden()
-//    {
-//        return aantalSpelbordenVoltooid;
-//    }
-
-    /**
-     * Verhoogd het aantal voltooide spelborden.
-     */
-//    public void verhoogAantalVoltooideBorden()
-//    {
-//        if (huidigSpelbord != null && huidigSpelbord.isVoltooid()
-//                && aantalSpelbordenVoltooid < this.geefAantalSpelborden())
-//        {
-//            aantalSpelbordenVoltooid++;
-//        }
-//    }
 
     /**
      * Geeft het aantal spelborden.

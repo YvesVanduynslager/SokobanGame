@@ -12,11 +12,9 @@ import java.util.List;
 public class Spel
 {
 
-    private List<Spelbord> spelborden;
-    private String spelNaam;
+    private final List<Spelbord> spelborden;
+    private final String spelNaam;
     private Spelbord huidigSpelbord;
-//    private int spelbordIndex = 0;
-    //private int aantalSpelbordenVoltooid = 0;
 
     /**
      * Default-constructor initialiseert een ArrayList van Spelbord-objecten.
@@ -70,13 +68,6 @@ public class Spel
         return aantal;
     }
 
-//    public List<Spelbord> getSpelborden() {
-//        return spelborden;
-//    }
-//    public void resetHuidigSpelbord(Spel spel)
-//    {
-////        spelborden.set(spelbordIndex, spel.getSpelborden().get(spelbordIndex));
-//    }
     /**
      * Geeft de naam van het spel.
      *
@@ -134,8 +125,7 @@ public class Spel
     */
     public Spelbord maakLeegSpelbord()
     {
-        // TODO - implement Spel.maakLeegSpelbord
-        throw new UnsupportedOperationException();
+        return null;
     }
 
     public String geefSpelNaam()

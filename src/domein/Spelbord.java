@@ -12,8 +12,8 @@ public class Spelbord
     private int aantalZetten;
     private boolean voltooid;
     /* DECLARATIES CONSTANTEN */
-    private final Element[][] velden;
-    private final Mannetje mannetje;
+    private Element[][] velden;
+    private Mannetje mannetje;
     private final String spelbordNaam;
 
     /**
@@ -30,20 +30,6 @@ public class Spelbord
         this.mannetje = mannetje;
         this.aantalZetten = 0;
     }
-    
-//    /**
-//     * Initialiseert de naam, velden, het mannetje en het aantal zetten aan de
-//     * hand van een bestaand spelbord.
-//     * 
-//     * @param spelbord Spelbord waarnaar een nieuw object wordt aangemaakt.
-//     */
-//    public Spelbord(Spelbord spelbord)
-//    {
-//        this.naam = spelbord.getNaam();
-//        this.velden = spelbord.geefVelden();
-//        this.mannetje = spelbord.getMannetje();
-//        this.aantalZetten = spelbord.geefAantalZetten();
-//    }
     
     /**
      * Geeft het mannetje van het huidige spelbord terug.

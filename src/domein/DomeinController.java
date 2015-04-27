@@ -283,4 +283,9 @@ public class DomeinController
         // TODO - implement DomeinController.geefCustomSpelNaam
         throw new UnsupportedOperationException();
     }
+    
+    public void reset()
+    {
+        huidigSpel.start();
+    }
 }

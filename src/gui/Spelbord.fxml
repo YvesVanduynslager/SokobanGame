@@ -64,7 +64,7 @@
                 <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
                   <Button fx:id="btnJa" mnemonicParsing="false" text="Ja" visible="false" GridPane.halignment="RIGHT">

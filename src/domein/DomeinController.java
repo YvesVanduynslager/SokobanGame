@@ -6,7 +6,6 @@ import java.util.List;
 
 /**
  * Staat in voor communicatie tussen GUI en business-logica.
- *
  * @author Yves
  */
 public class DomeinController
@@ -20,6 +19,7 @@ public class DomeinController
     private Speler huidigeSpeler;
     private Spel huidigSpel;
     private String[] spelerString;
+	private Spel customSpel;
 
     /**
      * Default-constructor maakt een SpelerRepository (spelers opslaan en
@@ -245,4 +245,34 @@ public class DomeinController
     {
         return resourceBundle.getStringUitBundle(key);
     }
+
+	/**
+	 * 
+	 * @param spelNaam
+	 */
+	public void configureerNieuwSpel(String spelNaam) {
+		// TODO - implement DomeinController.configureerNieuwSpel
+		throw new UnsupportedOperationException();
+	}
+
+	public String[][] geefLeegSpelbord() {
+		// TODO - implement DomeinController.geefLeegSpelbord
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * 
+	 * @param elementType
+	 * @param xPositie
+	 * @param yPositie
+	 */
+	public void plaatsElement(String elementType, int xPositie, int yPositie) {
+		// TODO - implement DomeinController.plaatsElement
+		throw new UnsupportedOperationException();
+	}
+
+	public String geefCustomSpelNaam() {
+		// TODO - implement DomeinController.geefCustomSpelNaam
+		throw new UnsupportedOperationException();
+	}
 }

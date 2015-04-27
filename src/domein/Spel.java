@@ -21,9 +21,12 @@ public class Spel
     /**
      * Default-constructor initialiseert een ArrayList van
      * Spelbord-objecten.
+     * 
+     * @param spelNaam Naam van het spel.
      */
-    public Spel()
+    public Spel(String spelNaam)
     {
+        this.spelNaam = spelNaam;
         spelborden = new ArrayList<>();
     }
 
@@ -98,10 +101,9 @@ public class Spel
     }
 
     /**
-     * Stelt de spelborden in die zullen behoren tot het spel.
-     *
-     * @param spelborden ArrayList van Spelbord-objecten.
-     */
+	 * 
+	 * @param spelborden
+	 */
     public void setSpelborden(ArrayList<Spelbord> spelborden)
     {
         this.spelborden = spelborden;
@@ -137,4 +139,14 @@ public class Spel
     {
         return huidigSpelbord.toString();
     }
+
+	public Spelbord maakLeegSpelbord() {
+		// TODO - implement Spel.maakLeegSpelbord
+		throw new UnsupportedOperationException();
+	}
+
+	public String geefSpelNaam() {
+		// TODO - implement Spel.geefSpelNaam
+		throw new UnsupportedOperationException();
+	}
 }

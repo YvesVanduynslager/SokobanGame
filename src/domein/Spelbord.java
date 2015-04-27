@@ -14,18 +14,18 @@ public class Spelbord
     /* DECLARATIES CONSTANTEN */
     private final Element[][] velden;
     private final Mannetje mannetje;
-    private final String naam;
+    private final String spelbordNaam;
 
     /**
      * Initialiseert de naam, velden, het mannetje en het aantal zetten.
      *
-     * @param naam Naam van het spelbord.
+     * @param spelbordNaam Naam van het spelbord.
      * @param velden De 2D-Element Array van het spelbord.
      * @param mannetje Het mannetje van dit spelbord.
      */
-    public Spelbord(String naam, Element[][] velden, Mannetje mannetje)
+    public Spelbord(String spelbordNaam, Element[][] velden, Mannetje mannetje)
     {
-        this.naam = naam;
+        this.spelbordNaam = spelbordNaam;
         this.velden = velden;
         this.mannetje = mannetje;
         this.aantalZetten = 0;
@@ -62,7 +62,7 @@ public class Spelbord
      */
     public String getNaam()
     {
-        return this.naam;
+        return this.spelbordNaam;
     }
 
     /**
@@ -247,7 +247,7 @@ public class Spelbord
     @Override
     public String toString()
     {
-        String output = naam + "\n";
+        String output = spelbordNaam + "\n";
 
         for (Element[] rij : this.velden)
         {
@@ -282,4 +282,17 @@ public class Spelbord
     {
         return this.aantalZetten;
     }
+
+
+
+	/**
+	 * 
+	 * @param elementType
+	 * @param xPositie
+	 * @param yPositie
+	 */
+	public void plaatsElement(String elementType, int xPositie, int yPositie) {
+		// TODO - implement Spelbord.plaatsElement
+		throw new UnsupportedOperationException();
+	}
 }

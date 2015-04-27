@@ -180,11 +180,9 @@ public class Speler
     }
 
     /**
-     * Controleert of in te stellen wachtwoord een geldig wachtwoord is.
-     *
-     * @param wachtwoord Het in te stellen wachtwoord als String.
-     * @return True voor geldig, false voor ongeldig.
-     */
+	 * 
+	 * @param wachtwoord Het in te stellen wachtwoord als String.
+	 */
     private boolean geldigWachtwoord(String wachtwoord)
     {
         int numOfUpperLetters = 0; // initialiseren aantal lowerCase letters

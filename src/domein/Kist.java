@@ -9,11 +9,11 @@ package domein;
 public class Kist extends Element
 {
     /**
-     * Constructor stelt x positie, y positie in van het element, en stelt in of het element als een doel behandelt moet worden.
-     * @param xPositie x-coördinaat, int.
-     * @param yPositie y-coördinaat, int
-     * @param isDoel true als doel, false als geen doel.
-     */
+	 * 
+	 * @param xPositie x-coördinaat, int.
+	 * @param yPositie y-coördinaat, int
+	 * @param isDoel
+	 */
     public Kist(int xPositie, int yPositie, boolean isDoel)
     {
         super(xPositie, yPositie, isDoel);

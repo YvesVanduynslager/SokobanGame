@@ -77,4 +77,14 @@ public abstract class Element
     {
         this.isDoel = isDoel;
     }
+
+	/**
+	 * 
+	 * @param xPositie
+	 * @param yPositie
+	 */
+	public Element(int xPositie, int yPositie) {
+		// TODO - implement Element.Element
+		throw new UnsupportedOperationException();
+	}
 }

@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class Spel
 {
-    /* DECLARATIES VARIABELEN */
+
     private List<Spelbord> spelborden;
     private String spelNaam;
     private Spelbord huidigSpelbord;
@@ -19,9 +19,8 @@ public class Spel
     //private int aantalSpelbordenVoltooid = 0;
 
     /**
-     * Default-constructor initialiseert een ArrayList van
-     * Spelbord-objecten.
-     * 
+     * Default-constructor initialiseert een ArrayList van Spelbord-objecten.
+     *
      * @param spelNaam Naam van het spel.
      */
     public Spel(String spelNaam)
@@ -39,31 +38,31 @@ public class Spel
     public Spel(String spelNaam, List<Spelbord> spelborden)
     {
         this.spelNaam = spelNaam;
-        this.spelborden = spelborden;        
+        this.spelborden = spelborden;
     }
-
+    
     /**
      * Deze methode loopt door de aanwezige spelborden en stelt het huidige
      * spelbord in als dit nog niet is voltooid.
      */
     public void start()
     {
-        for(Spelbord bord : spelborden)
+        for (Spelbord bord : spelborden)
         {
-            if(!bord.isVoltooid())
+            if (!bord.isVoltooid())
             {
-                this.setHuidigSpelbord(bord);   
+                this.setHuidigSpelbord(bord);
                 break;
             }
         }
     }
-    
+
     public int geefAantalVoltooideBorden()
     {
         int aantal = 0;
-        for(Spelbord bord : spelborden)
+        for (Spelbord bord : spelborden)
         {
-            if(bord.isVoltooid())
+            if (bord.isVoltooid())
             {
                 aantal++;
             }
@@ -74,12 +73,10 @@ public class Spel
 //    public List<Spelbord> getSpelborden() {
 //        return spelborden;
 //    }
-    
 //    public void resetHuidigSpelbord(Spel spel)
 //    {
 ////        spelborden.set(spelbordIndex, spel.getSpelborden().get(spelbordIndex));
 //    }
-
     /**
      * Geeft de naam van het spel.
      *
@@ -98,15 +95,6 @@ public class Spel
     public int geefAantalSpelborden()
     {
         return spelborden.size();
-    }
-
-    /**
-	 * 
-	 * @param spelborden
-	 */
-    public void setSpelborden(ArrayList<Spelbord> spelborden)
-    {
-        this.spelborden = spelborden;
     }
 
     /**
@@ -140,13 +128,19 @@ public class Spel
         return huidigSpelbord.toString();
     }
 
-	public Spelbord maakLeegSpelbord() {
-		// TODO - implement Spel.maakLeegSpelbord
-		throw new UnsupportedOperationException();
-	}
+    
+    /*
+    TOEGEVOEGD VOOR UC5!!!
+    */
+    public Spelbord maakLeegSpelbord()
+    {
+        // TODO - implement Spel.maakLeegSpelbord
+        throw new UnsupportedOperationException();
+    }
 
-	public String geefSpelNaam() {
-		// TODO - implement Spel.geefSpelNaam
-		throw new UnsupportedOperationException();
-	}
+    public String geefSpelNaam()
+    {
+        // TODO - implement Spel.geefSpelNaam
+        throw new UnsupportedOperationException();
+    }
 }

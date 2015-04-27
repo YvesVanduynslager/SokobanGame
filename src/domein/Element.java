@@ -6,7 +6,7 @@ package domein;
  */
 public abstract class Element
 {
-    /* DECLARATIES VARIABELES */
+    
     private int xPositie;
     private int yPositie;
     private boolean isDoel;

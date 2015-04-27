@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
  * Staat in voor communicatie tussen GUI en business-logica.
+ *
  * @author Yves
  */
 public class DomeinController
@@ -19,7 +20,7 @@ public class DomeinController
     private Speler huidigeSpeler;
     private Spel huidigSpel;
     private String[] spelerString;
-	private Spel customSpel;
+    private Spel customSpel;
 
     /**
      * Default-constructor maakt een SpelerRepository (spelers opslaan en
@@ -29,7 +30,7 @@ public class DomeinController
     public DomeinController()
     {
         /* Initialiseren van een SpelerRepository en SpelRepository voor ophalen
-        en opslaan van Speler -en Spelgegevens. */
+         en opslaan van Speler -en Spelgegevens. */
         spelerRepository = new SpelerRepository();
         spelRepository = new SpelRepository();
 
@@ -135,7 +136,7 @@ public class DomeinController
     {
         this.huidigSpel = spel;
     }
-    
+
     /**
      * UC3: Speel spel. Geeft het totaal aantal spelborden terug.
      *
@@ -155,7 +156,7 @@ public class DomeinController
     {
         return huidigSpel.geefAantalVoltooideBorden();
     }
-    
+
     /**
      * UC3: Speel spel. Geeft een lijst terug met beschikbare spellen.
      *
@@ -165,7 +166,7 @@ public class DomeinController
     {
         return spelRepository.geefSpelNamen();
     }
-    
+
     /**
      * UC3: Speel spel, UC4: Voltooi spelbord. Geeft het huidige spelbord terug
      * als String.
@@ -222,7 +223,7 @@ public class DomeinController
     {
         return huidigSpel.getHuidigSpelbord().geefAantalZetten();
     }
-    
+
     /**
      * Alle UC's. Selecteren van de gewenste taal. Geeft de taalkeuze van de
      * gebruiker door aan het Taal-object.
@@ -246,33 +247,40 @@ public class DomeinController
         return resourceBundle.getStringUitBundle(key);
     }
 
-	/**
-	 * 
-	 * @param spelNaam
-	 */
-	public void configureerNieuwSpel(String spelNaam) {
-		// TODO - implement DomeinController.configureerNieuwSpel
-		throw new UnsupportedOperationException();
-	}
+    /*
+    TOEGEVOEGD VOOR UC5!!!
+    */
+    /**
+     *
+     * @param spelNaam
+     */
+    public void configureerNieuwSpel(String spelNaam)
+    {
+        // TODO - implement DomeinController.configureerNieuwSpel
+        throw new UnsupportedOperationException();
+    }
 
-	public String[][] geefLeegSpelbord() {
-		// TODO - implement DomeinController.geefLeegSpelbord
-		throw new UnsupportedOperationException();
-	}
+    public String[][] geefLeegSpelbord()
+    {
+        // TODO - implement DomeinController.geefLeegSpelbord
+        throw new UnsupportedOperationException();
+    }
 
-	/**
-	 * 
-	 * @param elementType
-	 * @param xPositie
-	 * @param yPositie
-	 */
-	public void plaatsElement(String elementType, int xPositie, int yPositie) {
-		// TODO - implement DomeinController.plaatsElement
-		throw new UnsupportedOperationException();
-	}
+    /**
+     *
+     * @param elementType
+     * @param xPositie
+     * @param yPositie
+     */
+    public void plaatsElement(String elementType, int xPositie, int yPositie)
+    {
+        // TODO - implement DomeinController.plaatsElement
+        throw new UnsupportedOperationException();
+    }
 
-	public String geefCustomSpelNaam() {
-		// TODO - implement DomeinController.geefCustomSpelNaam
-		throw new UnsupportedOperationException();
-	}
+    public String geefCustomSpelNaam()
+    {
+        // TODO - implement DomeinController.geefCustomSpelNaam
+        throw new UnsupportedOperationException();
+    }
 }

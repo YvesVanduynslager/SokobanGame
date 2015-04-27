@@ -201,14 +201,6 @@ public class DomeinController
     }
 
     /**
-     * UC4: Voltooi spelbord. Verhoogt het aantal voltooide spelborden.
-     */
-//    public void verhoogAantalVoltooideBorden()
-//    {
-//        huidigSpel.verhoogAantalVoltooideBorden();
-//    }
-
-    /**
      * UC4: Voltooi spelbord. Staat in voor het kiezen van een richting waar het
      * mannetje naar toe moet bewegen op het huidige spelbord.
      *

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import domein.DomeinController;
@@ -13,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -26,9 +22,11 @@ public class ControlsSchermController extends GridPane implements Initializable,
     private Label lblTitel, lblZ, lblQ, lblS, lblD;
 
     private DomeinController c;
+    private StartSchermController startScherm;
 
-    public ControlsSchermController(DomeinController c)
+    public ControlsSchermController(StartSchermController startScherm, DomeinController c)
     {
+        this.startScherm = startScherm;
         this.c = c;
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ControlsScherm.fxml"));
@@ -42,14 +40,62 @@ public class ControlsSchermController extends GridPane implements Initializable,
         {
             throw new RuntimeException(ex);
         }
-        
+
         lblZ.getStyleClass().add("keys");
         lblQ.getStyleClass().add("keys");
         lblS.getStyleClass().add("keys");
         lblD.getStyleClass().add("keys");
 
+        installMouseHandlers();
         refresh();
+    }
+    
+    private void installMouseHandlers()
+    {
+        lblZ.setOnMouseEntered(this::mouse_entered);
+        lblQ.setOnMouseEntered(this::mouse_entered);
+        lblS.setOnMouseEntered(this::mouse_entered);
+        lblD.setOnMouseEntered(this::mouse_entered);
 
+        lblZ.setOnMouseExited(this::mouse_exited);
+        lblQ.setOnMouseExited(this::mouse_exited);
+        lblS.setOnMouseExited(this::mouse_exited);
+        lblD.setOnMouseExited(this::mouse_exited);
+    }
+
+    private void mouse_entered(MouseEvent event)
+    {
+        if (event.getSource() == lblZ)
+        {
+            startScherm.updateStatusLabel("Z = Omhoog");
+            //new ImageView(new Image(getClass().getResourceAsStream("/images/muur.jpg"))), kolom, rij)
+        }
+        else
+        {
+            if (event.getSource() == lblQ)
+            {
+                startScherm.updateStatusLabel("Q = Links");
+            }
+            else
+            {
+                if (event.getSource() == lblS)
+                {
+                    startScherm.updateStatusLabel("S = Omlaag");
+                }
+                else
+                {
+                    if (event.getSource() == lblD)
+                    {
+                        startScherm.updateStatusLabel("D = Rechts");
+                    }
+                }
+            }
+        }
+    }
+
+    private void mouse_exited(MouseEvent event)
+    {
+        startScherm.updateStatusLabel("");
     }
 
     /**

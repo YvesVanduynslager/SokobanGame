@@ -183,7 +183,7 @@ public class StartSchermController extends GridPane implements Refreshable, Init
     {
         content.getChildren().clear();
         this.lblStatus.setText("");
-        content = new ControlsSchermController(c);
+        content = new ControlsSchermController(this, c);
         addContent(content);
         
     }

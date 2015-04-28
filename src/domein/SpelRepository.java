@@ -1,6 +1,7 @@
 package domein;
 
 /* IMPORTS */
+import exceptions.SpelNaamBestaatException;
 import java.util.List;
 import persistentie.SpelMapper;
 
@@ -41,7 +42,7 @@ public class SpelRepository
         return spelMapper.geefSpel(spelnaam);
     }
     
-    public void voegSpelToe(Spel customSpel)
+    public void voegSpelToe(Spel customSpel) throws SpelNaamBestaatException
     {
         spelMapper.voegToe(customSpel);
     }

@@ -2,6 +2,7 @@ package domein;
 
 /* IMPORTS */
 import exceptions.GebruikerBestaatException;
+import exceptions.SpelNaamBestaatException;
 import java.util.List;
 
 /**
@@ -188,18 +189,6 @@ public class DomeinController
     public String[][] geefHuidigSpelbord()
     {
         return huidigSpel.getHuidigSpelbord().to2DString();
-//        Element[][] velden = huidigSpel.getHuidigSpelbord().geefVelden();
-//
-//        String[][] veldenString = new String[10][10];
-//
-//        for (int i = 0; i < velden.length; i++)
-//        {
-//            for (int j = 0; j < velden[i].length; j++)
-//            {
-//                veldenString[i][j] = velden[i][j].toString();
-//            }
-//        }
-//        return veldenString;
     }
 
     /**
@@ -275,5 +264,10 @@ public class DomeinController
     public void plaatsElement(String elementType, int xPositie, int yPositie)
     {
         customSpelbord.plaatsElement(elementType, xPositie, yPositie);
+    }
+    
+    public void registreerCustomSpel() throws SpelNaamBestaatException
+    {
+        spelRepository.voegSpelToe(huidigSpel);
     }
 }

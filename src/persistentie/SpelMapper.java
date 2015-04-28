@@ -7,6 +7,7 @@ import domein.Spel;
 import domein.Spelbord;
 import domein.Element;
 import domein.Veld;
+import exceptions.SpelNaamBestaatException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -295,7 +296,7 @@ public class SpelMapper
         return spelNamen;
     }
 
-    public void voegToe(Spel customSpel)
+    public void voegToe(Spel customSpel) throws SpelNaamBestaatException
     {
         String sqlInsertElementen = "";
         String sqlInsertSpelNaam = "INSERT INTO sokobandatabase.spelbord(spelNaam) "
@@ -311,6 +312,10 @@ public class SpelMapper
 
         try
         {
+            if (bestaatSpelNaam(customSpel.geefSpelNaam()))
+            {
+                throw new SpelNaamBestaatException();
+            }
             stmtInsertSpelNaam = connectie.getDatabaseConnectie().prepareStatement(sqlInsertSpelNaam);
             stmtInsertSpelNaam.setString(1, customSpel.geefSpelNaam());
             stmtInsertSpelNaam.executeUpdate();
@@ -384,5 +389,35 @@ public class SpelMapper
                 }
             }
         }
+    }
+    
+    private boolean bestaatSpelNaam(String spelNaam)
+    {
+        Connectie connectie = new Connectie();
+        PreparedStatement sqlStatement;
+        String sqlString = "SELECT spelNaam FROM spel WHERE spelNaam = '" + spelNaam + "'";
+        String opgehaaldeSpelNaam = null;
+
+        try
+        {
+            sqlStatement = connectie.getDatabaseConnectie().prepareStatement(sqlString);
+            ResultSet rs = sqlStatement.executeQuery();
+
+            while (rs.next())
+            {
+                opgehaaldeSpelNaam = rs.getString(1);
+            }
+            sqlStatement.close();
+        }
+        catch (SQLException sqlEx)
+        {
+            System.err.println("SQL fout" + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+        }
+        finally
+        {
+            connectie.sluit();
+        }
+
+        return opgehaaldeSpelNaam != null; //string moet null zijn om onbestaand spel voor te stellen
     }
 }

@@ -103,7 +103,7 @@ public class SpelerMapper
      * @return true als gebruikersnaam al bestaat. false als gebruikersnaam nog
      * niet bestaat
      */
-    public boolean bestaatSpeler(String gebruikersnaam)
+    private boolean bestaatSpeler(String gebruikersnaam)
     {
         Connectie connectie = new Connectie();
         PreparedStatement sqlStatement;

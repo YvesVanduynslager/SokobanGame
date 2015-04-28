@@ -11,7 +11,6 @@ import java.util.List;
  */
 public class Spel
 {
-
     private final List<Spelbord> spelborden;
     private final String spelNaam;
     private Spelbord huidigSpelbord;
@@ -55,6 +54,10 @@ public class Spel
         }
     }
 
+    public List<Spelbord> geefSpelborden()
+    {
+        return spelborden;
+    }
     public int geefAantalVoltooideBorden()
     {
         int aantal = 0;
@@ -123,14 +126,54 @@ public class Spel
     /*
     TOEGEVOEGD VOOR UC5!!!
     */
+    
+    /**
+     * 
+     * @return 
+     */
     public Spelbord maakLeegSpelbord()
     {
-        return null;
+        //nieuwe elementen-array maken.
+        Element velden[][] = new Element[10][10];
+        
+        for(int rij = 0; rij < velden.length; rij++)
+        {
+            for(int kolom = 0; kolom < velden[rij].length; kolom++)
+            {
+                /*
+                Randen opvullen met muren.
+                */
+                if (rij == 0 || rij == velden.length -1 || kolom == 0 || kolom == velden[rij].length)
+                {
+                    velden[rij][kolom] = new Muur(rij, kolom, true);
+                }
+                /*
+                Rest opvullen met gewone velden
+                */
+                else
+                {
+                    velden[rij][kolom] = new Veld(rij, kolom, false);
+                }
+            }
+        }
+        return new Spelbord(velden);
     }
 
+    /**
+     * 
+     * @return 
+     */
     public String geefSpelNaam()
     {
-        // TODO - implement Spel.geefSpelNaam
-        throw new UnsupportedOperationException();
+        return this.spelNaam;
+    }
+    
+    /**
+     * 
+     * @param spelbord 
+     */
+    public void addSpelbord(Spelbord spelbord)
+    {
+        spelborden.add(spelbord);
     }
 }

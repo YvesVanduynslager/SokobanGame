@@ -18,7 +18,7 @@ public class Mannetje extends Element
      */
     public Mannetje(int xPositie, int yPositie, boolean isDoel)
     {
-        super(xPositie, yPositie, isDoel);
+        super(xPositie, yPositie, isDoel, false);
 
     }
 

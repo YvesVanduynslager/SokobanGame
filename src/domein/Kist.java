@@ -16,7 +16,7 @@ public class Kist extends Element
 	 */
     public Kist(int xPositie, int yPositie, boolean isDoel)
     {
-        super(xPositie, yPositie, isDoel);
+        super(xPositie, yPositie, isDoel, false);
     }
 
     /**

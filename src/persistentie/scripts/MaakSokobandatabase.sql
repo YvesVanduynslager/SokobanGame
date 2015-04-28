@@ -32,7 +32,6 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `sokobandatabase`.`spelbord` (
   `spelbordID` INT(3) NOT NULL AUTO_INCREMENT,
-  `spelbordNaam` VARCHAR(45) NOT NULL,
   `spel_spelID` INT(3) NOT NULL,
   PRIMARY KEY (`spelbordID`),
   INDEX `fk_Spelbord_Spel1_idx` (`spel_spelID` ASC),
@@ -108,7 +107,7 @@ DEFAULT CHARACTER SET = utf8;
 CREATE TABLE IF NOT EXISTS `sokobandatabase`.`speler` (
   `spelerID` INT(3) NOT NULL AUTO_INCREMENT,
   `gebruikernaam` VARCHAR(30) NOT NULL,
-  `wachtwoord` VARCHAR(60) NOT NULL,
+  `wachtwoord` VARCHAR(100) NOT NULL,
   `isAdmin` TINYINT(1) NOT NULL,
   `achternaam` VARCHAR(45) NULL DEFAULT NULL,
   `voornaam` VARCHAR(45) NULL DEFAULT NULL,

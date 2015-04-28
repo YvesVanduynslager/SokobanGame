@@ -22,13 +22,16 @@ import java.util.List;
 public class SpelMapper
 {
     private final int VELDEN_ARRAY_GROOTTE = 10;
-    private Element[][] velden;
+    //private Element[][] velden;
     private Mannetje mannetje;
 
     /**
-     * Geeft de eerste ID terug van een spelbord binnen een spel. Adhv deze id zal er geloopt worden door de borden van een spel in de geefSpel()-methode.
+     * Geeft de eerste ID terug van een spelbord binnen een spel. Adhv deze id
+     * zal er geloopt worden door de borden van een spel in de
+     * geefSpel()-methode.
+     *
      * @param spelNaam
-     * @return 
+     * @return
      */
     private int geefEersteSpelbordID(String spelNaam)
     {
@@ -61,6 +64,77 @@ public class SpelMapper
 
         return eersteID;
     }
+
+    /**
+     *
+     * @return
+     */
+    private int geefLaatsteSpelbordID()
+    {
+        int laatsteID = 0;
+
+        String sqlLaatste = "SELECT MAX(spelbord.spelbordID) FROM spelbord;";
+
+        Connectie connectie = new Connectie();
+        PreparedStatement stmtLaatsteID;
+
+        try
+        {
+            stmtLaatsteID = connectie.getDatabaseConnectie().prepareStatement(sqlLaatste);
+            ResultSet rs = stmtLaatsteID.executeQuery();
+
+            while (rs.next())
+            {
+                laatsteID = rs.getInt(1);
+            }
+            stmtLaatsteID.close();
+        }
+        catch (SQLException sqlEx)
+        {
+            System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+        }
+        finally
+        {
+            connectie.sluit();
+        }
+        return laatsteID;
+    }
+
+    /**
+     * 
+     * @return 
+     */
+    private int geefLaatsteSpelID()
+    {
+        int laatsteID = 0;
+
+        String sqlLaatste = "SELECT MAX(spel.spelID) FROM spel;";
+
+        Connectie connectie = new Connectie();
+        PreparedStatement stmtLaatsteID;
+
+        try
+        {
+            stmtLaatsteID = connectie.getDatabaseConnectie().prepareStatement(sqlLaatste);
+            ResultSet rs = stmtLaatsteID.executeQuery();
+
+            while (rs.next())
+            {
+                laatsteID = rs.getInt(1);
+            }
+            stmtLaatsteID.close();
+        }
+        catch (SQLException sqlEx)
+        {
+            System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+        }
+        finally
+        {
+            connectie.sluit();
+        }
+        return laatsteID;
+    }
+
     /**
      *
      * @param naam makkelijk, gemiddeld, of moeilijk
@@ -68,6 +142,7 @@ public class SpelMapper
      */
     public Spel geefSpel(String naam)
     {
+        Element[][] velden;
         String spelbordNaam = "";
         final String[] ELEMENTEN =
         {
@@ -86,7 +161,7 @@ public class SpelMapper
                 Connectie connectie = new Connectie();
                 PreparedStatement stmtBordenOphalen;
 
-                String sqlBordenOphalen = "SELECT Element.positieX, Element.positieY, Spelbord.spelbordNaam "
+                String sqlBordenOphalen = "SELECT Element.positieX, Element.positieY "
                         + "FROM " + element + " Element JOIN spelbord Spelbord ON Element.Spelbord_spelbordID = Spelbord.spelbordID "
                         + "JOIN spel Spel ON Spelbord.Spel_spelID = Spel.spelID "
                         + "WHERE Spel.spelNaam = '" + naam + "' AND Spelbord.spelbordID = " + spelbordID + ";";
@@ -102,7 +177,6 @@ public class SpelMapper
                     {
                         x = rs.getInt(1);
                         y = rs.getInt(2);
-                        spelbordNaam = rs.getString(3);
 
                         switch (element)
                         {
@@ -144,7 +218,7 @@ public class SpelMapper
                     }
                 }
             }
-            borden.add(new Spelbord(spelbordNaam, velden, mannetje));
+            borden.add(new Spelbord(velden, mannetje));
         }
 
         Spel spel = new Spel(naam, borden);
@@ -220,32 +294,95 @@ public class SpelMapper
         }
         return spelNamen;
     }
-    
-    public void invoerenTopscore(int score, int spelerID, int spelbordID)
+
+    public void voegToe(Spel customSpel)
     {
-        String sqlTopScores = "INSERT INTO sokobandatabase.topscore(tijdstip, speler_spelerID, spelbord_spelbordID, topscore) " +
-                "VALUES (NOW(), ?, ?, ?); ";
-        
+        String sqlInsertElementen = "";
+        String sqlInsertSpelNaam = "INSERT INTO sokobandatabase.spelbord(spelNaam) "
+                + "VALUES(?);";
+        String sqlInsertSpelbord = "INSERT INTO sokobandatabase.spelbord(spel_spelID) "
+                + "VALUES(?);";
+
         Connectie connectie = new Connectie();
-        PreparedStatement stmtTopscores;
-        
+
+        PreparedStatement stmtInsertElementen;
+        PreparedStatement stmtInsertSpelNaam;
+        PreparedStatement stmtInsertSpelbord;
+
         try
         {
-            stmtTopscores = connectie.getDatabaseConnectie().prepareStatement(sqlTopScores);
-            
-            stmtTopscores.setInt(2, spelerID);
-            stmtTopscores.setInt(3, spelbordID);
-            stmtTopscores.setInt(4, score);
-            
-            stmtTopscores.executeUpdate();
+            stmtInsertSpelNaam = connectie.getDatabaseConnectie().prepareStatement(sqlInsertSpelNaam);
+            stmtInsertSpelNaam.setString(1, customSpel.geefSpelNaam());
+            stmtInsertSpelNaam.executeUpdate();
         }
-        catch(SQLException sqlEx)
+        catch (SQLException sqlEx)
         {
             System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
         }
-        finally
+
+        for (Spelbord spelbord : customSpel.geefSpelborden())
         {
-            connectie.sluit();
+            int elementVreemdeSleutel = this.geefLaatsteSpelbordID() + 1;
+            int spelbordVreemdeSleutel = this.geefLaatsteSpelID() + 1;
+
+            try
+            {
+                stmtInsertSpelbord = connectie.getDatabaseConnectie().prepareStatement(sqlInsertSpelbord);
+                stmtInsertSpelbord.setInt(1, spelbordVreemdeSleutel);
+                stmtInsertSpelbord.executeUpdate();
+            }
+            catch (SQLException sqlEx)
+            {
+                System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+            }
+
+            Element velden[][] = spelbord.geefVelden();
+            for (int i = 0; i < velden.length; i++)
+            {
+                for (int j = 0; j < velden[i].length; j++)
+                {
+                    Element element = velden[i][j];
+                    if (element instanceof Veld && element.isDoel())
+                    {
+                        sqlInsertElementen = "INSERT INTO sokobandatabase.doel(positieX, positieY, Spelbord_spelbordID) "
+                                + "VALUES(?, ?, ?); ";
+                    }
+                    if (element instanceof Veld && !element.isDoel())
+                    {
+                        sqlInsertElementen = "INSERT INTO sokobandatabase.veld(positieX, positieY, Spelbord_spelbordID) "
+                                + "VALUES(?, ?, ?); ";
+                    }
+                    if (element instanceof Kist)
+                    {
+                        sqlInsertElementen = "INSERT INTO sokobandatabase.kist(positieX, positieY, Spelbord_spelbordID) "
+                                + "VALUES(?, ?, ?); ";
+                    }
+                    if (element instanceof Mannetje)
+                    {
+                        sqlInsertElementen = "INSERT INTO sokobandatabase.mannetje(positieX, positieY, Spelbord_spelbordID) "
+                                + "VALUES(?, ?, ?); ";
+                    }
+
+                    try
+                    {
+                        stmtInsertElementen = connectie.getDatabaseConnectie().prepareStatement(sqlInsertElementen);
+
+                        stmtInsertElementen.setInt(1, element.getxPositie());
+                        stmtInsertElementen.setInt(2, element.getyPositie());
+                        stmtInsertElementen.setInt(3, elementVreemdeSleutel);
+
+                        stmtInsertElementen.executeUpdate();
+                    }
+                    catch (SQLException sqlEx)
+                    {
+                        System.err.println("SQL fout: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
+                    }
+                    finally
+                    {
+                        connectie.sluit();
+                    }
+                }
+            }
         }
     }
 }

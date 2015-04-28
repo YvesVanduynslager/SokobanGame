@@ -10,6 +10,7 @@ public abstract class Element
     private int xPositie;
     private int yPositie;
     private boolean isDoel;
+    private boolean staatVast;
 
     /**
      * Constructor stelt x positie, y positie in van het element, en stelt in of het element als een doel behandelt moet worden.
@@ -22,6 +23,12 @@ public abstract class Element
         this.xPositie = xPositie;
         this.yPositie = yPositie;
         this.isDoel = isDoel;
+    }
+    
+    public Element(int xPositie, int yPositie, boolean isDoel, boolean staatVast)
+    {
+        this(xPositie, yPositie, isDoel);
+        this.staatVast = staatVast;
     }
 
     /**
@@ -68,6 +75,11 @@ public abstract class Element
     {
         return isDoel;
     }
+    
+    public boolean staatVast()
+    {
+        return staatVast;
+    }
 
     /**
      * Instellen van doel.
@@ -77,14 +89,4 @@ public abstract class Element
     {
         this.isDoel = isDoel;
     }
-
-	/**
-	 * 
-	 * @param xPositie
-	 * @param yPositie
-	 */
-	public Element(int xPositie, int yPositie) {
-		// TODO - implement Element.Element
-		throw new UnsupportedOperationException();
-	}
 }

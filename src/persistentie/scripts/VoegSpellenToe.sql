@@ -2,10 +2,14 @@ INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('easy');
 INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('medium');
 INSERT INTO sokobandatabase.spel(spelNaam) VALUES ('hard');
 /* spelbordnamen voor spellen */
-INSERT INTO sokobandatabase.spelbord (spelbordNaam, Spel_spelID) VALUES
+/*INSERT INTO sokobandatabase.spelbord (spelbordNaam, Spel_spelID) VALUES
 ('1-1', 1), ('1-2', 1), ('1-3', 1),
 ('2-1', 2), ('2-2', 2), ('2-3', 2),
-('3-1', 3)/*, ('3-2', 3), ('3-3', 3)*/;
+('3-1', 3);*/
+INSERT INTO sokobandatabase.spelbord (Spel_spelID) VALUES
+(1), (1), (1),
+(2), (2), (2),
+(3);
 
 /* SPEL: easy */
 /* SPELBORD 1-1 */

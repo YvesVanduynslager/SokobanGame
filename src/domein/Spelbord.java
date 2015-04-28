@@ -14,7 +14,7 @@ public class Spelbord
     /* DECLARATIES CONSTANTEN */
     private Element[][] velden;
     private Mannetje mannetje;
-    private final String spelbordNaam;
+    //private String spelbordNaam;
 
     /**
      * Initialiseert de naam, velden, het mannetje en het aantal zetten.
@@ -23,17 +23,22 @@ public class Spelbord
      * @param velden De 2D-Element Array van het spelbord.
      * @param mannetje Het mannetje van dit spelbord.
      */
-    public Spelbord(String spelbordNaam, Element[][] velden, Mannetje mannetje)
+    public Spelbord(/*String spelbordNaam, */Element[][] velden, Mannetje mannetje)
     {
-        this.spelbordNaam = spelbordNaam;
+        //this.spelbordNaam = spelbordNaam;
         this.velden = velden;
         this.mannetje = mannetje;
         this.aantalZetten = 0;
     }
-    
+
+    public Spelbord(Element[][] velden)
+    {
+        this.velden = velden;
+    }
+
     /**
      * Geeft het mannetje van het huidige spelbord terug.
-     * 
+     *
      * @return het mannetje van het huidige spelbord.
      */
     public Mannetje getMannetje()
@@ -46,32 +51,33 @@ public class Spelbord
      *
      * @return Naam van het spel als String.
      */
-    public String getNaam()
-    {
-        return this.spelbordNaam;
-    }
+//    public String getNaam()
+//    {
+//        return this.spelbordNaam;
+//    }
 
     /**
-     * 
+     *
      * @param element
      * @param richting
-     * @return 
+     * @return
      */
     private Element geefAangrenzendElement(Element element, int richting)
     {
         int x = element.getxPositie();
         int y = element.getyPositie();
-        
+
         int[] x1 =
         {
             x - 1, x + 1, x, x
         }; /*x1 bevat de x-waarden voor de veplaatsing van het mannetje
-        in de vorm {omhoog, omlaag, links, rechts}*/
+         in de vorm {omhoog, omlaag, links, rechts}*/
+
         int[] y1 =
         {
             y, y, y - 1, y + 1
         }; /*y1 bevat de y-waarden voor de veplaatsing van het mannetje
-        in de vorm {omhoog, omlaag, links, rechts}*/
+         in de vorm {omhoog, omlaag, links, rechts}*/
 
         return velden[x1[richting]][y1[richting]];
     }
@@ -90,8 +96,8 @@ public class Spelbord
 
         Element aangrenzend = this.geefAangrenzendElement(mannetje, richting);
         Element naAangrenzend;
-        
-        if(!(aangrenzend instanceof Muur))
+
+        if (!(aangrenzend instanceof Muur))
         {
             naAangrenzend = this.geefAangrenzendElement(aangrenzend, richting);
         }
@@ -99,7 +105,6 @@ public class Spelbord
         {
             naAangrenzend = aangrenzend; //Om geen nullpointer te krijgen. Dit gaf plots een fout waar er vroeger geen was maar er wel een moest zijn.
         }
-        
 
         x = aangrenzend.getxPositie();
         y = aangrenzend.getyPositie();
@@ -168,8 +173,8 @@ public class Spelbord
             velden[x][y] = mannetje;
             velden[xNa][yNa] = aangrenzend;
         }
-        
-        if(x0 != mannetje.getxPositie() || y0 != mannetje.getyPositie()) //Als het mannetje effectief heeft bewogen
+
+        if (x0 != mannetje.getxPositie() || y0 != mannetje.getyPositie()) //Als het mannetje effectief heeft bewogen
         {
             ++aantalZetten;
         }
@@ -233,7 +238,7 @@ public class Spelbord
     @Override
     public String toString()
     {
-        String output = spelbordNaam + "\n";
+        String output = ""; //spelbordNaam + "\n";
 
         for (Element[] rij : this.velden)
         {
@@ -247,13 +252,30 @@ public class Spelbord
         output += "-----------------------------------------\n";
         return output;
     }
+    
+    public String[][] to2DString()
+    {
+        //Element[][] elementen = huidigSpel.getHuidigSpelbord().geefVelden();
+
+        String[][] veldenString = new String[10][10];
+
+        for (int i = 0; i < velden.length; i++)
+        {
+            for (int j = 0; j < velden[i].length; j++)
+            {
+                veldenString[i][j] = velden[i][j].toString();
+            }
+        }
+        return veldenString;
+        
+        
+    }
 
     /**
      * Geeft een array van alle elementen op het spelbord terug.
      *
      * @return array van elementen op spelbord.
      */
-    
     public Element[][] geefVelden()
     {
         return this.velden;
@@ -269,16 +291,42 @@ public class Spelbord
         return this.aantalZetten;
     }
 
-
-
-	/**
-	 * 
-	 * @param elementType
-	 * @param xPositie
-	 * @param yPositie
-	 */
-	public void plaatsElement(String elementType, int xPositie, int yPositie) {
-		// TODO - implement Spelbord.plaatsElement
-		throw new UnsupportedOperationException();
-	}
+    /**
+     *
+     * @param elementType
+     * @param xPositie
+     * @param yPositie
+     */
+    public void plaatsElement(String elementType, int xPositie, int yPositie)
+    {
+        if(geldigePlaats(xPositie, yPositie))
+        {
+            switch (elementType)
+            {
+                case "kist":
+                    velden[xPositie][yPositie] = new Kist(xPositie, yPositie, false);
+                    break;
+                case "muur":
+                    velden[xPositie][yPositie] = new Muur(xPositie, yPositie);
+                    break;
+                case "mannetje":
+                    velden[xPositie][yPositie] = new Mannetje(xPositie, yPositie, false);
+                    break;
+                case "veld":
+                    velden[xPositie][yPositie] = new Veld(xPositie, yPositie, false);
+                    break;
+                case "doel":
+                    velden[xPositie][yPositie] = new Veld(xPositie, yPositie, true);
+                    break;
+                default:
+                    velden[xPositie][yPositie] = new Veld(xPositie, yPositie, false);
+                    break;
+            }
+        }
+    }
+    
+    private boolean geldigePlaats(int xPositie, int yPositie)
+    {
+        return !velden[xPositie][yPositie].staatVast();
+    }
 }

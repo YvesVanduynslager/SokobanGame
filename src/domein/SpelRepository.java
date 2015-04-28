@@ -40,4 +40,9 @@ public class SpelRepository
     {
         return spelMapper.geefSpel(spelnaam);
     }
+    
+    public void voegSpelToe(Spel customSpel)
+    {
+        spelMapper.voegToe(customSpel);
+    }
 }

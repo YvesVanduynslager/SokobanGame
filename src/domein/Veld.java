@@ -18,7 +18,7 @@ public class Veld extends Element
      */
     public Veld(int xPositie, int yPositie, boolean isDoel)
     {
-        super(xPositie, yPositie, isDoel);
+        super(xPositie, yPositie, isDoel, false);
     }
 
     /**

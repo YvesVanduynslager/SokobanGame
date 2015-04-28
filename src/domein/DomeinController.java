@@ -20,7 +20,7 @@ public class DomeinController
     private Speler huidigeSpeler;
     private Spel huidigSpel;
     private String[] spelerString;
-    private Spel customSpel;
+    private Spelbord customSpelbord;
 
     /**
      * Default-constructor maakt een SpelerRepository (spelers opslaan en
@@ -187,18 +187,19 @@ public class DomeinController
      */
     public String[][] geefHuidigSpelbord()
     {
-        Element[][] velden = huidigSpel.getHuidigSpelbord().geefVelden();
-
-        String[][] veldenString = new String[10][10];
-
-        for (int i = 0; i < velden.length; i++)
-        {
-            for (int j = 0; j < velden[i].length; j++)
-            {
-                veldenString[i][j] = velden[i][j].toString();
-            }
-        }
-        return veldenString;
+        return huidigSpel.getHuidigSpelbord().to2DString();
+//        Element[][] velden = huidigSpel.getHuidigSpelbord().geefVelden();
+//
+//        String[][] veldenString = new String[10][10];
+//
+//        for (int i = 0; i < velden.length; i++)
+//        {
+//            for (int j = 0; j < velden[i].length; j++)
+//            {
+//                veldenString[i][j] = velden[i][j].toString();
+//            }
+//        }
+//        return veldenString;
     }
 
     /**
@@ -256,14 +257,13 @@ public class DomeinController
      */
     public void configureerNieuwSpel(String spelNaam)
     {
-        // TODO - implement DomeinController.configureerNieuwSpel
-        throw new UnsupportedOperationException();
+        huidigSpel = new Spel(spelNaam);
+        customSpelbord = huidigSpel.maakLeegSpelbord();
     }
 
     public String[][] geefLeegSpelbord()
     {
-        // TODO - implement DomeinController.geefLeegSpelbord
-        throw new UnsupportedOperationException();
+        return customSpelbord.to2DString();
     }
 
     /**
@@ -274,18 +274,6 @@ public class DomeinController
      */
     public void plaatsElement(String elementType, int xPositie, int yPositie)
     {
-        // TODO - implement DomeinController.plaatsElement
-        throw new UnsupportedOperationException();
-    }
-
-    public String geefCustomSpelNaam()
-    {
-        // TODO - implement DomeinController.geefCustomSpelNaam
-        throw new UnsupportedOperationException();
-    }
-    
-    public void reset()
-    {
-        huidigSpel.start();
+        customSpelbord.plaatsElement(elementType, xPositie, yPositie);
     }
 }

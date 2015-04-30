@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root hgap="5.0" prefWidth="580.0" type="GridPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ConfigureerNieuwSpelController">
+   <columnConstraints>
+      <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" valignment="TOP" vgrow="NEVER" />
+   </rowConstraints>
+   <children>
+      <GridPane fx:id="grdSpelbord" alignment="TOP_CENTER" maxHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="49.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="49.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="49.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="49.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="49.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="49.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="49.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="49.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+         </rowConstraints>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+         <children>
+            <ComboBox fx:id="comboBox1_1" prefHeight="25.0" prefWidth="37.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboBox2_1" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comboBox3_1" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <ComboBox fx:id="comboBox4_1" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <ComboBox fx:id="comboBox5_1" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBox2_4" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comboBox6_1" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBox7_1" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboBox8_1" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+            <ComboBox fx:id="comboBox1_2" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboBox2_2" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comboBox1_3" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboBox1_4" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboBox1_5" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboBox2_3" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comboBox2_5" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comboBox3_2" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <ComboBox fx:id="comboBox4_2" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+            <ComboBox fx:id="comboBox3_3" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <ComboBox fx:id="comboBox4_3" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+            <ComboBox fx:id="comboBox3_4" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+            <ComboBox fx:id="comboBox4_4" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+            <ComboBox fx:id="comboBox3_5" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+            <ComboBox fx:id="comboBox4_5" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+            <ComboBox fx:id="comboBox5_2" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBox5_3" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBox5_4" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBox6_2" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBox2_8" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comboBox1_6" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboBox2_6" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comboBox3_6" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+            <ComboBox fx:id="comboBox8_2" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+            <ComboBox fx:id="comboBox2_7" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+            <ComboBox fx:id="comboBox7_2" prefWidth="150.0" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboBox6_3" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBox1_7" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboBox1_8" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+            <ComboBox fx:id="comboBox5_5" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBox3_7" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+            <ComboBox fx:id="comboBox3_8" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="3" />
+            <ComboBox fx:id="comboBox4_6" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+            <ComboBox fx:id="comboBox4_7" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+            <ComboBox fx:id="comboBox4_8" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="4" />
+            <ComboBox fx:id="comboBox5_6" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBox5_7" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBox5_8" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="5" />
+            <ComboBox fx:id="comboBox6_4" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBox6_5" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBox6_6" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBox6_7" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBox8_4" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+            <ComboBox fx:id="comboBox6_8" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+            <ComboBox fx:id="comboBox7_3" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboBox7_5" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboBox7_4" prefWidth="150.0" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboBox7_6" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboBox7_8" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboBox7_7" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+            <ComboBox fx:id="comboBox8_3" prefWidth="150.0" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+            <ComboBox fx:id="comboBox8_5" prefWidth="150.0" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+            <ComboBox fx:id="comboBox8_6" prefWidth="150.0" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+            <ComboBox fx:id="comboBox8_7" prefWidth="150.0" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+            <ComboBox fx:id="comboBox8_8" prefWidth="150.0" GridPane.columnIndex="8" GridPane.rowIndex="8" />
+         </children>
+      </GridPane>
+      <GridPane GridPane.halignment="CENTER" GridPane.valignment="TOP">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints valignment="TOP" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="267.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane fx:id="grdButtons" hgap="5.0" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="1" GridPane.valignment="TOP">
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" />
+                <ColumnConstraints halignment="RIGHT" hgrow="NEVER" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" valignment="TOP" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="btnOpslaan" mnemonicParsing="false" text="Opslaan" visible="false" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                     <GridPane.margin>
+                        <Insets top="5.0" />
+                     </GridPane.margin>
+                  </Button>
+               </children>
+            </GridPane>
+            <TextArea fx:id="txaInfo" editable="false" focusTraversable="false" prefHeight="80.0" visible="false" wrapText="true" GridPane.halignment="LEFT" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS" />
+         </children>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </GridPane>
+   </children>
+</fx:root>

@@ -16,7 +16,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class ControlsSchermController extends GridPane implements Initializable, Refreshable
+public class ControlsSchermController extends GridPane implements Refreshable
 {
     @FXML
     private Label lblTitel, lblZ, lblQ, lblS, lblD;
@@ -96,15 +96,6 @@ public class ControlsSchermController extends GridPane implements Initializable,
     private void mouse_exited(MouseEvent event)
     {
         startScherm.updateStatusLabel("");
-    }
-
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
-        // TODO
     }
 
     @Override

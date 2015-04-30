@@ -7,13 +7,10 @@ package gui;
 
 import domein.DomeinController;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
@@ -26,7 +23,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Michiel
  */
-public class ConfigureerNieuwSpelController extends GridPane implements Initializable, Refreshable
+public class ConfigureerNieuwSpelController extends GridPane implements Refreshable
 {
     private final DomeinController c;
     private final StartSchermController startScherm;
@@ -243,12 +240,4 @@ public class ConfigureerNieuwSpelController extends GridPane implements Initiali
     public void refresh() {
         
     }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
-    }
-
-    
-    
 }

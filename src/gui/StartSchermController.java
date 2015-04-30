@@ -2,28 +2,21 @@ package gui;
 
 import domein.DomeinController;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
 import javafx.scene.layout.BackgroundSize;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.paint.Color;
 
 /**
  * FXML Controller class
@@ -33,7 +26,7 @@ import javafx.scene.paint.Color;
  *
  * @author Yves
  */
-public class StartSchermController extends GridPane implements Refreshable, Initializable
+public class StartSchermController extends GridPane implements Refreshable
 {
     @FXML
     private Menu menuSpel, menuBewerken, menuGebruiker, menuTaal, menuHelp, menuKiesSpel;
@@ -283,11 +276,5 @@ public class StartSchermController extends GridPane implements Refreshable, Init
     public void updateStatusLabel(String lblStatus)
     {
         this.lblStatus.setText(lblStatus);
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
-        // TODO
     }
 }

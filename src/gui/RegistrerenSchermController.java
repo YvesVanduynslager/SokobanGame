@@ -3,12 +3,9 @@ package gui;
 import domein.DomeinController;
 import exceptions.GebruikerBestaatException;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -21,7 +18,7 @@ import wachtwoordbeveiliging.BCrypt;
  *
  * @author Yves
  */
-public class RegistrerenSchermController extends GridPane implements Initializable, Refreshable
+public class RegistrerenSchermController extends GridPane implements Refreshable
 {
     @FXML
     private TextField txtGebruikersnaam, txtVoornaam, txtNaam;
@@ -102,16 +99,5 @@ public class RegistrerenSchermController extends GridPane implements Initializab
     private void btnAnnuleren_gekozen(ActionEvent event)
     {
         this.getChildren().clear();
-    }
-//
-//    public boolean isGeldig()
-//    {
-//        return geldig;
-//    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
-        // TODO
     }
 }

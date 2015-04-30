@@ -20,7 +20,7 @@ import javafx.scene.layout.GridPane;
  *
  * @author Yves
  */
-public class InfoSchermController extends GridPane implements Initializable, Refreshable
+public class InfoSchermController extends GridPane implements Refreshable
 {
     @FXML
     private Label lblTitel;
@@ -44,15 +44,7 @@ public class InfoSchermController extends GridPane implements Initializable, Ref
         }
         
         refresh();
-    }
-    /**
-     * Initializes the controller class.
-     */
-    @Override
-    public void initialize(URL url, ResourceBundle rb)
-    {
-        // TODO
-    }    
+    }  
 
     @Override
     public final void refresh()

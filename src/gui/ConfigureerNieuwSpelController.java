@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import domein.DomeinController;
@@ -174,7 +169,20 @@ public class ConfigureerNieuwSpelController extends GridPane implements Refresha
     @FXML
     private ComboBox<?> comboBox8_8;
 
-    public ConfigureerNieuwSpelController(StartSchermController startScherm, DomeinController c) {
+    public ConfigureerNieuwSpelController(StartSchermController startScherm, DomeinController c)
+    {
+        init();
+        
+        this.c = c;
+        this.startScherm = startScherm;
+        
+        voegNonEditablesToe();
+        
+    }
+    
+    @Override
+    public final void init()
+    {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ConfigureerNieuwSpel.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -186,11 +194,6 @@ public class ConfigureerNieuwSpelController extends GridPane implements Refresha
         {
             throw new RuntimeException(ex);
         }
-        this.c = c;
-        this.startScherm = startScherm;
-        
-        voegNonEditablesToe();
-        
     }
 
     private void voegNonEditablesToe(){

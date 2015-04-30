@@ -29,8 +29,8 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
     @FXML
     private Label lblTitel;
 
-    private StartSchermController startScherm;
-    private DomeinController c;
+    private final StartSchermController startScherm;
+    private final DomeinController c;
     private boolean geldig;
 
     RegistrerenSchermController(StartSchermController startScherm, DomeinController c)
@@ -38,6 +38,15 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
         this.startScherm = startScherm;
         this.c = c;
 
+        btnOK.setOnAction(this::btnOK_gekozen);
+        btnAnnuleren.setOnAction(this::btnAnnuleren_gekozen);
+
+        refresh();
+    }
+    
+    @Override
+    public final void init()
+    {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("RegistrerenScherm.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -49,14 +58,6 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
         {
             throw new RuntimeException(ex);
         }
-
-        btnOK.setOnAction(this::btnOK_gekozen);
-        //btnOK.getStyleClass().add("button"); //niet meer nodig om dit ook te doen in AanmeldenSchermController
-        btnAnnuleren.setOnAction(this::btnAnnuleren_gekozen);
-        //btnAnnuleren.getStyleClass().add("button");
-
-        //btnOK.requestFocus();
-        refresh();
     }
 
     @Override
@@ -77,7 +78,7 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
         {
             c.registreer(txtGebruikersnaam.getText(), BCrypt.hashpw(pswWachtwoord.getText(), "$2a$10$RV4IhXXJFyL3EmzvS4sqHu"), txtNaam.getText(), txtVoornaam.getText());
             
-            //Wordt uitgevoerd als er geen exception werd gethrowd
+            //Wordt uitgevoerd als er geen exception werd gegooid
             startScherm.updateStatusLabel(c.getString("aangemeld.1") + txtGebruikersnaam.getText() + c.getString("aanmelden.zonder") + c.getString("aangemeld.2"));
             startScherm.updateControls(false);
             //geldig = true;
@@ -86,13 +87,11 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
         {
             System.err.println(gbe);
             startScherm.updateStatusLabel(c.getString("registreer.bestaat"));
-            //geldig = false;
         }
         catch (IllegalArgumentException iae)
         {
             System.err.println(iae);
             startScherm.updateStatusLabel(c.getString("registreer.ongeldig"));
-            //geldig = false;
         }
     }
 

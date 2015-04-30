@@ -34,17 +34,7 @@ public class SpelbordController extends GridPane implements Refreshable
 
     public SpelbordController(StartSchermController startScherm, DomeinController c)
     {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Spelbord.fxml"));
-        loader.setRoot(this);
-        loader.setController(this);
-        try
-        {
-            loader.load();
-        }
-        catch (IOException ex)
-        {
-            throw new RuntimeException(ex);
-        }
+        init();
         this.startScherm = startScherm;
         this.c = c;
 
@@ -56,6 +46,22 @@ public class SpelbordController extends GridPane implements Refreshable
         
         grdSpelbord.setId("spelbord");
         txaInfo.setId("txaInfo");
+    }
+    
+    @Override
+    public final void init()
+    {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Spelbord.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        try
+        {
+            loader.load();
+        }
+        catch (IOException ex)
+        {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override

@@ -36,14 +36,13 @@ public class StartSchermController extends GridPane implements Refreshable
             mItemNederlands, mItemFrans, mItemEngels;
     @FXML
     private Label lblStatus;
-    @FXML
-    private Pane pnlStatus;
 
     private DomeinController c;
     private GridPane content;
 
     public StartSchermController(DomeinController c)
     {
+        init();
         this.c = c;
         this.c.setTaalKeuze(1);
 
@@ -56,21 +55,6 @@ public class StartSchermController extends GridPane implements Refreshable
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
         this.setBackground(new Background(achtergrond));
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScherm.fxml"));
-        loader.setRoot(this);
-        loader.setController(this);
-        try
-        {
-            loader.load();
-        }
-        catch (IOException ex)
-        {
-            throw new RuntimeException(ex);
-        }
-
-        //pnlStatus.setId("pnlStatus");
-        //pnlStatus.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         
         mItemAanmelden.setOnAction(this::mItemAanmelden_gekozen);
         mItemRegistreren.setOnAction(this::mItemRegistreren_gekozen);
@@ -99,6 +83,25 @@ public class StartSchermController extends GridPane implements Refreshable
         }
         
         refreshMenuLabels();
+    }
+    
+    /**
+     * 
+     */
+    @Override
+    public final void init()
+    {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("StartScherm.fxml"));
+        loader.setRoot(this);
+        loader.setController(this);
+        try
+        {
+            loader.load();
+        }
+        catch (IOException ex)
+        {
+            throw new RuntimeException(ex);
+        }
     }
 
     /**

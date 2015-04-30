@@ -2,11 +2,8 @@ package gui;
 
 import domein.DomeinController;
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -21,14 +18,28 @@ public class ControlsSchermController extends GridPane implements Refreshable
     @FXML
     private Label lblTitel, lblZ, lblQ, lblS, lblD;
 
-    private DomeinController c;
-    private StartSchermController startScherm;
+    private final DomeinController c;
+    private final StartSchermController startScherm;
 
     public ControlsSchermController(StartSchermController startScherm, DomeinController c)
     {
+        init();
+        
         this.startScherm = startScherm;
         this.c = c;
 
+        lblZ.getStyleClass().add("keys");
+        lblQ.getStyleClass().add("keys");
+        lblS.getStyleClass().add("keys");
+        lblD.getStyleClass().add("keys");
+
+        installMouseHandlers();
+        refresh();
+    }
+    
+    @Override
+    public final void init()
+    {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ControlsScherm.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -40,14 +51,6 @@ public class ControlsSchermController extends GridPane implements Refreshable
         {
             throw new RuntimeException(ex);
         }
-
-        lblZ.getStyleClass().add("keys");
-        lblQ.getStyleClass().add("keys");
-        lblS.getStyleClass().add("keys");
-        lblD.getStyleClass().add("keys");
-
-        installMouseHandlers();
-        refresh();
     }
     
     private void installMouseHandlers()
@@ -68,7 +71,6 @@ public class ControlsSchermController extends GridPane implements Refreshable
         if (event.getSource() == lblZ)
         {
             startScherm.updateStatusLabel("Z = Omhoog");
-            //new ImageView(new Image(getClass().getResourceAsStream("/images/muur.jpg"))), kolom, rij)
         }
         else
         {

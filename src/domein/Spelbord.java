@@ -181,6 +181,7 @@ public final class Spelbord
         {
             ++aantalZetten;
         }
+        System.gc(); //expliciet aanroepen om oude objecten uit geheugen te halen.
     }
 
     /**

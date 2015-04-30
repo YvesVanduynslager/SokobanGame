@@ -35,6 +35,20 @@ public class AanmeldenSchermController extends GridPane implements Refreshable
 
     public AanmeldenSchermController(StartSchermController startScherm, DomeinController c)
     {
+        init();
+        
+        this.startScherm = startScherm;
+        this.c = c;
+
+        btnOK.setOnAction(this::btnOK_gekozen);
+        btnAnnuleren.setOnAction(this::btnAnnuleren_gekozen);
+
+        refresh();
+    }
+
+    @Override
+    public final void init()
+    {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("AanmeldenScherm.fxml"));
         loader.setRoot(this);
         loader.setController(this);
@@ -46,16 +60,7 @@ public class AanmeldenSchermController extends GridPane implements Refreshable
         {
             throw new RuntimeException(ex);
         }
-        
-        this.startScherm = startScherm;
-        this.c = c;
-
-        btnOK.setOnAction(this::btnOK_gekozen);
-        btnAnnuleren.setOnAction(this::btnAnnuleren_gekozen);
-
-        refresh();
     }
-
     private void btnOK_gekozen(ActionEvent event)
     {
         String[] speler;

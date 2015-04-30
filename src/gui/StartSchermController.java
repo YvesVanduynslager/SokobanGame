@@ -89,6 +89,8 @@ public class StartSchermController extends GridPane implements Refreshable, Init
 
         mItemInfo.setOnAction(this::mItemInfo_gekozen);
         mItemControls.setOnAction(this::mItemControls_gekozen);
+        
+        mItemMaakSpelbord.setOnAction(this::mItemMaakSpelbord_gekozen);
 
         /*
          * Dit (en spel_gekozen methode) zorgen ervoor dat alle spelnamen uit de databank aan het menu worden toegevoegd
@@ -129,6 +131,13 @@ public class StartSchermController extends GridPane implements Refreshable, Init
         }
     }
 
+    private void mItemMaakSpelbord_gekozen(ActionEvent event)
+    {
+        content.getChildren().clear();
+        this.lblStatus.setText("");
+        content = new ConfigureerNieuwSpelController(this, c);
+        addContent(content);
+    }
     private void mItemAanmelden_gekozen(ActionEvent event)
     {
         content.getChildren().clear();

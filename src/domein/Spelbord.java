@@ -14,8 +14,6 @@ public final class Spelbord
     /* DECLARATIES CONSTANTEN */
     private Element[][] velden;
     private Mannetje mannetje;
-    //private String spelbordNaam;
-
     
     public Spelbord()
     {
@@ -32,11 +30,6 @@ public final class Spelbord
         this.velden = velden;
         this.mannetje = mannetje;
         this.aantalZetten = 0;
-    }
-
-    public Spelbord(Element[][] velden)
-    {
-        this.velden = velden;
     }
 
     /**
@@ -106,8 +99,8 @@ public final class Spelbord
 
         if (aangrenzend instanceof Veld) //als aangrenzend element een Veld is
         {
-            if (mannetje/*velden[x0][y0]*/.isDoel()) //als huidige veld doel is
-            {
+            if (mannetje.isDoel()) //als huidige veld doel is
+            {             
                 velden[x0][y0] = new Veld(x0, y0, true);
             }
             else //als huidige veld geen doel is

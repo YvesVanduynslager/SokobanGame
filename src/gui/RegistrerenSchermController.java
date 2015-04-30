@@ -35,6 +35,8 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
 
     RegistrerenSchermController(StartSchermController startScherm, DomeinController c)
     {
+        init();
+        
         this.startScherm = startScherm;
         this.c = c;
 
@@ -78,10 +80,12 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
         {
             c.registreer(txtGebruikersnaam.getText(), BCrypt.hashpw(pswWachtwoord.getText(), "$2a$10$RV4IhXXJFyL3EmzvS4sqHu"), txtNaam.getText(), txtVoornaam.getText());
             
-            //Wordt uitgevoerd als er geen exception werd gegooid
-            startScherm.updateStatusLabel(c.getString("aangemeld.1") + txtGebruikersnaam.getText() + c.getString("aanmelden.zonder") + c.getString("aangemeld.2"));
+            //Wordt enkel uitgevoerd als er geen exception werd gegooid
+            startScherm.updateStatusLabel(c.getString("aangemeld.1")
+                    + " " + txtGebruikersnaam.getText()
+                    + " " + c.getString("aanmelden.zonder")
+                    + " " + c.getString("aangemeld.2"));
             startScherm.updateControls(false);
-            //geldig = true;
         }
         catch (GebruikerBestaatException gbe)
         {

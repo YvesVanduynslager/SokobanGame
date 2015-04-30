@@ -219,10 +219,18 @@ public final class DomeinController
      * gebruiker door aan het Taal-object.
      *
      * @param locale Code van de taalkeuze als int.
+     * @param forGUI true voor GUI-resources, false voor CUI-resources.
      */
-    public void setTaalKeuze(int locale)
+    public void setTaalKeuze(int locale, boolean forGUI)
     {
-        resourceBundle.setTaalKeuze(locale);
+        if (forGUI)
+        {
+            resourceBundle.setTaalKeuzeGUI(locale);
+        }
+        else
+        {
+            resourceBundle.setTaalKeuzeCUI(locale);
+        }
     }
 
     /**
@@ -238,8 +246,8 @@ public final class DomeinController
     }
 
     /*
-    TOEGEVOEGD VOOR UC5!!!
-    */
+     TOEGEVOEGD VOOR UC5!!!
+     */
     /**
      *
      * @param spelNaam
@@ -255,7 +263,6 @@ public final class DomeinController
 //    {
 //        return huidigSpel.getHuidigSpelbord().to2DString();
 //    }
-
     /**
      *
      * @param elementType
@@ -266,7 +273,7 @@ public final class DomeinController
     {
         huidigSpel.getHuidigSpelbord().plaatsElement(elementType, xPositie, yPositie);
     }
-    
+
     public void registreerCustomSpel() throws SpelNaamBestaatException
     {
         spelRepository.voegSpelToe(huidigSpel);

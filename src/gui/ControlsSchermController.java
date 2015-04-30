@@ -70,25 +70,25 @@ public class ControlsSchermController extends GridPane implements Refreshable
     {
         if (event.getSource() == lblZ)
         {
-            startScherm.updateStatusLabel("Z = Omhoog");
+            startScherm.updateStatusLabel("Z = " + c.getString("controls.omhoog"));
         }
         else
         {
             if (event.getSource() == lblQ)
             {
-                startScherm.updateStatusLabel("Q = Links");
+                startScherm.updateStatusLabel("Q = " + c.getString("controls.links"));
             }
             else
             {
                 if (event.getSource() == lblS)
                 {
-                    startScherm.updateStatusLabel("S = Omlaag");
+                    startScherm.updateStatusLabel("S = " + c.getString("controls.omlaag"));
                 }
                 else
                 {
                     if (event.getSource() == lblD)
                     {
-                        startScherm.updateStatusLabel("D = Rechts");
+                        startScherm.updateStatusLabel("D = " + c.getString("controls.rechts"));
                     }
                 }
             }

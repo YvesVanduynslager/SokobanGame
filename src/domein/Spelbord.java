@@ -50,16 +50,6 @@ public final class Spelbord
     }
 
     /**
-     * Geeft de naam van het spel terug.
-     *
-     * @return Naam van het spel als String.
-     */
-//    public String getNaam()
-//    {
-//        return this.spelbordNaam;
-//    }
-
-    /**
      *
      * @param element
      * @param richting
@@ -181,7 +171,9 @@ public final class Spelbord
         {
             ++aantalZetten;
         }
-        System.gc(); //expliciet aanroepen om oude objecten uit geheugen te halen.
+        
+        System.gc(); /*Oproep als test. Na cratie van een exe file en bij uitvoering hiervan,
+        stijgt het gebruikte RAM-geheugen bij iedere verplaatsing met 1-5 MB.*/
     }
 
     /**
@@ -236,6 +228,7 @@ public final class Spelbord
 
     /**
      * Bouwt het spelbord op als String.
+     * Wordt enkel gebruikt in CUI.
      *
      * @return spelbord als String.
      */
@@ -257,10 +250,14 @@ public final class Spelbord
         return output;
     }
     
+    /**
+     * Bouwt het spelbord op als 2D String.
+     * Wordt enkel gebruikt in GUI.
+     * 
+     * @return spelbord als 2D String.
+     */
     public String[][] to2DString()
     {
-        //Element[][] elementen = huidigSpel.getHuidigSpelbord().geefVelden();
-
         String[][] veldenString = new String[10][10];
 
         for (int i = 0; i < velden.length; i++)
@@ -270,6 +267,7 @@ public final class Spelbord
                 veldenString[i][j] = velden[i][j].toString();
             }
         }
+        
         return veldenString;
     }
 

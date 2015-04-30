@@ -15,7 +15,7 @@ import javafx.stage.WindowEvent;
  *
  * @author Yves
  */
-public class StartUp extends Application
+public class GuiStartUp extends Application
 {
     @Override
     public void start(Stage stage)
@@ -52,6 +52,6 @@ public class StartUp extends Application
      */
     public static void main(String args[])
     {
-        Application.launch(StartUp.class, args);
+        Application.launch(GuiStartUp.class, args);
     }
 }

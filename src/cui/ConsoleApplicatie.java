@@ -41,7 +41,7 @@ public class ConsoleApplicatie
         System.out.print("Uw keuze | Your choice | Votre choix: ");
         locale = scanner.nextInt();
 
-        controller.setTaalKeuze(locale);
+        controller.setTaalKeuze(locale, false);
 
         /* MAIN LOOP:
          bij ingeven van "terug" in MeldAan en Registreer zal dit stuk code opnieuw uitgevoerd worden */

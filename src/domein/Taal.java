@@ -18,21 +18,45 @@ public final class Taal
      *
      * @param locale integer die gebruikt wordt om juiste taal te bepalen.
      */
-    public void setTaalKeuze(int locale)
+    public void setTaalKeuzeCUI(int locale)
     {
         switch (locale) //resourcebundle selecteren op basis van genomen keuze
         {
             case 1:
-                this.resourceBundle = ResourceBundle.getBundle("resources.Resources_nl_BE");
+                this.resourceBundle = ResourceBundle.getBundle("resources.cui.Resources_nl_BE");
                 break;
             case 2:
-                this.resourceBundle = ResourceBundle.getBundle("resources.Resources_en_UK");
+                this.resourceBundle = ResourceBundle.getBundle("resources.cui.Resources_en_UK");
                 break;
             case 3:
-                this.resourceBundle = ResourceBundle.getBundle("resources.Resources_fr_BE");
+                this.resourceBundle = ResourceBundle.getBundle("resources.cui.Resources_fr_BE");
                 break;
             default:
-                this.resourceBundle = ResourceBundle.getBundle("resources.Resources_nl_BE");
+                this.resourceBundle = ResourceBundle.getBundle("resources.cui.Resources_nl_BE");
+                break;
+        }
+    }
+
+    /**
+     * methode om de taalkeuze in te stellen.
+     *
+     * @param locale integer die gebruikt wordt om juiste taal te bepalen.
+     */
+    public void setTaalKeuzeGUI(int locale)
+    {
+        switch (locale) //resourcebundle selecteren op basis van genomen keuze
+        {
+            case 1:
+                this.resourceBundle = ResourceBundle.getBundle("resources.gui.Resources_nl_BE");
+                break;
+            case 2:
+                this.resourceBundle = ResourceBundle.getBundle("resources.gui.Resources_en_UK");
+                break;
+            case 3:
+                this.resourceBundle = ResourceBundle.getBundle("resources.gui.Resources_fr_BE");
+                break;
+            default:
+                this.resourceBundle = ResourceBundle.getBundle("resources.gui.Resources_nl_BE");
                 break;
         }
     }

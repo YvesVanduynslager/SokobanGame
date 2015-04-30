@@ -91,7 +91,7 @@ public class AanmeldenSchermController extends GridPane implements Refreshable
                 startScherm.updateControls(false);
             }
             
-            startScherm.updateStatusLabel(c.getString("aangemeld.1") + speler[0] + " " + adminrechtenHulp + c.getString("aangemeld.2"));
+            startScherm.updateStatusLabel(c.getString("aangemeld.1") + speler[0] + " " + adminrechtenHulp + " " + c.getString("aangemeld.2"));
         }
     }
 

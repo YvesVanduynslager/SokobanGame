@@ -37,14 +37,14 @@ public class StartSchermController extends GridPane implements Refreshable
     @FXML
     private Label lblStatus;
 
-    private DomeinController c;
+    private final DomeinController c;
     private GridPane content;
 
     public StartSchermController(DomeinController c)
     {
         init();
         this.c = c;
-        this.c.setTaalKeuze(1);
+        this.c.setTaalKeuze(1, true);
 
         this.content = new GridPane();
         addContent(content);
@@ -157,21 +157,21 @@ public class StartSchermController extends GridPane implements Refreshable
 
     private void mItemNederlands_gekozen(ActionEvent event)
     {
-        c.setTaalKeuze(1);
+        c.setTaalKeuze(1, true);
         this.lblStatus.setText("Taal: Nederlands");
         refresh();
     }
 
     private void mItemFrans_gekozen(ActionEvent event)
     {
-        c.setTaalKeuze(3);
+        c.setTaalKeuze(3, true);
         this.lblStatus.setText("Langue: Français");
         refresh();
     }
 
     private void mItemEngels_gekozen(ActionEvent event)
     {
-        c.setTaalKeuze(2);
+        c.setTaalKeuze(2, true);
         this.lblStatus.setText("Language: English");
         refresh();
     }

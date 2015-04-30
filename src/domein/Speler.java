@@ -6,7 +6,7 @@ package domein;
  *
  * @author Yves
  */
-public class Speler
+public final class Speler
 {
     /* DECLARATIES VARIABELEN */
     private int id;

@@ -10,7 +10,7 @@ import java.util.List;
  *
  * @author Yves
  */
-public class DomeinController
+public final class DomeinController
 {
     /* DECLARATIES CONSTANTEN */
     private final SpelerRepository spelerRepository;
@@ -247,13 +247,14 @@ public class DomeinController
     public void configureerNieuwSpel(String spelNaam)
     {
         huidigSpel = new Spel(spelNaam);
-        customSpelbord = huidigSpel.maakLeegSpelbord();
+        huidigSpel.maakLeegSpelbord();
     }
 
-    public String[][] geefLeegSpelbord()
-    {
-        return customSpelbord.to2DString();
-    }
+    //ZELFDE ALS geefHuidigSpelbord()
+//    public String[][] geefLeegSpelbord()
+//    {
+//        return huidigSpel.getHuidigSpelbord().to2DString();
+//    }
 
     /**
      *
@@ -263,7 +264,7 @@ public class DomeinController
      */
     public void plaatsElement(String elementType, int xPositie, int yPositie)
     {
-        customSpelbord.plaatsElement(elementType, xPositie, yPositie);
+        huidigSpel.getHuidigSpelbord().plaatsElement(elementType, xPositie, yPositie);
     }
     
     public void registreerCustomSpel() throws SpelNaamBestaatException

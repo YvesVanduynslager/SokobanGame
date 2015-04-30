@@ -6,7 +6,7 @@ package exceptions;
  *
  * @author Yves
  */
-public class SpelNaamBestaatException extends Exception
+public final class SpelNaamBestaatException extends Exception
 {
     /**
      * Default constructor

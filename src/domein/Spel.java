@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author Yves
  */
-public class Spel
+public final class Spel
 {
     private final List<Spelbord> spelborden;
     private final String spelNaam;
@@ -117,55 +117,22 @@ public class Spel
      *
      * @return huidigSpelbord als String.
      */
-    public String spelbordToString()
-    {
-        return huidigSpelbord.toString();
-    }
+//    public String spelbordToString()
+//    {
+//        return huidigSpelbord.toString();
+//    }
 
-    
     /*
     TOEGEVOEGD VOOR UC5!!!
     */
     
     /**
      * 
-     * @return 
      */
-    public Spelbord maakLeegSpelbord()
+    public void maakLeegSpelbord()
     {
-        //nieuwe elementen-array maken.
-        Element velden[][] = new Element[10][10];
-        
-        for(int rij = 0; rij < velden.length; rij++)
-        {
-            for(int kolom = 0; kolom < velden[rij].length; kolom++)
-            {
-                /*
-                Randen opvullen met muren.
-                */
-                if (rij == 0 || rij == velden.length -1 || kolom == 0 || kolom == velden[rij].length)
-                {
-                    velden[rij][kolom] = new Muur(rij, kolom, true);
-                }
-                /*
-                Rest opvullen met gewone velden
-                */
-                else
-                {
-                    velden[rij][kolom] = new Veld(rij, kolom, false);
-                }
-            }
-        }
-        return new Spelbord(velden);
-    }
-
-    /**
-     * 
-     * @return 
-     */
-    public String geefSpelNaam()
-    {
-        return this.spelNaam;
+        Spelbord spelbord = new Spelbord();
+        this.setHuidigSpelbord(spelbord);
     }
     
     /**

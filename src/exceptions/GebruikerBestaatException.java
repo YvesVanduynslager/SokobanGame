@@ -6,7 +6,7 @@ package exceptions;
  *
  * @author Yves
  */
-public class GebruikerBestaatException extends Exception
+public final class GebruikerBestaatException extends Exception
 {
     /**
      * Default constructor

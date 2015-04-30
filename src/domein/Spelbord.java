@@ -6,7 +6,7 @@ package domein;
  *
  * @author Yves
  */
-public class Spelbord
+public final class Spelbord
 {
     /* DECLARATIES VARIABELEN */
     private int aantalZetten;
@@ -16,16 +16,19 @@ public class Spelbord
     private Mannetje mannetje;
     //private String spelbordNaam;
 
+    
+    public Spelbord()
+    {
+        this.maakLeegSpelbord(); //initialiseren van een leeg spelbord;
+    }
     /**
      * Initialiseert de naam, velden, het mannetje en het aantal zetten.
      *
-     * @param spelbordNaam Naam van het spelbord.
      * @param velden De 2D-Element Array van het spelbord.
      * @param mannetje Het mannetje van dit spelbord.
      */
-    public Spelbord(/*String spelbordNaam, */Element[][] velden, Mannetje mannetje)
+    public Spelbord(Element[][] velden, Mannetje mannetje)
     {
-        //this.spelbordNaam = spelbordNaam;
         this.velden = velden;
         this.mannetje = mannetje;
         this.aantalZetten = 0;
@@ -267,8 +270,6 @@ public class Spelbord
             }
         }
         return veldenString;
-        
-        
     }
 
     /**
@@ -328,5 +329,32 @@ public class Spelbord
     private boolean geldigePlaats(int xPositie, int yPositie)
     {
         return !velden[xPositie][yPositie].staatVast();
+    }
+    
+    /**
+     * 
+     */
+    private void maakLeegSpelbord()
+    {        
+        for(int rij = 0; rij < velden.length; rij++)
+        {
+            for(int kolom = 0; kolom < velden[rij].length; kolom++)
+            {
+                /*
+                Randen opvullen met muren.
+                */
+                if (rij == 0 || rij == velden.length -1 || kolom == 0 || kolom == velden[rij].length)
+                {
+                    velden[rij][kolom] = new Muur(rij, kolom, true);
+                }
+                /*
+                Rest opvullen met gewone velden
+                */
+                else
+                {
+                    velden[rij][kolom] = new Veld(rij, kolom, false);
+                }
+            }
+        }
     }
 }

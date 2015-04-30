@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author Yves
  */
-public class SpelMapper
+public final class SpelMapper
 {
     private final int VELDEN_ARRAY_GROOTTE = 10;
     //private Element[][] velden;
@@ -40,12 +40,13 @@ public class SpelMapper
         String sqlEerste = "SELECT MIN(spelbord.spelbordID) FROM spelbord JOIN spel ON spelbord.Spel_spelID = spel.spelID "
                 + "WHERE spel.spelNaam = '" + spelNaam + "';";
 
-        Connectie connectie = new Connectie();
+        Connectie.start();
+        //Connectie connectie = new Connectie();
         PreparedStatement stmtEersteID;// = null;
 
         try
         {
-            stmtEersteID = connectie.getDatabaseConnectie().prepareStatement(sqlEerste);
+            stmtEersteID = Connectie.getDatabaseConnectie().prepareStatement(sqlEerste);
             ResultSet rs = stmtEersteID.executeQuery();
 
             while (rs.next())
@@ -60,7 +61,7 @@ public class SpelMapper
         }
         finally
         {
-            connectie.sluit();
+            Connectie.sluit();
         }
 
         return eersteID;
@@ -76,12 +77,13 @@ public class SpelMapper
 
         String sqlLaatste = "SELECT MAX(spelbord.spelbordID) FROM spelbord;";
 
-        Connectie connectie = new Connectie();
+        Connectie.start();
+        //Connectie connectie = new Connectie();
         PreparedStatement stmtLaatsteID;
 
         try
         {
-            stmtLaatsteID = connectie.getDatabaseConnectie().prepareStatement(sqlLaatste);
+            stmtLaatsteID = Connectie.getDatabaseConnectie().prepareStatement(sqlLaatste);
             ResultSet rs = stmtLaatsteID.executeQuery();
 
             while (rs.next())
@@ -96,7 +98,7 @@ public class SpelMapper
         }
         finally
         {
-            connectie.sluit();
+            Connectie.sluit();
         }
         return laatsteID;
     }
@@ -111,12 +113,13 @@ public class SpelMapper
 
         String sqlLaatste = "SELECT MAX(spel.spelID) FROM spel;";
 
-        Connectie connectie = new Connectie();
+        Connectie.start();
+        //Connectie connectie = new Connectie();
         PreparedStatement stmtLaatsteID;
 
         try
         {
-            stmtLaatsteID = connectie.getDatabaseConnectie().prepareStatement(sqlLaatste);
+            stmtLaatsteID = Connectie.getDatabaseConnectie().prepareStatement(sqlLaatste);
             ResultSet rs = stmtLaatsteID.executeQuery();
 
             while (rs.next())
@@ -131,7 +134,7 @@ public class SpelMapper
         }
         finally
         {
-            connectie.sluit();
+            Connectie.sluit();
         }
         return laatsteID;
     }
@@ -154,12 +157,14 @@ public class SpelMapper
 
         List<Spelbord> borden = new ArrayList();
 
+        Connectie.start();
         for (int spelbordID = eersteSpelbordID; spelbordID < aantalBorden; spelbordID++)
         {
             velden = new Element[VELDEN_ARRAY_GROOTTE][VELDEN_ARRAY_GROOTTE];
             for (String element : ELEMENTEN)
             {
-                Connectie connectie = new Connectie();
+                Connectie.start();
+                //Connectie connectie = new Connectie();
                 PreparedStatement stmtBordenOphalen;
 
                 String sqlBordenOphalen = "SELECT Element.positieX, Element.positieY "
@@ -171,7 +176,7 @@ public class SpelMapper
                 {
                     int x, y;
 
-                    stmtBordenOphalen = connectie.getDatabaseConnectie().prepareStatement(sqlBordenOphalen);
+                    stmtBordenOphalen = Connectie.getDatabaseConnectie().prepareStatement(sqlBordenOphalen);
                     ResultSet rs = stmtBordenOphalen.executeQuery();
 
                     while (rs.next())
@@ -204,7 +209,7 @@ public class SpelMapper
                 }
                 finally
                 {
-                    connectie.sluit();
+                    Connectie.sluit();
                 }
             }
             //for-loop om te controleren op null-waarden in de velden array en die dan te vullen met een muur.
@@ -240,12 +245,13 @@ public class SpelMapper
         String sqlCount = "SELECT COUNT(spelbord.spelbordID) FROM spelbord JOIN spel ON spelbord.Spel_spelID = spel.spelID "
                 + "WHERE spel.spelNaam = '" + naam + "';";
 
-        Connectie connectie = new Connectie();
+        Connectie.start();
+        //Connectie connectie = new Connectie();
         PreparedStatement stmtAantalBorden;// = null;
 
         try
         {
-            stmtAantalBorden = connectie.getDatabaseConnectie().prepareStatement(sqlCount);
+            stmtAantalBorden = Connectie.getDatabaseConnectie().prepareStatement(sqlCount);
             ResultSet rs = stmtAantalBorden.executeQuery();
 
             while (rs.next())
@@ -260,7 +266,7 @@ public class SpelMapper
         }
         finally
         {
-            connectie.sluit();
+            Connectie.sluit();
         }
 
         return aantal;
@@ -271,12 +277,13 @@ public class SpelMapper
         List<String> spelNamen = new ArrayList();
         String sqlSpelNamen = "SELECT spelNaam FROM spel ORDER BY spelID;";
 
-        Connectie connectie = new Connectie();
+        Connectie.start();
+        //Connectie connectie = new Connectie();
         PreparedStatement stmtSpelNamen;
 
         try
         {
-            stmtSpelNamen = connectie.getDatabaseConnectie().prepareStatement(sqlSpelNamen);
+            stmtSpelNamen = Connectie.getDatabaseConnectie().prepareStatement(sqlSpelNamen);
             ResultSet rs = stmtSpelNamen.executeQuery();
 
             while (rs.next())
@@ -291,7 +298,7 @@ public class SpelMapper
         }
         finally
         {
-            connectie.sluit();
+            Connectie.sluit();
         }
         return spelNamen;
     }
@@ -304,7 +311,8 @@ public class SpelMapper
         String sqlInsertSpelbord = "INSERT INTO sokobandatabase.spelbord(spel_spelID) "
                 + "VALUES(?);";
 
-        Connectie connectie = new Connectie();
+        Connectie.start();
+        //Connectie connectie = new Connectie();
 
         PreparedStatement stmtInsertElementen;
         PreparedStatement stmtInsertSpelNaam;
@@ -312,12 +320,12 @@ public class SpelMapper
 
         try
         {
-            if (bestaatSpelNaam(customSpel.geefSpelNaam()))
+            if (bestaatSpelNaam(customSpel.getSpelNaam()))
             {
                 throw new SpelNaamBestaatException();
             }
-            stmtInsertSpelNaam = connectie.getDatabaseConnectie().prepareStatement(sqlInsertSpelNaam);
-            stmtInsertSpelNaam.setString(1, customSpel.geefSpelNaam());
+            stmtInsertSpelNaam = Connectie.getDatabaseConnectie().prepareStatement(sqlInsertSpelNaam);
+            stmtInsertSpelNaam.setString(1, customSpel.getSpelNaam());
             stmtInsertSpelNaam.executeUpdate();
         }
         catch (SQLException sqlEx)
@@ -332,7 +340,7 @@ public class SpelMapper
 
             try
             {
-                stmtInsertSpelbord = connectie.getDatabaseConnectie().prepareStatement(sqlInsertSpelbord);
+                stmtInsertSpelbord = Connectie.getDatabaseConnectie().prepareStatement(sqlInsertSpelbord);
                 stmtInsertSpelbord.setInt(1, spelbordVreemdeSleutel);
                 stmtInsertSpelbord.executeUpdate();
             }
@@ -370,7 +378,7 @@ public class SpelMapper
 
                     try
                     {
-                        stmtInsertElementen = connectie.getDatabaseConnectie().prepareStatement(sqlInsertElementen);
+                        stmtInsertElementen = Connectie.getDatabaseConnectie().prepareStatement(sqlInsertElementen);
 
                         stmtInsertElementen.setInt(1, element.getxPositie());
                         stmtInsertElementen.setInt(2, element.getyPositie());
@@ -384,7 +392,7 @@ public class SpelMapper
                     }
                     finally
                     {
-                        connectie.sluit();
+                        Connectie.sluit();
                     }
                 }
             }
@@ -393,14 +401,15 @@ public class SpelMapper
     
     private boolean bestaatSpelNaam(String spelNaam)
     {
-        Connectie connectie = new Connectie();
+        Connectie.start();
+        //Connectie connectie = new Connectie();
         PreparedStatement sqlStatement;
         String sqlString = "SELECT spelNaam FROM spel WHERE spelNaam = '" + spelNaam + "'";
         String opgehaaldeSpelNaam = null;
 
         try
         {
-            sqlStatement = connectie.getDatabaseConnectie().prepareStatement(sqlString);
+            sqlStatement = Connectie.getDatabaseConnectie().prepareStatement(sqlString);
             ResultSet rs = sqlStatement.executeQuery();
 
             while (rs.next())
@@ -415,7 +424,7 @@ public class SpelMapper
         }
         finally
         {
-            connectie.sluit();
+            Connectie.sluit();
         }
 
         return opgehaaldeSpelNaam != null; //string moet null zijn om onbestaand spel voor te stellen

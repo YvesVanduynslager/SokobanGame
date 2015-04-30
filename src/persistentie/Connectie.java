@@ -1,25 +1,27 @@
 package persistentie;
 
 import java.sql.*;
+
 /**
- * Maakt een connectie met de sokobandb-databank via mysql-connector.
- * 
+ * Static klasse Connectie verzorgt het openen en sluiten van een
+ * databankconnectie.
+ *
  * @author Yves
  */
-public class Connectie
+public final class Connectie
 {
     //verander mysqlUser en mysqlPassword met je persoonlijke login gegevens
-    private final String MYSQL_USER = "root", MYSQL_PASSWORD = "root";
+    private static final String MYSQL_USER = "root", MYSQL_PASSWORD = "root";
     //database-locatie en driver:
-    private final String JDBC = "jdbc:mysql://localhost:3306/sokobandatabase?user=" + MYSQL_USER + "&password=" + MYSQL_PASSWORD;
-    private final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    
-    private Connection conn = null;
+    private static final String JDBC = "jdbc:mysql://localhost:3306/sokobandatabase?user=" + MYSQL_USER + "&password=" + MYSQL_PASSWORD;
+    private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+
+    private static Connection conn = null;
 
     /**
-     * Constructor aanroep maakt connectie met db
+     * Opent een connectie met de databank.
      */
-    public Connectie()
+    public static void start()
     {
         try
         {
@@ -31,26 +33,27 @@ public class Connectie
             System.err.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
         }
     }
-    
+
     /**
-     * 
-     * @return De connectie met de databank.
+     * Geeft de geopende connectie terug.
+     *
+     * @return De geopende connectie met de databank.
      */
-    public Connection getDatabaseConnectie()
+    public static Connection getDatabaseConnectie()
     {
         return conn;
     }
-    
+
     /**
      * Deze methode sluit de geopende connectie met de databank.
      */
-    public void sluit()
+    public static void sluit()
     {
         try
         {
             conn.close();
         }
-        catch(Exception e)
+        catch (Exception e)
         {
             System.out.println("--- Fout: " + e.getClass() + ": " + e.getMessage());
         }

@@ -9,7 +9,7 @@ import persistentie.SpelerMapper;
  *
  * @author Yves
  */
-public class SpelerRepository
+public final class SpelerRepository
 {
     /* DECLARATIES CONSTANTEN */
     private final SpelerMapper spelerMapper;

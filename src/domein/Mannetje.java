@@ -6,7 +6,7 @@ package domein;
  * @author Yves
  *
  */
-public class Mannetje extends Element
+public final class Mannetje extends Element
 {
     /**
      * Constructor stelt x positie, y positie in van het element, en stelt in of

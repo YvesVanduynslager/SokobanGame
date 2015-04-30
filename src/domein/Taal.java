@@ -8,7 +8,7 @@ import java.util.ResourceBundle;
  *
  * @author Michiel
  */
-public class Taal
+public final class Taal
 {
     /* DECLARATIES VARIABELEN */
     private ResourceBundle resourceBundle;

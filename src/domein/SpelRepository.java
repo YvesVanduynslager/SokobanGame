@@ -10,7 +10,7 @@ import persistentie.SpelMapper;
  *
  * @author Yves
  */
-public class SpelRepository
+public final class SpelRepository
 {
     /* DECLARATIES CONSTANTEN */
     private final SpelMapper spelMapper;

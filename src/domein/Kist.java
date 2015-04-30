@@ -6,7 +6,7 @@ package domein;
  * @author Yves
  *
  */
-public class Kist extends Element
+public final class Kist extends Element
 {
     /**
 	 * 

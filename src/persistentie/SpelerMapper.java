@@ -6,12 +6,15 @@ import java.sql.*;
 
 /**
  *
- * @author Yves SpelerMapper staat in voor het omzetten van een Speler-entiteit
+ * SpelerMapper staat in voor het omzetten van een Speler-entiteit
  * uit de databank naar een Speler-object en omgekeerd.
+ * 
+ * @author Yves
  */
-public class SpelerMapper
+public final class SpelerMapper
 {
     /**
+     * Doorzoekt de spelertabel op het voorkomen van de twee meegegeven parameters.
      *
      * @param gebruikersnaam De gebruikersnaam van de speler
      * @param wachtwoord Het wachtwoord van de speler
@@ -19,17 +22,18 @@ public class SpelerMapper
      */
     public Speler zoek(String gebruikersnaam, String wachtwoord)
     {
-        Connectie connectie = new Connectie();
-        PreparedStatement sqlStatement;
         String sqlString = "SELECT gebruikernaam, wachtwoord, isAdmin, voornaam, achternaam "
                 + "FROM Speler "
                 + "WHERE gebruikernaam =  '" + gebruikersnaam + "'"
                 + "AND wachtwoord = '" + wachtwoord + "'";
         Speler speler = new Speler();
 
+        Connectie.start();
+        PreparedStatement sqlStatement;
+
         try
         {
-            sqlStatement = connectie.getDatabaseConnectie().prepareStatement(sqlString);
+            sqlStatement = Connectie.getDatabaseConnectie().prepareStatement(sqlString);
             ResultSet rs = sqlStatement.executeQuery();
 
             while (rs.next())
@@ -49,12 +53,13 @@ public class SpelerMapper
         }
         finally
         {
-            connectie.sluit();
+            Connectie.sluit();
         }
         return speler;
     }
 
     /**
+     * Slaat de gegevens meegegeven in het paramterobject op in de databank.
      *
      * @param speler Speler-object met gegevens die moeten toegevoegd worden aan
      * de databank.
@@ -62,7 +67,9 @@ public class SpelerMapper
      */
     public void voegToe(Speler speler) throws GebruikerBestaatException
     {
-        Connectie connectie = new Connectie();
+        String SQL_INSERT = "INSERT INTO Speler(gebruikernaam, wachtwoord, isAdmin, achternaam, voornaam) "
+                + "VALUES(?, ?, ?, ?, ?); ";
+        Connectie.start();
         PreparedStatement sqlStatement;
 
         try
@@ -72,10 +79,7 @@ public class SpelerMapper
                 throw new GebruikerBestaatException();
             }
 
-            String SQL_INSERT = "INSERT INTO Speler(gebruikernaam, wachtwoord, isAdmin, achternaam, voornaam) "
-                    + "VALUES(?, ?, ?, ?, ?); ";
-
-            sqlStatement = connectie.getDatabaseConnectie().prepareStatement(SQL_INSERT);
+            sqlStatement = Connectie.getDatabaseConnectie().prepareStatement(SQL_INSERT);
 
             sqlStatement.setString(1, speler.getGebruikersnaam());
             sqlStatement.setString(2, speler.getWachtwoord());
@@ -92,12 +96,13 @@ public class SpelerMapper
         }
         finally
         {
-            connectie.sluit();
+            Connectie.sluit();
         }
     }
 
     /**
-     * Controleert of de gebruikersnaam al bestaat in de databank.
+     * Hulpmethode die controleert of de gebruikersnaam al bestaat in de databank. Oproepende
+     * methode moet zorgen voor het openen en sluiten van de connectie.
      *
      * @param gebruikersnaam Te controleren gebruikersnaam
      * @return true als gebruikersnaam al bestaat. false als gebruikersnaam nog
@@ -105,14 +110,13 @@ public class SpelerMapper
      */
     private boolean bestaatSpeler(String gebruikersnaam)
     {
-        Connectie connectie = new Connectie();
         PreparedStatement sqlStatement;
         String sqlString = "SELECT gebruikernaam FROM Speler WHERE gebruikernaam = '" + gebruikersnaam + "'";
         String opgehaaldeGebruikersnaam = null;
 
         try
         {
-            sqlStatement = connectie.getDatabaseConnectie().prepareStatement(sqlString);
+            sqlStatement = Connectie.getDatabaseConnectie().prepareStatement(sqlString);
             ResultSet rs = sqlStatement.executeQuery();
 
             while (rs.next())
@@ -124,10 +128,6 @@ public class SpelerMapper
         catch (SQLException sqlEx)
         {
             System.err.println("SQL fout" + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
-        }
-        finally
-        {
-            connectie.sluit();
         }
 
         return opgehaaldeGebruikersnaam != null; //string moet null zijn om onbestande speler voor te stellen

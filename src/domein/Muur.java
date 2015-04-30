@@ -6,7 +6,7 @@ package domein;
  * @author Yves
  *
  */
-public class Muur extends Element
+public final class Muur extends Element
 {
     /**
      * Constructor stelt x positie, y positie in van het element, en stelt in

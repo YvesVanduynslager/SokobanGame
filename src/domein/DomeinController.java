@@ -260,6 +260,11 @@ public final class DomeinController
     public void configureerNieuwSpel(String spelNaam)
     {
         huidigSpel = new Spel(spelNaam);
+        this.maakLeegSpelbord();
+    }
+    
+    public void maakLeegSpelbord()
+    {
         huidigSpel.maakLeegSpelbord();
     }
 

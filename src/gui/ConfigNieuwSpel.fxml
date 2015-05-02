@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<fx:root hgap="5.0" prefWidth="580.0" type="GridPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" valignment="TOP" vgrow="NEVER" />
+   </rowConstraints>
+   <children>
+      <GridPane fx:id="grdSpelbord" alignment="TOP_CENTER" maxHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+         <columnConstraints>
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+         </rowConstraints>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </GridPane>
+      <GridPane GridPane.halignment="CENTER" GridPane.valignment="TOP">
+        <columnConstraints>
+          <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints valignment="TOP" vgrow="ALWAYS" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="ALWAYS" />
+          <RowConstraints maxHeight="270.0" minHeight="10.0" prefHeight="267.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <GridPane fx:id="grdButtons" GridPane.halignment="RIGHT" GridPane.hgrow="NEVER" GridPane.rowIndex="2" GridPane.valignment="TOP">
+              <columnConstraints>
+                <ColumnConstraints halignment="RIGHT" hgrow="ALWAYS" minWidth="123.0" prefWidth="123.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="172.0" minHeight="10.0" prefHeight="172.0" valignment="TOP" vgrow="SOMETIMES" />
+                  <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+                  <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Button fx:id="btnSpelbordKlaar" mnemonicParsing="false" text="Button" GridPane.rowIndex="1" />
+                  <Button fx:id="btnRegistreerSpel" mnemonicParsing="false" text="Button" GridPane.rowIndex="2" />
+                  <Group fx:id="grpKeuzes">
+                     <children>
+                        <RadioButton fx:id="rdbMannetje" mnemonicParsing="false" text="Mannetje" />
+                        <RadioButton fx:id="rdbVeld" mnemonicParsing="false" text="Veld">
+                           <padding>
+                              <Insets top="25.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="rdbDoel" mnemonicParsing="false" text="Doel">
+                           <padding>
+                              <Insets top="50.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="rdbMuur" mnemonicParsing="false" text="Muur">
+                           <padding>
+                              <Insets top="75.0" />
+                           </padding>
+                        </RadioButton>
+                        <RadioButton fx:id="rdbKist" mnemonicParsing="false" text="Kist">
+                           <padding>
+                              <Insets top="100.0" />
+                           </padding>
+                        </RadioButton>
+                     </children>
+                  </Group>
+               </children>
+            </GridPane>
+            <TextField fx:id="txtSpelnaam" />
+            <Button fx:id="btnOK" mnemonicParsing="false" text="OK" GridPane.rowIndex="1" />
+         </children>
+         <GridPane.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </GridPane.margin>
+      </GridPane>
+   </children>
+</fx:root>

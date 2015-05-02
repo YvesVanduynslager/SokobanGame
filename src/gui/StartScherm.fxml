@@ -28,7 +28,7 @@
           <Menu fx:id="menuBewerken" mnemonicParsing="false" text="Bewerken">
             <items>
                   <MenuItem fx:id="mItemAanpassenSpelbord" disable="true" mnemonicParsing="false" text="Aanpassen spelbord" />
-                  <MenuItem fx:id="mItemMaakSpelbord" disable="true" mnemonicParsing="false" text="Maak spelbord" />
+                  <MenuItem fx:id="mItemConfigNieuwSpel" disable="true" mnemonicParsing="false" text="Configureer nieuw spel" />
             </items>
           </Menu>
             <Menu fx:id="menuGebruiker" mnemonicParsing="false" text="Gebruiker">

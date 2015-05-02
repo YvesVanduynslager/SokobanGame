@@ -22,21 +22,20 @@ public final class SpelerMapper
      * @return Een spelerobject met gevulde waarden uit de databank.
      */
     public Speler zoek(String gebruikersnaam, String wachtwoord)
-    {
-        String pass = BCrypt.hashpw(wachtwoord, "$2a$10$RV4IhXXJFyL3EmzvS4sqHu");
-        
+    {        
         String sqlString = "SELECT gebruikernaam, wachtwoord, isAdmin, voornaam, achternaam "
                 + "FROM Speler "
                 + "WHERE gebruikernaam =  '" + gebruikersnaam + "'"
-                + "AND wachtwoord = '" + /*wachtwoord*/pass + "'";
+                + "AND wachtwoord = '" + wachtwoord /*pass*/ + "'";
         Speler speler = new Speler();
 
         Connectie.start();
         PreparedStatement sqlStatement;
-
+        
         try
         {
             sqlStatement = Connectie.getDatabaseConnectie().prepareStatement(sqlString);
+            
             ResultSet rs = sqlStatement.executeQuery();
 
             while (rs.next())
@@ -83,7 +82,7 @@ public final class SpelerMapper
             }
 
             sqlStatement = Connectie.getDatabaseConnectie().prepareStatement(SQL_INSERT);
-
+            
             sqlStatement.setString(1, speler.getGebruikersnaam());
             sqlStatement.setString(2, BCrypt.hashpw(speler.getWachtwoord(), "$2a$10$RV4IhXXJFyL3EmzvS4sqHu")/*speler.getWachtwoord()*/);
             sqlStatement.setBoolean(3, (speler.getAdminrechten().equals("ja")));

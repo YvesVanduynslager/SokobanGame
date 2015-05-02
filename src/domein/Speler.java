@@ -187,14 +187,15 @@ public final class Speler
     }
 
     /**
-     *
+     * Deze methode valideert het ingegeven wachtwoord.
+     * 
      * @param wachtwoord Het in te stellen wachtwoord als String.
      */
     private boolean geldigWachtwoord(String wachtwoord)
     {
         /*
-         8 karakters lang. Wachtwoord moet
-         daarenboven minstens 1 hoofdletter, 1 kleine letter én een cijfer bevatten.
+         Wachtwoord is 8 karakters lang. Wachtwoord moet
+         minstens 1 hoofdletter, 1 kleine letter én een cijfer bevatten.
          */
         return wachtwoord.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}");
 //        int numOfUpperLetters = 0; // initialiseren aantal lowerCase letters

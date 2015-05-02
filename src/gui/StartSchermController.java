@@ -31,7 +31,7 @@ public class StartSchermController extends GridPane implements Refreshable
     private Menu menuSpel, menuBewerken, menuGebruiker, menuTaal, menuHelp, menuKiesSpel;
     @FXML
     private MenuItem mItemAfsluiten, mItemAanpassenSpelbord,
-            mItemMaakSpelbord, mItemAanmelden, mItemRegistreren, mItemInfo, mItemControls,
+            mItemConfigNieuwSpel, mItemAanmelden, mItemRegistreren, mItemInfo, mItemControls,
             mItemNederlands, mItemFrans, mItemEngels;
     @FXML
     private Label lblStatus;
@@ -66,7 +66,7 @@ public class StartSchermController extends GridPane implements Refreshable
         mItemInfo.setOnAction(this::mItemInfo_gekozen);
         mItemControls.setOnAction(this::mItemControls_gekozen);
         
-        mItemMaakSpelbord.setOnAction(this::mItemMaakSpelbord_gekozen);
+        mItemConfigNieuwSpel.setOnAction(this::mItemConfigNieuwSpel_gekozen);
 
         /*
          * Dit (en spel_gekozen methode) zorgen ervoor dat alle spelnamen uit de databank aan het menu worden toegevoegd
@@ -126,11 +126,11 @@ public class StartSchermController extends GridPane implements Refreshable
         }
     }
 
-    private void mItemMaakSpelbord_gekozen(ActionEvent event)
+    private void mItemConfigNieuwSpel_gekozen(ActionEvent event)
     {
         content.getChildren().clear();
         this.lblStatus.setText("");
-        content = new ConfigureerNieuwSpelController(this, c);
+        content = new ConfigNieuwSpelController(this, c);
         addContent(content);
     }
     private void mItemAanmelden_gekozen(ActionEvent event)
@@ -200,7 +200,7 @@ public class StartSchermController extends GridPane implements Refreshable
 
         this.menuBewerken.setText(c.getString("menu.bewerken"));
         this.mItemAanpassenSpelbord.setText(c.getString("menu.bewerken.aanpassen"));
-        this.mItemMaakSpelbord.setText(c.getString("menu.bewerken.maak"));
+        this.mItemConfigNieuwSpel.setText(c.getString("menu.bewerken.maak"));
 
         this.menuGebruiker.setText(c.getString("menu.gebruiker"));
         this.mItemAanmelden.setText(c.getString("menu.gebruiker.aanmelden"));
@@ -265,13 +265,13 @@ public class StartSchermController extends GridPane implements Refreshable
         {
             this.menuKiesSpel.setDisable(false);
             this.mItemAanpassenSpelbord.setDisable(false);
-            this.mItemMaakSpelbord.setDisable(false);
+            this.mItemConfigNieuwSpel.setDisable(false);
         }
         else
         {
             this.menuKiesSpel.setDisable(false);
             this.mItemAanpassenSpelbord.setDisable(true);
-            this.mItemMaakSpelbord.setDisable(true);
+            this.mItemConfigNieuwSpel.setDisable(true);
         }
     }
 

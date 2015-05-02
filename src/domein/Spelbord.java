@@ -327,7 +327,9 @@ public final class Spelbord
      * 
      */
     private void maakLeegSpelbord()
-    {        
+    {   
+        velden = new Element[10][10];
+        
         for(int rij = 0; rij < velden.length; rij++)
         {
             for(int kolom = 0; kolom < velden[rij].length; kolom++)

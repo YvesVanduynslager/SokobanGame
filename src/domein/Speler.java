@@ -1,5 +1,8 @@
 package domein;
 
+import exceptions.GebruikersnaamOngeldigException;
+import exceptions.WachtwoordOngeldigException;
+
 /**
  * Staat in voor het beheren van spelers. Instellen en controleren van
  * spelergegevens.
@@ -30,9 +33,12 @@ public final class Speler
      * @param voornaam voornaam van de speler als String.
      * @param adminrechten "ja" als speler adminrechten heeft, "nee" als speler
      * geen adminrechten heeft.
+     * 
+     * @throws WachtwoordOngeldigException
+     * @throws GebruikersnaamOngeldigException
      */
     public Speler(String gebruikersnaam, String wachtwoord, String achternaam,
-            String voornaam, String adminrechten)
+            String voornaam, String adminrechten) //throws WachtwoordOngeldigException, GebruikersnaamOngeldigException
     {
         this.setEnControleerGebruikersnaam(gebruikersnaam);
         this.setEnControleerWachtwoord(wachtwoord);
@@ -155,11 +161,11 @@ public final class Speler
      * @param gebruikersnaam Te controleren en in te stellen gebruikersnaam als
      * String.
      */
-    private void setEnControleerGebruikersnaam(String gebruikersnaam)
+    private void setEnControleerGebruikersnaam(String gebruikersnaam) //throws GebruikersnaamOngeldigException
     {
         if (!(gebruikersnaam.length() >= 8))
         {
-            throw new IllegalArgumentException();
+            throw new GebruikersnaamOngeldigException();
         }
         this.setGebruikersnaam(gebruikersnaam);
     }
@@ -170,53 +176,59 @@ public final class Speler
      *
      * @param wachtwoord Te controleren en in te stellen wachtwoord als String.
      */
-    private void setEnControleerWachtwoord(String wachtwoord)
+    private void setEnControleerWachtwoord(String wachtwoord) //throws WachtwoordOngeldigException
     {
         if (!geldigWachtwoord(wachtwoord))
         {
-            throw new IllegalArgumentException();
+            //throw new IllegalArgumentException();
+            throw new WachtwoordOngeldigException();
         }
         this.setWachtwoord(wachtwoord);
     }
 
     /**
-	 * 
-	 * @param wachtwoord Het in te stellen wachtwoord als String.
-	 */
+     *
+     * @param wachtwoord Het in te stellen wachtwoord als String.
+     */
     private boolean geldigWachtwoord(String wachtwoord)
     {
-        int numOfUpperLetters = 0; // initialiseren aantal lowerCase letters
-        int numOfLowerLetters = 0; // initialiseren aantal upperCase letters
-        int numOfDigits = 0; // initialiseren aantal cijfers
-
-        byte[] bytes = wachtwoord.getBytes();
-        for (byte tempByte : bytes)
-        {
-            char tempChar = (char) tempByte;
-            if (Character.isDigit(tempChar))
-            {
-                numOfDigits++;
-            }
-
-            if (Character.isUpperCase(tempChar))
-            {
-                numOfUpperLetters++;
-            }
-
-            if (Character.isLowerCase(tempChar))
-            {
-                numOfLowerLetters++;
-            }
-        }
-        // indien aan alles werd voldaan: resultaat >= 1; anders 0
-        if (numOfDigits * numOfUpperLetters * numOfLowerLetters *
-                (wachtwoord.length() / 8) >= 1)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        /*
+         8 karakters lang. Wachtwoord moet
+         daarenboven minstens 1 hoofdletter, 1 kleine letter én een cijfer bevatten.
+         */
+        return wachtwoord.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}");
+//        int numOfUpperLetters = 0; // initialiseren aantal lowerCase letters
+//        int numOfLowerLetters = 0; // initialiseren aantal upperCase letters
+//        int numOfDigits = 0; // initialiseren aantal cijfers
+//
+//        byte[] bytes = wachtwoord.getBytes();
+//        for (byte tempByte : bytes)
+//        {
+//            char tempChar = (char) tempByte;
+//            if (Character.isDigit(tempChar))
+//            {
+//                numOfDigits++;
+//            }
+//
+//            if (Character.isUpperCase(tempChar))
+//            {
+//                numOfUpperLetters++;
+//            }
+//
+//            if (Character.isLowerCase(tempChar))
+//            {
+//                numOfLowerLetters++;
+//            }
+//        }
+//        // indien aan alles werd voldaan: resultaat >= 1; anders 0
+//        if (numOfDigits * numOfUpperLetters * numOfLowerLetters *
+//                (wachtwoord.length() / 8) >= 1)
+//        {
+//            return true;
+//        }
+//        else
+//        {
+//            return false;
+//        }
     }
 }

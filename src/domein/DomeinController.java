@@ -2,7 +2,9 @@ package domein;
 
 /* IMPORTS */
 import exceptions.GebruikerBestaatException;
+import exceptions.GebruikersnaamOngeldigException;
 import exceptions.SpelNaamBestaatException;
+import exceptions.WachtwoordOngeldigException;
 import java.util.List;
 
 /**
@@ -86,10 +88,13 @@ public final class DomeinController
      * @param achternaam achternaam van de speler
      * @throws exceptions.GebruikerBestaatException Als de gebruiker al
      * geregistreerd is in het systeem. Throws naar en handelt af in Registreer.
+     * 
+     * @throws GebruikersnaamOngeldigException
+     * @throws WachtwoordOngeldigException
      */
     public void registreer(String gebruikersnaam, String wachtwoord,
             String voornaam, String achternaam)
-            throws IllegalArgumentException, GebruikerBestaatException
+            throws /*IllegalArgumentException*/GebruikersnaamOngeldigException, WachtwoordOngeldigException, GebruikerBestaatException
     {
         Speler sp = new Speler(gebruikersnaam, wachtwoord,
                 voornaam, achternaam, "nee");

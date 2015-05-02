@@ -3,6 +3,7 @@ package persistentie;
 import domein.*;
 import exceptions.GebruikerBestaatException;
 import java.sql.*;
+import wachtwoordbeveiliging.BCrypt;
 
 /**
  *
@@ -22,10 +23,12 @@ public final class SpelerMapper
      */
     public Speler zoek(String gebruikersnaam, String wachtwoord)
     {
+        String pass = BCrypt.hashpw(wachtwoord, "$2a$10$RV4IhXXJFyL3EmzvS4sqHu");
+        
         String sqlString = "SELECT gebruikernaam, wachtwoord, isAdmin, voornaam, achternaam "
                 + "FROM Speler "
                 + "WHERE gebruikernaam =  '" + gebruikersnaam + "'"
-                + "AND wachtwoord = '" + wachtwoord + "'";
+                + "AND wachtwoord = '" + /*wachtwoord*/pass + "'";
         Speler speler = new Speler();
 
         Connectie.start();
@@ -82,7 +85,7 @@ public final class SpelerMapper
             sqlStatement = Connectie.getDatabaseConnectie().prepareStatement(SQL_INSERT);
 
             sqlStatement.setString(1, speler.getGebruikersnaam());
-            sqlStatement.setString(2, speler.getWachtwoord());
+            sqlStatement.setString(2, BCrypt.hashpw(speler.getWachtwoord(), "$2a$10$RV4IhXXJFyL3EmzvS4sqHu")/*speler.getWachtwoord()*/);
             sqlStatement.setBoolean(3, (speler.getAdminrechten().equals("ja")));
             sqlStatement.setString(4, speler.getAchternaam());
             sqlStatement.setString(5, speler.getVoornaam());

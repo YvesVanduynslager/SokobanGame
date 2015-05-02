@@ -3,6 +3,8 @@ package cui;
 /* IMPORTS */
 import domein.DomeinController;
 import exceptions.GebruikerBestaatException;
+import exceptions.GebruikersnaamOngeldigException;
+import exceptions.WachtwoordOngeldigException;
 import java.util.Scanner;
 import wachtwoordbeveiliging.BCrypt;
 
@@ -77,9 +79,20 @@ public class Registreer
                 System.err.println(gbe + localeString("registreer.gebruikerbestaat"));
                 geldig = false;
             }
-            catch (IllegalArgumentException iae)
+//            catch (IllegalArgumentException iae)
+//            {
+//                System.err.println(iae + localeString("registreer.ongeldig"));
+//                geldig = false;
+//            }
+            catch(GebruikersnaamOngeldigException goe)
             {
-                System.err.println(iae + localeString("registreer.ongeldig"));
+                System.err.println(goe + " " + localeString("registreer.ongeldigeGebruikersnaam"));
+                geldig = false;
+            }
+            
+            catch(WachtwoordOngeldigException woe)
+            {
+                System.err.println(woe + " " + localeString("registreer.ongeldigWachtwoord"));
                 geldig = false;
             }
         }

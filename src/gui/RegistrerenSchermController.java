@@ -2,6 +2,8 @@ package gui;
 
 import domein.DomeinController;
 import exceptions.GebruikerBestaatException;
+import exceptions.GebruikersnaamOngeldigException;
+import exceptions.WachtwoordOngeldigException;
 import java.io.IOException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -78,7 +80,7 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
     {
         try
         {
-            c.registreer(txtGebruikersnaam.getText(), BCrypt.hashpw(pswWachtwoord.getText(), "$2a$10$RV4IhXXJFyL3EmzvS4sqHu"), txtNaam.getText(), txtVoornaam.getText());
+            c.registreer(txtGebruikersnaam.getText(), pswWachtwoord.getText() /*BCrypt.hashpw(pswWachtwoord.getText(), "$2a$10$RV4IhXXJFyL3EmzvS4sqHu")*/, txtNaam.getText(), txtVoornaam.getText());
             
             //Wordt enkel uitgevoerd als er geen exception werd gegooid
             startScherm.updateStatusLabel(c.getString("aangemeld.1")
@@ -92,10 +94,15 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
             System.err.println(gbe);
             startScherm.updateStatusLabel(c.getString("registreer.bestaat"));
         }
-        catch (IllegalArgumentException iae)
+        catch (GebruikersnaamOngeldigException goe)
         {
-            System.err.println(iae);
-            startScherm.updateStatusLabel(c.getString("registreer.ongeldig"));
+            System.err.println(goe);
+            startScherm.updateStatusLabel(c.getString("registreer.ongeldigeGebruikersnaam"));
+        }
+        catch (WachtwoordOngeldigException woe)
+        {
+            System.err.println(woe);
+            startScherm.updateStatusLabel(c.getString("registreer.ongeldigWachtwoord"));
         }
     }
 

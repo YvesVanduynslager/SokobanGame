@@ -337,7 +337,7 @@ public final class Spelbord
                 /*
                 Randen opvullen met muren.
                 */
-                if (rij == 0 || rij == velden.length -1 || kolom == 0 || kolom == velden[rij].length)
+                if (rij == 0 || rij == velden.length -1 || kolom == 0 || kolom == velden[rij].length - 1)
                 {
                     velden[rij][kolom] = new Muur(rij, kolom, true);
                 }

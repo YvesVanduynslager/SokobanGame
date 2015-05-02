@@ -14,36 +14,36 @@
 <fx:root hgap="5.0" prefWidth="580.0" type="GridPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints halignment="LEFT" hgrow="ALWAYS" maxWidth="1.7976931348623157E308" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="10.0" valignment="TOP" vgrow="NEVER" />
    </rowConstraints>
    <children>
-      <GridPane fx:id="grdSpelbord" alignment="TOP_CENTER" maxHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
+      <GridPane fx:id="grdSpelbord" alignment="TOP_CENTER" maxHeight="-Infinity" minWidth="-Infinity" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.hgrow="NEVER" GridPane.valignment="TOP" GridPane.vgrow="NEVER">
          <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="NEVER" maxWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
+            <ColumnConstraints halignment="LEFT" hgrow="NEVER" maxWidth="-Infinity" minWidth="-Infinity" prefWidth="30.0" />
          </columnConstraints>
          <rowConstraints>
-            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
-            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="CENTER" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" prefHeight="30.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="TOP" vgrow="NEVER" />
+            <RowConstraints maxHeight="-Infinity" prefHeight="30.0" valignment="TOP" vgrow="NEVER" />
          </rowConstraints>
          <GridPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -69,33 +69,9 @@
                   <RowConstraints valignment="TOP" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnSpelbordKlaar" mnemonicParsing="false" text="Button" GridPane.rowIndex="1" />
-                  <Button fx:id="btnRegistreerSpel" mnemonicParsing="false" text="Button" GridPane.rowIndex="2" />
-                  <Group fx:id="grpKeuzes">
-                     <children>
-                        <RadioButton fx:id="rdbMannetje" mnemonicParsing="false" text="Mannetje" />
-                        <RadioButton fx:id="rdbVeld" mnemonicParsing="false" text="Veld">
-                           <padding>
-                              <Insets top="25.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="rdbDoel" mnemonicParsing="false" text="Doel">
-                           <padding>
-                              <Insets top="50.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="rdbMuur" mnemonicParsing="false" text="Muur">
-                           <padding>
-                              <Insets top="75.0" />
-                           </padding>
-                        </RadioButton>
-                        <RadioButton fx:id="rdbKist" mnemonicParsing="false" text="Kist">
-                           <padding>
-                              <Insets top="100.0" />
-                           </padding>
-                        </RadioButton>
-                     </children>
-                  </Group>
+                  <Button fx:id="btnSpelbordKlaar" mnemonicParsing="false" text="Spelbord klaar" GridPane.rowIndex="1" />
+                  <Button fx:id="btnRegistreerSpel" mnemonicParsing="false" text="Registreer spel" GridPane.rowIndex="2" />
+                  <ChoiceBox fx:id="chbKeuze" prefWidth="150.0" />
                </children>
             </GridPane>
             <TextField fx:id="txtSpelnaam" />

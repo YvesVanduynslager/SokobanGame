@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package gui;
 
 import domein.DomeinController;
@@ -161,7 +156,6 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     {
         c.configureerNieuwSpel(txtSpelnaam.getText());
         btnSpelbordKlaar.setDisable(false);
-        btnRegistreerSpel.setDisable(false);
         tekenBord();
     }
 
@@ -169,6 +163,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     {
         c.registreerCustomSpelbord();
         c.maakLeegSpelbord();
+        btnRegistreerSpel.setDisable(false);
         tekenBord();
     }
 

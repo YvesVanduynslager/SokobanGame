@@ -8,6 +8,7 @@ import gui.StartSchermController;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.WindowEvent;
 
 /**
@@ -26,7 +27,8 @@ public class GuiStartUp extends Application
         scene.getStylesheets().add("/css/style.css");
 
         stage.setScene(scene);
-        stage.setTitle("Sokoban");
+        stage.setTitle("Sokoban Mario");
+        stage.getIcons().add(new Image("/images/box1.png"));
         
         stage.setOnShown(e -> {
             stage.setMinWidth(stage.getWidth());

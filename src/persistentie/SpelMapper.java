@@ -348,12 +348,12 @@ public final class SpelMapper
         System.out.println("Lengte rij: " + velden.length);
         System.out.println("Lengte kolom " + velden[0].length);
 
-        for (int elementenRij = 0; elementenRij < velden.length; elementenRij++)//Element[] rij : velden)
+        for (int rij = 0; rij < velden.length; rij++)//Element[] rij : velden)
         {
-            for (int kolom = 0; kolom < velden[elementenRij].length; kolom++)//Element element : rij)
+            for (int kolom = 0; kolom < velden[rij].length; kolom++)//Element element : rij)
             {
-                System.out.print(elementenRij + "" + kolom + " "); //TEST
-                Element element = velden[elementenRij][kolom]; //TEST
+                System.out.print(rij + "" + kolom + " "); //TEST
+                Element element = velden[rij][kolom]; //TEST
                 
                 //System.out.print(element.getxPositie() + "" + element.getyPositie() + " "); //TEST
 
@@ -399,7 +399,7 @@ public final class SpelMapper
                 {
                 }
             }
-            System.out.print("\n"); //TEST
+            System.out.print("added to sokobandatabase \n"); //TEST
         }
     }
 

@@ -19,6 +19,7 @@ public final class Spelbord
     {
         this.maakLeegSpelbord(); //initialiseren van een leeg spelbord;
     }
+    
     /**
      * Initialiseert de naam, velden, het mannetje en het aantal zetten.
      *
@@ -251,7 +252,7 @@ public final class Spelbord
      */
     public String[][] to2DString()
     {
-        String[][] veldenString = new String[10][10];
+        String[][] veldenString = new String[velden.length][velden[0].length];
 
         for (int i = 0; i < velden.length; i++)
         {
@@ -324,7 +325,7 @@ public final class Spelbord
     }
     
     /**
-     * 
+     * OK!!!
      */
     private void maakLeegSpelbord()
     {   
@@ -350,5 +351,7 @@ public final class Spelbord
                 }
             }
         }
+        
+        System.out.print(this); //Test
     }
 }

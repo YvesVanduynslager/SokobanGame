@@ -18,10 +18,10 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 
 /**
- * FXML Controller class
- * Deze klasse implementeert het StartScherm (betere naam mss HoofdScherm).
- * Dit scherm bevat een menu en een statusbalk (lblSatus), ZONDER content.
- * De content wordt later aangepast naargelang de gebruiker controls aanklikt.
+ * FXML Controller class Deze klasse implementeert het StartScherm (betere naam
+ * mss HoofdScherm). Dit scherm bevat een menu en een statusbalk (lblSatus),
+ * ZONDER content. De content wordt later aangepast naargelang de gebruiker
+ * controls aanklikt.
  *
  * @author Yves
  */
@@ -47,14 +47,14 @@ public class StartSchermController extends GridPane implements Refreshable
 
         this.content = new GridPane();
         addContent(content);
-        
+
         BackgroundImage achtergrond = new BackgroundImage(new Image("/images/achtergrond.png"),
                 BackgroundRepeat.REPEAT,
                 BackgroundRepeat.REPEAT,
                 BackgroundPosition.DEFAULT,
                 BackgroundSize.DEFAULT);
         this.setBackground(new Background(achtergrond));
-        
+
         mItemAanmelden.setOnAction(this::mItemAanmelden_gekozen);
         mItemRegistreren.setOnAction(this::mItemRegistreren_gekozen);
         mItemAfsluiten.setOnAction(this::mItemAfsluiten_gekozen);
@@ -65,27 +65,24 @@ public class StartSchermController extends GridPane implements Refreshable
 
         mItemInfo.setOnAction(this::mItemInfo_gekozen);
         mItemControls.setOnAction(this::mItemControls_gekozen);
-        
+
         mItemConfigNieuwSpel.setOnAction(this::mItemConfigNieuwSpel_gekozen);
 
-        /*
-         * Dit (en spel_gekozen methode) zorgen ervoor dat alle spelnamen uit de databank aan het menu worden toegevoegd
-         * en een ActionHandler toegewezen krijgen.
-         */
-        MenuItem keuzeSpel; //MenuItem declareren om later toe te voegen aan menuKiesSpel.
-        for (String spelNaam : this.c.geefSpelNamen()) //Voor elke spelnaam die in de db zit
-        {
-            String naam = spelNaam.substring(0, 1).toUpperCase() + spelNaam.substring(1); //Eerste letter van spel omzetten naar hoofdletter
-            keuzeSpel = new MenuItem(naam); //spelnaam toewijzen aan een nieuw MenuItem
-            keuzeSpel.setOnAction(this::spel_gekozen); //ActionHandler toevoegen aan het MenuItem
-            menuKiesSpel.getItems().add(keuzeSpel); //MenuItem toevoegen aan menuKiesSpel
-        }
-        
+//        MenuItem keuzeSpel; //MenuItem declareren om later toe te voegen aan menuKiesSpel.
+//        for (String spelNaam : this.c.geefSpelNamen()) //Voor elke spelnaam die in de db zit
+//        {
+//            String naam = spelNaam.substring(0, 1).toUpperCase() + spelNaam.substring(1); //Eerste letter van spel omzetten naar hoofdletter
+//            keuzeSpel = new MenuItem(naam); //spelnaam toewijzen aan een nieuw MenuItem
+//            keuzeSpel.setOnAction(this::spel_gekozen); //ActionHandler toevoegen aan het MenuItem
+//            menuKiesSpel.getItems().add(keuzeSpel); //MenuItem toevoegen aan menuKiesSpel
+//        }
+        installSpelNaamHandlers();
+
         refreshMenuLabels();
     }
-    
+
     /**
-     * 
+     *
      */
     @Override
     public final void init()
@@ -104,8 +101,29 @@ public class StartSchermController extends GridPane implements Refreshable
     }
 
     /**
-     * Deze methode loopt door het aantal spelnamen en controleert via event.getSource() welk MenuItem aangeklikt werd.
-     * @param event 
+     *
+     * Dit (en spel_gekozen methode) zorgen ervoor dat alle spelnamen uit de
+     * databank aan het menu worden toegevoegd en een ActionHandler toegewezen
+     * krijgen.
+     */
+    public final void installSpelNaamHandlers()
+    {
+        menuKiesSpel.getItems().clear();
+        MenuItem keuzeSpel;
+        for (String spelNaam : this.c.geefSpelNamen()) //Voor elke spelnaam die in de db zit
+        {
+            String naam = spelNaam.substring(0, 1).toUpperCase() + spelNaam.substring(1); //Eerste letter van spel omzetten naar hoofdletter
+            keuzeSpel = new MenuItem(naam); //spelnaam toewijzen aan een nieuw MenuItem
+            keuzeSpel.setOnAction(this::spel_gekozen); //ActionHandler toevoegen aan het MenuItem
+            menuKiesSpel.getItems().add(keuzeSpel); //MenuItem toevoegen aan menuKiesSpel
+        }
+    }
+
+    /**
+     * Deze methode loopt door het aantal spelnamen en controleert via
+     * event.getSource() welk MenuItem aangeklikt werd.
+     *
+     * @param event
      */
     private void spel_gekozen(ActionEvent event)
     {
@@ -115,6 +133,7 @@ public class StartSchermController extends GridPane implements Refreshable
             {
                 c.selecteerSpel(c.geefSpelNamen().get(spelIndex));
                 c.startVolgendSpelbord();
+
                 content.getChildren().clear();
                 this.lblStatus.setText("");
                 content = new SpelbordController(this, c);
@@ -133,6 +152,7 @@ public class StartSchermController extends GridPane implements Refreshable
         content = new ConfigNieuwSpelController(this, c);
         addContent(content);
     }
+
     private void mItemAanmelden_gekozen(ActionEvent event)
     {
         content.getChildren().clear();
@@ -174,7 +194,7 @@ public class StartSchermController extends GridPane implements Refreshable
         this.lblStatus.setText("Language: English");
         refresh();
     }
-    
+
     private void mItemInfo_gekozen(ActionEvent event)
     {
         content.getChildren().clear();
@@ -182,16 +202,16 @@ public class StartSchermController extends GridPane implements Refreshable
         content = new InfoSchermController(c);
         addContent(content);
     }
-    
+
     private void mItemControls_gekozen(ActionEvent event)
     {
         content.getChildren().clear();
         this.lblStatus.setText("");
         content = new ControlsSchermController(this, c);
         addContent(content);
-        
+
     }
-    
+
     private void refreshMenuLabels()
     {
         this.menuSpel.setText(c.getString("menu.spel"));
@@ -219,7 +239,7 @@ public class StartSchermController extends GridPane implements Refreshable
     public void refresh()
     {
         refreshMenuLabels();
-        
+
         if (content instanceof AanmeldenSchermController)
         {
             ((AanmeldenSchermController) content).refresh();
@@ -238,19 +258,19 @@ public class StartSchermController extends GridPane implements Refreshable
                 }
                 else
                 {
-                    if(content instanceof InfoSchermController)
+                    if (content instanceof InfoSchermController)
                     {
                         ((InfoSchermController) content).refresh();
                     }
                     else
                     {
-                        if(content instanceof ControlsSchermController)
+                        if (content instanceof ControlsSchermController)
                         {
                             ((ControlsSchermController) content).refresh();
                         }
                         else
                         {
-                            if(content instanceof ConfigNieuwSpelController)
+                            if (content instanceof ConfigNieuwSpelController)
                             {
                                 ((ConfigNieuwSpelController) content).refresh();
                             }

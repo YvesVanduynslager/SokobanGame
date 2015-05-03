@@ -112,16 +112,6 @@ public final class Spel
         this.huidigSpelbord = spelbord;
     }
 
-    /**
-     * Geeft het huidigSpelbord object terug als String.
-     *
-     * @return huidigSpelbord als String.
-     */
-//    public String spelbordToString()
-//    {
-//        return huidigSpelbord.toString();
-//    }
-
     /*
     TOEGEVOEGD VOOR UC5!!!
     */
@@ -135,6 +125,9 @@ public final class Spel
         this.setHuidigSpelbord(spelbord);
     }
 
+    /**
+     * 
+     */
     public void registreerSpelbord()
     {
         spelborden.add(huidigSpelbord);

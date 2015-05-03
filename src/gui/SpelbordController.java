@@ -35,6 +35,7 @@ public class SpelbordController extends GridPane implements Refreshable
     public SpelbordController(StartSchermController startScherm, DomeinController c)
     {
         init();
+        
         this.startScherm = startScherm;
         this.c = c;
 

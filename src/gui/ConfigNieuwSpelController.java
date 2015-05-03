@@ -12,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -183,6 +182,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
             }
             
             c.registreerCustomSpel();
+            startscherm.installSpelNaamHandlers(); //Zorgt ervoor dat het spel na het registreren direct in het menu Spel te zien is.
         }
         catch (SpelNaamBestaatException snbe)
         {

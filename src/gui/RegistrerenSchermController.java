@@ -73,7 +73,7 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
         txtGebruikersnaam.setTooltip(new Tooltip(c.getString("gebruikersnaam.tooltip")));
         
         pswWachtwoord.setPromptText(c.getString("registreer.wachtwoord"));
-        pswWachtwoord.setTooltip(new Tooltip(c.getString("wachtwoord.tooltipe")));
+        pswWachtwoord.setTooltip(new Tooltip(c.getString("wachtwoord.tooltip")));
         
         txtVoornaam.setPromptText(c.getString("registreer.voornaam"));
         txtNaam.setPromptText(c.getString("registreer.naam"));

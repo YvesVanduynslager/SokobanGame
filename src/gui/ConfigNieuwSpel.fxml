@@ -58,21 +58,36 @@
           <RowConstraints valignment="CENTER" />
             <RowConstraints valignment="TOP" />
           <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
+            <RowConstraints vgrow="SOMETIMES" />
             <RowConstraints vgrow="NEVER" />
             <RowConstraints />
         </rowConstraints>
          <children>
+            <RadioButton fx:id="rdbMuur" mnemonicParsing="false" text="Muur" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="3">
+               <toggleGroup>
+                  <ToggleGroup fx:id="elementGroup" />
+               </toggleGroup>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </RadioButton>
             <TextField fx:id="txtSpelnaam" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
             <Button fx:id="btnOK" mnemonicParsing="false" text="OK" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin></Button>
-            <Button fx:id="btnSpelbordKlaar" disable="true" mnemonicParsing="false" text="Spelbord klaar" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Button fx:id="btnSpelbordKlaar" disable="true" mnemonicParsing="false" text="Spelbord klaar" GridPane.columnIndex="1" GridPane.rowIndex="7">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id="btnRegistreerSpel" disable="true" mnemonicParsing="false" text="Registreer spel" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Button fx:id="btnRegistreerSpel" disable="true" mnemonicParsing="false" text="Registreer spel" GridPane.columnIndex="1" GridPane.rowIndex="8">
                <GridPane.margin>
                   <Insets top="5.0" />
                </GridPane.margin>
@@ -82,7 +97,34 @@
                   <Insets left="5.0" />
                </GridPane.margin>
             </Label>
-            <ChoiceBox fx:id="chbKeuze" minWidth="100.0" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <RadioButton fx:id="rdbDoel" mnemonicParsing="false" text="Doel" textFill="WHITE" toggleGroup="$elementGroup" GridPane.halignment="LEFT" GridPane.rowIndex="4">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="rdbMannetje" mnemonicParsing="false" text="Mannetje" textFill="WHITE" toggleGroup="$elementGroup" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="rdbVeld" mnemonicParsing="false" text="Veld" textFill="WHITE" toggleGroup="$elementGroup" GridPane.halignment="LEFT" GridPane.rowIndex="5">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></RadioButton>
+            <RadioButton fx:id="rdbKist" mnemonicParsing="false" text="Kist" textFill="WHITE" toggleGroup="$elementGroup" GridPane.halignment="LEFT" GridPane.rowIndex="6">
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></RadioButton>
          </children>
          <GridPane.margin>
             <Insets top="5.0" />

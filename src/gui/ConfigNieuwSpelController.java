@@ -8,9 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -30,9 +31,19 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     @FXML
     private TextField txtSpelnaam;
     @FXML
-    private ChoiceBox chbKeuze;
-    @FXML
     private Label lblSpelNaam;
+    @FXML
+    private RadioButton rdbMuur;
+    @FXML
+    private ToggleGroup elementGroup;
+    @FXML
+    private RadioButton rdbDoel;
+    @FXML
+    private RadioButton rdbMannetje;
+    @FXML
+    private RadioButton rdbVeld;
+    @FXML
+    private RadioButton rdbKist;
 
     private Label[][] gridLabels;
     private final DomeinController c;
@@ -44,17 +55,17 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
 
         this.c = c;
         this.startscherm = startscherm;
-        
+
         refresh();
 
         grdSpelbord.getStyleClass().add("border");
         txtSpelnaam.getStyleClass().add("border");
-        
+
         btnOK.setOnAction(this::btnOK_clicked);
         btnSpelbordKlaar.setOnAction(this::btnSpelbordKlaar_clicked);
         btnRegistreerSpel.setOnAction(this::btnRegistreerSpel_clicked);
 
-        chbKeuze.setItems(FXCollections.observableArrayList("Muur", "Mannetje", "Veld", "Doel", "Kist"));
+        //chbKeuze.setItems(FXCollections.observableArrayList("Muur", "Mannetje", "Veld", "Doel", "Kist"));
     }
 
     @Override
@@ -143,7 +154,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
                 if (event.getSource() == gridLabels[rij][kolom])
                 {
                     //c.plaatsElement(type, rij, kolom);
-                   //gridLabels[rij][kolom] = new Label(type);
+                    //gridLabels[rij][kolom] = new Label(type);
 //                    gridLabels[rij][kolom].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/muur.jpg"))));
 //                    grdSpelbord.add(gridLabels[rij][kolom], kolom, rij);
                     System.out.println("label " + rij + " " + kolom + " clicked");
@@ -171,11 +182,11 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     {
         try
         {
-            if(txtSpelnaam.getText().isEmpty())
+            if (txtSpelnaam.getText().isEmpty())
             {
                 throw new IllegalArgumentException();
             }
-            
+
             c.registreerCustomSpel();
             startscherm.installSpelNaamHandlers(); //Zorgt ervoor dat het spel na het registreren direct in het menu Spel te zien is.
         }

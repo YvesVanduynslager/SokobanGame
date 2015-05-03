@@ -24,7 +24,7 @@ public final class SpelerMapper
     public Speler zoek(String gebruikersnaam, String wachtwoord)
     {        
         String sqlString = "SELECT gebruikernaam, wachtwoord, isAdmin, voornaam, achternaam "
-                + "FROM Speler "
+                + "FROM speler "
                 + "WHERE gebruikernaam =  '" + gebruikersnaam + "'"
                 + "AND wachtwoord = '" + wachtwoord /*pass*/ + "'";
         Speler speler = new Speler();
@@ -69,7 +69,7 @@ public final class SpelerMapper
      */
     public void voegToe(Speler speler) throws GebruikerBestaatException
     {
-        String SQL_INSERT = "INSERT INTO Speler(gebruikernaam, wachtwoord, isAdmin, achternaam, voornaam) "
+        String SQL_INSERT = "INSERT INTO speler(gebruikernaam, wachtwoord, isAdmin, achternaam, voornaam) "
                 + "VALUES(?, ?, ?, ?, ?); ";
         Connectie.start();
         PreparedStatement sqlStatement;
@@ -113,7 +113,7 @@ public final class SpelerMapper
     private boolean bestaatSpeler(String gebruikersnaam)
     {
         PreparedStatement sqlStatement;
-        String sqlString = "SELECT gebruikernaam FROM Speler WHERE gebruikernaam = '" + gebruikersnaam + "'";
+        String sqlString = "SELECT gebruikernaam FROM speler WHERE gebruikernaam = '" + gebruikersnaam + "'";
         String opgehaaldeGebruikersnaam = null;
 
         try

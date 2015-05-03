@@ -134,13 +134,9 @@ public final class Spel
         Spelbord spelbord = new Spelbord();
         this.setHuidigSpelbord(spelbord);
     }
-    
-    /**
-     * 
-     * @param spelbord 
-     */
-    public void addSpelbord(Spelbord spelbord)
+
+    public void registreerSpelbord()
     {
-        spelborden.add(spelbord);
+        spelborden.add(huidigSpelbord);
     }
 }

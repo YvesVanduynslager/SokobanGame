@@ -200,7 +200,7 @@ public class StartSchermController extends GridPane implements Refreshable
 
         this.menuBewerken.setText(c.getString("menu.bewerken"));
         this.mItemAanpassenSpelbord.setText(c.getString("menu.bewerken.aanpassen"));
-        this.mItemConfigNieuwSpel.setText(c.getString("menu.bewerken.maak"));
+        this.mItemConfigNieuwSpel.setText(c.getString("menu.bewerken.configureer"));
 
         this.menuGebruiker.setText(c.getString("menu.gebruiker"));
         this.mItemAanmelden.setText(c.getString("menu.gebruiker.aanmelden"));
@@ -247,6 +247,13 @@ public class StartSchermController extends GridPane implements Refreshable
                         if(content instanceof ControlsSchermController)
                         {
                             ((ControlsSchermController) content).refresh();
+                        }
+                        else
+                        {
+                            if(content instanceof ConfigNieuwSpelController)
+                            {
+                                ((ConfigNieuwSpelController) content).refresh();
+                            }
                         }
                     }
                 }

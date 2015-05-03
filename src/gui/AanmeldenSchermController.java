@@ -91,7 +91,7 @@ public class AanmeldenSchermController extends GridPane implements Refreshable
                 startScherm.updateControls(false);
             }
             
-            startScherm.updateStatusLabel(c.getString("aangemeld.1") + speler[0] + " " + adminrechtenHulp + " " + c.getString("aangemeld.2"));
+            startScherm.updateStatusLabel(c.getString("aangemeld.1") + " " + speler[0] + " " + adminrechtenHulp + " " + c.getString("aangemeld.2"));
         }
     }
 
@@ -99,10 +99,13 @@ public class AanmeldenSchermController extends GridPane implements Refreshable
     public final void refresh()
     {
         lblTitel.setText(c.getString("aanmelden.titel"));
+        
         txtGebruikersnaam.setPromptText(c.getString("aanmelden.gebruikersnaam"));
-        txtGebruikersnaam.setTooltip(new Tooltip(c.getString("aanmelden.gebruikersnaam.tooltip")));
+        txtGebruikersnaam.setTooltip(new Tooltip(c.getString("gebruikersnaam.tooltip")));
+        
         pswWachtwoord.setPromptText(c.getString("aanmelden.wachtwoord"));
-        pswWachtwoord.setTooltip(new Tooltip(c.getString("aanmelden.wachtwoord.tooltip")));
+        pswWachtwoord.setTooltip(new Tooltip(c.getString("wachtwoord.tooltip")));
+        
         btnAnnuleren.setText(c.getString("annuleren"));
     }
 

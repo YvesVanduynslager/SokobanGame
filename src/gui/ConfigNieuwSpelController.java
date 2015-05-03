@@ -37,6 +37,8 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     private TextField txtSpelnaam;
     @FXML
     private ChoiceBox chbKeuze;
+    @FXML
+    private Label lblSpelNaam;
 
     private Label[][] gridLabels;
     private final DomeinController c;
@@ -48,9 +50,12 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
 
         this.c = c;
         this.startscherm = startscherm;
-
+        
         refresh();
 
+        grdSpelbord.getStyleClass().add("border");
+        txtSpelnaam.getStyleClass().add("border");
+        
         btnOK.setOnAction(this::btnOK_clicked);
         btnSpelbordKlaar.setOnAction(this::btnSpelbordKlaar_clicked);
         btnRegistreerSpel.setOnAction(this::btnRegistreerSpel_clicked);
@@ -78,8 +83,9 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     @Override
     public final void refresh()
     {
-        //this.wisBord();
-        //this.tekenBord();
+        lblSpelNaam.setText(c.getString("configureer.spelnaam"));
+        btnSpelbordKlaar.setText(c.getString("configureer.klaar"));
+        btnRegistreerSpel.setText(c.getString("configureer.registreer"));
     }
 
     public final void wisBord()
@@ -89,8 +95,8 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
 
     private void tekenBord()
     {
-        gridLabels = new Label[10][10];
         String[][] elementen = c.geefHuidigSpelbord();
+        gridLabels = new Label[elementen.length][elementen[0].length];
 
         for (int rij = 0; rij < elementen.length; rij++)
         {
@@ -155,11 +161,14 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     private void btnOK_clicked(ActionEvent event)
     {
         c.configureerNieuwSpel(txtSpelnaam.getText());
+        btnSpelbordKlaar.setDisable(false);
+        btnRegistreerSpel.setDisable(false);
         tekenBord();
     }
 
     private void btnSpelbordKlaar_clicked(ActionEvent event)
     {
+        c.registreerCustomSpelbord();
         c.maakLeegSpelbord();
         tekenBord();
     }
@@ -168,11 +177,22 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     {
         try
         {
+            if(txtSpelnaam.getText().isEmpty())
+            {
+                throw new IllegalArgumentException();
+            }
+            
             c.registreerCustomSpel();
         }
         catch (SpelNaamBestaatException snbe)
         {
-            startscherm.updateStatusLabel("Spelnaam bestaat al! Geef een andere naam in!");
+            System.err.println(snbe);
+            startscherm.updateStatusLabel(c.getString("configureer.registreer.naambezet"));
+        }
+        catch (IllegalArgumentException iae)
+        {
+            System.err.println(iae);
+            startscherm.updateStatusLabel(c.getString("configureer.registreer.naamleeg"));
         }
     }
 }

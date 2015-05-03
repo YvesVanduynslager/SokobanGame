@@ -12,8 +12,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.GridPane;
-import wachtwoordbeveiliging.BCrypt;
 
 /**
  * FXML Controller class
@@ -68,12 +68,18 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
     public final void refresh()
     {
         lblTitel.setText(c.getString("registreer.titel"));
+        
         txtGebruikersnaam.setPromptText(c.getString("registreer.gebruikersnaam"));
+        txtGebruikersnaam.setTooltip(new Tooltip(c.getString("gebruikersnaam.tooltip")));
+        
+        pswWachtwoord.setPromptText(c.getString("registreer.wachtwoord"));
+        pswWachtwoord.setTooltip(new Tooltip(c.getString("wachtwoord.tooltipe")));
+        
         txtVoornaam.setPromptText(c.getString("registreer.voornaam"));
         txtNaam.setPromptText(c.getString("registreer.naam"));
+        
         btnAnnuleren.setText(c.getString("annuleren"));
-        btnOK.setText(c.getString("ok"));
-        pswWachtwoord.setPromptText(c.getString("registreer.wachtwoord"));
+        btnOK.setText(c.getString("ok"));   
     }
 
     private void btnOK_gekozen(ActionEvent event)

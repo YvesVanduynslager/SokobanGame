@@ -288,4 +288,9 @@ public final class DomeinController
     {
         spelRepository.voegSpelToe(huidigSpel);
     }
+    
+    public void registreerCustomSpelbord()
+    {
+        huidigSpel.registreerSpelbord();
+    }
 }

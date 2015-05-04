@@ -250,12 +250,9 @@ public final class DomeinController
         return resourceBundle.getStringUitBundle(key);
     }
 
-    /*
-     TOEGEVOEGD VOOR UC5!!!
-     */
     /**
-     *
-     * @param spelNaam
+     * UC5. Maakt een nieuw spelobject met ingegeven parameter en roept maakLeegSpelbord() aan
+     * @param spelNaam naam van het nieuwe spel.
      */
     public void configureerNieuwSpel(String spelNaam)
     {
@@ -269,10 +266,10 @@ public final class DomeinController
     }
     
     /**
-     *
-     * @param elementType
-     * @param xPositie
-     * @param yPositie
+     * UC5. Plaatst een gekozen element op het spelbord op meegegeven index.
+     * @param elementType verwijst naar welk element er moet geplaatst worden.
+     * @param xPositie x-coördinaat van het toe te voegen element.
+     * @param yPositie y-coördinaat van het toe te voegen element.
      */
     public void plaatsElement(String elementType, int xPositie, int yPositie)
     {
@@ -280,8 +277,8 @@ public final class DomeinController
     }
 
     /**
-     * 
-     * @throws SpelNaamBestaatException 
+     * UC5. Registreert het geconfigureerde spel in de databank.
+     * @throws SpelNaamBestaatException
      */
     public void registreerCustomSpel() throws SpelNaamBestaatException
     {
@@ -289,7 +286,7 @@ public final class DomeinController
     }
     
     /**
-     * 
+     * UC5. Registreert het gemaakte spelbord in het huidige te configureren spel.
      */
     public void registreerCustomSpelbord()
     {

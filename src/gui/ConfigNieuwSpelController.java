@@ -3,7 +3,6 @@ package gui;
 import domein.DomeinController;
 import exceptions.SpelNaamBestaatException;
 import java.io.IOException;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,22 +32,25 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     @FXML
     private Label lblSpelNaam;
     @FXML
-    private RadioButton rdbMuur;
+    private RadioButton rdbMuur, rdbVeld, rdbDoel, rdbMannetje, rdbKist;
     @FXML
     private ToggleGroup elementGroup;
-    @FXML
-    private RadioButton rdbDoel;
-    @FXML
-    private RadioButton rdbMannetje;
-    @FXML
-    private RadioButton rdbVeld;
-    @FXML
-    private RadioButton rdbKist;
 
     private Label[][] gridLabels;
     private final DomeinController c;
     private final StartSchermController startscherm;
 
+    private final Image IMG_MUUR = new Image(getClass().getResourceAsStream("/images/muur.jpg"));
+    private final Image IMG_KIST = new Image(getClass().getResourceAsStream("/images/kist.jpg"));
+    private final Image IMG_DOEL = new Image(getClass().getResourceAsStream("/images/doel.jpg"));
+    private final Image IMG_MANNETJE = new Image(getClass().getResourceAsStream("/images/mannetje.jpg"));
+    private final Image IMG_VELD = new Image(getClass().getResourceAsStream("/images/veld.jpg"));
+
+    /**
+     * 
+     * @param startscherm
+     * @param c 
+     */
     public ConfigNieuwSpelController(StartSchermController startscherm, DomeinController c)
     {
         init();
@@ -65,11 +67,19 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
         btnSpelbordKlaar.setOnAction(this::btnSpelbordKlaar_clicked);
         btnRegistreerSpel.setOnAction(this::btnRegistreerSpel_clicked);
 
-        //chbKeuze.setItems(FXCollections.observableArrayList("Muur", "Mannetje", "Veld", "Doel", "Kist"));
+        this.toonRadioButtons(false);
+        rdbMannetje.setSelected(true);
+//        rdbMannetje.setGraphic(new ImageView(IMG_MANNETJE));
+//        rdbMuur.setGraphic(new ImageView(IMG_MUUR));
+//        rdbKist.setGraphic(new ImageView(IMG_KIST));
+//        rdbDoel.setGraphic(new ImageView(IMG_DOEL));
+//        rdbVeld.setGraphic(new ImageView(IMG_VELD));
     }
 
+    /**
+     * 
+     */
     @Override
-
     public final void init()
     {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("ConfigNieuwSpel.fxml"));
@@ -85,6 +95,9 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
         }
     }
 
+    /**
+     * 
+     */
     @Override
     public final void refresh()
     {
@@ -92,12 +105,31 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
         btnSpelbordKlaar.setText(c.getString("configureer.klaar"));
         btnRegistreerSpel.setText(c.getString("configureer.registreer"));
     }
+    
+    /**
+     * 
+     * @param zichtbaar 
+     */
+    private void toonRadioButtons(boolean zichtbaar)
+    {
+        rdbMuur.setVisible(zichtbaar);
+        rdbVeld.setVisible(zichtbaar);
+        rdbDoel.setVisible(zichtbaar);
+        rdbMannetje.setVisible(zichtbaar);
+        rdbKist.setVisible(zichtbaar);
+    }
 
+    /**
+     * 
+     */
     public final void wisBord()
     {
         grdSpelbord.getChildren().clear();
     }
 
+    /**
+     * 
+     */
     private void tekenBord()
     {
         String[][] elementen = c.geefHuidigSpelbord();
@@ -111,27 +143,27 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
                 {
                     case "#":
                         gridLabels[rij][kolom] = new Label("#");
-                        gridLabels[rij][kolom].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/muur.jpg"))));
+                        gridLabels[rij][kolom].setGraphic(new ImageView(IMG_MUUR));
                         grdSpelbord.add(gridLabels[rij][kolom], kolom, rij);
                         break;
                     case "K":
                         gridLabels[rij][kolom] = new Label("K");
-                        gridLabels[rij][kolom].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/kist.jpg"))));
+                        gridLabels[rij][kolom].setGraphic(new ImageView(IMG_KIST));
                         grdSpelbord.add(gridLabels[rij][kolom], kolom, rij);
                         break;
                     case ".":
                         gridLabels[rij][kolom] = new Label(".");
-                        gridLabels[rij][kolom].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/veld.jpg"))));
+                        gridLabels[rij][kolom].setGraphic(new ImageView(IMG_VELD));
                         grdSpelbord.add(gridLabels[rij][kolom], kolom, rij);
                         break;
                     case "D":
                         gridLabels[rij][kolom] = new Label("D");
-                        gridLabels[rij][kolom].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/doel.jpg"))));
+                        gridLabels[rij][kolom].setGraphic(new ImageView(IMG_DOEL));
                         grdSpelbord.add(gridLabels[rij][kolom], kolom, rij);
                         break;
                     case "O":
                         gridLabels[rij][kolom] = new Label("O");
-                        gridLabels[rij][kolom].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/mannetje.jpg"))));
+                        gridLabels[rij][kolom].setGraphic(new ImageView(IMG_MANNETJE));
                         grdSpelbord.add(gridLabels[rij][kolom], kolom, rij);
                         break;
                     default:
@@ -143,9 +175,52 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
         }
     }
 
+    /**
+     * 
+     * @param event 
+     */
     private void vakje_clicked(MouseEvent event)
     {
-        //Hier controleren welk item is geselecteerd (muur of kist of..)
+        String type = "mannetje";
+        ImageView imgElement = null;
+
+        if (rdbMuur.isSelected())
+        {
+            type = "muur";
+            imgElement = new ImageView(IMG_MUUR);
+        }
+        else
+        {
+            if (rdbVeld.isSelected())
+            {
+                type = "veld";
+                imgElement = new ImageView(IMG_VELD);
+            }
+            else
+            {
+                if (rdbDoel.isSelected())
+                {
+                    type = "doel";
+                    imgElement = new ImageView(IMG_DOEL);
+                }
+                else
+                {
+                    if (rdbKist.isSelected())
+                    {
+                        type = "kist";
+                        imgElement = new ImageView(IMG_KIST);
+                    }
+                    else
+                    {
+                        if (rdbMannetje.isSelected())
+                        {
+                            type = "mannetje";
+                            imgElement = new ImageView(IMG_MANNETJE);
+                        }
+                    }
+                }
+            }
+        }
 
         for (int rij = 0; rij < gridLabels.length; rij++)
         {
@@ -153,31 +228,51 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
             {
                 if (event.getSource() == gridLabels[rij][kolom])
                 {
-                    //c.plaatsElement(type, rij, kolom);
-                    //gridLabels[rij][kolom] = new Label(type);
-//                    gridLabels[rij][kolom].setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/muur.jpg"))));
-//                    grdSpelbord.add(gridLabels[rij][kolom], kolom, rij);
+                    c.plaatsElement(type, rij, kolom);
+                    gridLabels[rij][kolom].setGraphic(imgElement);
                     System.out.println("label " + rij + " " + kolom + " clicked");
                 }
             }
         }
+
+        this.wisBord();
+        this.tekenBord();
     }
 
+    /**
+     * 
+     * @param event 
+     */
     private void btnOK_clicked(ActionEvent event)
     {
         c.configureerNieuwSpel(txtSpelnaam.getText());
         btnSpelbordKlaar.setDisable(false);
-        tekenBord();
+
+        btnOK.setDisable(true);
+        this.toonRadioButtons(true);
+
+        this.wisBord();
+        this.tekenBord();
     }
 
+    /**
+     * 
+     * @param event 
+     */
     private void btnSpelbordKlaar_clicked(ActionEvent event)
     {
         c.registreerCustomSpelbord();
         c.maakLeegSpelbord();
         btnRegistreerSpel.setDisable(false);
-        tekenBord();
+
+        this.wisBord();
+        this.tekenBord();
     }
 
+    /**
+     * 
+     * @param event 
+     */
     private void btnRegistreerSpel_clicked(ActionEvent event)
     {
         try
@@ -189,11 +284,14 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
 
             c.registreerCustomSpel();
             startscherm.installSpelNaamHandlers(); //Zorgt ervoor dat het spel na het registreren direct in het menu Spel te zien is.
+            this.getChildren().clear();
         }
         catch (SpelNaamBestaatException snbe)
         {
             System.err.println(snbe);
             startscherm.updateStatusLabel(c.getString("configureer.registreer.naambezet"));
+            lblSpelNaam.setText(null);
+            btnOK.setDisable(false);
         }
         catch (IllegalArgumentException iae)
         {

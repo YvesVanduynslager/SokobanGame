@@ -267,12 +267,7 @@ public final class DomeinController
     {
         huidigSpel.maakLeegSpelbord();
     }
-
-    //ZELFDE ALS geefHuidigSpelbord()
-//    public String[][] geefLeegSpelbord()
-//    {
-//        return huidigSpel.getHuidigSpelbord().to2DString();
-//    }
+    
     /**
      *
      * @param elementType
@@ -284,11 +279,18 @@ public final class DomeinController
         huidigSpel.getHuidigSpelbord().plaatsElement(elementType, xPositie, yPositie);
     }
 
+    /**
+     * 
+     * @throws SpelNaamBestaatException 
+     */
     public void registreerCustomSpel() throws SpelNaamBestaatException
     {
         spelRepository.voegSpelToe(huidigSpel);
     }
     
+    /**
+     * 
+     */
     public void registreerCustomSpelbord()
     {
         huidigSpel.registreerSpelbord();

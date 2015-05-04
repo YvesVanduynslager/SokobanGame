@@ -23,7 +23,6 @@ import java.util.List;
 public final class SpelMapper
 {
     private final int VELDEN_ARRAY_GROOTTE = 10;
-    //private Element[][] velden;
     private Mannetje mannetje;
 
     /**
@@ -196,8 +195,11 @@ public final class SpelMapper
                     System.err.println("SQL fout in geefSpel: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
                 }
             }
-            //for-loop om te controleren op null-waarden in de velden array en die dan te vullen met een muur.
-            //Ik doe dit bewust met een gewone for-loop zodat ik de teller kan gebruiken in de declaratie van de Muur.
+
+            /*
+             for-loop om te controleren op null-waarden in de velden array en die dan te vullen met een muur.
+             Ik doe dit bewust met een gewone for-loop zodat ik de teller kan gebruiken in de declaratie van de Muur.
+             */
             for (int x = 0; x < 10; x++)
             {
                 for (int y = 0; y < 10; y++)
@@ -208,8 +210,10 @@ public final class SpelMapper
                     }
                 }
             }
+
             borden.add(new Spelbord(velden, mannetje));
         }
+
         Connectie.sluit();
 
         Spel spel = new Spel(naam, borden);
@@ -302,6 +306,7 @@ public final class SpelMapper
             stmtInsertSpelNaam = Connectie.getDatabaseConnectie().prepareStatement(sqlInsertSpelNaam);
             stmtInsertSpelNaam.setString(1, spelNaam);
             stmtInsertSpelNaam.executeUpdate();
+            stmtInsertSpelNaam.close();
         }
         catch (SQLException sqlEx)
         {
@@ -325,6 +330,7 @@ public final class SpelMapper
                 stmtInsertSpelbord = Connectie.getDatabaseConnectie().prepareStatement(sqlInsertSpelbord);
                 stmtInsertSpelbord.setInt(1, spelbordVreemdeSleutel);
                 stmtInsertSpelbord.executeUpdate();
+                stmtInsertSpelbord.close();
             }
             catch (SQLException sqlEx)
             {
@@ -335,8 +341,9 @@ public final class SpelMapper
         }
     }
 
-    /*
-     HIER NOG FOUT!!!!!!
+    /**
+     * 
+     * @param velden 
      */
     private void voegElementenToe(Element[][] velden)
     {
@@ -345,18 +352,10 @@ public final class SpelMapper
 
         int elementVreemdeSleutel = this.geefLaatsteSpelbordID();
 
-        System.out.println("Lengte rij: " + velden.length);
-        System.out.println("Lengte kolom " + velden[0].length);
-
-        for (int rij = 0; rij < velden.length; rij++)//Element[] rij : velden)
+        for (Element[] rij/*velden1*/ : velden)
         {
-            for (int kolom = 0; kolom < velden[rij].length; kolom++)//Element element : rij)
+            for (Element element : rij/*velden1*/)
             {
-                System.out.print(rij + "" + kolom + " "); //TEST
-                Element element = velden[rij][kolom]; //TEST
-                
-                //System.out.print(element.getxPositie() + "" + element.getyPositie() + " "); //TEST
-
                 if (!(element instanceof Muur))
                 {
                     if (element instanceof Veld && element.isDoel())
@@ -364,29 +363,39 @@ public final class SpelMapper
                         sqlInsertElementen = "INSERT INTO sokobandatabase.doel(positieX, positieY, Spelbord_spelbordID) "
                                 + "VALUES(?, ?, ?);";
                     }
-                    if (element instanceof Veld && !element.isDoel())
+                    else
                     {
-                        sqlInsertElementen = "INSERT INTO sokobandatabase.veld(positieX, positieY, Spelbord_spelbordID) "
-                                + "VALUES(?, ?, ?);";
+                        if (element instanceof Veld && !element.isDoel())
+                        {
+                            sqlInsertElementen = "INSERT INTO sokobandatabase.veld(positieX, positieY, Spelbord_spelbordID) "
+                                    + "VALUES(?, ?, ?);";
+                        }
+                        else
+                        {
+                            if (element instanceof Kist)
+                            {
+                                sqlInsertElementen = "INSERT INTO sokobandatabase.kist(positieX, positieY, Spelbord_spelbordID) "
+                                        + "VALUES(?, ?, ?);";
+                            }
+                            else
+                            {
+                                if (element instanceof Mannetje)
+                                {
+                                    sqlInsertElementen = "INSERT INTO sokobandatabase.mannetje(positieX, positieY, Spelbord_spelbordID) "
+                                            + "VALUES(?, ?, ?);";
+                                }
+                            }
+                        }
                     }
-                    if (element instanceof Kist)
-                    {
-                        sqlInsertElementen = "INSERT INTO sokobandatabase.kist(positieX, positieY, Spelbord_spelbordID) "
-                                + "VALUES(?, ?, ?);";
-                    }
-                    if (element instanceof Mannetje)
-                    {
-                        sqlInsertElementen = "INSERT INTO sokobandatabase.mannetje(positieX, positieY, Spelbord_spelbordID) "
-                                + "VALUES(?, ?, ?);";
-                    }
+
                     try
                     {
                         stmtInsertElementen = Connectie.getDatabaseConnectie().prepareStatement(sqlInsertElementen);
-                        
+
                         stmtInsertElementen.setInt(1, element.getxPositie());
                         stmtInsertElementen.setInt(2, element.getyPositie());
                         stmtInsertElementen.setInt(3, elementVreemdeSleutel);
-                        
+
                         stmtInsertElementen.executeUpdate();
                         stmtInsertElementen.close();
                     }
@@ -395,11 +404,7 @@ public final class SpelMapper
                         System.err.println("SQL fout in voegElementenToe: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
                     }
                 }
-                else
-                {
-                }
-            }
-            System.out.print("added to sokobandatabase \n"); //TEST
+            } //System.out.print("added to sokobandatabase \n"); //TEST
         }
     }
 

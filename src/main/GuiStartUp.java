@@ -6,7 +6,6 @@ import javafx.stage.Stage;
 import domein.DomeinController;
 import gui.StartSchermController;
 import javafx.application.Platform;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.WindowEvent;
@@ -36,12 +35,10 @@ public class GuiStartUp extends Application
         });
         
         
-        stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-            @Override
-            public void handle(WindowEvent t) {
-                Platform.exit();
-                System.exit(0);
-            }
+        stage.setOnCloseRequest((WindowEvent t) ->
+        {
+            Platform.exit();
+            System.exit(0);
         });
         stage.setResizable(false);
         

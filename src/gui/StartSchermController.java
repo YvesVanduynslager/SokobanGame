@@ -39,6 +39,10 @@ public class StartSchermController extends GridPane implements Refreshable
     private final DomeinController c;
     private GridPane content;
 
+    /**
+     * 
+     * @param c 
+     */
     public StartSchermController(DomeinController c)
     {
         init();
@@ -68,21 +72,12 @@ public class StartSchermController extends GridPane implements Refreshable
 
         mItemConfigNieuwSpel.setOnAction(this::mItemConfigNieuwSpel_gekozen);
 
-//        MenuItem keuzeSpel; //MenuItem declareren om later toe te voegen aan menuKiesSpel.
-//        for (String spelNaam : this.c.geefSpelNamen()) //Voor elke spelnaam die in de db zit
-//        {
-//            String naam = spelNaam.substring(0, 1).toUpperCase() + spelNaam.substring(1); //Eerste letter van spel omzetten naar hoofdletter
-//            keuzeSpel = new MenuItem(naam); //spelnaam toewijzen aan een nieuw MenuItem
-//            keuzeSpel.setOnAction(this::spel_gekozen); //ActionHandler toevoegen aan het MenuItem
-//            menuKiesSpel.getItems().add(keuzeSpel); //MenuItem toevoegen aan menuKiesSpel
-//        }
         installSpelNaamHandlers();
-
         refreshMenuLabels();
     }
 
     /**
-     *
+     * Initialisatie van fxml-root.
      */
     @Override
     public final void init()

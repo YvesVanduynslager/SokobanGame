@@ -48,6 +48,9 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
         refresh();
     }
     
+        /**
+     * Initialisatie van fxml-root.
+     */
     @Override
     public final void init()
     {

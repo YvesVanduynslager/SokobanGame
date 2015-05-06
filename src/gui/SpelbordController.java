@@ -49,6 +49,9 @@ public class SpelbordController extends GridPane implements Refreshable
         txaInfo.getStyleClass().add("border");
     }
     
+        /**
+     * Initialisatie van fxml-root.
+     */
     @Override
     public final void init()
     {

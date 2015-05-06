@@ -272,12 +272,12 @@ public final class DomeinController
     /**
      * UC5. Plaatst een gekozen element op het spelbord op meegegeven index.
      * @param elementType verwijst naar welk element er moet geplaatst worden.
-     * @param xPositie x-coördinaat van het toe te voegen element.
-     * @param yPositie y-coördinaat van het toe te voegen element.
+     * @param kolom kolom-positie van het toe te voegen element.
+     * @param rij rij-positie van het toe te voegen element.
      */
-    public void plaatsElement(String elementType, int xPositie, int yPositie)
+    public void plaatsElement(String elementType, int kolom, int rij)
     {
-        huidigSpel.getHuidigSpelbord().plaatsElement(elementType, xPositie, yPositie);
+        huidigSpel.getHuidigSpelbord().plaatsElement(elementType, kolom, rij);
     }
 
     /**
@@ -300,5 +300,10 @@ public final class DomeinController
             OngeldigAantalKistenException, OngeldigAantalDoelenException
     {
         huidigSpel.registreerSpelbord();
+    }
+    
+    public String geefSpelNaam()
+    {
+        return huidigSpel.getSpelNaam();
     }
 }

@@ -26,7 +26,7 @@ public final class SpelerMapper
         String sqlString = "SELECT gebruikernaam, wachtwoord, isAdmin, voornaam, achternaam "
                 + "FROM speler "
                 + "WHERE gebruikernaam =  '" + gebruikersnaam + "'"
-                + "AND wachtwoord = '" + wachtwoord /*pass*/ + "'";
+                + "AND wachtwoord = '" + wachtwoord + "'";
         Speler speler = new Speler();
 
         Connectie.start();

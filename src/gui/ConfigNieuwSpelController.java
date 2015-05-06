@@ -82,8 +82,8 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
 //        rdbVeld.setGraphic(new ImageView(IMG_VELD));
     }
 
-    /**
-     *
+        /**
+     * Initialisatie van fxml-root.
      */
     @Override
     public final void init()
@@ -272,7 +272,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
             c.registreerCustomSpelbord();
             c.maakLeegSpelbord();
             btnRegistreerSpel.setDisable(false);
-            startScherm.updateStatusLabel("Spelbord geregistreerd!");
+            startScherm.updateStatusLabel(c.geefAantalSpelborden() + " spelbord(en) geregistreerd!");
 
             this.wisBord();
             this.tekenBord();
@@ -314,6 +314,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
 
             c.registreerCustomSpel();
             startScherm.installSpelNaamHandlers(); //Zorgt ervoor dat het spel na het registreren direct in het menu Spel te zien is.
+            startScherm.updateStatusLabel(c.geefSpelNaam() + " geregistreerd!");
             this.getChildren().clear();
         }
         catch (SpelNaamBestaatException snbe)

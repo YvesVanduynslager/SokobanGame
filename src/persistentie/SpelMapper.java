@@ -75,7 +75,6 @@ public final class SpelMapper
 
         String sqlLaatste = "SELECT MAX(spelbordID) FROM spelbord;";
 
-        //Connectie.start();
         PreparedStatement stmtLaatsteID;
 
         try
@@ -135,7 +134,6 @@ public final class SpelMapper
     public Spel geefSpel(String naam)
     {
         Element[][] velden;
-        String spelbordNaam = "";
         final String[] ELEMENTEN =
         {
             "veld", "doel", "mannetje", "kist"
@@ -352,9 +350,9 @@ public final class SpelMapper
 
         int elementVreemdeSleutel = this.geefLaatsteSpelbordID();
 
-        for (Element[] rij/*velden1*/ : velden)
+        for (Element[] rij : velden)
         {
-            for (Element element : rij/*velden1*/)
+            for (Element element : rij)
             {
                 if (!(element instanceof Muur))
                 {
@@ -404,7 +402,7 @@ public final class SpelMapper
                         System.err.println("SQL fout in voegElementenToe: " + sqlEx.getMessage() + "\n" + sqlEx.getSQLState());
                     }
                 }
-            } //System.out.print("added to sokobandatabase \n"); //TEST
+            }
         }
     }
 

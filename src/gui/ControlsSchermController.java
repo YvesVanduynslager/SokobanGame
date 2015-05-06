@@ -37,6 +37,9 @@ public class ControlsSchermController extends GridPane implements Refreshable
         refresh();
     }
     
+        /**
+     * Initialisatie van fxml-root.
+     */
     @Override
     public final void init()
     {

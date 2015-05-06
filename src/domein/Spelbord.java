@@ -360,7 +360,7 @@ public final class Spelbord
             }
         }
 
-        System.out.print(this); //Test
+        //System.out.print(this); //Test
     }
 
     /**

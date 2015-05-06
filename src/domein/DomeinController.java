@@ -23,7 +23,6 @@ public final class DomeinController
     private Speler huidigeSpeler;
     private Spel huidigSpel;
     private String[] spelerString;
-    private Spelbord customSpelbord;
 
     /**
      * Default-constructor maakt een SpelerRepository (spelers opslaan en
@@ -59,11 +58,12 @@ public final class DomeinController
      *
      * @return String[] met gebruikersnaam en adminrechten.
      */
-    public String[] geefSpeler()
+    public String[] geefSpeler() // Beter met List!
     {
         spelerString = new String[2];
         spelerString[0] = huidigeSpeler.getGebruikersnaam();
         spelerString[1] = huidigeSpeler.getAdminrechten();
+        
         return spelerString;
     }
 
@@ -94,7 +94,7 @@ public final class DomeinController
      */
     public void registreer(String gebruikersnaam, String wachtwoord,
             String voornaam, String achternaam)
-            throws /*IllegalArgumentException*/GebruikersnaamOngeldigException, WachtwoordOngeldigException, GebruikerBestaatException
+            throws GebruikersnaamOngeldigException, WachtwoordOngeldigException, GebruikerBestaatException
     {
         Speler sp = new Speler(gebruikersnaam, wachtwoord,
                 voornaam, achternaam, "nee");
@@ -175,7 +175,7 @@ public final class DomeinController
 
     /**
      * UC3: Speel spel, UC4: Voltooi spelbord. Geeft het huidige spelbord terug
-     * als String.
+     * als String. Consoleversie
      *
      * @return Huidige spelbord als String;
      */
@@ -186,12 +186,12 @@ public final class DomeinController
 
     /**
      * UC3: Speel spel, UC4: Voltooi spelbord. Deze methode geeft het huidige
-     * spelbord terug in String[][]-formaat. Dient als basis voor de opbouw van
+     * spelbord terug als String[][]. Dient als basis voor de opbouw van
      * het spelbord in de GUI.
      *
      * @return Het huidige spelbord als String[][]
      */
-    public String[][] geefHuidigSpelbord()
+    public String[][] spelbordTo2DString()
     {
         return huidigSpel.getHuidigSpelbord().to2DString();
     }

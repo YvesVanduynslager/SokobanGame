@@ -69,6 +69,8 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
 
         this.toonRadioButtons(false);
         rdbMannetje.setSelected(true);
+        
+        //Radiobuttons weergeven als images.
 //        rdbMannetje.setGraphic(new ImageView(IMG_MANNETJE));
 //        rdbMuur.setGraphic(new ImageView(IMG_MUUR));
 //        rdbKist.setGraphic(new ImageView(IMG_KIST));
@@ -132,7 +134,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
      */
     private void tekenBord()
     {
-        String[][] elementen = c.geefHuidigSpelbord();
+        String[][] elementen = c.spelbordTo2DString();
         gridLabels = new Label[elementen.length][elementen[0].length];
 
         for (int rij = 0; rij < elementen.length; rij++)

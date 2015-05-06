@@ -87,7 +87,7 @@ public class SpelbordController extends GridPane implements Refreshable
 
     private void tekenBord()
     {
-        String[][] elementen = c.geefHuidigSpelbord();
+        String[][] elementen = c.spelbordTo2DString();
 
         for (int rij = 0; rij < elementen.length; rij++)
         {

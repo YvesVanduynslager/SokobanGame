@@ -3,6 +3,10 @@ package domein;
 /* IMPORTS */
 import exceptions.GebruikerBestaatException;
 import exceptions.GebruikersnaamOngeldigException;
+import exceptions.OngeldigAantalDoelenException;
+import exceptions.OngeldigAantalKistenException;
+import exceptions.OngeldigAantalMannetjesException;
+import exceptions.OngelijkAantalDoelenKistenException;
 import exceptions.SpelNaamBestaatException;
 import exceptions.WachtwoordOngeldigException;
 import java.util.List;
@@ -287,8 +291,13 @@ public final class DomeinController
     
     /**
      * UC5. Registreert het gemaakte spelbord in het huidige te configureren spel.
+     * @throws exceptions.OngeldigAantalMannetjesException
+     * @throws exceptions.OngelijkAantalDoelenKistenException
+     * @throws exceptions.OngeldigAantalKistenException
+     * @throws exceptions.OngeldigAantalDoelenException
      */
-    public void registreerCustomSpelbord()
+    public void registreerCustomSpelbord() throws OngeldigAantalMannetjesException, OngelijkAantalDoelenKistenException,
+            OngeldigAantalKistenException, OngeldigAantalDoelenException
     {
         huidigSpel.registreerSpelbord();
     }

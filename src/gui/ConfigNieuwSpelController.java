@@ -1,6 +1,10 @@
 package gui;
 
 import domein.DomeinController;
+import exceptions.OngeldigAantalDoelenException;
+import exceptions.OngeldigAantalKistenException;
+import exceptions.OngeldigAantalMannetjesException;
+import exceptions.OngelijkAantalDoelenKistenException;
 import exceptions.SpelNaamBestaatException;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -38,7 +42,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
 
     private Label[][] gridLabels;
     private final DomeinController c;
-    private final StartSchermController startscherm;
+    private final StartSchermController startScherm;
 
     private final Image IMG_MUUR = new Image(getClass().getResourceAsStream("/images/muur.jpg"));
     private final Image IMG_KIST = new Image(getClass().getResourceAsStream("/images/kist.jpg"));
@@ -47,16 +51,16 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     private final Image IMG_VELD = new Image(getClass().getResourceAsStream("/images/veld.jpg"));
 
     /**
-     * 
+     *
      * @param startscherm
-     * @param c 
+     * @param c
      */
     public ConfigNieuwSpelController(StartSchermController startscherm, DomeinController c)
     {
         init();
 
         this.c = c;
-        this.startscherm = startscherm;
+        this.startScherm = startscherm;
 
         refresh();
 
@@ -69,7 +73,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
 
         this.toonRadioButtons(false);
         rdbMannetje.setSelected(true);
-        
+
         //Radiobuttons weergeven als images.
 //        rdbMannetje.setGraphic(new ImageView(IMG_MANNETJE));
 //        rdbMuur.setGraphic(new ImageView(IMG_MUUR));
@@ -79,7 +83,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     * 
+     *
      */
     @Override
     public final void init()
@@ -98,7 +102,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     * 
+     *
      */
     @Override
     public final void refresh()
@@ -107,10 +111,10 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
         btnSpelbordKlaar.setText(c.getString("configureer.klaar"));
         btnRegistreerSpel.setText(c.getString("configureer.registreer"));
     }
-    
+
     /**
-     * 
-     * @param zichtbaar 
+     *
+     * @param zichtbaar
      */
     private void toonRadioButtons(boolean zichtbaar)
     {
@@ -122,7 +126,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     * 
+     *
      */
     public final void wisBord()
     {
@@ -130,7 +134,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     * 
+     *
      */
     private void tekenBord()
     {
@@ -178,8 +182,8 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     * 
-     * @param event 
+     *
+     * @param event
      */
     private void vakje_clicked(MouseEvent event)
     {
@@ -242,8 +246,8 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     * 
-     * @param event 
+     *
+     * @param event
      */
     private void btnOK_clicked(ActionEvent event)
     {
@@ -258,22 +262,46 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     * 
-     * @param event 
+     *
+     * @param event
      */
     private void btnSpelbordKlaar_clicked(ActionEvent event)
     {
-        c.registreerCustomSpelbord();
-        c.maakLeegSpelbord();
-        btnRegistreerSpel.setDisable(false);
+        try
+        {
+            c.registreerCustomSpelbord();
+            c.maakLeegSpelbord();
+            btnRegistreerSpel.setDisable(false);
+            startScherm.updateStatusLabel("Spelbord geregistreerd!");
 
-        this.wisBord();
-        this.tekenBord();
+            this.wisBord();
+            this.tekenBord();
+        }
+        catch (OngeldigAantalDoelenException e)
+        {
+            System.err.println(e);
+            startScherm.updateStatusLabel("Plaats minstens 1 doel op het spelbord!");
+        }
+        catch (OngeldigAantalKistenException e)
+        {
+            System.err.println(e);
+            startScherm.updateStatusLabel("Plaats minstens 1 kist op het spelbord!");
+        }
+        catch (OngeldigAantalMannetjesException e)
+        {
+            System.err.println(e);
+            startScherm.updateStatusLabel("Er mag juist één mannetje op het spelbord staan!");
+        }
+        catch (OngelijkAantalDoelenKistenException e)
+        {
+            System.err.println(e);
+            startScherm.updateStatusLabel("Het aantal doelen en kisten moet gelijk zijn!");
+        }
     }
 
     /**
-     * 
-     * @param event 
+     *
+     * @param event
      */
     private void btnRegistreerSpel_clicked(ActionEvent event)
     {
@@ -285,20 +313,20 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
             }
 
             c.registreerCustomSpel();
-            startscherm.installSpelNaamHandlers(); //Zorgt ervoor dat het spel na het registreren direct in het menu Spel te zien is.
+            startScherm.installSpelNaamHandlers(); //Zorgt ervoor dat het spel na het registreren direct in het menu Spel te zien is.
             this.getChildren().clear();
         }
         catch (SpelNaamBestaatException snbe)
         {
             System.err.println(snbe);
-            startscherm.updateStatusLabel(c.getString("configureer.registreer.naambezet"));
+            startScherm.updateStatusLabel(c.getString("configureer.registreer.naambezet"));
             lblSpelNaam.setText(null);
             btnOK.setDisable(false);
         }
         catch (IllegalArgumentException iae)
         {
             System.err.println(iae);
-            startscherm.updateStatusLabel(c.getString("configureer.registreer.naamleeg"));
+            startScherm.updateStatusLabel(c.getString("configureer.registreer.naamleeg"));
         }
     }
 }

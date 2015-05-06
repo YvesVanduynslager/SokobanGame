@@ -14,7 +14,7 @@ public final class Taal
     private ResourceBundle resourceBundle;
 
     /**
-     * methode om de taalkeuze in te stellen.
+     * Instellen van de taalkeuze voor de CUI.
      *
      * @param locale integer die gebruikt wordt om juiste taal te bepalen.
      */
@@ -38,7 +38,7 @@ public final class Taal
     }
 
     /**
-     * methode om de taalkeuze in te stellen.
+     * Instellen van de taalkeuze voor de GUI.
      *
      * @param locale integer die gebruikt wordt om juiste taal te bepalen.
      */

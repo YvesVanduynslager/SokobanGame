@@ -12,7 +12,6 @@ import exceptions.WachtwoordOngeldigException;
 public final class Speler
 {
     /* DECLARATIES VARIABELEN */
-    private int id;
     private String gebruikersnaam, wachtwoord, adminrechten, voornaam,
             achternaam;
 
@@ -176,11 +175,10 @@ public final class Speler
      *
      * @param wachtwoord Te controleren en in te stellen wachtwoord als String.
      */
-    private void setEnControleerWachtwoord(String wachtwoord) //throws WachtwoordOngeldigException
+    private void setEnControleerWachtwoord(String wachtwoord)
     {
         if (!geldigWachtwoord(wachtwoord))
         {
-            //throw new IllegalArgumentException();
             throw new WachtwoordOngeldigException();
         }
         this.setWachtwoord(wachtwoord);
@@ -198,38 +196,5 @@ public final class Speler
          minstens 1 hoofdletter, 1 kleine letter én een cijfer bevatten.
          */
         return wachtwoord.matches("(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}");
-//        int numOfUpperLetters = 0; // initialiseren aantal lowerCase letters
-//        int numOfLowerLetters = 0; // initialiseren aantal upperCase letters
-//        int numOfDigits = 0; // initialiseren aantal cijfers
-//
-//        byte[] bytes = wachtwoord.getBytes();
-//        for (byte tempByte : bytes)
-//        {
-//            char tempChar = (char) tempByte;
-//            if (Character.isDigit(tempChar))
-//            {
-//                numOfDigits++;
-//            }
-//
-//            if (Character.isUpperCase(tempChar))
-//            {
-//                numOfUpperLetters++;
-//            }
-//
-//            if (Character.isLowerCase(tempChar))
-//            {
-//                numOfLowerLetters++;
-//            }
-//        }
-//        // indien aan alles werd voldaan: resultaat >= 1; anders 0
-//        if (numOfDigits * numOfUpperLetters * numOfLowerLetters *
-//                (wachtwoord.length() / 8) >= 1)
-//        {
-//            return true;
-//        }
-//        else
-//        {
-//            return false;
-//        }
     }
 }

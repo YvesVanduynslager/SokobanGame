@@ -9,29 +9,29 @@ package domein;
 public final class Muur extends Element
 {
     /**
-     * Constructor stelt x positie, y positie in van het element, en stelt in
+     * Constructor stelt kolom-positie, rij-positie in van het element, en stelt in
      * dat dit element geen doel is.
      *
-     * @param xPositie x-coördinaat, int.
-     * @param yPositie y-coördinaat, int
+     * @param kolomPositie kolom-positie, int.
+     * @param rijPositie rij-positie, int
      */
-    public Muur(int xPositie, int yPositie)
+    public Muur(int kolomPositie, int rijPositie)
     {
-        super(xPositie, yPositie, false);
+        super(kolomPositie, rijPositie, false);
     }
     
     /**
-     * Constructor stelt x positie, y positie in van het element, en stelt in
+     * Constructor stelt kolom-positie, rij-positie in van het element, en stelt in
      * dat dit element geen doel is. Stelt ook in of dit element mag vervangen worden op het spelbord.
      * Deze constructor gebruiken om spelbord te maken.
      * 
-     * @param xPositie x-coördinaat, int
-     * @param yPositie y-coördinaat, int
+     * @param kolomPositie kolom-positie, int
+     * @param rijPositie rij-positie, int
      * @param staatVast stelt in of het Element vervangen mag worden op het spelbord
      */
-    public Muur(int xPositie, int yPositie, boolean staatVast)
+    public Muur(int kolomPositie, int rijPositie, boolean staatVast)
     {
-        super(xPositie, yPositie, false, staatVast);
+        super(kolomPositie, rijPositie, false, staatVast);
     }
 
     /**

@@ -6,83 +6,94 @@ package domein;
  */
 public abstract class Element
 {
-    
-    private int xPositie;
-    private int yPositie;
+    private int kolomPositie;
+    private int rijPositie;
     private boolean isDoel;
     private boolean staatVast;
 
     /**
-     * Constructor stelt x positie, y positie in van het element, en stelt in of het element als een doel behandelt moet worden.
-     * @param xPositie x-coördinaat, int.
-     * @param yPositie y-coördinaat, int
+     * Constructor stelt kolom-positie, rij-positie in van het element, en stelt in of het element als een doel behandelt moet worden.
+     * @param kolomPositie kolom-positie, int.
+     * @param rijPositie rij-positie, int
      * @param isDoel true als doel, false als geen doel.
      */
-    public Element(int xPositie, int yPositie, boolean isDoel)
+    public Element(int kolomPositie, int rijPositie, boolean isDoel)
     {
-        this.xPositie = xPositie;
-        this.yPositie = yPositie;
+        this.kolomPositie = kolomPositie;
+        this.rijPositie = rijPositie;
         this.isDoel = isDoel;
     }
     
-    public Element(int xPositie, int yPositie, boolean isDoel, boolean staatVast)
+    /**
+     * Constructor stelt kolom-positie, rij-positie in van het element, en stelt in of het element als een doel behandelt moet worden
+     * en of het element vast staat op het spelbord.
+     * @param kolomPositie kolom-positie, int.
+     * @param rijPositie rij-positie, int.
+     * @param isDoel true als doel, false als geen doel.
+     * @param staatVast true als vaststaand, false als niet vaststaand.
+     */
+    public Element(int kolomPositie, int rijPositie, boolean isDoel, boolean staatVast)
     {
-        this(xPositie, yPositie, isDoel);
+        this(kolomPositie, rijPositie, isDoel);
         this.staatVast = staatVast;
     }
 
     /**
-     * Teruggeven van x-coördinaat.
-     * @return x-coördinaat als int.
+     * Teruggeven van kolom-positie.
+     * @return kolom-positie als int.
      */
-    public int getxPositie()
+    public int getKolomPositie()
     {
-        return xPositie;
+        return kolomPositie;
     }
 
     /**
-     * Instellen van x-coördinaat.
-     * @param xPositie x-coördinaat als int.
+     * Instellen van kolom-positie
+     * @param kolomPositie kolom-positie als int.
      */
-    public void setxPositie(int xPositie)
+    public void setKolomPositie(int kolomPositie)
     {
-        this.xPositie = xPositie;
+        this.kolomPositie = kolomPositie;
     }
 
     /**
-     * Teruggeven van y-coördinaat.
-     * @return y-coördinaat als int.
+     * Teruggeven van rij-positie.
+     * @return rij-positie als int.
      */
-    public int getyPositie()
+    public int getRijPositie()
     {
-        return yPositie;
+        return rijPositie;
     }
 
     /**
-     * Instellen van y-coördinaat.
-     * @param yPositie y-coördinaat als int.
+     * Instellen van rij-positie
+     * @param rijPositie rij-positie als int.
      */
-    public void setyPositie(int yPositie)
+    public void setRijPositie(int rijPositie)
     {
-        this.yPositie = yPositie;
+        this.rijPositie = rijPositie;
     }
 
     /**
      * Teruggeven van doelinstelling.
-     * @return True als doel, false als geen doel.
+     * @return true als doel, false als geen doel.
      */
     public boolean isDoel()
     {
         return isDoel;
     }
     
+    /**
+     * Teruggeven van vaststand-instelling.
+     * @return true als vaststaand, false als niet vaststaand.
+     */
     public boolean staatVast()
     {
         return staatVast;
     }
 
     /**
-     * Instellen van doel.
+     * Instellen of dit element een doel is of niet.
      * @param isDoel True als doel, false als geen doel.
      */
     public void setIsDoel(boolean isDoel)

@@ -200,13 +200,13 @@ public final class SpelMapper
              for-loop om te controleren op null-waarden in de velden array en die dan te vullen met een muur.
              Ik doe dit bewust met een gewone for-loop zodat ik de teller kan gebruiken in de declaratie van de Muur.
              */
-            for (int x = 0; x < 10; x++)
+            for (int rij = 0; rij < 10; rij++)
             {
-                for (int y = 0; y < 10; y++)
+                for (int kolom = 0; kolom < 10; kolom++)
                 {
-                    if (velden[x][y] == null)
+                    if (velden[rij][kolom] == null)
                     {
-                        velden[x][y] = new Muur(x, y);
+                        velden[rij][kolom] = new Muur(rij, kolom);
                     }
                 }
             }
@@ -392,8 +392,8 @@ public final class SpelMapper
                     {
                         stmtInsertElementen = Connectie.getDatabaseConnectie().prepareStatement(sqlInsertElementen);
 
-                        stmtInsertElementen.setInt(1, element.getxPositie());
-                        stmtInsertElementen.setInt(2, element.getyPositie());
+                        stmtInsertElementen.setInt(1, element.getKolomPositie());
+                        stmtInsertElementen.setInt(2, element.getRijPositie());
                         stmtInsertElementen.setInt(3, elementVreemdeSleutel);
 
                         stmtInsertElementen.executeUpdate();

@@ -9,16 +9,16 @@ package domein;
 public final class Mannetje extends Element
 {
     /**
-     * Constructor stelt x positie, y positie in van het element, en stelt in of
+     * Constructor stelt kolom-positie, rij-positie in van het element, en stelt in of
      * het element als een doel behandelt moet worden.
      *
-     * @param xPositie x-coördinaat, int.
-     * @param yPositie y-coördinaat, int
+     * @param kolomPositie kolom-positie, int.
+     * @param rijPositie rij-positie, int
      * @param isDoel true als doel, false als geen doel.
      */
-    public Mannetje(int xPositie, int yPositie, boolean isDoel)
+    public Mannetje(int kolomPositie, int rijPositie, boolean isDoel)
     {
-        super(xPositie, yPositie, isDoel, false);
+        super(kolomPositie, rijPositie, isDoel, false);
 
     }
 

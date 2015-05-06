@@ -14,12 +14,17 @@ public final class SpelerRepository
     /* DECLARATIES CONSTANTEN */
     private final SpelerMapper spelerMapper;
 
+    /**
+     * Default-constructor initialiseert een SpelerMapper-object.
+     */
     public SpelerRepository()
     {
         spelerMapper = new SpelerMapper();
     }
 
     /**
+     * Vraagt aan SpelerMapper om het Speler-object terug te geven volgens
+     * ingegeven parameters.
      *
      * @param gebruikersnaam gebruikersnaam van de speler
      * @param wachtwoord wachtwoord van de speler
@@ -32,8 +37,9 @@ public final class SpelerRepository
     }
 
     /**
+     * Vraagt aan SpelerMapper om het Speler-object in parameterlijst toe te voegen aan databank.
      *
-     * @param speler Het spelerobject die toegevoegd moet worden aan de
+     * @param speler Het spelerobject dat toegevoegd moet worden aan de
      * database.
      * @throws exceptions.GebruikerBestaatException throws naar
      * DomeinController.

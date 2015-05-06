@@ -1,5 +1,10 @@
 package domein;
 
+import exceptions.OngeldigAantalDoelenException;
+import exceptions.OngeldigAantalKistenException;
+import exceptions.OngeldigAantalMannetjesException;
+import exceptions.OngelijkAantalDoelenKistenException;
+
 /**
  * Beheert de Spelbord-objecten. Verplaatsen van mannetje, teruggeven van
  * spelbord, bijhouden aantal zetten.
@@ -10,16 +15,18 @@ public final class Spelbord
 {
     /* DECLARATIES VARIABELEN */
     private int aantalZetten;
-    private boolean voltooid;
     /* DECLARATIES CONSTANTEN */
     private Element[][] velden;
     private Mannetje mannetje;
-    
+
+    /**
+     * Default-constructor stelt een leeg spelbord in.
+     */
     public Spelbord()
     {
         this.maakLeegSpelbord(); //initialiseren van een leeg spelbord;
     }
-    
+
     /**
      * Initialiseert de naam, velden, het mannetje en het aantal zetten.
      *
@@ -44,29 +51,30 @@ public final class Spelbord
     }
 
     /**
+     * Geeft het aangrenzend element terug op basis van meegegeven parameters.
      *
-     * @param element
-     * @param richting
-     * @return
+     * @param element Element object waarop gecontroleerd moet worden.
+     * @param richting in welke richting gecontroleerd moet worden.
+     * @return aangrenzend Element-object.
      */
     private Element geefAangrenzendElement(Element element, int richting)
     {
-        int x = element.getxPositie();
-        int y = element.getyPositie();
+        int kolom = element.getKolomPositie();
+        int rij = element.getRijPositie();
 
-        int[] x1 =
+        int[] kolom1 =
         {
-            x - 1, x + 1, x, x
-        }; /*x1 bevat de x-waarden voor de veplaatsing van het mannetje
+            kolom - 1, kolom + 1, kolom, kolom
+        }; /*kolom1 bevat de kolom-waarden voor de veplaatsing van het mannetje
          in de vorm {omhoog, omlaag, links, rechts}*/
 
-        int[] y1 =
+        int[] rij1 =
         {
-            y, y, y - 1, y + 1
-        }; /*y1 bevat de y-waarden voor de veplaatsing van het mannetje
+            rij, rij, rij - 1, rij + 1
+        }; /*rij1 bevat de rij-waarden voor de veplaatsing van het mannetje
          in de vorm {omhoog, omlaag, links, rechts}*/
 
-        return velden[x1[richting]][y1[richting]];
+        return velden[kolom1[richting]][rij1[richting]];
     }
 
     /**
@@ -77,9 +85,9 @@ public final class Spelbord
      */
     public void verplaatsMannetje(int richting)
     {
-        int x0 = mannetje.getxPositie();
-        int y0 = mannetje.getyPositie();
-        int x, y, xNa, yNa;
+        int rij0 = mannetje.getKolomPositie();
+        int kolom0 = mannetje.getRijPositie();
+        int rij, kolom, rijNa, kolomNa;
 
         Element aangrenzend = this.geefAangrenzendElement(mannetje, richting);
         Element naAangrenzend;
@@ -93,20 +101,20 @@ public final class Spelbord
             naAangrenzend = aangrenzend; //Om geen nullpointer te krijgen. Dit gaf plots een fout waar er vroeger geen was maar er wel een moest zijn.
         }
 
-        x = aangrenzend.getxPositie();
-        y = aangrenzend.getyPositie();
-        xNa = naAangrenzend.getxPositie();
-        yNa = naAangrenzend.getyPositie();
+        rij = aangrenzend.getKolomPositie();
+        kolom = aangrenzend.getRijPositie();
+        rijNa = naAangrenzend.getKolomPositie();
+        kolomNa = naAangrenzend.getRijPositie();
 
         if (aangrenzend instanceof Veld) //als aangrenzend element een Veld is
         {
             if (mannetje.isDoel()) //als huidige veld doel is
-            {             
-                velden[x0][y0] = new Veld(x0, y0, true);
+            {
+                velden[rij0][kolom0] = new Veld(rij0, kolom0, true);
             }
             else //als huidige veld geen doel is
             {
-                velden[x0][y0] = new Veld(x0, y0, false);
+                velden[rij0][kolom0] = new Veld(rij0, kolom0, false);
             }
             if (aangrenzend.isDoel()) //en volgend element een doel is
             {
@@ -118,20 +126,20 @@ public final class Spelbord
             }
 
             /* NIET VERPLAATSEN */
-            mannetje.setxPositie(x);
-            mannetje.setyPositie(y);
-            velden[x][y] = mannetje;
+            mannetje.setKolomPositie(rij);
+            mannetje.setRijPositie(kolom);
+            velden[rij][kolom] = mannetje;
         }
 
         if (aangrenzend instanceof Kist && naAangrenzend instanceof Veld)
         {
             if (mannetje.isDoel()) //als huidige veld doel is
             {
-                velden[x0][y0] = new Veld(x0, y0, true);
+                velden[rij0][kolom0] = new Veld(rij0, kolom0, true);
             }
             else //als huidige veld geen doel is
             {
-                velden[x0][y0] = new Veld(x0, y0, false);
+                velden[rij0][kolom0] = new Veld(rij0, kolom0, false);
             }
             if (aangrenzend.isDoel()) //als aangrenzend veld doel is
             {
@@ -152,22 +160,23 @@ public final class Spelbord
             }
 
             /* NIET VERPLAATSEN */
-            mannetje.setxPositie(x);
-            mannetje.setyPositie(y);
-            aangrenzend.setxPositie(xNa);
-            aangrenzend.setyPositie(yNa);
+            mannetje.setKolomPositie(rij);
+            mannetje.setRijPositie(kolom);
+            aangrenzend.setKolomPositie(rijNa);
+            aangrenzend.setRijPositie(kolomNa);
 
-            velden[x][y] = mannetje;
-            velden[xNa][yNa] = aangrenzend;
+            velden[rij][kolom] = mannetje;
+            velden[rijNa][kolomNa] = aangrenzend;
         }
 
-        if (x0 != mannetje.getxPositie() || y0 != mannetje.getyPositie()) //Als het mannetje effectief heeft bewogen
+        if (rij0 != mannetje.getKolomPositie() || kolom0 != mannetje.getRijPositie()) //Als het mannetje effectief heeft bewogen
         {
             ++aantalZetten;
         }
-        
+
         System.gc(); /*Oproep als test. Na cratie van een exe file en bij uitvoering hiervan,
-        stijgt het gebruikte RAM-geheugen bij iedere verplaatsing met 1-5 MB.*/
+         stijgt het gebruikte RAM-geheugen bij iedere verplaatsing met 1-5 MB.*/
+
     }
 
     /**
@@ -209,27 +218,18 @@ public final class Spelbord
                 }
             }
         }
-        if (getAantalKisten() == aantalKistenOpDoel)
-        {
-            this.voltooid = true;
-        }
-        else
-        {
-            this.voltooid = false;
-        }
-        return voltooid;
+        return getAantalKisten() == aantalKistenOpDoel;
     }
 
     /**
-     * Bouwt het spelbord op als String.
-     * Wordt enkel gebruikt in CUI.
+     * Bouwt het spelbord op als String. Wordt enkel gebruikt in CUI.
      *
      * @return spelbord als String.
      */
     @Override
     public String toString()
     {
-        String output = ""; //spelbordNaam + "\n";
+        String output = "";
 
         for (Element[] rij : this.velden)
         {
@@ -243,25 +243,24 @@ public final class Spelbord
         output += "-----------------------------------------\n";
         return output;
     }
-    
+
     /**
-     * Bouwt het spelbord op als 2D String.
-     * Wordt enkel gebruikt in GUI.
-     * 
+     * Bouwt het spelbord op als 2D String. Wordt enkel gebruikt in GUI.
+     *
      * @return spelbord als 2D String.
      */
     public String[][] to2DString()
     {
         String[][] veldenString = new String[velden.length][velden[0].length];
 
-        for (int i = 0; i < velden.length; i++)
+        for (int rij = 0; rij < velden.length; rij++)
         {
-            for (int j = 0; j < velden[i].length; j++)
+            for (int kolom = 0; kolom < velden[rij].length; kolom++)
             {
-                veldenString[i][j] = velden[i][j].toString();
+                veldenString[rij][kolom] = velden[rij][kolom].toString();
             }
         }
-        
+
         return veldenString;
     }
 
@@ -286,72 +285,135 @@ public final class Spelbord
     }
 
     /**
+     * Plaatst een element op basis parameters op het spelbord.
      *
-     * @param elementType
-     * @param xPositie
-     * @param yPositie
+     * @param elementType Welk soort element moet toegevoegd worden (kist, muur, mannetje, veld of doel).
+     * @param rij rij-index.
+     * @param kolom kolom-index.
      */
-    public void plaatsElement(String elementType, int xPositie, int yPositie)
+    public void plaatsElement(String elementType, int rij, int kolom)
     {
-        if(geldigePlaats(xPositie, yPositie))
+        if (geldigePlaats(rij, kolom))
         {
             switch (elementType)
             {
                 case "kist":
-                    velden[xPositie][yPositie] = new Kist(xPositie, yPositie, false);
+                    velden[rij][kolom] = new Kist(rij, kolom, false);
                     break;
                 case "muur":
-                    velden[xPositie][yPositie] = new Muur(xPositie, yPositie);
+                    velden[rij][kolom] = new Muur(rij, kolom);
                     break;
                 case "mannetje":
-                    velden[xPositie][yPositie] = new Mannetje(xPositie, yPositie, false);
+                    velden[rij][kolom] = new Mannetje(rij, kolom, false);
                     break;
                 case "veld":
-                    velden[xPositie][yPositie] = new Veld(xPositie, yPositie, false);
+                    velden[rij][kolom] = new Veld(rij, kolom, false);
                     break;
                 case "doel":
-                    velden[xPositie][yPositie] = new Veld(xPositie, yPositie, true);
+                    velden[rij][kolom] = new Veld(rij, kolom, true);
                     break;
                 default:
-                    velden[xPositie][yPositie] = new Veld(xPositie, yPositie, false);
+                    velden[rij][kolom] = new Veld(rij, kolom, false);
                     break;
             }
         }
     }
-    
-    private boolean geldigePlaats(int xPositie, int yPositie)
-    {
-        return !velden[xPositie][yPositie].staatVast();
-    }
-    
+
     /**
-     * OK!!!
+     * Controleert of het element op gekozen positie volgens argumenten een vaststaand element is.
+     * 
+     * @param rij rij-index van het element.
+     * @param kolom kolom-index van het element.
+     * @return true voor niet-vaststaand element.
+     */
+    private boolean geldigePlaats(int rij, int kolom)
+    {
+        return !velden[rij][kolom].staatVast();
+    }
+
+    /**
+     * Initialiseert een velden-array: alle randen zijn onveranderlijke muren.
+     * Alle andere elementen zijn veranderlijke velden (zonder doel).
      */
     private void maakLeegSpelbord()
-    {   
+    {
         velden = new Element[10][10];
-        
-        for(int rij = 0; rij < velden.length; rij++)
+
+        for (int rij = 0; rij < velden.length; rij++)
         {
-            for(int kolom = 0; kolom < velden[rij].length; kolom++)
+            for (int kolom = 0; kolom < velden[rij].length; kolom++)
             {
                 /*
-                Randen opvullen met muren.
-                */
-                if (rij == 0 || rij == velden.length -1 || kolom == 0 || kolom == velden[rij].length - 1)
+                 Randen opvullen met muren.
+                 */
+                if (rij == 0 || rij == velden.length - 1 || kolom == 0 || kolom == velden[rij].length - 1)
                 {
                     velden[rij][kolom] = new Muur(rij, kolom, true);
                 }
                 /*
-                Rest opvullen met gewone velden
-                */
+                 Rest opvullen met gewone velden
+                 */
                 else
                 {
                     velden[rij][kolom] = new Veld(rij, kolom, false);
                 }
             }
         }
-        
+
         System.out.print(this); //Test
+    }
+
+    /**
+     * Controleert of het custom spelbord geldig is opgebouwd.
+     * Kan alternatief ook met boolean, maar omslachtiger.
+     * 
+     * @throws OngeldigAantalMannetjesException
+     * @throws OngelijkAantalDoelenKistenException
+     * @throws OngeldigAantalKistenException
+     * @throws OngeldigAantalDoelenException 
+     */
+    public void controleerGeldigheid() throws OngeldigAantalMannetjesException, OngelijkAantalDoelenKistenException,
+            OngeldigAantalKistenException, OngeldigAantalDoelenException
+    {
+        int aantalMannetjes = 0, aantalKisten = 0, aantalDoelen = 0;
+
+        for (Element[] rij : velden)
+        {
+            for (Element element : rij)
+            {
+                if (element instanceof Mannetje)
+                {
+                    aantalMannetjes++;
+                }
+                else
+                {
+                    if (element instanceof Veld && element.isDoel())
+                    {
+                        aantalDoelen++;
+                    }
+                    if (element instanceof Kist)
+                    {
+                        aantalKisten++;
+                    }
+                }
+            }
+        }
+
+        if (!(aantalMannetjes == 1))
+        {
+            throw new OngeldigAantalMannetjesException();
+        }
+        if (!(aantalDoelen == aantalKisten))
+        {
+            throw new OngelijkAantalDoelenKistenException();
+        }
+        if(!(aantalKisten > 0))
+        {
+            throw new OngeldigAantalKistenException();
+        }
+        if(!(aantalDoelen > 0))
+        {
+            throw new OngeldigAantalDoelenException();
+        }
     }
 }

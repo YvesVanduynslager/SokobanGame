@@ -1,6 +1,10 @@
 package domein;
 
 /* IMPORTS */
+import exceptions.OngeldigAantalDoelenException;
+import exceptions.OngeldigAantalKistenException;
+import exceptions.OngeldigAantalMannetjesException;
+import exceptions.OngelijkAantalDoelenKistenException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,10 +58,19 @@ public final class Spel
         }
     }
 
+    /**
+     * Geeft een lijst terug met daarin alle spelborden voor dit spel.
+     * @return List met alle spelborden in dit spel.
+     */
     public List<Spelbord> geefSpelborden()
     {
         return spelborden;
     }
+    
+    /**
+     * Geeft het aantal voltooide spelborden terug.
+     * @return aantal voltooide spelborden.
+     */
     public int geefAantalVoltooideBorden()
     {
         int aantal = 0;
@@ -72,7 +85,7 @@ public final class Spel
     }
 
     /**
-     * Geeft de naam van het spel.
+     * Geeft de naam van het spel terug.
      *
      * @return Geeft de naam van het spel terug als een String.
      */
@@ -111,13 +124,9 @@ public final class Spel
     {
         this.huidigSpelbord = spelbord;
     }
-
-    /*
-    TOEGEVOEGD VOOR UC5!!!
-    */
     
     /**
-     * 
+     * Initialiseert een nieuw Spelbord-object en stelt dit in als het huidige spelbord.     * 
      */
     public void maakLeegSpelbord()
     {
@@ -126,10 +135,17 @@ public final class Spel
     }
 
     /**
+     * Voegt het huidige spelbord toe aan dit spel.
      * 
+     * @throws exceptions.OngeldigAantalMannetjesException
+     * @throws exceptions.OngelijkAantalDoelenKistenException
+     * @throws exceptions.OngeldigAantalKistenException
+     * @throws exceptions.OngeldigAantalDoelenException
      */
-    public void registreerSpelbord()
+    public void registreerSpelbord() throws OngeldigAantalMannetjesException, OngelijkAantalDoelenKistenException,
+            OngeldigAantalKistenException, OngeldigAantalDoelenException
     {
+        huidigSpelbord.controleerGeldigheid();
         spelborden.add(huidigSpelbord);
     }
 }

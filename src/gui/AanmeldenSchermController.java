@@ -88,12 +88,10 @@ public class AanmeldenSchermController extends GridPane implements Refreshable
 
         if (speler[0] == null)
         {
-            //geldig = false;
             startScherm.updateStatusLabel(c.getString("aanmelden.nietgevonden"));
         }
         else
         {
-            //geldig = true;
             String adminrechtenHulp = (speler[1].equals("ja") ? c.getString("aanmelden.met") : c.getString("aanmelden.zonder"));
 
             if (speler[1].equals("ja"))

@@ -110,6 +110,12 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
         lblSpelNaam.setText(c.getString("configureer.spelnaam"));
         btnSpelbordKlaar.setText(c.getString("configureer.klaar"));
         btnRegistreerSpel.setText(c.getString("configureer.registreer"));
+        
+        rdbMuur.setText(c.getString("muur"));
+        rdbVeld.setText(c.getString("veld"));
+        rdbDoel.setText(c.getString("doel"));
+        rdbMannetje.setText(c.getString("mannetje"));
+        rdbKist.setText(c.getString("kist"));
     }
 
     /**
@@ -273,7 +279,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
             c.registreerCustomSpelbord();
             c.maakLeegSpelbord();
             btnRegistreerSpel.setDisable(false);
-            startScherm.updateStatusLabel(c.geefAantalSpelborden() + " spelbord(en) geregistreerd!");
+            startScherm.updateStatusLabel(c.geefAantalSpelborden() + " " + c.getString("configureer.registreer.succes2"));
 
             this.wisBord();
             this.tekenBord();
@@ -281,22 +287,22 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
         catch (OngeldigAantalDoelenException e)
         {
             System.err.println(e);
-            startScherm.updateStatusLabel("Plaats minstens 1 doel op het spelbord!");
+            startScherm.updateStatusLabel(c.getString("configureer.registreer.doel"));
         }
         catch (OngeldigAantalKistenException e)
         {
             System.err.println(e);
-            startScherm.updateStatusLabel("Plaats minstens 1 kist op het spelbord!");
+            startScherm.updateStatusLabel(c.getString("configureer.registreer.kist"));
         }
         catch (OngeldigAantalMannetjesException e)
         {
             System.err.println(e);
-            startScherm.updateStatusLabel("Er mag juist één mannetje op het spelbord staan!");
+            startScherm.updateStatusLabel(c.getString("configureer.registreer.mannetje"));
         }
         catch (OngelijkAantalDoelenKistenException e)
         {
             System.err.println(e);
-            startScherm.updateStatusLabel("Het aantal doelen en kisten moet gelijk zijn!");
+            startScherm.updateStatusLabel(c.getString("configureer.registreer.aantal"));
         }
     }
 
@@ -315,7 +321,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
 
             c.registreerCustomSpel();
             startScherm.installSpelNaamHandlers(); //Zorgt ervoor dat het spel na het registreren direct in het menu Spel te zien is.
-            startScherm.updateStatusLabel(c.geefSpelNaam() + " geregistreerd!");
+            startScherm.updateStatusLabel(c.geefSpelNaam() + " " + c.getString("configureer.registreer.succes"));
             this.getChildren().clear();
         }
         catch (SpelNaamBestaatException snbe)

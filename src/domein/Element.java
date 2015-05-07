@@ -42,7 +42,7 @@ public abstract class Element
      * Teruggeven van kolom-positie.
      * @return kolom-positie als int.
      */
-    public int getKolomPositie()
+    public final int getKolomPositie()
     {
         return kolomPositie;
     }
@@ -51,7 +51,7 @@ public abstract class Element
      * Instellen van kolom-positie
      * @param kolomPositie kolom-positie als int.
      */
-    public void setKolomPositie(int kolomPositie)
+    public final void setKolomPositie(int kolomPositie)
     {
         this.kolomPositie = kolomPositie;
     }
@@ -60,7 +60,7 @@ public abstract class Element
      * Teruggeven van rij-positie.
      * @return rij-positie als int.
      */
-    public int getRijPositie()
+    public final int getRijPositie()
     {
         return rijPositie;
     }
@@ -69,7 +69,7 @@ public abstract class Element
      * Instellen van rij-positie
      * @param rijPositie rij-positie als int.
      */
-    public void setRijPositie(int rijPositie)
+    public final void setRijPositie(int rijPositie)
     {
         this.rijPositie = rijPositie;
     }
@@ -78,7 +78,7 @@ public abstract class Element
      * Teruggeven van doelinstelling.
      * @return true als doel, false als geen doel.
      */
-    public boolean isDoel()
+    public final boolean isDoel()
     {
         return isDoel;
     }
@@ -87,7 +87,7 @@ public abstract class Element
      * Teruggeven van vaststand-instelling.
      * @return true als vaststaand, false als niet vaststaand.
      */
-    public boolean staatVast()
+    public final boolean staatVast()
     {
         return staatVast;
     }
@@ -96,7 +96,7 @@ public abstract class Element
      * Instellen of dit element een doel is of niet.
      * @param isDoel True als doel, false als geen doel.
      */
-    public void setIsDoel(boolean isDoel)
+    public final void setIsDoel(boolean isDoel)
     {
         this.isDoel = isDoel;
     }

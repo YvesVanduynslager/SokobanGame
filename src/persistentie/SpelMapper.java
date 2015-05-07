@@ -30,10 +30,10 @@ public final class SpelMapper
      * zal er geloopt worden door de borden van een spel in de
      * geefSpel()-methode.
      *
-     * @param spelNaam
-     * @return
+     * @param spelNaam De naam van het spel waar gecontroleerd moet op worden.
+     * @return het eerste spelbordID binnen het spel.
      */
-    private int geefEersteSpelbordID(String spelNaam)
+    private int geefEersteSpelbordIdVanSpel(String spelNaam)
     {
         int eersteID = 0;
         String sqlEerste = "SELECT MIN(spelbord.spelbordID) FROM spelbord JOIN spel ON spelbord.Spel_spelID = spel.spelID "
@@ -66,8 +66,9 @@ public final class SpelMapper
     }
 
     /**
+     * Geeft het laatste spelbordID terug.
      *
-     * @return
+     * @return laatste spelbordID
      */
     private int geefLaatsteSpelbordID()
     {
@@ -96,8 +97,9 @@ public final class SpelMapper
     }
 
     /**
+     * Geeft het laatste spelID terug.
      *
-     * @return
+     * @return laatste spelID
      */
     private int geefLaatsteSpelID()
     {
@@ -105,7 +107,6 @@ public final class SpelMapper
 
         String sqlLaatste = "SELECT MAX(spelID) FROM spel;";
 
-        //Connectie.start();
         PreparedStatement stmtLaatsteID;
 
         try
@@ -127,9 +128,10 @@ public final class SpelMapper
     }
 
     /**
+     * Haalt de nodige pelgegevens uit de databank op basis van meegegeven parameter.
      *
-     * @param naam makkelijk, gemiddeld, of moeilijk
-     * @return
+     * @param naam van het spel dat moet opgehaald worden.
+     * @return Spel-object met alle spelborden van dat spel.
      */
     public Spel geefSpel(String naam)
     {
@@ -138,7 +140,7 @@ public final class SpelMapper
         {
             "veld", "doel", "mannetje", "kist"
         };
-        int eersteSpelbordID = this.geefEersteSpelbordID(naam);
+        int eersteSpelbordID = this.geefEersteSpelbordIdVanSpel(naam);
         int aantalBorden = this.geefAantalSpelborden(naam) + eersteSpelbordID;
 
         List<Spelbord> borden = new ArrayList();
@@ -258,6 +260,10 @@ public final class SpelMapper
         return aantal;
     }
 
+    /**
+     * Geeft alle spelnamen terug uit de databank.
+     * @return Lijst van spelnamen.
+     */
     public List<String> geefSpelNamen()
     {
         List<String> spelNamen = new ArrayList();
@@ -288,6 +294,11 @@ public final class SpelMapper
         return spelNamen;
     }
 
+    /**
+     * Voegt een nieuwe spelNaam toe aan de databank.
+     * @param spelNaam in te voeren spelnaam.
+     * @throws SpelNaamBestaatException 
+     */
     private void voegSpelToe(String spelNaam) throws SpelNaamBestaatException
     {
         String sqlInsertSpelNaam = "INSERT INTO sokobandatabase.spel(spelNaam) "
@@ -312,6 +323,11 @@ public final class SpelMapper
         }
     }
 
+    /**
+     * Voegt nieuwe spelbordID's toe aan de databank.
+     * 
+     * @param spelborden lijst van spelborden.
+     */
     private void voegSpelbordenToe(List<Spelbord> spelborden)
     {
         String sqlInsertSpelbord = "INSERT INTO sokobandatabase.spelbord(Spel_spelID) "
@@ -340,8 +356,9 @@ public final class SpelMapper
     }
 
     /**
+     * Voegt alle elementen uit een spelbord toe aan de databank.
      * 
-     * @param velden 
+     * @param velden 2d-array met daarin alle elementen.
      */
     private void voegElementenToe(Element[][] velden)
     {
@@ -406,6 +423,12 @@ public final class SpelMapper
         }
     }
 
+    /**
+     * Voegt een Spel-object toe aan de databank.
+     * 
+     * @param customSpel Spel-object met bijhorende Spelborden en Elementen.
+     * @throws SpelNaamBestaatException 
+     */
     public void voegToe(Spel customSpel) throws SpelNaamBestaatException
     {
         Connectie.start();
@@ -414,6 +437,11 @@ public final class SpelMapper
         Connectie.sluit();
     }
 
+    /**
+     * Controleert of de spelnaam al bestaat in de tabel spel.
+     * @param spelNaam Te controleren spelnaam.
+     * @return true als spelnaam bestaat, false als spelnaam niet bestaat.
+     */
     private boolean bestaatSpelNaam(String spelNaam)
     {
         String sqlString = "SELECT spelNaam FROM spel WHERE spelNaam = '" + spelNaam + "'";

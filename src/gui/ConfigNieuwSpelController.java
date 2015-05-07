@@ -237,6 +237,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
                     c.plaatsElement(type, rij, kolom);
                     gridLabels[rij][kolom].setGraphic(imgElement);
                     System.out.println("label " + rij + " " + kolom + " clicked");
+                    break;
                 }
             }
         }

@@ -287,7 +287,8 @@ public final class Spelbord
     /**
      * Plaatst een element op basis parameters op het spelbord.
      *
-     * @param elementType Welk soort element moet toegevoegd worden (kist, muur, mannetje, veld of doel).
+     * @param elementType Welk soort element moet toegevoegd worden (kist, muur,
+     * mannetje, veld of doel).
      * @param rij rij-index.
      * @param kolom kolom-index.
      */
@@ -320,8 +321,9 @@ public final class Spelbord
     }
 
     /**
-     * Controleert of het element op gekozen positie volgens argumenten een vaststaand element is.
-     * 
+     * Controleert of het element op gekozen positie volgens argumenten een
+     * vaststaand element is.
+     *
      * @param rij rij-index van het element.
      * @param kolom kolom-index van het element.
      * @return true voor niet-vaststaand element.
@@ -364,13 +366,13 @@ public final class Spelbord
     }
 
     /**
-     * Controleert of het custom spelbord geldig is opgebouwd.
-     * Kan alternatief ook met boolean, maar omslachtiger.
-     * 
+     * Controleert of het custom spelbord geldig is opgebouwd. Kan alternatief
+     * ook met boolean, maar omslachtiger.
+     *
      * @throws OngeldigAantalMannetjesException
      * @throws OngelijkAantalDoelenKistenException
      * @throws OngeldigAantalKistenException
-     * @throws OngeldigAantalDoelenException 
+     * @throws OngeldigAantalDoelenException
      */
     public void controleerGeldigheid() throws OngeldigAantalMannetjesException, OngelijkAantalDoelenKistenException,
             OngeldigAantalKistenException, OngeldigAantalDoelenException
@@ -403,17 +405,26 @@ public final class Spelbord
         {
             throw new OngeldigAantalMannetjesException();
         }
-        if (!(aantalDoelen == aantalKisten))
+        else
         {
-            throw new OngelijkAantalDoelenKistenException();
-        }
-        if(!(aantalKisten > 0))
-        {
-            throw new OngeldigAantalKistenException();
-        }
-        if(!(aantalDoelen > 0))
-        {
-            throw new OngeldigAantalDoelenException();
+            if (!(aantalKisten > 0))
+            {
+                throw new OngeldigAantalKistenException();
+            }
+            else
+            {
+                if (!(aantalDoelen > 0))
+                {
+                    throw new OngeldigAantalDoelenException();
+                }
+                else
+                {
+                    if (!(aantalDoelen == aantalKisten))
+                    {
+                        throw new OngelijkAantalDoelenKistenException();
+                    }
+                }
+            }
         }
     }
 }

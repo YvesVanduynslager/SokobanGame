@@ -40,8 +40,9 @@ public class StartSchermController extends GridPane implements Refreshable
     private GridPane content;
 
     /**
-     * 
-     * @param c 
+     * Constructor met DomeinController-object als parameter.
+     *
+     * @param c DomeinController-object.
      */
     public StartSchermController(DomeinController c)
     {
@@ -96,7 +97,6 @@ public class StartSchermController extends GridPane implements Refreshable
     }
 
     /**
-     *
      * Dit (en spel_gekozen methode) zorgen ervoor dat alle spelnamen uit de
      * databank aan het menu worden toegevoegd en een ActionHandler toegewezen
      * krijgen.
@@ -140,6 +140,11 @@ public class StartSchermController extends GridPane implements Refreshable
         }
     }
 
+    /**
+     * Als er op mItemConfigNieuwSpel werd geklikt.
+     *
+     * @param event
+     */
     private void mItemConfigNieuwSpel_gekozen(ActionEvent event)
     {
         content.getChildren().clear();
@@ -148,6 +153,11 @@ public class StartSchermController extends GridPane implements Refreshable
         addContent(content);
     }
 
+    /**
+     * Als er op mItemAanmelden werd geklikt.
+     *
+     * @param event
+     */
     private void mItemAanmelden_gekozen(ActionEvent event)
     {
         content.getChildren().clear();
@@ -156,6 +166,11 @@ public class StartSchermController extends GridPane implements Refreshable
         addContent(content);
     }
 
+    /**
+     * Als er op mItemRegistreren werd geklikt.
+     *
+     * @param event
+     */
     private void mItemRegistreren_gekozen(ActionEvent event)
     {
         content.getChildren().clear();
@@ -164,11 +179,21 @@ public class StartSchermController extends GridPane implements Refreshable
         addContent(content);
     }
 
+    /**
+     * Als er op mItemAfsluiten werd geklikt.
+     *
+     * @param event
+     */
     private void mItemAfsluiten_gekozen(ActionEvent event)
     {
         Platform.exit();
     }
 
+    /**
+     * Als er op mItemNederlands werd geklikt.
+     *
+     * @param event
+     */
     private void mItemNederlands_gekozen(ActionEvent event)
     {
         c.setTaalKeuze(1, true);
@@ -176,6 +201,11 @@ public class StartSchermController extends GridPane implements Refreshable
         refresh();
     }
 
+    /**
+     * Als er op mItemFrans werd geklikt.
+     *
+     * @param event
+     */
     private void mItemFrans_gekozen(ActionEvent event)
     {
         c.setTaalKeuze(3, true);
@@ -183,6 +213,11 @@ public class StartSchermController extends GridPane implements Refreshable
         refresh();
     }
 
+    /**
+     * Als er op mItemEngels werd geklikt.
+     *
+     * @param event
+     */
     private void mItemEngels_gekozen(ActionEvent event)
     {
         c.setTaalKeuze(2, true);
@@ -190,6 +225,11 @@ public class StartSchermController extends GridPane implements Refreshable
         refresh();
     }
 
+    /**
+     * Als er op mItemInfo werd geklikt.
+     *
+     * @param event
+     */
     private void mItemInfo_gekozen(ActionEvent event)
     {
         content.getChildren().clear();
@@ -198,6 +238,11 @@ public class StartSchermController extends GridPane implements Refreshable
         addContent(content);
     }
 
+    /**
+     * Als er op mItemControls werd geklikt.
+     *
+     * @param event
+     */
     private void mItemControls_gekozen(ActionEvent event)
     {
         content.getChildren().clear();
@@ -207,6 +252,10 @@ public class StartSchermController extends GridPane implements Refreshable
 
     }
 
+    /**
+     * Hulpmethode die gebruikt wordt om de taal van componenten opnieuw in te
+     * stellen.
+     */
     private void refreshMenuLabels()
     {
         this.menuSpel.setText(c.getString("menu.spel"));
@@ -230,6 +279,9 @@ public class StartSchermController extends GridPane implements Refreshable
         this.mItemInfo.setText(c.getString("menu.help.info"));
     }
 
+    /**
+     * Roept de refresh-methode op van de huidige content.
+     */
     @Override
     public void refresh()
     {
@@ -276,11 +328,21 @@ public class StartSchermController extends GridPane implements Refreshable
         }
     }
 
+    /**
+     * Tekent een GridPane op het startscherm.
+     * 
+     * @param content GridPane-object dat moet getekend worden op dit scherm.
+     */
     private void addContent(GridPane content)
     {
         this.add(content, 0, 1);
     }
 
+    /**
+     * Stelt de beschikbaarheid van de menuItems in naargelang de gebruiker
+     * admin is of niet.
+     * @param isAdmin true als admin, false als geen admin.
+     */
     public void updateControls(boolean isAdmin)
     {
         if (isAdmin)
@@ -297,6 +359,10 @@ public class StartSchermController extends GridPane implements Refreshable
         }
     }
 
+    /**
+     * Stelt de inhoud van lblStatus in.
+     * @param lblStatus in te stellen tekst.
+     */
     public void updateStatusLabel(String lblStatus)
     {
         this.lblStatus.setText(lblStatus);

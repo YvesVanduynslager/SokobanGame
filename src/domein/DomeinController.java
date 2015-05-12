@@ -93,8 +93,8 @@ public final class DomeinController
      * @throws exceptions.GebruikerBestaatException Als de gebruiker al
      * geregistreerd is in het systeem. Throws naar en handelt af in Registreer.
      * 
-     * @throws GebruikersnaamOngeldigException
-     * @throws WachtwoordOngeldigException
+     * @throws GebruikersnaamOngeldigException Ongeldige gebruikersnaam
+     * @throws WachtwoordOngeldigException Ongeldig wachtwoord
      */
     public void registreer(String gebruikersnaam, String wachtwoord,
             String voornaam, String achternaam)
@@ -282,7 +282,7 @@ public final class DomeinController
 
     /**
      * UC5. Registreert het geconfigureerde spel in de databank.
-     * @throws SpelNaamBestaatException
+     * @throws SpelNaamBestaatException Spelnaam bestaat al
      */
     public void registreerCustomSpel() throws SpelNaamBestaatException
     {
@@ -291,10 +291,10 @@ public final class DomeinController
     
     /**
      * UC5. Registreert het gemaakte spelbord in het huidige te configureren spel.
-     * @throws exceptions.OngeldigAantalMannetjesException
-     * @throws exceptions.OngelijkAantalDoelenKistenException
-     * @throws exceptions.OngeldigAantalKistenException
-     * @throws exceptions.OngeldigAantalDoelenException
+     * @throws exceptions.OngeldigAantalMannetjesException Minder of meer dan 1 mannetje op spelbord
+     * @throws exceptions.OngelijkAantalDoelenKistenException Aantal doelen en kisten is niet gelijk
+     * @throws exceptions.OngeldigAantalKistenException Minder dan 1 kist op spelbord
+     * @throws exceptions.OngeldigAantalDoelenException Minder dan 1 doel op spelbord
      */
     public void registreerCustomSpelbord() throws OngeldigAantalMannetjesException, OngelijkAantalDoelenKistenException,
             OngeldigAantalKistenException, OngeldigAantalDoelenException

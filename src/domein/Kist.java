@@ -14,7 +14,7 @@ public final class Kist extends Element
      *
      * @param kolomPositie kolom-positie, int.
      * @param rijPositie rij-positie, int
-     * @param isDoel
+     * @param isDoel true voor doel, false voor geen doel.
      */
     public Kist(int kolomPositie, int rijPositie, boolean isDoel)
     {

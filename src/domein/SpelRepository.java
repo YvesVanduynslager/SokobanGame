@@ -48,7 +48,7 @@ public final class SpelRepository
      * Geeft een Spel-object door aan SpelMapper.
      * 
      * @param customSpel Het door te geven Spel-object.
-     * @throws SpelNaamBestaatException 
+     * @throws SpelNaamBestaatException Spelnaam bestaat al.
      */
     public void voegSpelToe(Spel customSpel) throws SpelNaamBestaatException
     {

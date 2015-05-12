@@ -427,7 +427,7 @@ public final class SpelMapper
      * Voegt een Spel-object toe aan de databank.
      * 
      * @param customSpel Spel-object met bijhorende Spelborden en Elementen.
-     * @throws SpelNaamBestaatException 
+     * @throws SpelNaamBestaatException Spelnaam bestaat al in databank.
      */
     public void voegToe(Spel customSpel) throws SpelNaamBestaatException
     {

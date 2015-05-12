@@ -65,7 +65,7 @@ public final class SpelerMapper
      *
      * @param speler Speler-object met gegevens die moeten toegevoegd worden aan
      * de databank.
-     * @throws GebruikerBestaatException throws naar SpelerRepository.
+     * @throws GebruikerBestaatException Gebruiker bestaat al in de databank.
      */
     public void voegToe(Speler speler) throws GebruikerBestaatException
     {

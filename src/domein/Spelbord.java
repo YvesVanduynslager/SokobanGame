@@ -288,8 +288,8 @@ public final class Spelbord
     /**
 	 * 
 	 * @param elementType Welk soort element moet toegevoegd worden (kist, muur, mannetje, veld of doel).
-	 * @param kolom
-	 * @param rij
+	 * @param kolom kolom-index
+	 * @param rij rij-index
 	 */
     public void plaatsElement(String elementType, int rij, int kolom)
     {
@@ -368,10 +368,10 @@ public final class Spelbord
      * Controleert of het custom spelbord geldig is opgebouwd. Kan alternatief
      * ook met boolean, maar omslachtiger.
      *
-     * @throws OngeldigAantalMannetjesException
-     * @throws OngelijkAantalDoelenKistenException
-     * @throws OngeldigAantalKistenException
-     * @throws OngeldigAantalDoelenException
+     * @throws OngeldigAantalMannetjesException Meer of minder dan 1 mannetje op spelbord
+     * @throws OngelijkAantalDoelenKistenException Aantal doelen en kisten zijn niet gelijk
+     * @throws OngeldigAantalKistenException Minder dan 1 kist op spelbord
+     * @throws OngeldigAantalDoelenException Minder dan 1 doel op spelbord
      */
     public void controleerGeldigheid() throws OngeldigAantalMannetjesException, OngelijkAantalDoelenKistenException,
             OngeldigAantalKistenException, OngeldigAantalDoelenException

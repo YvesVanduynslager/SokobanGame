@@ -33,8 +33,8 @@ public final class Speler
      * @param adminrechten "ja" als speler adminrechten heeft, "nee" als speler
      * geen adminrechten heeft.
      * 
-     * @throws WachtwoordOngeldigException
-     * @throws GebruikersnaamOngeldigException
+     * @throws WachtwoordOngeldigException Ongeldig wachtwoord
+     * @throws GebruikersnaamOngeldigException Ongeldige gebruikersnaam
      */
     public Speler(String gebruikersnaam, String wachtwoord, String achternaam,
             String voornaam, String adminrechten) //throws WachtwoordOngeldigException, GebruikersnaamOngeldigException

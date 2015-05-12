@@ -137,10 +137,10 @@ public final class Spel
     /**
      * Voegt het huidige spelbord toe aan dit spel.
      * 
-     * @throws exceptions.OngeldigAantalMannetjesException
-     * @throws exceptions.OngelijkAantalDoelenKistenException
-     * @throws exceptions.OngeldigAantalKistenException
-     * @throws exceptions.OngeldigAantalDoelenException
+     * @throws exceptions.OngeldigAantalMannetjesException Minder dan 1 mannetje op spelbord.
+     * @throws exceptions.OngelijkAantalDoelenKistenException Aantal doelen en kisten is niet gelijk.
+     * @throws exceptions.OngeldigAantalKistenException Minder dan 1 kist op spelbord.
+     * @throws exceptions.OngeldigAantalDoelenException Minder dan 1 doel op spelbord.
      */
     public void registreerSpelbord() throws OngeldigAantalMannetjesException, OngelijkAantalDoelenKistenException,
             OngeldigAantalKistenException, OngeldigAantalDoelenException

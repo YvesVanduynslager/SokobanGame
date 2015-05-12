@@ -28,10 +28,10 @@ public class ControlsSchermController extends GridPane implements Refreshable
         this.startScherm = startScherm;
         this.c = c;
 
-        lblZ.getStyleClass().add("keys");
-        lblQ.getStyleClass().add("keys");
-        lblS.getStyleClass().add("keys");
-        lblD.getStyleClass().add("keys");
+        lblZ.getStyleClass().add("border");
+        lblQ.getStyleClass().add("border");
+        lblS.getStyleClass().add("border");
+        lblD.getStyleClass().add("border");
 
         installMouseHandlers();
         refresh();

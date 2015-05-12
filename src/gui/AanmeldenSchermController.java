@@ -31,7 +31,6 @@ public class AanmeldenSchermController extends GridPane implements Refreshable
 
     private final DomeinController c;
     private final StartSchermController startScherm;
-    private boolean geldig;
 
     /**
      * Initialisatie van het aanmelden-scherm.
@@ -72,7 +71,7 @@ public class AanmeldenSchermController extends GridPane implements Refreshable
     }
 
     /**
-     * Code die uitgevoerd wordt als er op btnOK werd geklikt.
+     * Als er op btnOK geklikt werd
      * @param event 
      */
     private void btnOK_gekozen(ActionEvent event)
@@ -132,9 +131,4 @@ public class AanmeldenSchermController extends GridPane implements Refreshable
     {
         this.getChildren().clear();
     }
-//
-//    public boolean isSuccess()
-//    {
-//        return geldig;
-//    }
 }

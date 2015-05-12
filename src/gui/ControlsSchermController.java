@@ -21,10 +21,16 @@ public class ControlsSchermController extends GridPane implements Refreshable
     private final DomeinController c;
     private final StartSchermController startScherm;
 
+    /**
+     * Initialisatie van het controls-scherm.
+     *
+     * @param startScherm parent-component.
+     * @param c DomeinController-object.
+     */
     public ControlsSchermController(StartSchermController startScherm, DomeinController c)
     {
         init();
-        
+
         this.startScherm = startScherm;
         this.c = c;
 
@@ -36,8 +42,8 @@ public class ControlsSchermController extends GridPane implements Refreshable
         installMouseHandlers();
         refresh();
     }
-    
-        /**
+
+    /**
      * Initialisatie van fxml-root.
      */
     @Override
@@ -55,7 +61,10 @@ public class ControlsSchermController extends GridPane implements Refreshable
             throw new RuntimeException(ex);
         }
     }
-    
+
+    /**
+     * Stelt de handlers in voor mouseovers over keys.
+     */
     private void installMouseHandlers()
     {
         lblZ.setOnMouseEntered(this::mouse_entered);
@@ -98,11 +107,18 @@ public class ControlsSchermController extends GridPane implements Refreshable
         }
     }
 
+    /**
+     * Als de muis het gebied verlaat.
+     * @param event 
+     */
     private void mouse_exited(MouseEvent event)
     {
         startScherm.updateStatusLabel("");
     }
 
+    /**
+     * Stelt componenten opnieuw in adhv taal-resources.
+     */
     @Override
     public final void refresh()
     {

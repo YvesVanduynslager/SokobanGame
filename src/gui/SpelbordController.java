@@ -32,10 +32,16 @@ public class SpelbordController extends GridPane implements Refreshable
     @FXML
     private GridPane grdSpelbord;
 
+    /**
+     * Initialisatie van het spelbord-scherm.
+     *
+     * @param startScherm parent-component.
+     * @param c DomeinController-object.
+     */
     public SpelbordController(StartSchermController startScherm, DomeinController c)
     {
         init();
-        
+
         this.startScherm = startScherm;
         this.c = c;
 
@@ -44,12 +50,12 @@ public class SpelbordController extends GridPane implements Refreshable
 
         btnJa.setOnAction(this::btnJa_gekozen);
         btnNee.setOnAction(this::btnNee_gekozen);
-        
+
         grdSpelbord.getStyleClass().add("border");
         txaInfo.getStyleClass().add("border");
     }
-    
-        /**
+
+    /**
      * Initialisatie van fxml-root.
      */
     @Override
@@ -68,6 +74,9 @@ public class SpelbordController extends GridPane implements Refreshable
         }
     }
 
+    /**
+     * Stelt componenten opnieuw in adhv taal-resources.
+     */
     @Override
     public void refresh()
     {
@@ -88,6 +97,9 @@ public class SpelbordController extends GridPane implements Refreshable
         this.requestFocus();
     }
 
+    /**
+     * Tekent het bord op het scherm.
+     */
     private void tekenBord()
     {
         String[][] elementen = c.spelbordTo2DString();
@@ -121,21 +133,35 @@ public class SpelbordController extends GridPane implements Refreshable
         }
     }
 
+    /**
+     * Verwijdert het bord van het scherm
+     */
     private void wisBord()
     {
         grdSpelbord.getChildren().clear();
     }
 
+    /**
+     * Geeft weer op het spel is voltooid.
+     * @return true als voltooid. false als niet voltooid.
+     */
     private boolean spelIsVoltooid()
     {
         return c.geefAantalVoltooideBorden() == c.geefAantalSpelborden();
     }
 
+    /**
+     * Geeft weer of het spelbord is voltooid.
+     * @return true als voltooid. false als niet voltooid.
+     */
     private boolean spelbordIsVoltooid()
     {
         return c.huidigSpelbordVoltooid();
     }
 
+    /**
+     * Stelt de GUI-componenten in naargelang het spel of spelbord al dan niet voltooid is.
+     */
     private void updateControls()
     {
         if (spelbordIsVoltooid())
@@ -174,11 +200,17 @@ public class SpelbordController extends GridPane implements Refreshable
         }
     }
 
+    /**
+     * Stelt in dat er geen actie meer mag ondernomen worden bij indrukken van een toets.
+     */
     private void disableKeyHandler()
     {
         this.setOnKeyPressed(null);
     }
 
+    /**
+     * Stelt in wat er moet gebeuren bij het indrukken van ZQSD toetsen.
+     */
     private void enableKeyHandler()
     {
         final EventHandler<KeyEvent> keyEventHandler = new EventHandler<KeyEvent>()
@@ -226,18 +258,26 @@ public class SpelbordController extends GridPane implements Refreshable
         this.setOnKeyPressed(keyEventHandler);
     }
 
+    /**
+     * Als er op btnJa werd geklikt
+     * @param event 
+     */
     private void btnJa_gekozen(ActionEvent event)
     {
         btnJa.setVisible(false);
         btnNee.setVisible(false);
         txaInfo.setVisible(false);
         startScherm.updateStatusLabel("");
-        
+
         c.startVolgendSpelbord();
         refresh();
         enableKeyHandler();
     }
 
+    /**
+     * Als er op btnNee werd geklikt
+     * @param event 
+     */
     private void btnNee_gekozen(ActionEvent event)
     {
         startScherm.updateStatusLabel("");

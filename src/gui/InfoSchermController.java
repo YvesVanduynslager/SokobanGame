@@ -18,14 +18,22 @@ public class InfoSchermController extends GridPane implements Refreshable
     private Label lblTitel;
 
     private final DomeinController c;
-    
+
+    /**
+     * Initialisatie van het info-scherm.
+     *
+     * @param c DomeinController-object.
+     */
     public InfoSchermController(DomeinController c)
     {
         init();
         this.c = c;
         refresh();
-    }  
+    }
 
+    /**
+     * Initialisatie van fxml-root.
+     */
     @Override
     public final void init()
     {
@@ -41,7 +49,10 @@ public class InfoSchermController extends GridPane implements Refreshable
             throw new RuntimeException(ex);
         }
     }
-    
+
+    /**
+     * Stelt componenten opnieuw in adhv taal-resources.
+     */
     @Override
     public final void refresh()
     {

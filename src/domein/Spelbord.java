@@ -18,6 +18,7 @@ public final class Spelbord
     /* DECLARATIES CONSTANTEN */
     private Element[][] velden;
     private Mannetje mannetje;
+	private boolean voltooid;
 
     /**
      * Default-constructor stelt een leeg spelbord in.
@@ -285,13 +286,11 @@ public final class Spelbord
     }
 
     /**
-     * Plaatst een element op basis parameters op het spelbord.
-     *
-     * @param elementType Welk soort element moet toegevoegd worden (kist, muur,
-     * mannetje, veld of doel).
-     * @param rij rij-index.
-     * @param kolom kolom-index.
-     */
+	 * 
+	 * @param elementType Welk soort element moet toegevoegd worden (kist, muur, mannetje, veld of doel).
+	 * @param kolom
+	 * @param rij
+	 */
     public void plaatsElement(String elementType, int rij, int kolom)
     {
         if (geldigePlaats(rij, kolom))

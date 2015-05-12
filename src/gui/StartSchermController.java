@@ -40,8 +40,8 @@ public class StartSchermController extends GridPane implements Refreshable
     private GridPane content;
 
     /**
-     * Constructor met DomeinController-object als parameter.
-     *
+     * Initialisatie van het startscherm.
+     * 
      * @param c DomeinController-object.
      */
     public StartSchermController(DomeinController c)

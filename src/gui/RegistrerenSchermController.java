@@ -33,12 +33,17 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
 
     private final StartSchermController startScherm;
     private final DomeinController c;
-    private boolean geldig;
 
+    /**
+     * Initialisatie van het registreren-scherm.
+     *
+     * @param startScherm parent-component.
+     * @param c DomeinController-object.
+     */
     RegistrerenSchermController(StartSchermController startScherm, DomeinController c)
     {
         init();
-        
+
         this.startScherm = startScherm;
         this.c = c;
 
@@ -47,8 +52,8 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
 
         refresh();
     }
-    
-        /**
+
+    /**
      * Initialisatie van fxml-root.
      */
     @Override
@@ -67,30 +72,37 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
         }
     }
 
+    /**
+     * Stelt componenten opnieuw in adhv taal-resources.
+     */
     @Override
     public final void refresh()
     {
         lblTitel.setText(c.getString("registreer.titel"));
-        
+
         txtGebruikersnaam.setPromptText(c.getString("registreer.gebruikersnaam"));
         txtGebruikersnaam.setTooltip(new Tooltip(c.getString("gebruikersnaam.tooltip")));
-        
+
         pswWachtwoord.setPromptText(c.getString("registreer.wachtwoord"));
         pswWachtwoord.setTooltip(new Tooltip(c.getString("wachtwoord.tooltip")));
-        
+
         txtVoornaam.setPromptText(c.getString("registreer.voornaam"));
         txtNaam.setPromptText(c.getString("registreer.naam"));
-        
+
         btnAnnuleren.setText(c.getString("annuleren"));
-        btnOK.setText(c.getString("ok"));   
+        btnOK.setText(c.getString("ok"));
     }
 
+    /**
+     * Als er op btnOK werd geklikt
+     * @param event 
+     */
     private void btnOK_gekozen(ActionEvent event)
     {
         try
         {
             c.registreer(txtGebruikersnaam.getText(), pswWachtwoord.getText() /*BCrypt.hashpw(pswWachtwoord.getText(), "$2a$10$RV4IhXXJFyL3EmzvS4sqHu")*/, txtNaam.getText(), txtVoornaam.getText());
-            
+
             //Wordt enkel uitgevoerd als er geen exception werd gegooid
             startScherm.updateStatusLabel(c.getString("aangemeld.1")
                     + " " + txtGebruikersnaam.getText()
@@ -115,6 +127,10 @@ public class RegistrerenSchermController extends GridPane implements Refreshable
         }
     }
 
+    /**
+     * Als er op btnAnnuleren werd geklikt.
+     * @param event 
+     */
     private void btnAnnuleren_gekozen(ActionEvent event)
     {
         this.getChildren().clear();

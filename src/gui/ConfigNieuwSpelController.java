@@ -51,16 +51,17 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     private final Image IMG_VELD = new Image(getClass().getResourceAsStream("/images/veld.jpg"));
 
     /**
-     *
-     * @param startscherm
-     * @param c
+     * Initialisatie van het configureer-nieuw-spel-scherm.
+     * 
+     * @param startScherm parent-component.
+     * @param c DomeinController-object.
      */
-    public ConfigNieuwSpelController(StartSchermController startscherm, DomeinController c)
+    public ConfigNieuwSpelController(StartSchermController startScherm, DomeinController c)
     {
         init();
 
         this.c = c;
-        this.startScherm = startscherm;
+        this.startScherm = startScherm;
 
         refresh();
 
@@ -73,16 +74,9 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
 
         this.toonRadioButtons(false);
         rdbMannetje.setSelected(true);
-
-        //Radiobuttons weergeven als images.
-//        rdbMannetje.setGraphic(new ImageView(IMG_MANNETJE));
-//        rdbMuur.setGraphic(new ImageView(IMG_MUUR));
-//        rdbKist.setGraphic(new ImageView(IMG_KIST));
-//        rdbDoel.setGraphic(new ImageView(IMG_DOEL));
-//        rdbVeld.setGraphic(new ImageView(IMG_VELD));
     }
 
-        /**
+    /**
      * Initialisatie van fxml-root.
      */
     @Override
@@ -102,7 +96,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     *
+     * Stelt componenten opnieuw in adhv taal-resources.
      */
     @Override
     public final void refresh()
@@ -110,7 +104,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
         lblSpelNaam.setText(c.getString("configureer.spelnaam"));
         btnSpelbordKlaar.setText(c.getString("configureer.klaar"));
         btnRegistreerSpel.setText(c.getString("configureer.registreer"));
-        
+
         rdbMuur.setText(c.getString("muur"));
         rdbVeld.setText(c.getString("veld"));
         rdbDoel.setText(c.getString("doel"));
@@ -119,8 +113,8 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     *
-     * @param zichtbaar
+     * Stelt de zichtbaarheid van de radiobuttons in.
+     * @param zichtbaar true voor zichtbaar, false voor onzichtbaar.
      */
     private void toonRadioButtons(boolean zichtbaar)
     {
@@ -132,7 +126,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     *
+     * Verwijdert het bord van het scherm
      */
     public final void wisBord()
     {
@@ -140,7 +134,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     *
+     * Tekent het bord op het scherm.
      */
     private void tekenBord()
     {
@@ -188,7 +182,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     *
+     * Als er op een vakje geklikt werd.
      * @param event
      */
     private void vakje_clicked(MouseEvent event)
@@ -253,7 +247,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     *
+     * Als er op btnOK geklikt werd
      * @param event
      */
     private void btnOK_clicked(ActionEvent event)
@@ -269,7 +263,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     *
+     * Als er op btnSpelbordKlaar geklikt werd
      * @param event
      */
     private void btnSpelbordKlaar_clicked(ActionEvent event)
@@ -277,6 +271,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
         try
         {
             c.registreerCustomSpelbord();
+
             c.maakLeegSpelbord();
             btnRegistreerSpel.setDisable(false);
             startScherm.updateStatusLabel(c.geefAantalSpelborden() + " " + c.getString("configureer.registreer.succes2"));
@@ -307,7 +302,7 @@ public class ConfigNieuwSpelController extends GridPane implements Refreshable
     }
 
     /**
-     *
+     * Als er op btnRegistreerSpel geklikt werd.
      * @param event
      */
     private void btnRegistreerSpel_clicked(ActionEvent event)

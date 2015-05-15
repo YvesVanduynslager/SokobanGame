@@ -10,7 +10,6 @@ import java.sql.*;
  */
 public final class Connectie
 {
-    //verander mysqlUser en mysqlPassword met je persoonlijke login gegevens
     private static final String MYSQL_USER = "root", MYSQL_PASSWORD = "root";
     //database-locatie en driver:
     private static final String JDBC = "jdbc:mysql://localhost:3306/sokobandatabase?user=" + MYSQL_USER + "&password=" + MYSQL_PASSWORD;

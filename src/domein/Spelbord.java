@@ -175,7 +175,7 @@ public final class Spelbord
             ++aantalZetten;
         }
 
-        System.gc(); /*Oproep als test. Na cratie van een exe file en bij uitvoering hiervan,
+        System.gc(); /*Oproep als test. Na creatie van een exe file en bij uitvoering hiervan,
          stijgt het gebruikte RAM-geheugen bij iedere verplaatsing met 1-5 MB.*/
 
     }
